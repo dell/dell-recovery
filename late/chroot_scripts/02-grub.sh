@@ -27,4 +27,8 @@
 
 IFHALT "Rerun GRUB update"
 /usr/sbin/update-grub
+if [ -d /sys/firmware/efi ] && \
+	grep innotek /sys/class/dmi/id/bios_vendor /sys/class/dmi/id/sys_vendor; then
+	echo 'fs0:\efi\ubuntu\shimx64.efi' > /boot/efi/startup.nsh
+fi
 IFHALT "Done with GRUB update"
