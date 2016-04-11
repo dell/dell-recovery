@@ -16,11 +16,11 @@ fi
 if dpkg-query -l dkms >/dev/null 2>&1 && \
    [ -z "$SECURE_BOOT" ] && \
    [ -f "$EFI_APP" ]; then
-    cp "$EFI_APP" /boot/efi/EFI/ubuntu/
+    cp -v "$EFI_APP" /boot/efi/EFI/ubuntu/
     PARTITION_NODE=$(mount | sed '/\/boot\/efi/!d; s, .*,,; s,/dev/,,;')
-    DEVICE=$(readlink /sys/class/block/$PARTITION_NODE | sed 's,/$PARTITION_NODE,,; 's,.*/,,'')
+    DEVICE=$(readlink /sys/class/block/$PARTITION_NODE | sed "s,/$PARTITION_NODE,,; "s,.*/,,"")
     PARTITION_NUMBER=$(cat /sys/class/block/$PARTITION_NODE/partition)
     efibootmgr -C -l '\EFI\ubuntu\MokSBStateSet.efi' -L 'MokSBStateSet' -d /dev/$DEVICE -p $PARTITION_NUMBER
     BOOTNUM=$(efibootmgr | sed '/MokSBStateSet/!d; s,\* .*,,; s,Boot,,')
-    efibootmgr -n $BOOTNUM
+    efibootmgr -v -n $BOOTNUM
 fi
