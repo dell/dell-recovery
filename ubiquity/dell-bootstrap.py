@@ -830,15 +830,6 @@ class Page(Plugin):
             self.handle_exception(err)
             self.cancel_handler()
 
-        # Always put 'ubuntu' in BootNext if any
-        with misc.raised_privileges():
-            bootmgr_output = magic.fetch_output(['efibootmgr', '-v']).split('\n')
-            for line in bootmgr_output:
-                bootnum = ''
-                if line.startswith('Boot') and 'ubuntu' in line:
-                    bootnum = line.split('Boot')[1].replace('*', '').split()[0]
-                    misc.execute_root('efibootmgr', '-n', bootnum)
-
         return (['/usr/share/ubiquity/dell-bootstrap'], [RECOVERY_TYPE_QUESTION])
 
     def ok_handler(self):
@@ -1153,15 +1144,6 @@ manually to proceed.")
         add = misc.execute_root('efibootmgr', '-v', '-c', '-d', self.device, '-p', EFI_ESP_PARTITION, '-l', '\\EFI\\ubuntu\\%s' % target, '-L', 'ubuntu')
         if add is False:
             raise RuntimeError("Error adding efi entry to %s%s" % (self.device, esp_part))
-
-        #find new entry and put it in BootNext
-        with misc.raised_privileges():
-            bootmgr_output = magic.fetch_output(['efibootmgr', '-v']).split('\n')
-            for line in bootmgr_output:
-                bootnum = ''
-                if line.startswith('Boot') and 'ubuntu' in line:
-                    bootnum = line.split('Boot')[1].replace('*', '').split()[0]
-                    misc.execute_root('efibootmgr', '-v', '-n', bootnum)
 
         ##clean up ESP mount
         misc.execute_root('umount', '/mnt/efi')
