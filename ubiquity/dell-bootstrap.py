@@ -429,20 +429,22 @@ class Page(Plugin):
             self.log(str(err))
         
         if self.test_swap():
-            swap_part = ''        
+            swap_part = ''  
        #remove extras
         for number in (os_part,swap_part):
             if number.isdigit():
                 remove = misc.execute_root('parted', '-s', self.device, 'rm', number)
                 if remove is False:
                     self.log("Error removing partition number: %s on %s (this may be normal)'" % (number, self.device))
-                #refresh = misc.execute_root('partx', '-d', '--nr', number, self.device)
-                #if refresh is False:
-                    #self.log("Error updating partition %s for kernel device %s (this may be normal)'" % (number, self.device))
+                refresh = misc.execute_root('partx', '-d', '--nr', number, self.device)
+                if refresh is False:
+                    self.log("Error updating partition %s for kernel device %s (this may be normal)'" % (number, self.device))
        
     def dual_partition_num(self,label):    
        #remove UBUNTU patition for dual boot
        ##OS num
+        os_part = ''
+        swap_part = ''        
         digits = re.compile('\d+')
         try:
             os_path = magic.fetch_output(['readlink','/dev/disk/by-label/'+label]).split('\n')            
@@ -450,22 +452,13 @@ class Page(Plugin):
             self.log('os_path command is executed failed, the error is %s'%str(err))
        
         os_part = digits.search(os_path[0].split('/')[-1]).group()
-       ## if found OS partition num , restore it into debconf for install use
-        if os_part:
-            try:
-                self.db.set('dell-recovery/os_partition',self.device+os_part)
-            except debconf.DebconfError as err:
-                self.log(str(err))
-        else:
-            os_part = EFI_OS_PARTITION
-       ##swap num 
-        swap_part = EFI_SWAP_PARTITION
+
         with misc.raised_privileges():
             partitions = magic.fetch_output(['parted','-s',self.device,'print']).split('\n')
             for line in partitions:
-                if 'swap' in line:
-                    swap_part = line.split()[0]            
-       
+                if 'linux-swap' in line:
+                    swap_part = line.split()[0]
+                                               
         return os_part,swap_part
 
     def explode_sdr(self):
@@ -843,7 +836,13 @@ class Page(Plugin):
         """Reports to the frontend an update about th progress"""
         self.frontend.debconf_progress_info(info)
         self.frontend.debconf_progress_set(percent)
-
+####################################################################    
+    def debug_swap(self):
+        with misc.raised_privileges():
+            partitions = magic.fetch_output(['parted','-s',self.device,'print']).split('\n')
+            for line in partitions:
+                self.log("%s" %(line))        
+##################################################################    
     def cleanup(self):
         """Do all the real processing for this plugin.
            * This has to be done here because ok_handler won't run in a fully
@@ -895,7 +894,7 @@ class Page(Plugin):
             else:
                 if 'dell-recovery/recovery_type=hdd' in open('/proc/cmdline', 'r').read().split():
                     self.ui.toggle_progress()
-                self.sleep_network()
+                self.sleep_network()               
                 self.delete_swap()
                 self.clean_recipe()
                 self.remove_extra_partitions()
@@ -1203,7 +1202,7 @@ def find_boot_device():
                     mounted_device = line.split()[0]
                     break
     return mounted_device
-
+    
 def reboot_machine(objpath):
     """Reboots the machine"""
     reboot_cmd = '/sbin/reboot'
@@ -1323,15 +1322,7 @@ class Install(InstallPlugin):
         self.progress = progress
 
         rec_part  = magic.find_partition()
-        
-        #Determine if we label partition when dual boot
-        try:
-            if progress.get('dell-recovery/dual_boot')=='true':
-                num = progress.get('dell-recovery/os_partition')
-                misc.execute_root('e2label',num,'UBUNTU')
-        except Exception:
-            pass
-        
+                
         from ubiquity import install_misc
         to_install = []
         to_remove  = []

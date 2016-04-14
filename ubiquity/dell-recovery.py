@@ -157,11 +157,26 @@ class Install(InstallPlugin):
                                                                progress_percent)
         self.progress.info('dell-recovery/build_progress')
 
+    def Set_RootPartitionLabel(self):
+        '''find the / mount partition then label it with UBUNTU for further use'''
+        mount_output = magic.fetch_output(['mount']).split('\n')
+        for line in mount_output:
+            item = line.split()
+            if '/' in item:
+                try:
+                    from ubiquity import misc
+                    misc.execute_root('e2label',item[0],'UBUNTU')
+                except Exception:
+                    pass
+        
     def install(self, target, progress, *args, **kwargs):
         """Perform actual install time activities for oem-config"""
         if not 'UBIQUITY_OEM_USER_CONFIG' in os.environ:
             return
-
+        
+        #find the '/' mount partition and then label it as UBUNTU
+        self.Set_RootPartitionLabel()
+        
         env = os.environ
         lang = progress.get('debian-installer/locale')
         env['LANG'] = lang
