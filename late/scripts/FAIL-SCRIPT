@@ -47,15 +47,19 @@ if [ "$BOOTDEV" = "$TARGETDEV" ]; then
         RP="/cdrom"
     fi
     mount -o remount,rw $RP
-
+    fistlog="/tmp/fist.err"
+	grep "BP DUALOS" $RP/SDR
+	if [ $? -eq 0 ]; then
+		fistlog="/tmp/DUALOS_FIST.ERR"
+	fi
     IFHALT "Resetting grub fail state"
     [ -s $RP/factory/grubenv ] || rm -f $RP/factory/grubenv
     grub-editenv $RP/factory/grubenv set recordfail=1
 
     if [ -x /dell/fist/tal ]; then
         IFHALT "Reporting logs to DMP"
-        cp -f $TARGET/$LOG/chroot.sh.log /tmp/fist.err
-        /dell/fist/tal PutFiles /tmp/fist.err
+        cp -f $TARGET/$LOG/chroot.sh.log $fistlog
+        /dell/fist/tal PutFiles $fistlog
         sync
     elif [ ! -d /sys/firmware/efi ]; then
         grub-setup -d $RP/factory $BOOTDEV

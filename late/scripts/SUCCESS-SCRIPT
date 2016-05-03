@@ -70,6 +70,12 @@ if [ "$BOOTDEV" = "$TARGETDEV" ]; then
     grub-editenv $RP/factory/grubenv unset install_in_progress
     grub-editenv $RP/factory/grubenv set install_finished=1
 
+	fistlog="/tmp/fist.log"
+	grep "BP DUALOS" $RP/SDR
+	if [ $? -eq 0 ]; then
+		fistlog="/tmp/DUALOS_FIST.LOG"
+	fi
+
     IFHALT "Clean up FI Env..."
     rm -rf $RP/scripts/chroot-scripts/os-post/95-set_UTC_TZ.sh
     rm -rf $RP/misc/dell-unsupported.py
@@ -91,8 +97,8 @@ if [ "$BOOTDEV" = "$TARGETDEV" ]; then
 
     IFHALT "Report the LOG..."
     if [ -f /dell/fist/tal ]; then
-        cp $TARGET/$LOG/chroot.sh.log /tmp/fist.log
-        /dell/fist/tal PutFiles /tmp/fist.log
+        cp $TARGET/$LOG/chroot.sh.log $fistlog
+        /dell/fist/tal PutFiles $fistlog
         rm -rf /cdrom/debs/fist
     fi
 

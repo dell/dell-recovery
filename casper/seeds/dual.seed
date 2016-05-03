@@ -1,10 +1,10 @@
 #
 #       <dual.seed>
 #
-#       Dell preseed file used for dual boot
-#        * Last updated for Ubuntu 16.04
+#       Dell Ubuntu preseed file used for dual boot
+#        * Last updated for Ubuntu 11.04
 #
-#           Copyright 2008-2016 Dell Inc.
+#           Copyright 2008-2011 Dell Inc.
 #           Mario Limonciello <Mario_Limonciello@Dell.com>
 #           Hatim Amro <Hatim_Amro@Dell.com>
 #           Michael E Brown <Michael_E_Brown@Dell.com>
@@ -45,7 +45,7 @@
 
 ### Dell Factory Process specific
 #These control what partitions are deleted initially
- dell-recovery dell-recovery/os_partition string UBUNTU
+ dell-recovery dell-recovery/os_partition string DUALSYS
 
 #This controls whether dell-recovery, dell-oobe, and dell-eula get installed
  dell-recovery dell-recovery/dual_boot boolean true
