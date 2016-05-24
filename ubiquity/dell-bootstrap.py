@@ -582,12 +582,28 @@ class Page(Plugin):
         #If multiple candidates were found, record in the logs
         if len(disks) == 0:
             raise RuntimeError("Unable to find and candidate hard disks to install to.")
-        if len(disks) > 1:
+        # Search for the recovery partition on the same disk first
+        the_same_disk = None
+        for disk in disks:
+            device = disk[0]
+            with open('/proc/mounts', 'r') as mounts:
+                for line in mounts.readlines():
+                    if device in line:
+                        self.device = device
+                        the_same_disk = disk
+                        break
+            if the_same_disk:
+                break
+        if the_same_disk:
+            disks.remove(the_same_disk)
+            disks.insert(0, the_same_disk)
+        else:
             disks.sort()
+            self.device = disks[0][0] 
+                    
+        if len(disks) > 1:
             self.log("Multiple disk candidates were found: %s" % disks)
 
-        #Always choose the first candidate to start
-        self.device = disks[0][0]
         self.log("Initially selected candidate disk: %s" % self.device)
 
         #populate UI
