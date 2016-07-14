@@ -48,7 +48,7 @@ from Dell.recovery_common import (DOMAIN, LOCALEDIR,
                                   DBUS_BUS_NAME, DBUS_INTERFACE_NAME,
                                   RestoreFailed, CreateFailed,
                                   mark_upgrades, mark_unconditional_debs,
-                                  PermissionDeniedByPolicy)
+                                  regenerate_md5sum, PermissionDeniedByPolicy)
 from Dell.recovery_threading import ProgressByPulse, ProgressBySize
 from Dell.recovery_xml import BTOxml
 
