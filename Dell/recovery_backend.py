@@ -1157,6 +1157,13 @@ arch %s, distributor_str %s" % (bto_version, distributor, release, arch, distrib
                     os.makedirs(os.path.join(tmpdir, 'factory'))
                 shutil.copy(os.path.join(mntdir, path + '.old'), os.path.join(tmpdir, path))
 
+        #regenerate md5sum file
+        if os.path.exists(os.path.join(mntdir, 'md5sum.txt')):
+            xorrisoargs.append('-m')
+            xorrisoargs.append(os.path.join(mntdir, 'md5sum.txt'))
+            shutil.copy(os.path.join(mntdir, 'md5sum.txt'), os.path.join(tmpdir, 'md5sum.txt'))
+            regenerate_md5sum(os.path.join(tmpdir, 'md5sum.txt'), mntdir)
+
         #Directories to install
         xorrisoargs.append(tmpdir + '/')
         xorrisoargs.append(mntdir + '/')

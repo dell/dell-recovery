@@ -70,6 +70,7 @@ setup(
                 ('share/dbus-1/system-services', glob.glob('backend/*.service')),
                 ('/lib/udev/rules.d', glob.glob('udev/*')),
                 ('lib/ubiquity/plugins', glob.glob('ubiquity/*.py')),
+                ('/scripts/chroot-scripts/os-post', glob.glob('update_md5sum/*')),
                 ('share/ubiquity/gtk', glob.glob('ubiquity/*.ui')),
                 ('share/ubiquity', ['ubiquity/dell-bootstrap'])]+I18NFILES,
     scripts=["dell-recovery", "dell-driver-installer"],

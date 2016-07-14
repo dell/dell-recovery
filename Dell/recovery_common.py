@@ -640,6 +640,31 @@ def dbus_sync_call_signal_wrapper(dbus_iface, func, handler_map, *args, **kwargs
         raise _h_exception_exc
     return _h_reply_result
 
+def regenerate_md5sum(fd,fs=None):
+'''regenerate the md5sum.txt when building the ISO image
+
+    This function is based on the md5sum.txt exsit and some content has changed.
+    If the file does not exist before,it will turn to fail.
+    '''
+    pattern = re.compile("[0-9a-z]{32}  \.")
+    with open(fd,'r') as rfd:
+        source_lines = rfd.readlines()
+    with open(fd,'w') as wfd:
+        for line in source_lines:
+            if pattern.match(line):
+                try:
+                    file_path = line.split(" ")[2].strip('\n')
+                    full_path = os.path.split(fd)[0]+file_path[1:]
+                    if not os.path.exists(full_path) and os.path.exists(fs):
+                        full_path = fs+file_path[1:]
+                    result = fetch_output(['md5sum',full_path])
+                    md5 = result.split("  ")[0]
+                    content = md5+"  "+file_path+"\n"
+                    wfd.write(content)
+                except Exception:
+                    pass
+            else:
+                wfd.write(line)
 
 ##                ##
 ## Common Classes ##
