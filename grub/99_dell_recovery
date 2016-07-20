@@ -11,6 +11,12 @@ menuentry "#RECOVERY_TEXT#" {
         else
             set options="boot=casper automatic-ubiquity noprompt quiet splash nomodeset"
         fi
+        if [ -s /factory/post-rts-gfx.cfg ]; then
+            source /factory/post-rts-gfx.cfg
+        fi
+        if [ -s /factory/post-rts-wlan.cfg ]; then
+            source /factory/post-rts-wlan.cfg
+        fi
         #Support starting from a loopback mount (Only support ubuntu.iso for filename)
         if [ -f /ubuntu.iso ]; then
             loopback loop /ubuntu.iso
