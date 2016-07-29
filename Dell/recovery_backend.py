@@ -48,7 +48,7 @@ from Dell.recovery_common import (DOMAIN, LOCALEDIR,
                                   DBUS_BUS_NAME, DBUS_INTERFACE_NAME,
                                   RestoreFailed, CreateFailed,
                                   mark_upgrades, mark_unconditional_debs,
-                                  PermissionDeniedByPolicy)
+                                  regenerate_md5sum, PermissionDeniedByPolicy)
 from Dell.recovery_threading import ProgressByPulse, ProgressBySize
 from Dell.recovery_xml import BTOxml
 
@@ -1156,6 +1156,13 @@ arch %s, distributor_str %s" % (bto_version, distributor, release, arch, distrib
                 if not os.path.exists(os.path.join(tmpdir, 'factory')):
                     os.makedirs(os.path.join(tmpdir, 'factory'))
                 shutil.copy(os.path.join(mntdir, path + '.old'), os.path.join(tmpdir, path))
+
+        #regenerate md5sum file
+        if os.path.exists(os.path.join(mntdir, 'md5sum.txt')):
+            xorrisoargs.append('-m')
+            xorrisoargs.append(os.path.join(mntdir, 'md5sum.txt'))
+            shutil.copy(os.path.join(mntdir, 'md5sum.txt'), os.path.join(tmpdir, 'md5sum.txt'))
+            regenerate_md5sum(os.path.join(tmpdir, 'md5sum.txt'), mntdir)
 
         #Directories to install
         xorrisoargs.append(tmpdir + '/')
