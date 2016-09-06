@@ -77,9 +77,11 @@ if [ "$BOOTDEV" = "$TARGETDEV" ]; then
     fi
 
     fistlog="/tmp/fist.log"
-    grep "BP DUALOS" $RP/SDR
-    if [ $? -eq 0 ]; then
-        fistlog="/tmp/DUALOS_FIST.LOG"
+    if [ -f $RP/SDR ]; then
+        grep "BP DUALOS" $RP/SDR 2>/dev/null
+        if [ $? -eq 0 ]; then
+            fistlog="/tmp/DUALOS_FIST.LOG"
+        fi
     fi
 
     IFHALT "Clean up FI Env..."

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.16.1 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
   <object class="GtkDialog" id="advanced_window">
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
@@ -21,7 +22,19 @@
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
-              <placeholder/>
+              <object class="GtkButton" id="button2">
+                <property name="label">Collect Logs</property>
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="collect_logs" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
             </child>
             <child>
               <object class="GtkButton" id="button1">
@@ -30,7 +43,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -101,135 +113,15 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="advanced_options_label">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="xalign">0</property>
-            <property name="label" translatable="yes">&lt;b&gt;Advanced Options&lt;/b&gt;</property>
-            <property name="use_markup">True</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">5</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkTable" id="advanced_table">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="n_rows">7</property>
-            <property name="n_columns">2</property>
-            <property name="column_spacing">10</property>
-            <property name="row_spacing">10</property>
-            <child>
-              <object class="GtkComboBox" id="disable_proprietary_driver_combobox">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="model">proprietary_liststore</property>
-                <signal name="changed" handler="advanced_callback" swapped="no"/>
-                <child>
-                  <object class="GtkCellRendererText" id="cellrenderertext3"/>
-                  <attributes>
-                    <attribute name="text">0</attribute>
-                  </attributes>
-                </child>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-                <property name="top_attach">1</property>
-                <property name="bottom_attach">2</property>
-                <property name="x_options">GTK_FILL</property>
-                <property name="y_options"></property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label5">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Disable Proprietary Drivers</property>
-              </object>
-              <packing>
-                <property name="top_attach">1</property>
-                <property name="bottom_attach">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkComboBox" id="recovery_partition_filesystem_checkbox">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="model">rp_filesystem_liststore</property>
-                <child>
-                  <object class="GtkCellRendererText" id="cellrenderertext6"/>
-                  <attributes>
-                    <attribute name="text">1</attribute>
-                  </attributes>
-                </child>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-                <property name="top_attach">4</property>
-                <property name="bottom_attach">5</property>
-                <property name="x_options">GTK_FILL</property>
-                <property name="y_options"></property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label3">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Recovery Partition Filesystem</property>
-              </object>
-              <packing>
-                <property name="top_attach">4</property>
-                <property name="bottom_attach">5</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label9">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Swap Partition Behavior</property>
-              </object>
-              <packing>
-                <property name="top_attach">5</property>
-                <property name="bottom_attach">6</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkComboBox" id="swap_behavior_combobox">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="model">swap_liststore</property>
-                <signal name="changed" handler="advanced_callback" swapped="no"/>
-                <child>
-                  <object class="GtkCellRendererText" id="cellrenderertext4"/>
-                  <attributes>
-                    <attribute name="text">0</attribute>
-                  </attributes>
-                </child>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-                <property name="top_attach">5</property>
-                <property name="bottom_attach">6</property>
-                <property name="x_options">GTK_FILL</property>
-                <property name="y_options"></property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">6</property>
-          </packing>
+          <placeholder/>
         </child>
       </object>
     </child>
     <action-widgets>
+      <action-widget response="-1">button2</action-widget>
       <action-widget response="0">button1</action-widget>
     </action-widgets>
   </object>
@@ -279,58 +171,6 @@
       <!-- column-name information -->
       <column type="gchararray"/>
     </columns>
-  </object>
-  <object class="GtkImage" id="image1">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="xalign">0</property>
-    <property name="yalign">0</property>
-    <property name="icon_name">gnome-session-reboot</property>
-  </object>
-  <object class="GtkImage" id="image6">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="xalign">0</property>
-    <property name="yalign">0</property>
-    <property name="icon_name">gnome-session-reboot</property>
-  </object>
-  <object class="GtkListStore" id="proprietary_liststore">
-    <columns>
-      <!-- column-name driver -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes"></col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">fglrx_updates</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">nvidia_current_updates</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">fglrx_updates,nvidia_current_updates</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="rp_filesystem_liststore">
-    <columns>
-      <!-- column-name filesystem -->
-      <column type="gchararray"/>
-      <!-- column-name pretty_name -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">0c</col>
-        <col id="1" translatable="yes">vfat</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">07</col>
-        <col id="1" translatable="yes">ntfs</col>
-      </row>
-    </data>
   </object>
   <object class="GtkVBox" id="stepDellBootstrap">
     <property name="visible">True</property>
@@ -448,7 +288,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="xalign">0.5</property>
                     <property name="draw_indicator">True</property>
                     <property name="group">automated_recovery</property>
                     <signal name="toggled" handler="toggle_type" swapped="no"/>
@@ -550,7 +390,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="xalign">0.5</property>
                     <property name="active">True</property>
                     <property name="draw_indicator">True</property>
                     <signal name="toggled" handler="toggle_type" swapped="no"/>
@@ -680,7 +520,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="xalign">0.5</property>
                     <property name="yalign">0.49000000953674316</property>
                     <property name="draw_indicator">True</property>
                     <property name="group">automated_recovery</property>
@@ -736,7 +576,7 @@
             <property name="use_action_appearance">False</property>
             <property name="can_focus">True</property>
             <property name="receives_default">False</property>
-            <property name="use_action_appearance">False</property>
+            <property name="xalign">0.5</property>
             <property name="draw_indicator">True</property>
             <property name="group">automated_recovery</property>
           </object>
@@ -865,21 +705,47 @@
       </packing>
     </child>
   </object>
-  <object class="GtkListStore" id="swap_liststore">
-    <columns>
-      <!-- column-name swap -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">dynamic</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">true</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">false</col>
-      </row>
-    </data>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="xalign">0</property>
+    <property name="yalign">0</property>
+    <property name="icon_name">gnome-session-reboot</property>
+  </object>
+  <object class="GtkImage" id="image6">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="xalign">0</property>
+    <property name="yalign">0</property>
+    <property name="icon_name">gnome-session-reboot</property>
+  </object>
+  <object class="GtkMessageDialog" id="log_dialog">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Fetch Logs</property>
+    <property name="type_hint">dialog</property>
+    <property name="buttons">ok</property>
+    <property name="text" translatable="yes">collecting logs completed!!!</property>
+    <child internal-child="vbox">
+      <object class="GtkBox" id="messagedialog-vbox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox" id="messagedialog-action_area">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
   </object>
 </interface>

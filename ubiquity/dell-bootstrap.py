@@ -149,6 +149,7 @@ class PageGtk(PluginUI):
             builder.get_object('info_spinner_box').add(self.info_spinner)
             self.restart_box = builder.get_object('restart_box')
             self.err_dialog = builder.get_object('err_dialog')
+            self.log_dialog = builder.get_object('log_dialog')
 
             #advanced page widgets
             icon = builder.get_object('dell_image')
@@ -282,6 +283,22 @@ class PageGtk(PluginUI):
         self.advanced_page.hide()
         self.plugin_widgets.set_sensitive(True)
 
+    def collect_logs(self, widget, data = None):
+        """click to collect the installation logs when install OS failed"""
+        log_script_path = "/usr/share/dell/scripts/fetch_logs.sh"
+        if os.path.exists(log_script_path):
+            respond = misc.execute_root('sh',log_script_path)
+            if respond is True:
+                self.log_dialog.run()
+                self.log_dialog.hide()
+                return
+            else:
+                data = "Try to collect logs failed!"
+                self.err_dialog.format_secondary_text(str(data))
+                self.err_dialog.run()
+                self.err_dialog.hide()
+                return
+
     def _map_combobox(self, item):
         """Maps a combobox to a question"""
         combobox = None
@@ -329,18 +346,6 @@ class PageGtk(PluginUI):
             return model.get_value(iterator, 0)
         else:
             return ""
-
-    def advanced_callback(self, widget, data = None):
-        """Callback when an advanced widget is toggled"""
-        if widget == self.proprietary_combobox:
-            #nothing changes if we change proprietary drivers currently
-            pass
-        elif widget == self.rp_filesystem_combobox:
-            #nothing changes if we change RP filesystem currently
-            pass
-        elif widget == self.swap_combobox:
-            #nothing change if we change swap currently
-            pass
 
 ################
 # Debconf Page #
