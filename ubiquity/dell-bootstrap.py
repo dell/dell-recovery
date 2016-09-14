@@ -142,7 +142,6 @@ class PageGtk(PluginUI):
             icon = builder.get_object('dell_image')
             icon.set_tooltip_markup("Dell Recovery Advanced Options")
             self.advanced_page = builder.get_object('advanced_window')
-            self.advanced_table = builder.get_object('advanced_table')
             self.version_detail = builder.get_object('version_detail')
             self.mount_detail = builder.get_object('mountpoint_detail')
             self.memory_detail = builder.get_object('memory_detail')
@@ -158,7 +157,6 @@ class PageGtk(PluginUI):
         """
         #are we real?
         if not (self.genuine and 'UBIQUITY_AUTOMATIC' in os.environ):
-            self.advanced_table.set_sensitive(False)
             self.interactive_recovery_box.hide()
             self.automated_recovery_box.hide()
             self.automated_recovery.set_sensitive(False)
@@ -209,7 +207,6 @@ class PageGtk(PluginUI):
         else:
             self.controller.allow_go_forward(False)
             if value == "hdd":
-                self.advanced_table.set_sensitive(False)
                 self.hdd_recovery_box.show()
                 self.interactive_recovery_box.hide()
                 self.automated_recovery_box.hide()
