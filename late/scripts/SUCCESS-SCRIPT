@@ -33,13 +33,6 @@ set -x
 set -e
 
 IFHALT "(SUCCESS) Clean-Up .."
-
-#Record a list of all installed packages from post-phase to prevent ubiquity removing them.
-if [ -f "$TARGET/var/lib/ubiquity/installed-packages" ]; then
-    chroot $TARGET dpkg --get-selections | grep -v ubiquity | awk '{print $1}' > \
-           $TARGET/var/lib/ubiquity/installed-packages
-fi
-
 chroot $TARGET /usr/share/dell/scripts/pool.sh cleanup
 
 #Fixup APT how we want it for a successful oem-config run

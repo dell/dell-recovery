@@ -135,6 +135,29 @@ done
 chroot $TARGET chattr -a $LOG/chroot.sh.log
 
 sync;sync
+# check apt-installed package list
+
+#Record a list of all installed packages from post-phase to prevent ubiquity removing them.
+if [ -f "$TARGET/var/lib/ubiquity/installed-packages" ]; then
+    chroot $TARGET dpkg --get-selections | grep -v ubiquity | awk '{print $1}' > \
+           $TARGET/var/lib/ubiquity/installed-packages
+fi
+
+#check the packages installed or not
+set +e # don't bail out of bash script if ccache doesn't exist
+
+if [ -f "$TARGET/tmp/apt-installed" ]; then
+    mv $TARGET/tmp/apt-installed $TARGET/var/lib/ubiquity/installed-apt
+    grep -x -f $TARGET/var/lib/ubiquity/installed-apt $TARGET/var/lib/ubiquity/installed-packages > $TARGET/var/lib/ubiquity/checked_installed
+    grep -v -f $TARGET/var/lib/ubiquity/checked_installed $TARGET/var/lib/ubiquity/installed-apt > $TARGET/var/lib/ubiquity/checked_uninstalled
+fi
+
+set -e # back to regular "bail out on error" mode
+#check the checked_uninstalled file is empty or not, we will turn to FAIL-SCRIPT if it is not empty
+if [ -s "$TARGET/var/lib/ubiquity/checked_uninstalled" ]; then
+    exit 1
+fi
+
 
 # reset traps, as we are now exiting normally
 trap - TERM INT HUP EXIT QUIT

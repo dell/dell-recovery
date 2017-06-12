@@ -1251,4 +1251,8 @@ class Install(InstallPlugin):
         install_misc.record_installed(to_install)
         install_misc.record_removed(to_remove)
 
+        #copy the to_install package list into /tmp as backup to check
+        apt_installed = "/var/lib/ubiquity/apt-installed"
+        shutil.copy(apt_installed, os.path.join(self.target, 'tmp', os.path.basename(apt_installed)))
+
         return InstallPlugin.install(self, target, progress, *args, **kwargs)
