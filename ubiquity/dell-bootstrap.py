@@ -359,6 +359,13 @@ class Page(Plugin):
 
     def test_swap(self):
         """Tests whether to do a swap fixup"""
+        import lsb_release
+        release = lsb_release.get_distro_information()
+
+        #starting with 17.04, we replace the whole swap partition to swap file
+        if float(release["RELEASE"]) >= 17.04:
+            return True
+
         if (self.mem >= 32 or self.disk_size <= 64):
             return True
         else:
