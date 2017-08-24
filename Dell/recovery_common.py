@@ -221,7 +221,27 @@ def fetch_output(cmd, data='', environment=os.environ):
                                  stdin=subprocess.PIPE,
                                  env=environment,
                                  universal_newlines=True)
-    (out, err) = proc.communicate(data)
+    try:
+        (out, err) = proc.communicate(data)
+    except UnicodeDecodeError as error:
+        if locale.getpreferredencoding() != "UTF-8":
+            os.environ["LC_ALL"] = "C.UTF-8"
+            locale.setlocale(locale.LC_ALL, '')
+
+        if sys.stdout.encoding != "utf8":
+            sys.stdout = io.open(sys.stdout.fileno(), 'w', encoding='utf8')
+        if sys.stderr.encoding != "utf8":
+            sys.stderr = io.open(sys.stderr.fileno(), 'w', encoding='utf8')
+        if sys.stdin.encoding != "utf8":
+            sys.stdin = io.open(sys.stdin.fileno(), 'r', encoding='utf8')
+
+        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE,
+                                     stderr=subprocess.PIPE,
+                                     stdin=subprocess.PIPE,
+                                     env=environment,
+                                     universal_newlines=True)
+        (out, err) = proc.communicate(data)
+
     if proc.returncode is None:
         proc.wait()
     if proc.returncode != 0:
