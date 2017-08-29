@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-03-05 15:27-0600\n"
 "PO-Revision-Date: 2010-01-26 14:32+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Shih-Yuan Lee <fourdollars@debian.org>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../Dell/recovery_gtk.py:108
 msgid "Cannot connect to dbus"
-msgstr "連接不到dbus"
+msgstr "無法連到 dbus"
 
 #: ../Dell/recovery_gtk.py:110
 msgid "Permission Denied"
@@ -28,12 +28,12 @@ msgstr "權限不足"
 
 #: ../Dell/recovery_gtk.py:117
 msgid "Exception"
-msgstr ""
+msgstr "異常"
 
 #: ../Dell/recovery_gtk.py:197 ../gtk/dell-recovery-media.desktop.in.h:1
 #: ../gtk/tool_selector.ui.h:2
 msgid "Dell Recovery"
-msgstr ""
+msgstr "戴爾系統還原"
 
 #: ../Dell/recovery_gtk.py:198
 msgid "Copyright 2008-2012 Dell Inc."
@@ -41,59 +41,59 @@ msgstr ""
 
 #: ../Dell/recovery_basic_gtk.py:58
 msgid "Confirm Selections"
-msgstr ""
+msgstr "確認選擇"
 
 #: ../Dell/recovery_basic_gtk.py:59
 msgid "Media Type"
-msgstr ""
+msgstr "媒體類型"
 
 #: ../Dell/recovery_basic_gtk.py:168
 msgid "Building Base image"
-msgstr ""
+msgstr "建立基底映像"
 
 #: ../Dell/recovery_basic_gtk.py:181
 msgid "Opening Burner"
-msgstr "啟動燒錄機"
+msgstr "啟動燒錄器"
 
 #: ../Dell/recovery_basic_gtk.py:206
 msgid "Recovery Media Creation Process Complete"
-msgstr ""
+msgstr "系統還原媒體建立程序完成"
 
 #: ../Dell/recovery_basic_gtk.py:207
 msgid ""
 "If you would like to archive another copy, the generated image has been "
 "stored under the filename:\n"
-msgstr ""
+msgstr "如果您想要歸檔另一個副本，這生成的映像已儲存在這個檔案名稱之中：\n"
 
 #: ../Dell/recovery_basic_gtk.py:221
 msgid "Unable to proceed"
-msgstr ""
+msgstr "無法進行"
 
 #: ../Dell/recovery_basic_gtk.py:222
 msgid ""
 "System does not appear to contain Dell factory installed partition layout."
-msgstr ""
+msgstr "系統似乎並不包含戴爾出廠安裝的分割區。"
 
 #: ../Dell/recovery_basic_gtk.py:333
 msgid "Image File"
-msgstr ""
+msgstr "映像檔案"
 
 #: ../Dell/recovery_basic_gtk.py:335
 msgid "Media Type: "
-msgstr ""
+msgstr "媒體類型："
 
 #: ../Dell/recovery_basic_gtk.py:338 ../Dell/recovery_basic_gtk.py:341
 msgid "Recovery Partition: "
-msgstr ""
+msgstr "還原分割區："
 
 #: ../Dell/recovery_basic_gtk.py:342
 msgid "Included"
-msgstr ""
+msgstr "包含"
 
 #. wizard.resize(400,400)
 #: ../Dell/recovery_advanced_gtk.py:68
 msgid " (BTO Image Builder Mode)"
-msgstr ""
+msgstr "（BTO 映像檔創建模式）"
 
 #: ../Dell/recovery_advanced_gtk.py:70
 msgid ""
@@ -101,206 +101,208 @@ msgid ""
 "customized OS media image.  You will have the option to create an USB key or "
 "DVD image."
 msgstr ""
+"這將會合併戴爾 OEM 安裝套建與驅動程式集合到客製化的作業系統映像檔之中。"
+"你可以選擇產生 USB 隨身碟或是 DVD 映像檔。"
 
 #. insert builder pages in reverse order
 #: ../Dell/recovery_advanced_gtk.py:89
 msgid "Application Packages"
-msgstr ""
+msgstr "應用套件"
 
 #: ../Dell/recovery_advanced_gtk.py:90
 msgid "Driver Packages"
-msgstr ""
+msgstr "驅動程式套件"
 
 #: ../Dell/recovery_advanced_gtk.py:91 ../Dell/recovery_advanced_gtk.py:295
 msgid "Utility Partition"
-msgstr ""
+msgstr "工具分割區"
 
 #: ../Dell/recovery_advanced_gtk.py:92
 msgid "FID Content"
-msgstr ""
+msgstr "FID 內容"
 
 #: ../Dell/recovery_advanced_gtk.py:93
 msgid "Base OS Image"
-msgstr ""
+msgstr "基底作業系統映像"
 
 #: ../Dell/recovery_advanced_gtk.py:180
 msgid "Builder Summary"
-msgstr ""
+msgstr "產生器摘要"
 
 #: ../Dell/recovery_advanced_gtk.py:181
 msgid "Base Image Distributor"
-msgstr ""
+msgstr "基底映像檔發佈者"
 
 #: ../Dell/recovery_advanced_gtk.py:183
 msgid "Base Image Release"
-msgstr ""
+msgstr "基底映像發行"
 
 #: ../Dell/recovery_advanced_gtk.py:186
 msgid "BTO Base Image"
-msgstr ""
+msgstr "BTO 基底映像"
 
 #: ../Dell/recovery_advanced_gtk.py:189
 msgid "Base Image"
-msgstr ""
+msgstr "基底映像"
 
 #: ../Dell/recovery_advanced_gtk.py:193
 msgid "Utility Partition: "
-msgstr ""
+msgstr "工具分割區："
 
 #: ../Dell/recovery_advanced_gtk.py:196
 msgid "Application"
-msgstr ""
+msgstr "應用程式"
 
 #: ../Dell/recovery_advanced_gtk.py:197
 msgid "Driver"
-msgstr ""
+msgstr "驅動程式"
 
 #: ../Dell/recovery_advanced_gtk.py:203
 msgid "Packages"
-msgstr ""
+msgstr "套件"
 
 #: ../Dell/recovery_advanced_gtk.py:209
 msgid "Inject Dell Recovery Package"
-msgstr ""
+msgstr "注入戴爾還原套件"
 
 #. update gui
 #: ../Dell/recovery_advanced_gtk.py:219
 msgid "Assembling Image Components"
-msgstr ""
+msgstr "組裝映像元件中"
 
 #: ../Dell/recovery_advanced_gtk.py:298
 msgid "No Additional Utility Partition"
-msgstr ""
+msgstr "沒有額外的工具分割區"
 
 #: ../Dell/recovery_advanced_gtk.py:494
 msgid "All SRVs must be filled to proceed."
-msgstr ""
+msgstr "所有的 SRV 必需填寫完成才能繼續"
 
 #: ../Dell/recovery_backend.py:344
 msgid "Processing FISH packages"
-msgstr ""
+msgstr "處理 FISH 套件中"
 
 #: ../Dell/recovery_backend.py:469
 msgid "Adding in base image"
-msgstr ""
+msgstr "增加進基底映像中"
 
 #: ../Dell/recovery_backend.py:1050
 msgid "Preparing nested image"
-msgstr ""
+msgstr "準備巢狀映像中"
 
 #: ../Dell/recovery_backend.py:1069
 msgid "Building Dell Utility Partition"
-msgstr ""
+msgstr "建立戴爾工具分割區中"
 
 #: ../Dell/recovery_backend.py:1131
 msgid "Regenerating UUID / Rebuilding initramfs"
-msgstr ""
+msgstr "重新產生 UUID / 重心建構 initramfs"
 
 #: ../Dell/recovery_backend.py:1160
 msgid "Building GRUB core image"
-msgstr ""
+msgstr "建立 GRUB 核心映像中"
 
 #: ../Dell/recovery_backend.py:1285
 msgid "Building ISO"
-msgstr ""
+msgstr "建立 ISO 中"
 
 #: ../backend/com.dell.recoverymedia.policy.in.h:1
 msgid "Query BTO Version"
-msgstr ""
+msgstr "查詢 BTO 版本"
 
 #: ../backend/com.dell.recoverymedia.policy.in.h:2
 msgid "System policy prevents reading raw devices"
-msgstr ""
+msgstr "系統機制阻擋讀取原生裝置"
 
 #: ../backend/com.dell.recoverymedia.policy.in.h:3
 msgid "Query ISO Information"
-msgstr ""
+msgstr "查詢 ISO 資訊"
 
 #: ../backend/com.dell.recoverymedia.policy.in.h:4
 msgid "Restore to Factory state"
-msgstr ""
+msgstr "還原到出廠狀態"
 
 #: ../backend/com.dell.recoverymedia.policy.in.h:5
 msgid "System policy prevents changing system bootup"
-msgstr ""
+msgstr "系統機制阻擋改變系統開機程序"
 
 #: ../backend/com.dell.recoverymedia.policy.in.h:6
 msgid "Boot utility partition to flash BIOS"
-msgstr ""
+msgstr "啟動工具分割區來更新 BIOS"
 
 #: ../backend/com.dell.recoverymedia.policy.in.h:7
 msgid "Install Dell driver packages"
-msgstr ""
+msgstr "安裝戴爾驅動程式套件"
 
 #: ../backend/com.dell.recoverymedia.policy.in.h:8
 msgid "System policy prevents installing packages."
-msgstr ""
+msgstr "系統機制阻擋安裝套件"
 
 #: ../backend/com.dell.recoverymedia.policy.in.h:9
 msgid "Create/Assemble Dell Recovery ISO"
-msgstr ""
+msgstr "產生/組合戴爾還原 ISO"
 
 #: ../backend/com.dell.recoverymedia.policy.in.h:10
 msgid "Request closing the backend"
-msgstr ""
+msgstr "請求關閉後端"
 
 #: ../backend/com.dell.recoverymedia.policy.in.h:11
 msgid "System policy prevents closing processes without notice"
-msgstr ""
+msgstr "系統機制阻擋沒有通知來關閉程序"
 
 #: ../backend/com.dell.recoverymedia.policy.in.h:12
 msgid "Toggle Network Connectivity"
-msgstr ""
+msgstr "開關網路連線"
 
 #: ../backend/com.dell.recoverymedia.policy.in.h:13
 msgid "System policy prohibits changing network without user consent"
-msgstr ""
+msgstr "系統機制禁止未經使用者同意而改變網路"
 
 #: ../gtk/dell-driver-installer.desktop.in.h:1
 msgid "Dell Driver Installer"
-msgstr ""
+msgstr "戴爾驅動程式安裝器"
 
 #: ../gtk/recovery_media_creator.ui.h:1
 msgid "Cancel Recovery Media Creator"
-msgstr ""
+msgstr "取消還原媒體產生"
 
 #: ../gtk/recovery_media_creator.ui.h:2
 msgid "Are you sure you want to cancel the Recovery Media creation process?"
-msgstr ""
+msgstr "您確定要取消還原媒體產生程序嗎？"
 
 #: ../gtk/recovery_media_creator.ui.h:3
 msgid "Version:"
-msgstr ""
+msgstr "版本："
 
 #: ../gtk/recovery_media_creator.ui.h:4
 msgid ""
 "An existing image was found (possibly from a previous run).  Would you like "
 "to remove this old copy and regenerate the image?"
-msgstr ""
+msgstr "發現一個已經存在的映像檔（可能是先前留下的），您想要移除這份舊的副本來重新產生映像嗎？"
 
 #: ../gtk/recovery_media_creator.ui.h:5
 msgid "DVD+/-RW Disc"
-msgstr ""
+msgstr "DVD+/-RW 光碟"
 
 #: ../gtk/recovery_media_creator.ui.h:6
 msgid "This requires writable DVD media."
-msgstr ""
+msgstr "這需要可寫的 DVD 媒體"
 
 #: ../gtk/recovery_media_creator.ui.h:7
 msgid "USB Flash Drive"
-msgstr ""
+msgstr "USB 隨身碟"
 
 #: ../gtk/recovery_media_creator.ui.h:8
 msgid "This requires a USB flash drive with approximately 2GB free."
-msgstr ""
+msgstr "這需要約 2GB 以上未使用空間的 USB 隨身碟。"
 
 #: ../gtk/recovery_media_creator.ui.h:9
 msgid "No media, create image"
-msgstr ""
+msgstr "沒有媒體來產生映像"
 
 #: ../gtk/recovery_media_creator.ui.h:10 ../gtk/tool_selector.ui.h:1
 msgid "Dell Recovery Media Creator"
-msgstr ""
+msgstr "戴爾還原媒體產生器"
 
 #: ../gtk/recovery_media_creator.ui.h:11
 msgid "<activity placeholder>"
@@ -311,70 +313,75 @@ msgid ""
 "During Factory Installation, applications are only installed if the order "
 "record (SDR) refers to the service release vehicle (SRV).  This populates "
 "the possible SRVs to be queried during installation."
-msgstr ""
+msgstr "在工廠安裝中，應用程式會根據 SDR 中的 SRV 來安裝。"
+"在安裝過程中，這會填入所有可能被查詢到的 SRV。"
 
 #: ../gtk/builder.ui.h:2
 msgid ""
 "The Base OS image provides the majority of the content for a BTO image.  It "
 "can be a Vanilla OS image, or existing BTO Image."
 msgstr ""
+"基底作業系統映像提供了 BTO 映像的主要內容。"
+"它可能是沒有修改過的映像或是某個已存在的映像。"
 
 #: ../gtk/builder.ui.h:3
 msgid "ISO Image"
-msgstr ""
+msgstr "ISO 映像"
 
 #: ../gtk/builder.ui.h:4
 msgid "Extracted Directory"
-msgstr ""
+msgstr "已提取目錄"
 
 #: ../gtk/builder.ui.h:5
 msgid "Detected Recovery Partition"
-msgstr ""
+msgstr "已偵測到的還原分割區"
 
 #: ../gtk/builder.ui.h:6
 msgid "Choose Image"
-msgstr ""
+msgstr "選取映像"
 
 #: ../gtk/builder.ui.h:7
 msgid "Selected Image Details:"
-msgstr ""
+msgstr "選取到的映像細節："
 
 #: ../gtk/builder.ui.h:8
 msgid ""
 "\n"
 "\n"
 msgstr ""
+"\n"
+"\n"
 
 #: ../gtk/builder.ui.h:11
 msgid "Add Dell Recovery"
-msgstr ""
+msgstr "新增戴爾還原"
 
 #: ../gtk/builder.ui.h:12
 msgid ""
 "Part of the FID overlay requires a dell-recovery package to be included."
-msgstr ""
+msgstr "某部份的 FID 覆蓋需要包含一個 dell-recovery 套件。"
 
 #: ../gtk/builder.ui.h:13
 msgid "Browse for a dell-recovery package"
-msgstr ""
+msgstr "瀏覽 dell-recovery 套件"
 
 #: ../gtk/builder.ui.h:14
 msgid "Choose package"
-msgstr ""
+msgstr "選取套件"
 
 #: ../gtk/builder.ui.h:15
 msgid "Build dell-recovery package from this system"
-msgstr ""
+msgstr "從這個系統來建立 dell-recovery 套件"
 
 #: ../gtk/builder.ui.h:16
 msgid "Install dpkg-repack"
-msgstr ""
+msgstr "安裝 dpkg-repack"
 
 #: ../gtk/builder.ui.h:17
 msgid ""
 "Any add-on drivers or applications that need to be integrated into the image "
 "can be added here."
-msgstr ""
+msgstr "任何需要整合進映像中的附加驅動程式或應用程式，可以在此新增。"
 
 #: ../gtk/builder.ui.h:18
 msgid ""
@@ -382,56 +389,58 @@ msgid ""
 "image.  If you are generating from an existing BTO compatible image, you may "
 "use the built-in framework."
 msgstr ""
+"BTO FID 框架是第一個要注入基底未修改映像的東西。"
+"如果您正在產生一個已存在的 BTO 相容映像，您可以使用內建的框架。"
 
 #: ../gtk/builder.ui.h:19
 msgid "FID framework built into BTO image"
-msgstr ""
+msgstr "FID 框架已建置至 BTO 映像"
 
 #: ../gtk/builder.ui.h:20
 msgid "FID Framework enclosed in debian package"
-msgstr ""
+msgstr "FID 框架已封入 Debian 套件"
 
 #: ../gtk/builder.ui.h:21
 msgid "Selected Overlay Details:"
-msgstr ""
+msgstr "已選取覆蓋的細節："
 
 #: ../gtk/builder.ui.h:22
 msgid "SRV Entry"
-msgstr ""
+msgstr "SRV 條目"
 
 #: ../gtk/builder.ui.h:23
 msgid "Please enter the SRV to use:"
-msgstr ""
+msgstr "請輸入要使用的 SRV："
 
 #: ../gtk/builder.ui.h:24
 msgid ""
 "BTO images can optionally include a Utility Partition for diagnostic "
 "utilities."
-msgstr ""
+msgstr "BTO 映像可以選擇性的包含一個分析用的工具分割區"
 
 #: ../gtk/builder.ui.h:25
 msgid "No additional Utility Partition"
-msgstr ""
+msgstr "沒有額外的工具分割區"
 
 #: ../gtk/builder.ui.h:26
 msgid "Select content for Utility Partition"
-msgstr ""
+msgstr "選取工具分割區的內容"
 
 #: ../gtk/builder.ui.h:27
 msgid "Detected Utility Partition"
-msgstr ""
+msgstr "已偵測到的工具分割區"
 
 #: ../gtk/builder.ui.h:28
 msgid "Choose Content"
-msgstr ""
+msgstr "選取內容"
 
 #: ../gtk/builder.ui.h:29
 msgid "Selected Content Details:"
-msgstr ""
+msgstr "已選取內容的細節："
 
 #: ../gtk/tool_selector.ui.h:3
 msgid "_Help"
-msgstr ""
+msgstr "幫助(_H)"
 
 #: ../gtk/tool_selector.ui.h:4
 msgid ""
@@ -439,86 +448,88 @@ msgid ""
 "to its factory shipped state.  You will have the option to create an USB key "
 "or DVD image."
 msgstr ""
+"這會產生作業系統還原媒體，用來還原電腦回到出廠銷售階段。"
+"您可以選擇要產生 USB 隨身碟或是 DVD 映像。"
 
 #: ../gtk/tool_selector.ui.h:5
 msgid ""
 "This will restore the system to the factory shipped state using the recovery "
 "partition stored on the hard drive."
-msgstr ""
+msgstr "這會使用硬碟上還原分割區來還原系統到出廠銷售階段。"
 
 #: ../gtk/tool_selector.ui.h:6
 msgid "Build OS Media"
-msgstr ""
+msgstr "建立作業系統媒體"
 
 #: ../gtk/tool_selector.ui.h:7
 msgid "Restore System"
-msgstr ""
+msgstr "還原系統"
 
 #: ../gtk/tool_selector.ui.h:8
 msgid ""
 "This will install a Dell driver package that you downloaded from the "
 "Internet."
-msgstr ""
+msgstr "這會安裝一個您從網路上下載回來的戴爾驅動程式套件。"
 
 #: ../gtk/tool_selector.ui.h:9
 msgid "Install Drivers"
-msgstr ""
+msgstr "安裝驅動程式"
 
 #: ../gtk/tool_selector.ui.h:10
 msgid "This will flash a DOS based BIOS image."
-msgstr ""
+msgstr "這會更新 DOS 為底的 BIOS 映像。"
 
 #: ../gtk/tool_selector.ui.h:11
 msgid "Flash BIOS"
-msgstr ""
+msgstr "更新 BIOS"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:1
 msgid ""
 "Dell Recovery Media can be used to restore your system to the same state as "
 "when it was first shipped to you."
-msgstr ""
+msgstr "戴爾還原媒體可以用來還原您的系統到它剛賣給您的同樣狀態。"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:2
 msgid ""
 "<b>It is highly recommended that you generate media and store it in a safe "
 "place.</b>"
-msgstr ""
+msgstr "<b>強烈建議您產生媒體並保存在一個安全的地方。</b>"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:3
 msgid "Restore #OS# to factory state"
-msgstr ""
+msgstr "還原 #OS# 至出廠狀態"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:4
 msgid "Flash BIOS image from DOS"
-msgstr ""
+msgstr "從 DOS 更新 BIOS 映像"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:5
 msgid "Save recovery media to an external USB flash drive"
-msgstr ""
+msgstr "儲存還原媒體到一個外部 USB 隨身碟"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:6
 msgid ""
 "<b>Note:</b> This requires a USB flash drive with approximately 2GB free."
-msgstr ""
+msgstr "<b>注意：</b> 這需要約 2GB 以上未使用空間的 USB 隨身碟。"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:7
 msgid "Save recovery media to DVD"
-msgstr ""
+msgstr "儲存還原媒體到 DVD"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:8
 msgid "<b>Note:</b> This requires writable DVD media."
-msgstr ""
+msgstr "<b>注意：</b> 這需要可寫的 DVD 媒體。"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:9
 msgid "Don't generate recovery media at this time"
-msgstr ""
+msgstr "這次別產生還原媒體"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:10
 msgid ""
 "Recovery Media can be generated later by choosing the tool from the System "
 "menu."
-msgstr ""
+msgstr "還原媒體可以在之後選擇使用系統選單內的工具產生。"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:11
 msgid "<b>ERROR:</b> This media is only valid on Dell systems."
-msgstr ""
+msgstr "<b>錯誤：</b> 這媒體只對戴爾系統有效。"
