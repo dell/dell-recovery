@@ -347,7 +347,7 @@ class Backend(dbus.service.Object):
                 nested = False
                 rfd = tarfile.open(fishie)
                 for member in rfd.getmembers():
-                    name = member.get_info(encoding='UTF-8', errors='strict')['name']
+                    name = member.get_info()['name']
                     if name.endswith('.html'):
                         nested = name
                         break
