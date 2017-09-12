@@ -138,7 +138,7 @@ class BTOxml:
             element = create_tag(self.dom, tag, bto)
             subtags = []
             if tag == 'versions':
-                subtags = ['os', 'iso', 'generator', 'bootstrap', 'ubiquity']
+                subtags = ['os', 'iso', 'generator', 'bootstrap', 'ubiquity', 'revision']
             elif tag == 'fid':
                 subtags = ['git_tag', 'deb_archive']
             elif tag == 'logs':
