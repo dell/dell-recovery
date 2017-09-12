@@ -617,7 +617,8 @@ arch %s, distributor_str %s" % (bto_version, distributor, release, arch, distrib
             out = fetch_output(cmd)
             if out:
                 self.xml_obj.load_bto_xml(out)
-                version = self.xml_obj.fetch_node_contents('iso')
+                version = self.xml_obj.fetch_node_contents('revision') or \
+                          self.xml_obj.fetch_node_contents('iso')
                 date = self.xml_obj.fetch_node_contents('date')
             else:
                 cmd = ['isoinfo', '-J', '-i', recovery, '-x', '/bto_version']
@@ -634,7 +635,8 @@ arch %s, distributor_str %s" % (bto_version, distributor, release, arch, distrib
             mntdir = self.request_mount(recovery, "r", sender, conn)
             if os.path.exists(os.path.join(mntdir, 'bto.xml')):
                 self.xml_obj.load_bto_xml(os.path.join(mntdir, 'bto.xml'))
-                version = self.xml_obj.fetch_node_contents('iso')
+                version = self.xml_obj.fetch_node_contents('revision') or \
+                          self.xml_obj.fetch_node_contents('iso')
                 date = self.xml_obj.fetch_node_contents('date')
             elif os.path.exists(os.path.join(mntdir, 'bto_version')):
                 with open(os.path.join(mntdir, 'bto_version'), 'r') as rfd:
@@ -829,14 +831,14 @@ arch %s, distributor_str %s" % (bto_version, distributor, release, arch, distrib
     @dbus.service.method(DBUS_INTERFACE_NAME,
         in_signature = 'sss', out_signature = '', sender_keyword = 'sender',
         connection_keyword = 'conn')
-    def create_ubuntu(self, recovery, version, iso, sender=None, conn=None):
+    def create_ubuntu(self, recovery, revision, iso, sender=None, conn=None):
         """Creates Ubuntu compatible recovery media"""
 
         self._reset_timeout()
         self._check_polkit_privilege(sender, conn,
                                                 'com.dell.recoverymedia.create')
-        logging.debug("create_ubuntu: recovery %s, version %s, iso %s" %
-            (recovery, version, iso))
+        logging.debug("create_ubuntu: recovery %s, revision %s, iso %s" %
+            (recovery, revision, iso))
 
         #create temporary workspace
         tmpdir = tempfile.mkdtemp()
@@ -872,7 +874,8 @@ arch %s, distributor_str %s" % (bto_version, distributor, release, arch, distrib
 
         #Generate BTO XML File
         self.xml_obj.replace_node_contents('date', str(datetime.date.today()))
-        self.xml_obj.replace_node_contents('iso', version)
+        self.xml_obj.replace_node_contents('iso', os.path.basename(iso))
+        self.xml_obj.replace_node_contents('revision', revision)
         self.xml_obj.replace_node_contents('generator', check_version())
         self.xml_obj.write_xml(os.path.join(tmpdir, 'bto.xml'))
 
