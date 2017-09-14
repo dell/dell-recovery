@@ -84,6 +84,6 @@ if __name__ == '__main__':
             if ex.get_dbus_name() == PermissionDeniedByPolicy._dbus_error_name:
                 text = _("Permission Denied")
             else:
-                text = msg.get_dbus_message()
+                text = ex.get_dbus_message()
             sys.stderr.write(" %s\n" % text)
             sys.exit(1)
