@@ -44,12 +44,12 @@ parser.add_option('-y', '--yes', dest='yes', action='store_true',
 
 if __name__ == '__main__':
     if options.checkversion:
-        print("Version: %s" % check_version())
+        print("%s %s" % (_("Version:"), check_version()))
     else:
         if not options.yes:
-            confirm = input('Would you want to restore the system?(y/n)')
+            confirm = input(_("Would you want to restore the system? (y/n)"))
             if not confirm.lower() == 'yes' and not confirm.lower()=='y':
-                sys.stdout.write("Aborted.\n")
+                sys.stdout.write("%s\n" % _("Aborted."))
                 sys.exit(0)
         
         import dbus.mainloop.glib
@@ -58,7 +58,7 @@ if __name__ == '__main__':
 
         #If we don't find an RP, throw error.
         if not recovery:
-            sys.stderr.write("ERR: No recovery partition could be found to restore the system.\n")
+            sys.stderr.write("%s\n" %_("ERR: No recovery partition could be found to restore the system."))
             sys.exit(1)
     
         #don't ever autostart again
@@ -85,5 +85,5 @@ if __name__ == '__main__':
                 text = _("Permission Denied")
             else:
                 text = ex.get_dbus_message()
-            sys.stderr.write(" %s\n" % text)
+            sys.stderr.write("%s\n" % text)
             sys.exit(1)
