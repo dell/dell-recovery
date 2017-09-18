@@ -773,14 +773,14 @@ arch %s, distributor_str %s" % (bto_version, distributor, release, arch, distrib
     @dbus.service.method(DBUS_INTERFACE_NAME,
         in_signature = '', out_signature = '', sender_keyword = 'sender',
         connection_keyword = 'conn')
-    def enable_boot_to_restore(self, sender=None, conn=None):
+    def enable_boot_to_restore(self, reboot=False, sender=None, conn=None):
         """Enables the default one-time boot option to be recovery"""
         self._reset_timeout()
         self._check_polkit_privilege(sender, conn, 'com.dell.recoverymedia.restore')
-        logging.debug("enable_boot_to_restore")
-        self._prepare_reboot("99_dell_recovery")
+        logging.debug("enable_boot_to_restore:reboot=%s" % reboot)
+        self._prepare_reboot("99_dell_recovery", reboot)
 
-    def _prepare_reboot(self, dest):
+    def _prepare_reboot(self, dest, reboot):
         """Helper function to reboot into an entry"""
         #find our one time boot entry
         if not os.path.exists("/etc/grub.d/%s" % dest):
@@ -824,6 +824,12 @@ arch %s, distributor_str %s" % (bto_version, distributor, release, arch, distrib
         ret = subprocess.call(['/usr/sbin/grub-reboot', entry])
         if ret is not 0:
             raise RestoreFailed("error setting one time grub entry")
+
+        if reboot:
+            logging.debug("Prepare to reboot using gdbus")
+            ret = subprocess.call(['/usr/bin/gdbus', 'call', '-y', '-d', 'org.freedesktop.systemd1', '-o', '/org/freedesktop/systemd1', '-m', 'org.freedesktop.systemd1.Manager.Reboot'])
+            if ret is not 0:
+                raise RestoreFailed("error invoking gdbus to reboot")
 
 
     @dbus.service.method(DBUS_INTERFACE_NAME,

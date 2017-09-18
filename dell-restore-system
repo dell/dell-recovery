@@ -76,8 +76,8 @@ if __name__ == '__main__':
                                         DBUS_INTERFACE_NAME)
             dbus_sync_call_signal_wrapper(dbus_iface,
                                           "enable_boot_to_restore",
-                                          {})
-            subprocess.Popen(["reboot", "--force"])
+                                          {},
+                                          True)
         except dbus.DBusException as ex:
             if ex.get_dbus_name() == 'org.freedesktop.DBus.Error.FileNotFound':
                 text = _("Cannot connect to dbus")
