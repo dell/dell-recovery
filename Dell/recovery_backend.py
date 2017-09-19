@@ -771,9 +771,9 @@ arch %s, distributor_str %s" % (bto_version, distributor, release, arch, distrib
         self.report_package_info(valid, description, error_warning)
 
     @dbus.service.method(DBUS_INTERFACE_NAME,
-        in_signature = '', out_signature = '', sender_keyword = 'sender',
+        in_signature = 'b', out_signature = '', sender_keyword = 'sender',
         connection_keyword = 'conn')
-    def enable_boot_to_restore(self, reboot=False, sender=None, conn=None):
+    def enable_boot_to_restore(self, reboot, sender=None, conn=None):
         """Enables the default one-time boot option to be recovery"""
         self._reset_timeout()
         self._check_polkit_privilege(sender, conn, 'com.dell.recoverymedia.restore')

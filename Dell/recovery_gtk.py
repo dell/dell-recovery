@@ -135,7 +135,8 @@ class DellRecoveryToolGTK:
                 try:
                     dbus_sync_call_signal_wrapper(self.backend(),
                                                   "enable_boot_to_restore",
-                                                  {})
+                                                  {},
+                                                  False)
                     proc = subprocess.Popen(["gnome-session-quit", "--reboot"])
                     self.destroy()
                 except dbus.DBusException as msg:
