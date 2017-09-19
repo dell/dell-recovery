@@ -826,10 +826,10 @@ arch %s, distributor_str %s" % (bto_version, distributor, release, arch, distrib
             raise RestoreFailed("error setting one time grub entry")
 
         if reboot:
-            logging.debug("Prepare to reboot using gdbus")
-            ret = subprocess.call(['/usr/bin/gdbus', 'call', '-y', '-d', 'org.freedesktop.systemd1', '-o', '/org/freedesktop/systemd1', '-m', 'org.freedesktop.systemd1.Manager.Reboot'])
+            logging.debug("Prepare to reboot")
+            ret = subprocess.call(["/sbin/reboot", "--force"])
             if ret is not 0:
-                raise RestoreFailed("error invoking gdbus to reboot")
+                raise RestoreFailed("error invoking reboot")
 
 
     @dbus.service.method(DBUS_INTERFACE_NAME,
