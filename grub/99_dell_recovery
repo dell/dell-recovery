@@ -30,7 +30,7 @@ menuentry "#RECOVERY_TEXT#" {
             set options="\$options dell-recovery/dual_boot=true"
         fi 
 
-        linux   /casper/vmlinuz.efi dell-recovery/recovery_type=hdd \$uuid_options \$options
+        linux   /casper/vmlinuz.efi dell-recovery/recovery_type=#REC_TYPE# \$uuid_options \$options
 	initrd	/casper/initrd.lz
 }
 EOF
