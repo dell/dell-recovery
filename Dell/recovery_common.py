@@ -188,7 +188,7 @@ def check_version(package='dell-recovery'):
               file=sys.stderr)
         return "unknown"
 
-def process_conf_file(original, new, uuid, number, recovery_text=''):
+def process_conf_file(original, new, uuid, number, recovery_text='', recovery_type='hdd'):
     """Replaces all instances of a partition, OS, and extra in a conf type file
        Generally used for things that need to touch grub"""
     if not os.path.isdir(os.path.split(new)[0]):
@@ -212,6 +212,8 @@ def process_conf_file(original, new, uuid, number, recovery_text=''):
                     line = line.replace("#PARTITION#", number)
                 if "#OS#" in line:
                     line = line.replace("#OS#", "%s %s" % (release["ID"], release["RELEASE"]))
+                if "#REC_TYPE#" in line:
+                    line = line.replace("#REC_TYPE#", recovery_type)
                 output.write(line)
 
 def fetch_output(cmd, data='', environment=os.environ):
@@ -634,6 +636,21 @@ def mark_unconditional_debs(add_directory=''):
                         to_install.append(package)
 
     return to_install
+
+def create_grub_entries(rec_type='hdd'):
+    '''Create GRUB entry for dell-recovery during ubiquity installation'''
+    env = os.environ
+    rpart = find_factory_partition_stats()
+    #create the grub entry only when both recovery partition and /cdrom/.disk/info exist
+    if rpart and os.path.exists('/cdrom/.disk/info'):
+        rec_text = 'Restore OS to factory state'
+        process_conf_file(original = '/usr/share/dell/grub/99_dell_recovery', \
+                          new = '/target/etc/grub.d/99_dell_recovery',        \
+                          uuid = str(rpart["uuid"]),                          \
+                          number = str(rpart["number"]),                      \
+                          recovery_text = rec_text,
+                          recovery_type = rec_type)
+        os.chmod('/target/etc/grub.d/99_dell_recovery', 0o755)
 
 def dbus_sync_call_signal_wrapper(dbus_iface, func, handler_map, *args, **kwargs):
     '''Run a D-BUS method call while receiving signals.
