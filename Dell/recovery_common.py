@@ -641,8 +641,8 @@ def create_grub_entries(rec_type='hdd'):
     '''Create GRUB entry for dell-recovery during ubiquity installation'''
     env = os.environ
     rpart = find_factory_partition_stats()
-    #create the grub entry only when both recovery partition and /cdrom/.disk/info exist
-    if rpart and os.path.exists('/cdrom/.disk/info'):
+    #create the grub entry only when recovery partition exists
+    if rpart:
         rec_text = 'Restore OS to factory state'
         process_conf_file(original = '/usr/share/dell/grub/99_dell_recovery', \
                           new = '/target/etc/grub.d/99_dell_recovery',        \
