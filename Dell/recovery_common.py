@@ -637,20 +637,21 @@ def mark_unconditional_debs(add_directory=''):
 
     return to_install
 
-def create_grub_entries(rec_type='hdd'):
+def create_grub_entries(target_dir='/target', rec_type='hdd'):
     '''Create GRUB entry for dell-recovery during ubiquity installation'''
     env = os.environ
     rpart = find_factory_partition_stats()
+    target_grub = '%s/etc/grub.d/99_dell_recovery' % target_dir
     #create the grub entry only when recovery partition exists
     if rpart:
         rec_text = 'Restore OS to factory state'
         process_conf_file(original = '/usr/share/dell/grub/99_dell_recovery', \
-                          new = '/target/etc/grub.d/99_dell_recovery',        \
+                          new = target_grub,                                  \
                           uuid = str(rpart["uuid"]),                          \
                           number = str(rpart["number"]),                      \
                           recovery_text = rec_text,
                           recovery_type = rec_type)
-        os.chmod('/target/etc/grub.d/99_dell_recovery', 0o755)
+        os.chmod(target_grub, 0o755)
 
 def dbus_sync_call_signal_wrapper(dbus_iface, func, handler_map, *args, **kwargs):
     '''Run a D-BUS method call while receiving signals.

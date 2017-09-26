@@ -1233,7 +1233,7 @@ class Install(InstallPlugin):
             if self.db.get('dell-recovery/wyse_mode') == 'true':
                 recovery_type = 'factory'
             #create 99_dell_recovery grub
-            magic.create_grub_entries(recovery_type)
+            magic.create_grub_entries(self.target, recovery_type)
 
         #for tos
         try:
