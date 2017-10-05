@@ -150,6 +150,10 @@ def parse_argv():
                       default=None,
                       help=('Specify output ISO name'))
 
+    parser.add_option('--target-platform', type='string', dest='bto_platform',
+                      default=None,
+                      help=('Specify the platform information'))
+
     parser.add_option('--target-dir', type='string', dest='bto_dir',
                       default='/tmp',
                       help=('Output directory for iso images: default /tmp'))
@@ -226,7 +230,7 @@ if __name__ == '__main__':
 
         base = os.path.realpath(options.base)
         (bto_version, distributer,
-            release, arch, output) = iface.query_iso_information(base)
+            release, arch, output, platform) = iface.query_iso_information(base)
 
         if options.tag:
             current_tag = FidTag(release + '_' + options.tag)
@@ -257,6 +261,9 @@ if __name__ == '__main__':
             if not bto_name.endswith('.iso'):
                 bto_name += '.iso'
 
+        if options.bto_platform != None:
+            platform = options.bto_platform
+
         #try to open the file as a user first so when it's overwritten, it
         #will be with the correct permissions
         try:
@@ -269,7 +276,7 @@ if __name__ == '__main__':
             #writing files as a user, oh well, we tried
             pass
 
-        print('BTO ISO: %s' % os.path.join(options.bto_dir, bto_name))
+        print('BTO ISO: %s (platform: %s)' % (os.path.join(options.bto_dir, bto_name), platform))
 
         print('List of drivers to be mixed into %s' % bto_name)
         for fishie in drivers:
@@ -289,7 +296,8 @@ if __name__ == '__main__':
             dell_recovery_pkg,               # specify pkg source
             'create_ubuntu',                 # called by 'assemble_image'
             current_tag.revision,
-            os.path.join(options.bto_dir, bto_name))
+            os.path.join(options.bto_dir, bto_name),
+            platform)
 
         print('Build complete: %s' % os.path.join(options.bto_dir, bto_name))
     except dbus.DBusException as err:

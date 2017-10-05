@@ -419,7 +419,7 @@ class Backend(dbus.service.Object):
         self.main_loop.quit()
 
     @dbus.service.method(DBUS_INTERFACE_NAME,
-        in_signature = 'sasa{ss}ssss', out_signature = '', sender_keyword = 'sender',
+        in_signature = 'sasa{ss}sssss', out_signature = '', sender_keyword = 'sender',
         connection_keyword = 'conn')
     def assemble_image(self,
                        base,
@@ -427,18 +427,19 @@ class Backend(dbus.service.Object):
                        application_fish,
                        dell_recovery_package,
                        create_fn,
-                       version, iso, sender=None, conn=None):
+                       version, iso, platform, sender=None, conn=None):
         """Assemble pieces that would be used for building a BTO image.
            base: mount point of base image (or directory)
            fish: list of packages to fish
            dell_recovery_package: a dell-recovery package to inject
            create_fn: function to call for creation of ISO
            version: version for ISO creation purposes
-           iso: iso file name to create"""
+           iso: iso file name to create
+           platform: platform name to identify"""
         logging.debug("assemble_image: base %s, driver_fish %s, application_fish\
-%s, recovery %s, create_fn %s, version %s, iso %s" %
+%s, recovery %s, create_fn %s, version %s, iso %s, platform %s" %
                     (base, driver_fish, application_fish, dell_recovery_package,
-                    create_fn, version, iso))
+                    create_fn, version, iso, platform))
 
         self._reset_timeout()
 
@@ -498,10 +499,10 @@ class Backend(dbus.service.Object):
                 distutils.file_util.copy_file(dell_recovery_package, dest)
 
         function = getattr(Backend, create_fn)
-        function(self, assembly_tmp, version, iso)
+        function(self, assembly_tmp, version, iso, platform)
 
     @dbus.service.method(DBUS_INTERFACE_NAME,
-        in_signature = 's', out_signature = 'sssss', sender_keyword = 'sender',
+        in_signature = 's', out_signature = 'ssssss', sender_keyword = 'sender',
         connection_keyword = 'conn')
     def query_iso_information(self, iso, sender=None, conn=None):
         """Queries what type of ISO this is.  This same method will be used regardless
@@ -530,7 +531,7 @@ class Backend(dbus.service.Object):
         self._check_polkit_privilege(sender, conn,
                                 'com.dell.recoverymedia.query_iso_information')
 
-        (bto_version, bto_date) = self.query_bto_version(iso, sender, conn)
+        (bto_version, bto_date, bto_platform) = self.query_bto_version(iso, sender, conn)
 
         distributor_str = 'Unknown Base Image'
         distributor = ''
@@ -578,10 +579,10 @@ class Backend(dbus.service.Object):
         self.report_iso_info(bto_version, distributor, release, arch, distributor_str)
         logging.debug(" returning bto_version %s, distributor %s, release %s, \
 arch %s, distributor_str %s" % (bto_version, distributor, release, arch, distributor_str))
-        return (bto_version, distributor, release, arch, distributor_str)
+        return (bto_version, distributor, release, arch, distributor_str, bto_platform)
 
     @dbus.service.method(DBUS_INTERFACE_NAME,
-        in_signature = 's', out_signature = 'ss', sender_keyword = 'sender',
+        in_signature = 's', out_signature = 'sss', sender_keyword = 'sender',
         connection_keyword = 'conn')
     def query_bto_version(self, recovery, sender=None, conn=None):
         """Queries the BTO version number internally stored in an ISO or RP"""
@@ -611,13 +612,16 @@ arch %s, distributor_str %s" % (bto_version, distributor, release, arch, distrib
         #mount the recovery partition
         version = ''
         date = ''
+        platform = ''
 
         if os.path.isfile(recovery) and recovery.endswith('.iso'):
             cmd = ['isoinfo', '-J', '-i', recovery, '-x', '/bto.xml']
             out = fetch_output(cmd)
             if out:
                 self.xml_obj.load_bto_xml(out)
-                version = self.xml_obj.fetch_node_contents('iso')
+                version = self.xml_obj.fetch_node_contents('revision') or \
+                          self.xml_obj.fetch_node_contents('iso')
+                platform = self.xml_obj.fetch_node_contents('platform')
                 date = self.xml_obj.fetch_node_contents('date')
             else:
                 cmd = ['isoinfo', '-J', '-i', recovery, '-x', '/bto_version']
@@ -634,7 +638,9 @@ arch %s, distributor_str %s" % (bto_version, distributor, release, arch, distrib
             mntdir = self.request_mount(recovery, "r", sender, conn)
             if os.path.exists(os.path.join(mntdir, 'bto.xml')):
                 self.xml_obj.load_bto_xml(os.path.join(mntdir, 'bto.xml'))
-                version = self.xml_obj.fetch_node_contents('iso')
+                version = self.xml_obj.fetch_node_contents('revision') or \
+                          self.xml_obj.fetch_node_contents('iso')
+                platform = self.xml_obj.fetch_node_contents('platform')
                 date = self.xml_obj.fetch_node_contents('date')
             elif os.path.exists(os.path.join(mntdir, 'bto_version')):
                 with open(os.path.join(mntdir, 'bto_version'), 'r') as rfd:
@@ -644,7 +650,7 @@ arch %s, distributor_str %s" % (bto_version, distributor, release, arch, distrib
             elif os.path.exists(os.path.join(mntdir, 'casper', 'initrd.lz')):
                 version = test_initrd(['cat', os.path.join(mntdir, 'casper', 'initrd.lz')])
 
-        return (version, date)
+        return (version, date, platform)
 
     @dbus.service.method(DBUS_INTERFACE_NAME,
         in_signature = 's', out_signature = 's', sender_keyword = 'sender',
@@ -833,16 +839,16 @@ arch %s, distributor_str %s" % (bto_version, distributor, release, arch, distrib
 
 
     @dbus.service.method(DBUS_INTERFACE_NAME,
-        in_signature = 'sss', out_signature = '', sender_keyword = 'sender',
+        in_signature = 'ssss', out_signature = '', sender_keyword = 'sender',
         connection_keyword = 'conn')
-    def create_ubuntu(self, recovery, version, iso, sender=None, conn=None):
+    def create_ubuntu(self, recovery, revision, iso, platform, sender=None, conn=None):
         """Creates Ubuntu compatible recovery media"""
 
         self._reset_timeout()
         self._check_polkit_privilege(sender, conn,
                                                 'com.dell.recoverymedia.create')
-        logging.debug("create_ubuntu: recovery %s, version %s, iso %s" %
-            (recovery, version, iso))
+        logging.debug("create_ubuntu: recovery %s, revision %s, iso %s, platform %s" %
+            (recovery, revision, iso, platform))
 
         #create temporary workspace
         tmpdir = tempfile.mkdtemp()
@@ -878,7 +884,9 @@ arch %s, distributor_str %s" % (bto_version, distributor, release, arch, distrib
 
         #Generate BTO XML File
         self.xml_obj.replace_node_contents('date', str(datetime.date.today()))
-        self.xml_obj.replace_node_contents('iso', version)
+        self.xml_obj.replace_node_contents('iso', os.path.basename(iso))
+        self.xml_obj.replace_node_contents('revision', revision)
+        self.xml_obj.replace_node_contents('platform', platform)
         self.xml_obj.replace_node_contents('generator', check_version())
         self.xml_obj.write_xml(os.path.join(tmpdir, 'bto.xml'))
 
