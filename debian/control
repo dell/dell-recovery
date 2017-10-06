@@ -27,12 +27,13 @@ Depends: ${python3:Depends},
          uuid-runtime,
 Replaces: dell-artwork, dell-oobe
 Conflicts: dell-oobe
-Recommends: usb-creator-gtk,
-            xorriso,
-            dvd+rw-tools,
+Recommends: dvd+rw-tools,
+            isolinux,
             lsb-release,
             parted,
-            python3-progressbar
+            python3-progressbar,
+            usb-creator-gtk,
+            xorriso
 Enhances: oem-config-gtk, ubiquity-frontend-gtk
 Suggests: grub-pc
 Description: Dell Recovery Media Creation Package

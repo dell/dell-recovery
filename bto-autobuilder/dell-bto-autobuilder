@@ -276,7 +276,8 @@ if __name__ == '__main__':
             #writing files as a user, oh well, we tried
             pass
 
-        print('BTO ISO: %s (platform: %s)' % (os.path.join(options.bto_dir, bto_name), platform))
+        print('BTO ISO: %s (platform: %s, revision: %s)' % (os.path.join(options.bto_dir, bto_name),
+            platform, current_tag.revision))
 
         print('List of drivers to be mixed into %s' % bto_name)
         for fishie in drivers:
