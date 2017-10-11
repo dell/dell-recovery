@@ -37,6 +37,8 @@ import sys
 import datetime
 import logging
 import hashlib
+import io
+import locale
 
 ##                ##
 ##Common Variables##
