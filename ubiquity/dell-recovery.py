@@ -215,7 +215,7 @@ class Install(InstallPlugin):
             progress.info('dell-recovery/build_start')
 
             #Determine internal version number of image
-            (version, date) = dbus_iface.query_bto_version(rpart)
+            (version, date, platform) = dbus_iface.query_bto_version(rpart)
             version = magic.increment_bto_version(version)
             self.log("Generating recovery media from %s : %s" % (version, date))
 
@@ -226,7 +226,8 @@ class Install(InstallPlugin):
                                                     {'report_progress':self._update_progress_gui},
                                                     rpart,
                                                     version,
-                                                    fname)
+                                                    fname,
+                                                    platform)
                 os.chown(fname.encode('utf-8'), uid, gid)
             except dbus.DBusException as err:
                 self.log('install function exception while calling backend: %s' % str(err))
