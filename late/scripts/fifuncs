@@ -27,7 +27,7 @@
 wd=""$1""
 
 screenmsg() {
-    echo $* > /dev/tty1 2>&1
+    echo $* > /dev/ttyprintk 2>&1
 }
 
 IFHALT() {
