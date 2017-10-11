@@ -33,6 +33,7 @@ Recommends: dvd+rw-tools,
             parted,
             python3-progressbar,
             usb-creator-gtk,
+            wodim,
             xorriso
 Enhances: oem-config-gtk, ubiquity-frontend-gtk
 Suggests: grub-pc
