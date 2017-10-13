@@ -576,9 +576,9 @@ class Backend(dbus.service.Object):
         else:
             bto_version = ''
 
-        self.report_iso_info(bto_version, distributor, release, arch, distributor_str)
+        self.report_iso_info(bto_version, distributor, release, arch, distributor_str, bto_platform)
         logging.debug(" returning bto_version %s, distributor %s, release %s, \
-arch %s, distributor_str %s" % (bto_version, distributor, release, arch, distributor_str))
+arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, release, arch, distributor_str, bto_platform))
         return (bto_version, distributor, release, arch, distributor_str, bto_platform)
 
     @dbus.service.method(DBUS_INTERFACE_NAME,
@@ -1074,7 +1074,7 @@ arch %s, distributor_str %s" % (bto_version, distributor, release, arch, distrib
                                output.strip())
 
     @dbus.service.signal(DBUS_INTERFACE_NAME)
-    def report_iso_info(self, version, distributor, release, arch, output_text):
+    def report_iso_info(self, version, distributor, release, arch, output_text, platform):
         '''Report ISO information to UI.
         '''
         return True

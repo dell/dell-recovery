@@ -498,9 +498,9 @@ create an USB key or DVD image."))
         if self.add_dell_recovery_deb:
             ok_button.set_sensitive(True)
 
-    def update_version_gui(self, version, distributor, release, arch, output_text):
+    def update_version_gui(self, version, distributor, release, arch, output_text, platform):
         """Stops any running spinners and updates GUI items"""
-        BasicGeneratorGTK.update_version_gui(self, version, distributor, release, arch, output_text)
+        BasicGeneratorGTK.update_version_gui(self, version, distributor, release, arch, output_text, platform)
 
         if output_text:
             complete = (output_text != "Unknown Base Image")

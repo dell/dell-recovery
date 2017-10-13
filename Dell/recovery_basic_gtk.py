@@ -170,7 +170,8 @@ class BasicGeneratorGTK(DellRecoveryToolGTK):
 
             #all functions require this at the end
             args += ( self.widgets.get_object('version').get_text(),
-                      os.path.join(self.path, self.image))
+                      os.path.join(self.path, self.image),
+                      self.widgets.get_object('platform').get_text() )
             try:
                 dbus_sync_call_signal_wrapper(self.backend(),
                                 function,
@@ -258,7 +259,7 @@ partition layout.")
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-    def update_version_gui(self, version, distributor, release, arch, output_text):
+    def update_version_gui(self, version, distributor, release, arch, output_text, platform):
         """Stops any running spinners and updates GUI items"""
 
         if distributor:
@@ -276,6 +277,7 @@ partition layout.")
             version = 'X00'
 
         self.widgets.get_object('version').set_text(version)
+        self.widgets.get_object('platform').set_text(platform)
         return True
 
     def update_progress_gui(self, progress_text, progress):
