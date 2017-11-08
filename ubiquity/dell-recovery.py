@@ -227,7 +227,8 @@ class Install(InstallPlugin):
                                                     rpart,
                                                     version,
                                                     fname,
-                                                    platform)
+                                                    platform,
+                                                    False)
                 os.chown(fname.encode('utf-8'), uid, gid)
             except dbus.DBusException as err:
                 self.log('install function exception while calling backend: %s' % str(err))

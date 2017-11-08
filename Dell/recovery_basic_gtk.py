@@ -171,7 +171,8 @@ class BasicGeneratorGTK(DellRecoveryToolGTK):
             #all functions require this at the end
             args += ( self.widgets.get_object('version').get_text(),
                       os.path.join(self.path, self.image),
-                      self.widgets.get_object('platform').get_text() )
+                      self.widgets.get_object('platform').get_text(),
+                      False )
             try:
                 dbus_sync_call_signal_wrapper(self.backend(),
                                 function,

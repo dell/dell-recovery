@@ -419,7 +419,7 @@ class Backend(dbus.service.Object):
         self.main_loop.quit()
 
     @dbus.service.method(DBUS_INTERFACE_NAME,
-        in_signature = 'sasa{ss}sssss', out_signature = '', sender_keyword = 'sender',
+        in_signature = 'sasa{ss}sssssb', out_signature = '', sender_keyword = 'sender',
         connection_keyword = 'conn')
     def assemble_image(self,
                        base,
@@ -427,7 +427,7 @@ class Backend(dbus.service.Object):
                        application_fish,
                        dell_recovery_package,
                        create_fn,
-                       version, iso, platform, sender=None, conn=None):
+                       version, iso, platform, no_update, sender=None, conn=None):
         """Assemble pieces that would be used for building a BTO image.
            base: mount point of base image (or directory)
            fish: list of packages to fish
@@ -435,11 +435,12 @@ class Backend(dbus.service.Object):
            create_fn: function to call for creation of ISO
            version: version for ISO creation purposes
            iso: iso file name to create
-           platform: platform name to identify"""
+           platform: platform name to identify
+           no_update: don't include newer dell-recovery automatically"""
         logging.debug("assemble_image: base %s, driver_fish %s, application_fish\
-%s, recovery %s, create_fn %s, version %s, iso %s, platform %s" %
+%s, recovery %s, create_fn %s, version %s, iso %s, platform %s, no_update %s" %
                     (base, driver_fish, application_fish, dell_recovery_package,
-                    create_fn, version, iso, platform))
+                    create_fn, version, iso, platform, no_update))
 
         self._reset_timeout()
 
@@ -499,7 +500,7 @@ class Backend(dbus.service.Object):
                 distutils.file_util.copy_file(dell_recovery_package, dest)
 
         function = getattr(Backend, create_fn)
-        function(self, assembly_tmp, version, iso, platform)
+        function(self, assembly_tmp, version, iso, platform, no_update)
 
     @dbus.service.method(DBUS_INTERFACE_NAME,
         in_signature = 's', out_signature = 'ssssss', sender_keyword = 'sender',
@@ -839,9 +840,9 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
 
 
     @dbus.service.method(DBUS_INTERFACE_NAME,
-        in_signature = 'ssss', out_signature = '', sender_keyword = 'sender',
+        in_signature = 'ssssb', out_signature = '', sender_keyword = 'sender',
         connection_keyword = 'conn')
-    def create_ubuntu(self, recovery, revision, iso, platform, sender=None, conn=None):
+    def create_ubuntu(self, recovery, revision, iso, platform, no_update, sender=None, conn=None):
         """Creates Ubuntu compatible recovery media"""
 
         self._reset_timeout()
@@ -866,10 +867,11 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
             raise CreateFailed("Recovery partition is missing critical ubuntu files.")
 
         #test for an updated dell recovery deb to put in
-        try:
-            self._test_for_new_dell_recovery(mntdir, tmpdir)
-        except:
-            raise CreateFailed("Error injecting updated Dell Recovery into image.")
+        if not no_update:
+            try:
+                self._test_for_new_dell_recovery(mntdir, tmpdir)
+            except:
+                raise CreateFailed("Error injecting updated Dell Recovery into image.")
 
         #check for a nested ISO image
         if os.path.exists(os.path.join(mntdir, 'ubuntu.iso')):

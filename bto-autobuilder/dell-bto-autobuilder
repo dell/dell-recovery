@@ -162,6 +162,9 @@ def parse_argv():
                       default=None,
                       help=('Use specific dell recovery package'))
 
+    parser.add_option('--no-update', action="store_true", dest='no_update',
+                      help=("Don't include newer dell-recovery automatically"))
+
     opts, args = parser.parse_args()
 
     if opts.drivers == None or opts.base == None:
@@ -298,7 +301,8 @@ if __name__ == '__main__':
             'create_ubuntu',                 # called by 'assemble_image'
             current_tag.revision,
             os.path.join(options.bto_dir, bto_name),
-            platform)
+            platform,
+            options.no_update)
 
         print('Build complete: %s' % os.path.join(options.bto_dir, bto_name))
     except dbus.DBusException as err:
