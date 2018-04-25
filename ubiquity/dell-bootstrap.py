@@ -738,7 +738,7 @@ class Page(Plugin):
             self.cancel_handler()
 
         #force wyse systems to always take minimal mode (18.04+)
-        if self.db.get('dell-recovery/wyse_mode') == 'true' or magic.check_family("wyse"):
+        if self.db.get('dell-recovery/wyse_mode') == 'true' or magic.check_family(b"wyse"):
             self.preseed("ubiquity/minimal_install", "true")
 
         return (['/usr/share/ubiquity/dell-bootstrap'], [RECOVERY_TYPE_QUESTION])
@@ -1234,7 +1234,7 @@ class Install(InstallPlugin):
             recovery_type = 'hdd'
             #if wyse mode is on (dell-recovery/mode == 'wyse'), set the recovery_type to be 'factory'
             #as Wyse platforms will always skip the "Restore OS Linux partition" dialog
-            if self.db.get('dell-recovery/wyse_mode') == 'true' or magic.check_family("wyse"):
+            if self.db.get('dell-recovery/wyse_mode') == 'true' or magic.check_family(b"wyse"):
                 recovery_type = 'factory'
             #create 99_dell_recovery grub
             magic.create_grub_entries(self.target, recovery_type)
