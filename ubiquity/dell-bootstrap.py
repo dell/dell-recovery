@@ -364,6 +364,11 @@ class Page(Plugin):
 
         #starting with 17.04, we replace the whole swap partition to swap file
         if float(release["RELEASE"]) >= 17.04:
+            try:
+                self.db.set('partman-swapfile/percentage', '50')
+                self.db.set('partman-swapfile/size', self.mem * 2048)
+            except debconf.DebconfError as err:
+                self.log(str(err))
             return True
 
         if (self.mem >= 32 or self.disk_size <= 64):

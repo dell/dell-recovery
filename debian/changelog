@@ -1,3 +1,9 @@
+dell-recovery (1.59) UNRELEASED; urgency=medium
+
+  * Increase the swap file size for hibernate.
+
+ -- Shih-Yuan Lee (FourDollars) <sylee@canonical.com>  Tue, 24 Apr 2018 12:02:11 +0800
+
 dell-recovery (1.58) bionic; urgency=medium
 
   * Depend on the missing python3-distutils.
