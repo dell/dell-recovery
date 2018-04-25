@@ -1,6 +1,7 @@
 dell-recovery (1.59) UNRELEASED; urgency=medium
 
   * Increase the swap file size for hibernate.
+  * wodim-iso.py needs the admin privilege to make it work properly. (Closes: #57)
 
  -- Shih-Yuan Lee (FourDollars) <sylee@canonical.com>  Tue, 24 Apr 2018 12:02:11 +0800
 

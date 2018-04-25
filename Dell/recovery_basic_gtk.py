@@ -195,7 +195,7 @@ class BasicGeneratorGTK(DellRecoveryToolGTK):
         while not success:
             success = True
             if self.widgets.get_object('dvdbutton').get_active():
-                cmd = self.dvd_burn_cmd + [os.path.join(self.path, self.image)]
+                cmd = ['pkexec'] + self.dvd_burn_cmd + [os.path.join(self.path, self.image)]
             elif self.widgets.get_object('usbbutton').get_active():
                 cmd = self.usb_burn_cmd + [os.path.join(self.path, self.image)]
             else:

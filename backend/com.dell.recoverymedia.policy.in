@@ -84,5 +84,17 @@
       <allow_active>yes</allow_active>
     </defaults>
   </action>
+
+  <action id="com.dell.recoverymedia.burn_dvd">
+    <description>Burn DVD</description>
+    <message>Authentication is required to burn DVD</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/share/dell/scripts/wodim-iso.py</annotate>
+    <annotate key="org.freedesktop.policykit.exec.allow_gui">TRUE</annotate>
+  </action>
 </policyconfig> 
 
