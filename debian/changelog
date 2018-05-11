@@ -1,3 +1,10 @@
+dell-recovery (1.60) UNRELEASED; urgency=medium
+
+  * Change the order of the kernel parameter options to avoid the propagation
+    by accident.
+
+ -- Shih-Yuan Lee (FourDollars) <sylee@canonical.com>  Fri, 11 May 2018 15:11:13 +0800
+
 dell-recovery (1.59) bionic; urgency=medium
 
   [ Shih-Yuan Lee (FourDollars) ]
