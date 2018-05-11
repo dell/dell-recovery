@@ -2,8 +2,9 @@ dell-recovery (1.60) UNRELEASED; urgency=medium
 
   * Change the order of the kernel parameter options to avoid the propagation
     by accident.
+  * Reduce some PyGIWarning messages.
 
- -- Shih-Yuan Lee (FourDollars) <sylee@canonical.com>  Fri, 11 May 2018 15:11:13 +0800
+ -- Shih-Yuan Lee (FourDollars) <sylee@canonical.com>  Fri, 11 May 2018 18:41:43 +0800
 
 dell-recovery (1.59) bionic; urgency=medium
 
