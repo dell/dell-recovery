@@ -90,7 +90,14 @@ fi
 
 if [ "$1" = "cleanup" ]; then
     #cleanup
-    mv /etc/apt/sources.list.ubuntu /etc/apt/sources.list
+    #if /etc/apt/sources.list has contained the regional mirror site, it is better to use it.
+    if grep -v "^#" /etc/apt/sources.list | grep archive.ubuntu.com >/dev/null 2>&1; then
+        rm -f /etc/apt/sources.list.ubuntu
+        # Ensure Canonical's 'partner' repository enabled.
+        sed -i 's/# deb \(.*\) partner$/deb \1 partner/g' /etc/apt/sources.list
+    else
+        mv /etc/apt/sources.list.ubuntu /etc/apt/sources.list
+    fi
     rm -f /Packages /etc/apt/apt.conf.d/00AllowUnauthenticated /etc/apt/apt.conf.d/00NoMountCDROM
     rm -f /etc/apt/sources.list.d/dell.list
     if [ -d /etc/apt/sources.list.d.old ]; then
