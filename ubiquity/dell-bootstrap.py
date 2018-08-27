@@ -636,8 +636,6 @@ class Page(Plugin):
 
         early = '/usr/share/dell/scripts/oem_config.sh early %s' % location
         self.db.set('oem-config/early_command', early)
-        # if "/dev/dm" in self.device:
-        #     device = transfer_dmraid_path(self.device)
         self.db.set('partman-auto/disk', self.device)
 
         #EFI install finds ESP
@@ -914,7 +912,7 @@ manually to proceed.")
         # replace the self.device for dmraid if needed
         # sample: /dev/dm-0 --> /dev/mapper/isw*
         if "/dev/dm" in self.device:
-            self.device = transfer_dmraid_path(self.device)
+            self.device = magic.transfer_dmraid_path(self.device)
 
         # Build new partition table
         command = ('parted', '-s', self.device, 'mklabel', 'gpt')
@@ -1130,25 +1128,6 @@ manually to proceed.")
 ####################
 # Helper Functions #
 ####################
-def transfer_dmraid_path(source_path):
-    """two direction change the dmraid path representive
-       sample : /dev/dm-X --> /dev/mapper/isw*
-    """
-    udisks = UDisks.Client.new_sync(None)
-    manager = udisks.get_object_manager()
-    for item in manager.get_objects():
-        block = item.get_block()
-        if not block:
-            continue
-        # Check the disk is type of dmraid
-        device_path = block.get_cached_property("Device").get_bytestring().decode('utf-8')
-        if device_path == source_path:
-            output = block.get_cached_property("Id").get_string()
-            model = output.split("-")[-1]
-            dest_path = os.path.join("/dev/mapper",model)
-            break
-    return dest_path
-
 def find_boot_device():
     """Finds the device we're booted from'"""
     mounted_device = ''
