@@ -627,7 +627,7 @@ class Page(Plugin):
 
         self.device = rec_part["slave"]
 
-        device = self.device
+        # device = self.device
 
         if os.path.exists(magic.ISO_MOUNT):
             location = magic.ISO_MOUNT
@@ -636,12 +636,17 @@ class Page(Plugin):
 
         early = '/usr/share/dell/scripts/oem_config.sh early %s' % location
         self.db.set('oem-config/early_command', early)
-        if "/dev/dm" in self.device:
-            device = transfer_dmraid_path(self.device)
-        self.db.set('partman-auto/disk', device)
+        # if "/dev/dm" in self.device:
+        #     device = transfer_dmraid_path(self.device)
+        self.db.set('partman-auto/disk', self.device)
 
         #EFI install finds ESP
-        self.db.set('grub-installer/bootdev', device)
+        self.db.set('grub-installer/bootdev', self.device)
+
+        # install GRUB if it's dmraid installation
+        if self.device.startswith("/dev/dm"):
+            grub_command = 'debconf-set partman-auto/disk "$(ls /dev/mapper/isw* | head -n1)"'
+            self.db.set('partman/early_command', grub_command)
 
         self.disk_size = rec_part["size_gb"]
 
