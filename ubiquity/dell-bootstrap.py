@@ -535,9 +535,21 @@ class Page(Plugin):
             partition = item.get_partition()
             if loop or \
                partition or \
-               not block or \
-               not block.get_cached_property("HintPartitionable").get_boolean() or \
-               block.get_cached_property("ReadOnly").get_boolean():
+               not block:
+                continue
+
+            if block.get_cached_property("IdType").get_string():
+                if block.get_cached_property("IdType").get_string() in "isw_raid_member":
+                    continue
+
+            # Check the disk is type of dmraid
+            device_path = block.get_cached_property("Device").get_bytestring().decode('utf-8')
+            if device_path.startswith('/dev/dm'):
+                output = block.get_cached_property("Id").get_string()
+                model = output.split("-")[-1]
+                # device_path = os.path.join("/dev/mapper",model)
+                dmraid_dev_size = block.get_cached_property("Size").unpack()
+                disks.append([device_path, dmraid_dev_size, "%s (%s)" % (model, device_path)])
                 continue
 
             #Check the disk is type of NVME SSD
@@ -615,6 +627,8 @@ class Page(Plugin):
 
         self.device = rec_part["slave"]
 
+        device = self.device
+
         if os.path.exists(magic.ISO_MOUNT):
             location = magic.ISO_MOUNT
         else:
@@ -622,10 +636,12 @@ class Page(Plugin):
 
         early = '/usr/share/dell/scripts/oem_config.sh early %s' % location
         self.db.set('oem-config/early_command', early)
-        self.db.set('partman-auto/disk', self.device)
+        if "/dev/dm" in self.device:
+            device = transfer_dmraid_path(self.device)
+        self.db.set('partman-auto/disk', device)
 
         #EFI install finds ESP
-        self.db.set('grub-installer/bootdev', self.device)
+        self.db.set('grub-installer/bootdev', device)
 
         self.disk_size = rec_part["size_gb"]
 
@@ -661,6 +677,10 @@ class Page(Plugin):
             # we rebooted with no USB stick or DVD in drive and have the RP
             # mounted at /cdrom
             if self.stage == 2 and rec_part["slave"] in mount:
+                self.log("Detected RP at %s, setting to factory boot" % mount)
+                rec_type = 'factory'
+            # check if the mount point is dmraid
+            elif mount.startswith("/dev/dm") and self.stage == 2 and rec_part["slave"][:-1] in mount:
                 self.log("Detected RP at %s, setting to factory boot" % mount)
                 rec_type = 'factory'
             else:
@@ -886,6 +906,11 @@ manually to proceed.")
         #in mbytes
         rp_size_mb = (rp_size / 1000000) + cushion
 
+        # replace the self.device for dmraid if needed
+        # sample: /dev/dm-0 --> /dev/mapper/isw*
+        if "/dev/dm" in self.device:
+            self.device = transfer_dmraid_path(self.device)
+
         # Build new partition table
         command = ('parted', '-s', self.device, 'mklabel', 'gpt')
         result = misc.execute_root(*command)
@@ -897,7 +922,7 @@ manually to proceed.")
         commands = [('parted', '-a', 'optimal', '-s', self.device, 'mkpart', 'primary', 'fat16', '0', str(grub_size)),
                     ('parted', '-s', self.device, 'name', '1', "'EFI System Partition'"),
                     ('parted', '-s', self.device, 'set', '1', 'boot', 'on')]
-        if '/dev/nvme' in self.device or '/dev/mmcblk' in self.device:
+        if '/dev/nvme' in self.device or '/dev/mmcblk' in self.device or '/dev/mapper/isw' in self.device:
             commands.append(('mkfs.msdos', self.device + 'p' + EFI_ESP_PARTITION))
             rp_part = 'p' + EFI_RP_PARTITION
             esp_part = 'p' + EFI_ESP_PARTITION
@@ -1100,6 +1125,25 @@ manually to proceed.")
 ####################
 # Helper Functions #
 ####################
+def transfer_dmraid_path(source_path):
+    """two direction change the dmraid path representive
+       sample : /dev/dm-X --> /dev/mapper/isw*
+    """
+    udisks = UDisks.Client.new_sync(None)
+    manager = udisks.get_object_manager()
+    for item in manager.get_objects():
+        block = item.get_block()
+        if not block:
+            continue
+        # Check the disk is type of dmraid
+        device_path = block.get_cached_property("Device").get_bytestring().decode('utf-8')
+        if device_path == source_path:
+            output = block.get_cached_property("Id").get_string()
+            model = output.split("-")[-1]
+            dest_path = os.path.join("/dev/mapper",model)
+            break
+    return dest_path
+
 def find_boot_device():
     """Finds the device we're booted from'"""
     mounted_device = ''
