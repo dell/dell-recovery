@@ -21,13 +21,13 @@ menuentry "#RECOVERY_TEXT#" {
         if [ -f /ubuntu.iso ]; then
             loopback loop /ubuntu.iso
             set root=(loop)
-            set options="\$options iso-scan/filename=/ubuntu.iso"
+            set options="iso-scan/filename=/ubuntu.iso \$options"
         fi
         if [ -n "\${lang}" ]; then
-            set options="\$options locale=\$lang"
+            set options="locale=\$lang \$options"
         fi
         if [ -s /factory/dual_enable ]; then
-            set options="\$options dell-recovery/dual_boot=true"
+            set options="dell-recovery/dual_boot=true \$options"
         fi 
 
         linux   /casper/vmlinuz.efi dell-recovery/recovery_type=#REC_TYPE# \$uuid_options \$options

@@ -20,6 +20,10 @@ import math, os, re, subprocess, sys, threading
 
 from gettext import gettext as _
 from gettext import textdomain
+
+import gi
+gi.require_version('Gdk', '3.0')
+gi.require_version('Gtk', '3.0')
 from gi.repository import GObject, Gdk, Gtk
 
 if os.getgid() == 0:

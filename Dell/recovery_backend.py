@@ -146,7 +146,7 @@ class Backend(dbus.service.Object):
         dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
         if session_bus:
             backend.bus = dbus.SessionBus()
-            backend.enforce_polkit = False
+            backend.enforce_polkit = True
         else:
             backend.bus = dbus.SystemBus()
         try:

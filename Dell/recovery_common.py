@@ -299,6 +299,11 @@ def find_factory_partition_stats():
                     if device[:-offset] in line:
                         the_same_drive = True
                         break
+                    # support dmraid corner case
+                    elif line.startswith("/dev/mapper/isw"):
+                        if transfer_dmraid_path(device)[:-2] in line:
+                            the_same_drive = True
+                            break
             if not the_same_drive:
                 continue
 
@@ -753,6 +758,25 @@ def regenerate_md5sum(root_dir,sec_dir=None):
         except Exception as err:
             import syslog
             syslog.syslog("rewrite the md5sum.txt file failed with : %s" %(err))
+
+def transfer_dmraid_path(source_path):
+    """two direction change the dmraid path representive
+       sample : /dev/dm-X --> /dev/mapper/isw*
+    """
+    udisks = UDisks.Client.new_sync(None)
+    manager = udisks.get_object_manager()
+    for item in manager.get_objects():
+        block = item.get_block()
+        if not block:
+            continue
+        # Check the disk is type of dmraid
+        device_path = block.get_cached_property("Device").get_bytestring().decode('utf-8')
+        if device_path == source_path:
+            output = block.get_cached_property("Id").get_string()
+            model = output.split("-")[-1]
+            dest_path = os.path.join("/dev/mapper", model)
+            break
+    return dest_path
 
 ##                ##
 ## Common Classes ##

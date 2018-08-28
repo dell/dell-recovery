@@ -536,8 +536,21 @@ class Page(Plugin):
             if loop or \
                partition or \
                not block or \
-               not block.get_cached_property("HintPartitionable").get_boolean() or \
                block.get_cached_property("ReadOnly").get_boolean():
+                continue
+
+            if block.get_cached_property("IdType").get_string():
+                if block.get_cached_property("IdType").get_string() in "isw_raid_member":
+                    continue
+
+            # Check the disk is type of dmraid
+            device_path = block.get_cached_property("Device").get_bytestring().decode('utf-8')
+            if device_path.startswith('/dev/dm'):
+                output = block.get_cached_property("Id").get_string()
+                model = output.split("-")[-1]
+                # device_path = os.path.join("/dev/mapper",model)
+                dmraid_dev_size = block.get_cached_property("Size").unpack()
+                disks.append([device_path, dmraid_dev_size, "%s (%s)" % (model, device_path)])
                 continue
 
             #Check the disk is type of NVME SSD
@@ -627,6 +640,11 @@ class Page(Plugin):
         #EFI install finds ESP
         self.db.set('grub-installer/bootdev', self.device)
 
+        # install GRUB if it's dmraid installation
+        if self.device.startswith("/dev/dm"):
+            grub_command = 'debconf-set partman-auto/disk %s' % magic.transfer_dmraid_path(self.device)
+            self.db.set('partman/early_command', grub_command)
+
         self.disk_size = rec_part["size_gb"]
 
         self.log("Detected device we are operating on is %s" % self.device)
@@ -661,6 +679,10 @@ class Page(Plugin):
             # we rebooted with no USB stick or DVD in drive and have the RP
             # mounted at /cdrom
             if self.stage == 2 and rec_part["slave"] in mount:
+                self.log("Detected RP at %s, setting to factory boot" % mount)
+                rec_type = 'factory'
+            # check if the mount point is dmraid
+            elif mount.startswith("/dev/dm") and self.stage == 2 and rec_part["slave"][:-1] in mount:
                 self.log("Detected RP at %s, setting to factory boot" % mount)
                 rec_type = 'factory'
             else:
@@ -886,6 +908,11 @@ manually to proceed.")
         #in mbytes
         rp_size_mb = (rp_size / 1000000) + cushion
 
+        # replace the self.device for dmraid if needed
+        # sample: /dev/dm-0 --> /dev/mapper/isw*
+        if "/dev/dm" in self.device:
+            self.device = magic.transfer_dmraid_path(self.device)
+
         # Build new partition table
         command = ('parted', '-s', self.device, 'mklabel', 'gpt')
         result = misc.execute_root(*command)
@@ -897,7 +924,7 @@ manually to proceed.")
         commands = [('parted', '-a', 'optimal', '-s', self.device, 'mkpart', 'primary', 'fat16', '0', str(grub_size)),
                     ('parted', '-s', self.device, 'name', '1', "'EFI System Partition'"),
                     ('parted', '-s', self.device, 'set', '1', 'boot', 'on')]
-        if '/dev/nvme' in self.device or '/dev/mmcblk' in self.device:
+        if '/dev/nvme' in self.device or '/dev/mmcblk' in self.device or '/dev/mapper/isw' in self.device:
             commands.append(('mkfs.msdos', self.device + 'p' + EFI_ESP_PARTITION))
             rp_part = 'p' + EFI_RP_PARTITION
             esp_part = 'p' + EFI_ESP_PARTITION
