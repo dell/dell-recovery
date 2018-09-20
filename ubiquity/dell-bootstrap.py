@@ -529,22 +529,34 @@ class Page(Plugin):
         udisks = UDisks.Client.new_sync(None)
         manager = udisks.get_object_manager()
         drive = None
+
+        raids = {}
+        for item in manager.get_objects():
+            mdraid = item.get_mdraid()
+            if mdraid:
+                level = mdraid.get_cached_property("Level").get_string()
+                if level in ('raid0', 'raid1', 'raid4', 'raid5', 'raid6', 'raid10'):
+                    uuid = mdraid.get_cached_property("UUID").get_string()
+                    raids[uuid] = level.upper()
+
         for item in manager.get_objects():
             loop = item.get_loop()
             block = item.get_block()
             partition = item.get_partition()
+
             if loop or \
                partition or \
                not block or \
                block.get_cached_property("ReadOnly").get_boolean():
                 continue
 
-            if block.get_cached_property("IdType").get_string():
-                if block.get_cached_property("IdType").get_string() in "isw_raid_member":
-                    continue
+            id_type = block.get_cached_property("IdType").get_string()
+            if id_type == 'isw_raid_member':
+                continue
 
-            # Check the disk is type of dmraid
             device_path = block.get_cached_property("Device").get_bytestring().decode('utf-8')
+
+            # Check if the disk is the type of dmraid
             if device_path.startswith('/dev/dm'):
                 output = block.get_cached_property("Id").get_string()
                 model = output.split("-")[-1]
@@ -553,9 +565,19 @@ class Page(Plugin):
                 disks.append([device_path, dmraid_dev_size, "%s (%s)" % (model, device_path)])
                 continue
 
-            #Check the disk is type of NVME SSD
-            device_path = block.get_cached_property("Device").get_bytestring().decode('utf-8')
-            if device_path.startswith('/dev/nvme'):
+            # Check if the disk is the type of mdraid
+            elif device_path.startswith('/dev/md'):
+                if block.get_cached_property('Size').get_uint64() == int(0):
+                    continue
+                name = block.get_cached_property("PreferredDevice").get_bytestring().decode('utf-8').split("/")[-1]
+                uuid = block.get_cached_property("Id").get_string().split("-")[-1]
+                size = block.get_cached_property("Size").unpack()
+                model = "%s %s %i GB" % (name, raids[uuid], size / 1000000000)
+                disks.append([device_path, size, "%s (%s)" % (model, device_path)])
+                continue
+
+            # Check if the disk is the type of NVME SSD
+            elif device_path.startswith('/dev/nvme'):
                 output = block.get_cached_property("Id").get_string()
                 model = output.split("-")[-1].replace("_", " ")
                 nvme_dev_size = block.get_cached_property("Size").unpack()
@@ -683,6 +705,10 @@ class Page(Plugin):
                 rec_type = 'factory'
             # check if the mount point is dmraid
             elif mount.startswith("/dev/dm") and self.stage == 2 and rec_part["slave"][:-1] in mount:
+                self.log("Detected RP at %s, setting to factory boot" % mount)
+                rec_type = 'factory'
+            # check if the mount point is mdraid
+            elif mount.startswith("/dev/md") and self.stage == 2 and rec_part["slave"][:-1] in mount:
                 self.log("Detected RP at %s, setting to factory boot" % mount)
                 rec_type = 'factory'
             else:
@@ -913,6 +939,9 @@ manually to proceed.")
         if "/dev/dm" in self.device:
             self.device = magic.transfer_dmraid_path(self.device)
 
+        if self.device.startswith('/dev/md') and shutil.which('mdadm'):
+            misc.execute_root('mdadm', '--misc', '--action=frozen', self.device)
+
         # Build new partition table
         command = ('parted', '-s', self.device, 'mklabel', 'gpt')
         result = misc.execute_root(*command)
@@ -1102,6 +1131,9 @@ manually to proceed.")
                 self.xml_obj.replace_node_contents('date', date)
             self.xml_obj.write_xml('/mnt/bto.xml')
         misc.execute_root('umount', '/mnt')
+
+        if self.device.startswith('/dev/md') and shutil.which('mdadm'):
+            misc.execute_root('mdadm', '--misc', '--action=idle', self.device)
 
         for count in range(100,0,-10):
             self.status("Restarting in %d seconds." % int(count/10), count)

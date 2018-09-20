@@ -31,6 +31,7 @@ Conflicts: dell-oobe
 Recommends: dvd+rw-tools,
             isolinux,
             lsb-release,
+            mdadm (> 4.1~rc1-2),
             parted,
             python3-progressbar,
             usb-creator-gtk,
