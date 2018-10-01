@@ -4,6 +4,7 @@ dell-recovery (1.60) UNRELEASED; urgency=medium
     by accident.
   * Reduce some PyGIWarning messages.
   * Use the regional mirror site instead of the global mirror site.
+  * Renew .disk/ubuntu_dist_channel for ubuntu-report.
 
  -- Shih-Yuan Lee (FourDollars) <sylee@canonical.com>  Fri, 11 May 2018 18:41:43 +0800
 

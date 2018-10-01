@@ -980,6 +980,20 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
         xorrisoargs.append('-m')
         xorrisoargs.append(os.path.join('casper', old_initrd))
 
+        #Renew .disk/ubuntu_dist_channel for ubuntu-report
+        ubuntu_dist_channel = os.path.join(mntdir, '.disk', 'ubuntu_dist_channel')
+        if os.path.exists(ubuntu_dist_channel) and platform and revision:
+            xorrisoargs.append('-m')
+            xorrisoargs.append(ubuntu_dist_channel)
+            with open(os.path.join(tmpdir, '.disk', 'ubuntu_dist_channel'), 'w') as target, \
+                 open(ubuntu_dist_channel) as source:
+                for line in source:
+                    if line.startswith('canonical-oem-somerville-') and \
+                            not line.strip().endswith('+' + platform + '+' + revision):
+                        target.write(line.strip() + '+' + platform + '+' + revision + '\n')
+                    else:
+                        target.write(line)
+
         #Restore .disk/info
         info_path = os.path.join(mntdir, '.disk', 'info.recovery')
         if os.path.exists(info_path):
