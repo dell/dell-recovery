@@ -2,11 +2,25 @@
 
 . /usr/share/dell/scripts/fifuncs ""
 
+export DEBIAN_FRONTEND=noninteractive
+
 IFHALT "Run ubuntu-drivers autoinstall"
 echo 'APT::Get::AllowUnauthenticated "true";' > /etc/apt/apt.conf.d/99disable_authentication
-for i in `ubuntu-drivers list`; do
-    if ! dpkg-query -W $i >/dev/null 2>&1; then
-        apt-get install --yes $i
+for blacklist in $(find /cdrom/scripts/chroot-scripts/blacklist /isodevice/scripts/chroot-scripts/blacklist -type f 2>/dev/null); do
+    UBUNTU_DRIVERS_BLACKLIST="$UBUNTU_DRIVERS_BLACKLIST $(cat $blacklist)"
+done
+if [ -n "$UBUNTU_DRIVERS_BLACKLIST" ]; then
+    echo "UBUNTU_DRIVERS_BLACKLIST: $UBUNTU_DRIVERS_BLACKLIST"
+fi
+for pkg in `ubuntu-drivers list`; do
+    if dpkg-query -W $pkg >/dev/null 2>&1; then
+        echo "$pkg has been installed."
+    else
+        if [ -n "$UBUNTU_DRIVERS_BLACKLIST" ] && echo "$UBUNTU_DRIVERS_BLACKLIST" | grep $pkg >/dev/null 2>&1; then
+            echo "Won't install '$pkg' listed in UBUNTU_DRIVERS_BLACKLIST"
+        else
+            apt-get install --yes $pkg
+        fi
     fi
 done
 
