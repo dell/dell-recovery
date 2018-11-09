@@ -924,7 +924,7 @@ manually to proceed.")
         commands = [('parted', '-a', 'optimal', '-s', self.device, 'mkpart', 'primary', 'fat16', '0', str(grub_size)),
                     ('parted', '-s', self.device, 'name', '1', "'EFI System Partition'"),
                     ('parted', '-s', self.device, 'set', '1', 'boot', 'on')]
-        if '/dev/nvme' in self.device or '/dev/mmcblk' in self.device or '/dev/mapper/isw' in self.device:
+        if self.device[-1].isnumeric():
             commands.append(('mkfs.msdos', self.device + 'p' + EFI_ESP_PARTITION))
             rp_part = 'p' + EFI_RP_PARTITION
             esp_part = 'p' + EFI_ESP_PARTITION

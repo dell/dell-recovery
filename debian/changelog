@@ -1,3 +1,10 @@
+dell-recovery (1.61) UNRELEASED; urgency=medium
+
+  * Fix the installation problem when the volume name of Intel RSTe SATA RAID
+    doesn't end with number. (Closes #67)
+
+ -- Shih-Yuan Lee (FourDollars) <sylee@canonical.com>  Fri, 09 Nov 2018 12:22:47 +0800
+
 dell-recovery (1.60) disco; urgency=medium
 
   [ Shih-Yuan Lee (FourDollars) ]
