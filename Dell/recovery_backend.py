@@ -816,13 +816,22 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
                     line = "GRUB_DEFAULT=saved\n"
                 wfd.write(line)
 
+        env = os.environ
+
         #Make sure the language is set properly
         with open('/etc/default/locale','r') as rfd:
             for line in rfd.readlines():
                 if line.startswith('LANG=') and len(line.split('=')) > 1:
                     lang = line.split('=')[1].strip('\n').strip('"')
-        env = os.environ
-        env['LANG'] = lang
+                    env['LANG'] = lang
+
+        #Make sure the path is set properly
+        if 'PATH' not in env and os.path.exists('/etc/environment'):
+            with open('/etc/environment', 'r') as rfd:
+                for line in rfd.readlines():
+                    if line.startswith('PATH=') and len(line.split('=')) > 1:
+                        path = line.split('=')[1].strip('\n').strip('"')
+                        env['PATH'] = path
 
         ret = subprocess.call(['/usr/sbin/update-grub'], env=env)
         if ret is not 0:
