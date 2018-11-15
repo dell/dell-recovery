@@ -584,6 +584,13 @@ class Page(Plugin):
                 disks.append([device_path, nvme_dev_size, "%s (%s)" % (model, device_path)])
                 continue
 
+            # Support Persistent Memory storage
+            elif device_path.startswith('/dev/pmem'):
+                pmem_dev_size = block.get_cached_property("Size").unpack()
+                model = 'Persistent Memory %i GB' % (pmem_dev_size / 1000000000)
+                disks.append([device_path, pmem_dev_size, "%s (%s)" % (model, device_path)])
+                continue
+
             drive_obj = block.get_cached_property("Drive").get_string()
             if drive_obj == '/':
                 continue
@@ -709,6 +716,10 @@ class Page(Plugin):
                 rec_type = 'factory'
             # check if the mount point is mdraid
             elif mount.startswith("/dev/md") and self.stage == 2 and rec_part["slave"][:-1] in mount:
+                self.log("Detected RP at %s, setting to factory boot" % mount)
+                rec_type = 'factory'
+            # check if the mount point is Persistent Memory
+            elif mount.startswith("/dev/pmem") and self.stage == 2 and rec_part["slave"][:-1] in mount:
                 self.log("Detected RP at %s, setting to factory boot" % mount)
                 rec_type = 'factory'
             else:

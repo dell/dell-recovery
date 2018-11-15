@@ -4,8 +4,9 @@ dell-recovery (1.61) UNRELEASED; urgency=medium
     doesn't end with number. (Closes #67)
   * Make sure the path is set properly in the recovery backend.
   * Support mdraid.
+  * Support Persistent Memory storage.
 
- -- Shih-Yuan Lee (FourDollars) <sylee@canonical.com>  Tue, 13 Nov 2018 15:46:06 +0800
+ -- Shih-Yuan Lee (FourDollars) <sylee@canonical.com>  Thu, 15 Nov 2018 16:23:29 +0800
 
 dell-recovery (1.60) disco; urgency=medium
 

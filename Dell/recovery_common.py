@@ -289,7 +289,7 @@ def find_factory_partition_stats():
 
             # Only search for the recovery partition on the same disk
             device = block.get_cached_property("Device").get_bytestring().decode('utf-8')
-            if device.startswith('/dev/mmcblk') or device.startswith('/dev/nvme') or device.startswith('/dev/md'):
+            if device[-1].isnumeric():
                 offset = 2
             else: # /dev/sd[a-z]
                 offset = 1
