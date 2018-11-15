@@ -3,7 +3,7 @@ Section: utils
 Priority: optional
 Maintainer: Mario Limonciello <superm1@ubuntu.com>
 XSBC-Original-Maintainer: Mario Limonciello <mario_limonciello@dell.com>
-Build-Depends: debhelper (>= 7.0.50~), python3-all, python3-distutils-extra, po-debconf, pyflakes, lsb-release, gnu-efi (>= 3.0.2)
+Build-Depends: debhelper (>= 11), python3-all, python3-distutils-extra, po-debconf, pyflakes, lsb-release, gnu-efi (>= 3.0.2)
 X-Python3-Version: >= 3.2
 Homepage: http://linux.dell.com/
 Vcs-Git: http://github.com/superm1/dell-recovery
