@@ -5,6 +5,7 @@ dell-recovery (1.61) UNRELEASED; urgency=medium
   * Make sure the path is set properly in the recovery backend.
   * Support mdraid.
   * Support Persistent Memory storage.
+  * Support meta by distribution.
 
  -- Shih-Yuan Lee (FourDollars) <sylee@canonical.com>  Thu, 15 Nov 2018 16:23:29 +0800
 
