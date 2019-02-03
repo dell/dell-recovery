@@ -129,7 +129,7 @@ def _tree(action, list, src, dst, base, white):
             if action == "copy":
                 if not os.path.isdir(dst):
                     os.makedirs(dst)
-                shtuil.copy(src_name, dst_name)
+                shutil.copy(src_name, dst_name)
                 outputs.append(dst_name)
 
             elif action == "size":
