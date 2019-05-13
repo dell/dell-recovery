@@ -509,8 +509,13 @@ def create_new_uuid(old_initrd_directory, old_casper_directory,
     old_compression = ''
     old_suffix = ''
     for fname in old_initrd_files:
-        if len(fname.split('.')) > 1:
-            old_suffix = fname.split('.')[-1]
+        parts = fname.split('.')
+        old_suffix = parts[1]
+        # New combined format for initrd in recent Ubuntu releases
+        if os.path.basename(fname) == 'initrd':
+            use_mkinitramfs = True
+            old_initrd_file = fname
+            break
         if old_suffix == "lz":
             old_compression = "lzma"
             old_initrd_file = fname
@@ -522,18 +527,23 @@ def create_new_uuid(old_initrd_directory, old_casper_directory,
         else:
             old_suffix = ''
 
-    if not old_suffix or not old_initrd_file or not old_uuid_file:
+    if (not use_mkinitramfs and not old_suffix) or not old_initrd_file or not old_uuid_file:
         raise dbus.DBusException("Unable to detect valid initrd.")
 
     logging.debug("create_new_uuid: old initrd %s, old uuid %s, old suffix %s, \
 old compression method %s" % (old_initrd_file, old_uuid_file,
-                              old_suffix, old_compression))
+                            old_suffix, old_compression))
 
-    #Extract old initramfs
-    chain0 = subprocess.Popen([old_compression, '-cd', old_initrd_file, '-S',
-                               old_suffix], stdout=subprocess.PIPE)
-    chain1 = subprocess.Popen(['cpio', '-id'], stdin=chain0.stdout, cwd=tmpdir)
-    chain1.communicate()
+    if use_mkinitramfs:
+        #Extract old initramfs with the new format
+        chain0 = subprocess.Popen(["unmkinitramfs", old_initrd_file, "."],
+                                stdout=subprocess.PIPE, cwd=tmpdir)
+    else:
+        #Extract old initramfs
+        chain0 = subprocess.Popen([old_compression, '-cd', old_initrd_file, '-S',
+                                old_suffix], stdout=subprocess.PIPE)
+        chain1 = subprocess.Popen(['cpio', '-id'], stdin=chain0.stdout, cwd=tmpdir)
+        chain1.communicate()
 
     #Generate new UUID
     new_uuid_file = os.path.join(new_casper_directory,
@@ -553,31 +563,37 @@ old compression method %s" % (old_initrd_file, old_uuid_file,
 
     #Detect compression
     new_suffix = ''
-    if new_compression == "gzip":
-        new_suffix = '.gz'
-    elif new_compression == 'lzma':
-        new_suffix = '.lz'
-    elif new_compression == "auto":
-        new_compression = old_compression
-        new_suffix = '.' + old_suffix
-    logging.debug("create_new_uuid: new suffix: %s" % new_suffix)
-    logging.debug("create_new_uuid: new compression method: %s" % new_compression)
+    if not use_mkinitramfs:
+        if new_compression == "gzip":
+            new_suffix = '.gz'
+        elif new_compression == 'lzma':
+            new_suffix = '.lz'
+        elif new_compression == "auto":
+            new_compression = old_compression
+            new_suffix = '.' + old_suffix
+        logging.debug("create_new_uuid: new suffix: %s" % new_suffix)
+        logging.debug("create_new_uuid: new compression method: %s" % new_compression)
 
     #Generate new initramfs
     new_initrd_file = os.path.join(new_initrd_directory, 'initrd' + new_suffix)
     logging.debug("create_new_uuid: new initrd file: %s" % new_initrd_file)
-    chain0 = subprocess.Popen(['find'], cwd=tmpdir, stdout=subprocess.PIPE)
-    chain1 = subprocess.Popen(['cpio', '--quiet', '-o', '-H', 'newc'],
-                               cwd=tmpdir, stdin=chain0.stdout,
-                               stdout=subprocess.PIPE)
-    with open(new_initrd_file, 'wb') as initrd_fd:
-        if new_compression:
-            chain2 = subprocess.Popen([new_compression, '-9c'],
-                                      stdin=chain1.stdout,
-                                      stdout=subprocess.PIPE)
-            initrd_fd.write(chain2.communicate()[0])
-        else:
-            initrd_fd.write(chain1.communicate()[0])
+
+    if use_mkinitramfs:
+        chain0 = subprocess.Popen(['mkinitramfs', '-o', new_initrd_file], cwd=tmpdir, stdout=subprocess.PIPE)
+    else:
+        chain0 = subprocess.Popen(['find'], cwd=tmpdir, stdout=subprocess.PIPE)
+        chain1 = subprocess.Popen(['cpio', '--quiet', '-o', '-H', 'newc'],
+                                cwd=tmpdir, stdin=chain0.stdout,
+                                stdout=subprocess.PIPE)
+        with open(new_initrd_file, 'wb') as initrd_fd:
+            if new_compression:
+                chain2 = subprocess.Popen([new_compression, '-9c'],
+                                        stdin=chain1.stdout,
+                                        stdout=subprocess.PIPE)
+                initrd_fd.write(chain2.communicate()[0])
+            else:
+                initrd_fd.write(chain1.communicate()[0])
+    
     walk_cleanup(tmpdir)
 
     return (old_initrd_file, old_uuid_file)
