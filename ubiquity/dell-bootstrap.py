@@ -43,6 +43,7 @@ import tarfile
 import gi
 gi.require_version('UDisks', '2.0')
 from gi.repository import GLib, UDisks
+import subprocess
 
 NAME = 'dell-bootstrap'
 BEFORE = 'language'
@@ -760,6 +761,16 @@ class Page(Plugin):
             self.log("rec_type %s, stage %d, device %s" % (rec_type, self.stage, self.device))
             if (rec_type == 'factory' and self.stage == 2) or rec_type == 'hdd':
                 self.fixup_factory_devices(rec_part)
+            if rec_type == 'hdd':
+                # copy old mok key so that user don't need to enroll it again.
+                rootfs = mount[0:-1] + '3'
+                self.log("old rootfs from %s" % rootfs)
+                misc.execute_root('mount', '-o', 'ro', rootfs, '/mnt')
+                if os.path.exists('/mnt/var/lib/shim-signed/mok/MOK.priv') and os.path.exists('/mnt/var/lib/shim-signed/mok/MOK.der'):
+                    misc.execute_root('cp', '-f', '/mnt/var/lib/shim-signed/mok/MOK.der','/tmp')
+                    misc.execute_root('cp', '-f', '/mnt/var/lib/shim-signed/mok/MOK.priv','/tmp')
+                self.log("%s" % subprocess.run('md5sum /tmp/MOK*',shell=True,stdout=subprocess.PIPE))
+                misc.execute_root('umount', '/mnt')
         except Exception as err:
             self.handle_exception(err)
             self.cancel_handler()

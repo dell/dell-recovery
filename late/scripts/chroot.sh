@@ -88,10 +88,20 @@ if ! mount | grep "$TARGET/sys"; then
     mount -t sysfs targetsys $TARGET/sys
     MOUNT_CLEANUP="$TARGET/sys $MOUNT_CLEANUP"
 fi
+if ! mount | grep "$TARGET/sys/firmware/efi/efivars"; then
+    mount -t efivarfs efivarfs $TARGET/sys/firmware/efi/efivars
+    MOUNT_CLEANUP="$TARGET/sys/firmware/efi/efivars $MOUNT_CLEANUP"
+fi
 
 if ! mount | grep "$TARGET/cdrom"; then
     mount --bind /cdrom $TARGET/cdrom
     MOUNT_CLEANUP="$TARGET/cdrom $MOUNT_CLEANUP"
+fi
+
+if [ -e /tmp/MOK.priv ] && [ -e /tmp/MOK.der ]; then
+    mkdir -p $TARGET/var/lib/shim-signed/mok
+    cp -f /tmp/MOK.priv /tmp/MOK.der $TARGET/var/lib/shim-signed/mok
+    md5sum $TARGET/var/lib/shim-signed/mok/*
 fi
 
 if [ ! -L $TARGET/media/cdrom ]; then
