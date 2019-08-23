@@ -763,12 +763,16 @@ class Page(Plugin):
                 self.fixup_factory_devices(rec_part)
             if rec_type == 'hdd':
                 # copy old mok key so that user don't need to enroll it again.
-                rootfs = mount[0:-1] + '3'
+                rootfs = mount[0:-1] + EFI_OS_PARTITION
                 self.log("old rootfs from %s" % rootfs)
-                misc.execute_root('mount', '-o', 'ro', rootfs, '/mnt')
+                try:
+                    misc.execute_root('mount', '-o', 'ro', rootfs, '/mnt')
+                except:
+                    self.log("mouting old rootfs failed, give up old mok.")
                 if os.path.exists('/mnt/var/lib/shim-signed/mok/MOK.priv') and os.path.exists('/mnt/var/lib/shim-signed/mok/MOK.der'):
-                    misc.execute_root('cp', '-f', '/mnt/var/lib/shim-signed/mok/MOK.der','/tmp')
-                    misc.execute_root('cp', '-f', '/mnt/var/lib/shim-signed/mok/MOK.priv','/tmp')
+                    with misc.raised_privileges():
+                        shutil.copy('/mnt/var/lib/shim-signed/mok/MOK.der', '/tmp')
+                        shutil.copy('/mnt/var/lib/shim-signed/mok/MOK.priv', '/tmp')
                 self.log("%s" % subprocess.run('md5sum /tmp/MOK*',shell=True,stdout=subprocess.PIPE))
                 misc.execute_root('umount', '/mnt')
         except Exception as err:
