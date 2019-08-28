@@ -43,7 +43,7 @@ import tarfile
 import gi
 gi.require_version('UDisks', '2.0')
 from gi.repository import GLib, UDisks
-import subprocess
+import hashlib
 
 NAME = 'dell-bootstrap'
 BEFORE = 'language'
@@ -773,7 +773,10 @@ class Page(Plugin):
                     with misc.raised_privileges():
                         shutil.copy('/mnt/var/lib/shim-signed/mok/MOK.der', '/tmp')
                         shutil.copy('/mnt/var/lib/shim-signed/mok/MOK.priv', '/tmp')
-                self.log("%s" % subprocess.run('md5sum /tmp/MOK*',shell=True,stdout=subprocess.PIPE))
+                        with open('/tmp/MOK.der','rb') as f:
+                            self.log("/tmp/MOK.der %s" % hashlib.md5(f.read()).hexdigest())
+                        with open('/tmp/MOK.priv','rb') as f:
+                            self.log("/tmp/MOK.priv %s" % hashlib.md5(f.read()).hexdigest())
                 misc.execute_root('umount', '/mnt')
         except Exception as err:
             self.handle_exception(err)
