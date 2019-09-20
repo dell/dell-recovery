@@ -515,7 +515,7 @@
                 <property name="spacing">5</property>
                 <child>
                   <object class="GtkRadioButton" id="interactive_recovery">
-                    <property name="label" translatable="yes">Restore only Linux OS partition.</property>
+                    <property name="label" translatable="yes">Customize installation.</property>
                     <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
@@ -544,7 +544,7 @@
                         <property name="can_focus">False</property>
                         <property name="xalign">0</property>
                         <property name="yalign">0</property>
-                        <property name="label" translatable="yes">This option allows you to resize any existing partitions.</property>
+                        <property name="label" translatable="yes">e.g. Disk encryption, partitions resizing..etc.</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">True</property>
                       </object>
@@ -554,6 +554,30 @@
                     <property name="expand">False</property>
                     <property name="fill">False</property>
                     <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkAlignment" id="alignment9">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="left_padding">25</property>
+                    <child>
+                      <object class="GtkLabel" id="nonrecovery_warning_label">
+                        <property name="width_request">600</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0</property>
+                        <property name="yalign">0</property>
+                        <property name="label" translatable="yes">WARNING: No recovery feature included.</property>
+                        <property name="use_markup">True</property>
+                        <property name="wrap">True</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">3</property>
                   </packing>
                 </child>
               </object>
