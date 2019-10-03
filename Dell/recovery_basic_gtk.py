@@ -76,7 +76,7 @@ class BasicGeneratorGTK(DellRecoveryToolGTK):
         self._dbus_iface = None
         self.timeout = 0
         self.image = ''
-        
+
         (self.dvd_burn_cmd, self.usb_burn_cmd) = find_burners()
 
         try:
@@ -154,7 +154,7 @@ class BasicGeneratorGTK(DellRecoveryToolGTK):
             try:
                 if not os.path.isdir(self.path):
                     os.makedirs(self.path)
-                with open(os.path.join(self.path, self.image), 'w') as wfd:
+                with open(os.path.join(self.path, self.image), 'w') as wfd: # pylint: disable=unused-variable
                     pass
             except IOError:
                 #this might have been somwehere that the system doesn't want us
@@ -228,7 +228,7 @@ partition layout.")
         if DellRecoveryToolGTK.top_button_clicked(self, widget):
             #show our page
             self.widgets.get_object('wizard').show()
-    
+
             self.tool_widgets.get_object('tool_selector').hide()
 
     def check_close(self, widget, args=None):
@@ -269,7 +269,7 @@ partition layout.")
             self.release = release
         if arch:
             self.arch = arch
-        
+
         self.bto_base = bool(version)
 
         if self.bto_base:
@@ -283,7 +283,7 @@ partition layout.")
 
     def update_progress_gui(self, progress_text, progress):
         """Updates the progressbar to show what we are working on"""
-        
+
         progressbar = self.widgets.get_object('progressbar')
         self.widgets.get_object('progress_dialog').show()
 

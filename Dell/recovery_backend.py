@@ -55,11 +55,14 @@ import select
 from gettext import gettext as _
 from gettext import bindtextdomain, textdomain
 
-from debian_bundle import debian_support
+try:
+    from debian import debian_support
+except ImportError:
+    from debian_bundle import debian_support
 
 def safe_tar_extract(filename, destination):
     """Safely extracts a tarball into destination"""
-    logging.debug('safe_tar_extract: %s to %s', (filename, destination))
+    logging.debug('safe_tar_extract: %s to %s' % (filename, destination))
 
     rfd = tarfile.open(filename)
     dangerous_file = False
@@ -197,7 +200,7 @@ class Backend(dbus.service.Object):
                 'org.freedesktop.PolicyKit1.Authority')
         try:
             # we don't need is_challenge return here, since we call with AllowUserInteraction
-            (is_auth, unused, details) = self.polkit.CheckAuthorization(
+            (is_auth, unused, details) = self.polkit.CheckAuthorization( # pylint: disable=unused-variable
                     ('unix-process', {'pid': dbus.UInt32(pid, variant_level=1),
                         'start-time': dbus.UInt64(0, variant_level=1)}),
                     privilege, {'': ''}, dbus.UInt32(1), '', timeout=600)
@@ -315,7 +318,7 @@ class Backend(dbus.service.Object):
                     os.makedirs(dest)
                 call = subprocess.Popen(['dpkg-repack', 'dell-recovery'],
                                         cwd=dest, universal_newlines=True)
-                (out, err) = call.communicate()
+                (out, err) = call.communicate() # pylint: disable=unused-variable
         else:
             logging.debug("_test_for_new_dell_recovery: RP Distro %s doesn't match our distro %s, not injecting updated package", rp_distro, package_distro)
 
@@ -490,7 +493,7 @@ class Backend(dbus.service.Object):
                 logging.debug("Repacking dell-recovery using dpkg-repack")
                 call = subprocess.Popen(['dpkg-repack', 'dell-recovery'],
                                         cwd=dest, universal_newlines=True)
-                (out, err) = call.communicate()
+                (out, err) = call.communicate() # pylint: disable=unused-variable
             else:
                 logging.debug("Adding manually included dell-recovery package, %s", dell_recovery_package)
                 shutil.copy(dell_recovery_package, dest)
@@ -557,8 +560,8 @@ class Backend(dbus.service.Object):
             #RHEL disks have .discinfo
             elif os.path.exists(os.path.join(mntdir, '.discinfo')):
                 with open(os.path.join(mntdir, '.discinfo'), 'r') as rfd:
-                    timestamp = rfd.readline().strip('\n')
-                    distributor_string = rfd.readline().strip('\n')
+                    timestamp = rfd.readline().strip('\n') # pylint: disable=unused-variable
+                    distributor_string = rfd.readline().strip('\n') # pylint: disable=unused-variable
                     arch = rfd.readline().strip('\n')
                 distributor = "redhat"
                 distributor_str += ' ' + arch
@@ -592,7 +595,7 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
             chain1 = subprocess.Popen(cmd1, stdin=chain0.stdout, stdout=subprocess.PIPE)
             chain2 = subprocess.Popen(cmd2, stdin=chain1.stdout, stdout=subprocess.PIPE,
                                       universal_newlines=True)
-            out, err = chain2.communicate()
+            out, err = chain2.communicate() # pylint: disable=unused-variable
             if chain2.returncode is None:
                 chain2.wait()
             if out:
@@ -710,7 +713,7 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
             #Search for a flat file first (or a manifest for later)
             logging.debug("query_have_dell_recovery: Searching mount point %s", recovery)
             interesting_files = []
-            for root, dirs, files in os.walk(recovery, topdown=False):
+            for root, dirs, files in os.walk(recovery, topdown=False):  # pylint: disable=unused-variable
                 for fname in files:
                     if 'dell-recovery' in fname and (fname.endswith('.deb') or fname.endswith('.rpm')):
                         logging.debug("query_have_dell_recovery: Found in %s", os.path.join(root, fname))
@@ -764,7 +767,7 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
             rfd.extract(prepackage, tmpdir)
             rfd.close()
             self.xml_obj.load_bto_xml(os.path.join(tmpdir, 'prepackage.dell'))
-            our_os = lsb_release.get_lsb_information()['RELEASE']
+            our_os = lsb_release.get_os_release()['RELEASE']
             package_os = self.xml_obj.fetch_node_contents('os')
             if our_os != package_os:
                 valid = 0

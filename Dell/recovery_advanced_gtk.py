@@ -112,7 +112,7 @@ create an USB key or DVD image."))
         if DellRecoveryToolGTK.top_button_clicked(self, widget):
             #show our page
             self.widgets.get_object('wizard').show()
-    
+
             self.tool_widgets.get_object('tool_selector').hide()
 
     def build_page(self, widget, page = None):
@@ -172,7 +172,7 @@ create an USB key or DVD image."))
 
             liststores = {'application_liststore' : _("Application"),
                           'driver_liststore' : _("Driver"),
-                         } 
+                         }
             for item in liststores:
                 model = self.builder_widgets.get_object(item)
                 iterator = model.get_iter_first()
@@ -261,16 +261,11 @@ create an USB key or DVD image."))
         wizard = self.widgets.get_object('wizard')
         wizard.set_page_complete(base_page, False)
 
-        bto_version = ''
-        output_text = ''
-        distributor = ''
-        release = ''
-        arch = ''
         if widget == self.builder_widgets.get_object('base_browse_button'):
             ret = self.run_file_dialog()
         else:
             ret = self.rp
-        
+
         if ret is not None:
             self.toggle_spinner_popup(True)
             try:
@@ -333,7 +328,7 @@ create an USB key or DVD image."))
                     #test that we don't have a file named identically
                     if self.test_liststore_for_existing(model, filename):
                         return
-					
+
 					# this is a work around, seems the list contains only one element can be appended into the treeview, otherwise append failed.
                     files = []
                     files.append(filename)
@@ -355,7 +350,7 @@ create an USB key or DVD image."))
 
     def application_action(self, widget):
         """Called when the add or remove buttons are pressed on the driver action page"""
-        
+
         def run_srv_dialog():
             """Runs the SRV dialog"""
             srv_dialog = self.builder_widgets.get_object('srv_dialog')
@@ -483,7 +478,7 @@ create an USB key or DVD image."))
         filefilter = Gtk.FileFilter()
         filefilter.add_pattern("*.deb")
         self.file_dialog.set_filter(filefilter)
-            
+
         ret = self.run_file_dialog()
         if ret is not None:
             import apt_inst
