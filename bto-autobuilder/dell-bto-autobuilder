@@ -22,7 +22,7 @@ from datetime import datetime
 try:
     import progressbar
 except ImportError:
-    print('Error: python-progressbar is not installed', file=sys.stderr)
+    print('Error: python3-progressbar is not installed', file=sys.stderr)
     sys.exit(1)
 
 class FidTag:
@@ -243,7 +243,7 @@ if __name__ == '__main__':
             current_tag = FidTag(release + '_' + bto_version)
         else:
             current_tag = FidTag(release + '_X00')
-        
+
         dell_recovery_pkg = config_dell_recovery_package(
                                      iface.query_have_dell_recovery,
                                      base,
