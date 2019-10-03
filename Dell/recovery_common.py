@@ -510,7 +510,8 @@ def create_new_uuid(old_initrd_directory, old_casper_directory,
     old_suffix = ''
     for fname in old_initrd_files:
         parts = fname.split('.')
-        old_suffix = parts[1]
+        if len(parts) > 1:
+            old_suffix = parts[1]
         # New combined format for initrd in recent Ubuntu releases
         if os.path.basename(fname) == 'initrd':
             use_mkinitramfs = True
@@ -538,6 +539,7 @@ old compression method %s" % (old_initrd_file, old_uuid_file,
         #Extract old initramfs with the new format
         chain0 = subprocess.Popen(["unmkinitramfs", old_initrd_file, "."],
                                 stdout=subprocess.PIPE, cwd=tmpdir)
+        chain0.communicate()
     else:
         #Extract old initramfs
         chain0 = subprocess.Popen([old_compression, '-cd', old_initrd_file, '-S',
@@ -552,13 +554,16 @@ old compression method %s" % (old_initrd_file, old_uuid_file,
     chain0 = subprocess.Popen(['uuidgen', '-r'], stdout=subprocess.PIPE)
     new_uuid = chain0.communicate()[0]
     logging.debug("create_new_uuid: new UUID: %s" % new_uuid.strip())
-    for item in [new_uuid_file, os.path.join(tmpdir, 'conf', 'uuid.conf')]:
+    initramfs_root = os.path.join(tmpdir, 'main')
+    if not os.path.exists(initramfs_root):
+        initramfs_root = tmpdir
+    for item in [new_uuid_file, os.path.join(initramfs_root, 'conf', 'uuid.conf')]:
         with open(item, "wb") as uuid_fd:
             uuid_fd.write(new_uuid)
 
     #Newer (Ubuntu 11.04+) images may support including the bootstrap in initrd
     if include_bootstrap:
-        chain0 = subprocess.Popen(['/usr/share/dell/casper/hooks/dell-bootstrap'], env={'DESTDIR': tmpdir, 'INJECT': '1'})
+        chain0 = subprocess.Popen(['/usr/share/dell/casper/hooks/dell-bootstrap'], env={'DESTDIR': initramfs_root, 'INJECT': '1'})
         chain0.communicate()
 
     #Detect compression
@@ -580,6 +585,7 @@ old compression method %s" % (old_initrd_file, old_uuid_file,
 
     if use_mkinitramfs:
         chain0 = subprocess.Popen(['mkinitramfs', '-o', new_initrd_file], cwd=tmpdir, stdout=subprocess.PIPE)
+        chain0.communicate()
     else:
         chain0 = subprocess.Popen(['find'], cwd=tmpdir, stdout=subprocess.PIPE)
         chain1 = subprocess.Popen(['cpio', '--quiet', '-o', '-H', 'newc'],
@@ -593,7 +599,7 @@ old compression method %s" % (old_initrd_file, old_uuid_file,
                 initrd_fd.write(chain2.communicate()[0])
             else:
                 initrd_fd.write(chain1.communicate()[0])
-    
+
     walk_cleanup(tmpdir)
 
     return (old_initrd_file, old_uuid_file)
