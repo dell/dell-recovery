@@ -358,67 +358,34 @@ class Page(Plugin):
         except Exception:
             pass
 
-    def test_swap(self):
-        """Tests whether to do a swap fixup"""
-        import lsb_release
-        release = lsb_release.get_distro_information()
-
-        #starting with 17.04, we replace the whole swap partition to swap file
-        #use distro policy to determine what to do.
-        if float(release["RELEASE"]) >= 17.04:
-            return True
-
-        if (self.mem >= 32 or self.disk_size <= 64):
-            return True
-        else:
-            return False
-
-    def clean_recipe(self):
-        """Cleans up the recipe to remove swap if we have a small drive"""
-
-        if self.test_swap():
-            self.log("Performing swap recipe fixup (hdd: %i, mem: %f)" % \
-                                        (self.disk_size, self.mem))
-            try:
-                recipe = self.db.get('partman-auto/expert_recipe')
-                self.db.set('partman-auto/expert_recipe',
-                                     ' . '.join(recipe.split('.')[0:-2])+' .')
-            except debconf.DebconfError as err:
-                self.log(str(err))
-
     def remove_extra_partitions(self):
         """Removes partitions we are installing on for the process to start"""
-       #check for small disks.
-       #on small disks or big mem, don't look for extended or delete swap.
-        swap_part = EFI_SWAP_PARTITION
+        #check for small disks.
+        #on small disks or big mem, don't look for extended or delete swap.
         os_part = EFI_OS_PARTITION
 
-       # check dual boot or not
+        # check dual boot or not
         try:
             if self.db.get('dell-recovery/dual_boot') == 'true':
            ##dual boot get the partition number of OS and swap
                 os_label = self.db.get('dell-recovery/os_partition')
-                os_part,swap_part = self.dual_partition_num(os_label)
+                os_part = self.dual_partition_num(os_label)
         except debconf.DebconfError as err:
             self.log(str(err))
 
-        if self.test_swap():
-            swap_part = ''
-       #remove extras
-        for number in (os_part,swap_part):
-            if number.isdigit():
-                remove = misc.execute_root('parted', '-s', self.device, 'rm', number)
+        #remove extras
+        if os_part.isdigit():
+                remove = misc.execute_root('parted', '-s', self.device, 'rm', os_part)
                 if remove is False:
-                    self.log("Error removing partition number: %s on %s (this may be normal)'" % (number, self.device))
-                refresh = misc.execute_root('partx', '-d', '--nr', number, self.device)
+                    self.log("Error removing partition number: %s on %s (this may be normal)'" % (os_part, self.device))
+                refresh = misc.execute_root('partx', '-d', '--nr', os_part, self.device)
                 if refresh is False:
-                    self.log("Error updating partition %s for kernel device %s (this may be normal)'" % (number, self.device))
+                    self.log("Error updating partition %s for kernel device %s (this may be normal)'" % (os_part, self.device))
 
     def dual_partition_num(self,label):
        #remove UBUNTU patition for dual boot
        ##OS num
         os_part = ''
-        swap_part = ''
         digits = re.compile('\d+')
         try:
             os_path = magic.fetch_output(['readlink','/dev/disk/by-label/'+label]).split('\n')
@@ -429,13 +396,7 @@ class Page(Plugin):
                 self.log('os_path command is executed failed, the error is %s'%str(err))
         os_part = digits.search(os_path[0].split('/')[-1]).group()
 
-        with misc.raised_privileges():
-            partitions = magic.fetch_output(['parted','-s',self.device,'print']).split('\n')
-            for line in partitions:
-                if 'linux-swap' in line:
-                    swap_part = line.split()[0]
-
-        return os_part,swap_part
+        return os_part
 
     def explode_sdr(self):
         '''Explodes all content explicitly defined in an SDR
@@ -893,7 +854,6 @@ class Page(Plugin):
                     self.ui.toggle_progress()
                 self.sleep_network()
                 self.delete_swap()
-                self.clean_recipe()
                 self.remove_extra_partitions()
                 self.explode_sdr()
         except Exception as err:

@@ -93,12 +93,7 @@
        format{ }                       \
        use_filesystem{ }               \
        filesystem{ ext4 }              \
-       mountpoint{ / } .               \
-                                       \
-       105% 150% 200% linux-swap       \
-       method{ swap }                  \
-       format{ }                       \
-       .
+       mountpoint{ / } .
 
 # In case we decide to remove swap from a drive in FI:
  d-i partman-basicfilesystems/no_swap boolean false
