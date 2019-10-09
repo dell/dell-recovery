@@ -1,11 +1,12 @@
-FROM ubuntu:bionic
+FROM ubuntu:eoan
 
 RUN apt-get update -qq
 RUN apt-get install -yq --no-install-recommends \
 	build-essential \
 	debhelper \
+	dh-python \
 	dpkg-dev \
-	python3-all \
+	python3 \
 	python3-distutils-extra \
 	po-debconf \
 	pyflakes3 \

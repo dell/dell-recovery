@@ -1,7 +1,8 @@
 dell-recovery (1.63) UNRELEASED; urgency=medium
 
   [ Shih-Yuan Lee (FourDollars) ]
-  * Change the order of the kernel parameter options to avoid the propagation by accident.
+  * Change the order of the kernel parameter options to avoid the propagation
+    by accident.
   * Reduce some PyGIWarning messages.
 
   [ Kevin ]
@@ -20,7 +21,8 @@ dell-recovery (1.63) UNRELEASED; urgency=medium
   * Refine the wording of the entry of full disk encryption during installation
 
   [ Ryan Graham ]
-  * Adds flag for new initrd format. Use [un]mkinitramfs instead of raw compression when set
+  * Adds flag for new initrd format. Use [un]mkinitramfs instead of raw
+    compression when set
 
   [ Mario Limonciello ]
   * update gitignore
@@ -253,7 +255,7 @@ dell-recovery (1.46) xenial; urgency=medium
 
   [ Mario Limonciello ]
   * Add initial templates for dual boot
-  * Adjust dual boot seed. 
+  * Adjust dual boot seed.
   * Drop support for jockey
   * Don't install DKMS in all images (let dependencies pull it in if necessary)
   * Fix HDD based restoration
@@ -295,7 +297,7 @@ dell-recovery (1.44) xenial; urgency=medium
 
   [ Mario Limonciello ]
   * If efibootmgr not found in livefs, install it.
-  * Wait for kernel to settle /dev/ nodes before trying to make filesystems. 
+  * Wait for kernel to settle /dev/ nodes before trying to make filesystems.
   * Enable oem-config via late script/systemd.
   * Remove feature to propogate kernel options into target system.
     This means that they would be required in a package to add GRUB option.
@@ -473,7 +475,7 @@ dell-recovery (1.32) vivid; urgency=low
   * Disable network during the installation. (LP: #1309410)
   * Delete swap partition after disabled. (LP: #1284474)
   * Fix disk_layout misjudgement issue. (LP: #1324394)
-  * If there is a Kylin overlay, set language to zh_CN.UTF-8. (LP: #1321607) 
+  * If there is a Kylin overlay, set language to zh_CN.UTF-8. (LP: #1321607)
   * Increase the cushion of recovery partition up to 600mb.
   * Improve emergency scripts support.
   * Disable hibernate (S4) if RAM >= 4GB. (LP: #1284474)
@@ -499,7 +501,7 @@ dell-recovery (1.32) vivid; urgency=low
 
   [ Shengyao Xue ]
   * We disabled Ethernet in phase 1 and 2 of installation, now enable it back.
-    (LP: #1329148) 
+    (LP: #1329148)
 
   [ Kai-Heng Feng ]
   * Force using utf-8 when writing grub menu. (LP: #1416280)
@@ -567,11 +569,11 @@ dell-recovery (1.28) raring; urgency=low
   * Move os-prober test out of chroot section to guarantee passing
     in other scenarios.
   * Remove unused UUID statement from bootstrap.
-  * If preseeded to 'factory', automatically install to the first hard disk 
+  * If preseeded to 'factory', automatically install to the first hard disk
     on the system.
-  * Fix a typographical error causing dell-recovery.seed, gfx.seed, and 
+  * Fix a typographical error causing dell-recovery.seed, gfx.seed, and
     wlan.seed to not get loaded.
-  * Make the debconf updates work in stage 1 in the 'factory' preseeded 
+  * Make the debconf updates work in stage 1 in the 'factory' preseeded
     automagic case.
   * Rebase GRUB patches on GRUB 2.00
   * recovery_backend: Set the genisoimage call to nonblocking on Popen.
@@ -668,7 +670,7 @@ dell-recovery (1.25) quantal; urgency=low
     - debian/control: update to python3-progressbar recommends (not yet
       in ubuntu though).
     - Update bto autobuilder for changes in python3-progressbar.
-    - Fix dbus service activation unicode issues by sourcing 
+    - Fix dbus service activation unicode issues by sourcing
       /etc/default/locale before spawning service.
     - Write new UUID in binary mode.
   * Update translations from launchpad.
@@ -718,7 +720,7 @@ dell-recovery (1.23) precise; urgency=low
 
 dell-recovery (1.22) precise; urgency=low
 
-  * Drop new_autotools.patch.  It's no longer necessary with GRUB2 
+  * Drop new_autotools.patch.  It's no longer necessary with GRUB2
     1.99-17ubuntu1.
 
  -- Mario Limonciello <Mario_Limonciello@Dell.com>  Wed, 07 Mar 2012 16:31:31 -0600
@@ -777,7 +779,7 @@ dell-recovery (1.17) precise; urgency=low
 
 dell-recovery (1.16) precise; urgency=low
 
-  * When building binaries in grub/build-binaries.sh, also build an i386-pc 
+  * When building binaries in grub/build-binaries.sh, also build an i386-pc
     DVD/USB bootloader.
 
  -- Mario Limonciello <Mario_Limonciello@Dell.com>  Tue, 10 Jan 2012 09:39:21 -0600
@@ -840,7 +842,7 @@ dell-recovery (1.12) precise; urgency=low
   * Don't regenerate the UUID during stage 1 anymore.  Instead, pre-populate
     the disk's UUID on the kernel command line of the target install.
     Requires casper 1.290 or later to work.
-  * Add some preseeded language fixes that are reactive to casper 1.289 
+  * Add some preseeded language fixes that are reactive to casper 1.289
     from precise and 1.287.1 from oneiric. (LP: #888298)
     - Don't preseed the language in a standard preseed file as it overrides
       casper's attempt at setting the language.
@@ -848,7 +850,7 @@ dell-recovery (1.12) precise; urgency=low
       set English if no other language has been specified yet.
   * Create a flag on the disk filesystem to indicate an install is in progress.
   * Remove the casper UUID in SUCCESS_SCRIPT as well as stage 1 of recovery.
-    This will prevent the RP from booting unless the UUID is present on 
+    This will prevent the RP from booting unless the UUID is present on
     /proc/cmdline.
   * Don't include grubenv in the files that go in /factory on install media.
   * Include a grub.cfg script that will be copied into the recovery media and
@@ -958,7 +960,7 @@ dell-recovery (1.03) oneiric; urgency=low
 
 dell-recovery (1.02) oneiric; urgency=low
 
-  * Install prebuilt GRUB to MBR and newly built GRUB to RP when possible.  
+  * Install prebuilt GRUB to MBR and newly built GRUB to RP when possible.
     - This allows a more complete emulation of factory process by reusing
       the prebuilt GRUB in the recovery scenario too.
     - The GRUB on the RP will only be used to RED screen after the MBR is
@@ -969,7 +971,7 @@ dell-recovery (1.02) oneiric; urgency=low
     binaries.
   * Allow building both x86_64 and i386-pc prebuilt images if the -bin packages
     are installed for both.
-  * Recommends grub-pc-bin and grub-efi-amd64-bin instead of grub-pc and 
+  * Recommends grub-pc-bin and grub-efi-amd64-bin instead of grub-pc and
     grub-efi-amd64.
 
  -- Mario Limonciello <Mario_Limonciello@Dell.com>  Wed, 07 Sep 2011 14:03:58 -0500
@@ -1142,8 +1144,8 @@ dell-recovery (0.88) natty; urgency=low
   * If the dell-recovery instance is running from the same series
     (eg natty) as the recovery partition:
     - Check the latest version in the recovery partition
-    - Compare to the running version.  
-    - If the running version is newer, include it in the new image 
+    - Compare to the running version.
+    - If the running version is newer, include it in the new image
       that was generated.
     - This is meant for the SRU case.  If an SRU is pushed for say 0.88.1
       then that SRU could be included in target media too.
@@ -1302,14 +1304,14 @@ dell-recovery (0.76) natty; urgency=low
   * Update translations from Launchpad.
 
   [ Bryan Kemp ]
-  * Updated Error string for non Dell/Alienware Systems  
-  * Added support for Alienware platforms 
+  * Updated Error string for non Dell/Alienware Systems
+  * Added support for Alienware platforms
 
  -- Mario Limonciello <Mario_Limonciello@Dell.com>  Tue, 11 Jan 2011 01:46:01 -0600
 
 dell-recovery (0.75) natty; urgency=low
 
-  * Adjust the memory calculation to use /sys/firmware/memmap as 
+  * Adjust the memory calculation to use /sys/firmware/memmap as
     dmi-available-memory is no longer available in natty.
   * Check for an omsk recovery option in /proc/cmdline and in the squashfs
     during the initrd.  If it's found, don't run standard recovery/install.
@@ -1330,7 +1332,7 @@ dell-recovery (0.74) natty; urgency=low
 
   * Reset the location that grub is installed and looked for on the RP
     to be /boot/grub rather than /grub.
-    - This has implications for the dual boot configuration.  Now to 
+    - This has implications for the dual boot configuration.  Now to
       activate a reinstall, /boot/grub/grub.cfg needs to be placed on the
       recovery partition.  The logic will still prefer one on the OS paritition
       however.
@@ -1338,7 +1340,7 @@ dell-recovery (0.74) natty; urgency=low
       BTO frameworks.  If this is used on something earlier than 11.04, then the
       integrated BTO framework from this package should be used instead.
   * If an image already provides a grub.cfg or common.cfg in /boot/grub, back
-    it up to $file.old while building a recovery partition and restore it when 
+    it up to $file.old while building a recovery partition and restore it when
     rebuilding the image again.
   * Check that the RP is actually a Linux RP before adding to the grub.cfg.
   * Test for 99_dell_recovery rather than trusting find_partitions when offering
@@ -1588,7 +1590,7 @@ dell-recovery (0.60) maverick; urgency=low
     dell-recovery/swap = (true, [dynamic], false)
     - false will force swap on
     - false will force swap off
-    - dynamic (default) will detect small drives (<=64GB).  If one of these 
+    - dynamic (default) will detect small drives (<=64GB).  If one of these
       is found, disable the creation of a swap partition. (LP: #601780)
   * Disable terminal spawning if debug-ubiquity mode is enabled since the
     same effect can be achieved with ctrl-alt-T.
@@ -1610,8 +1612,8 @@ dell-recovery (0.59) maverick; urgency=low
   * Use efibootmgr to twiddle the NVRAM to set the active device if on
     an EFI system.
   * Drop old fdisk based hacks for making partition tables when in mbr
-    mode.  
-    - Now use a parted wrapper.  
+    mode.
+    - Now use a parted wrapper.
     - python-parted would be nice to use, but would add another dependency.
     - parted_server/partman would be nice too, but are a little cumbersome
       to work with outside the context of d-i or ubiquity partitioning.
@@ -1640,7 +1642,7 @@ dell-recovery (0.57) lucid; urgency=low
   * Add an additional postinstallation script directory for non-negotiable items
     shipped with this package.
   * Add a script to call the DKMS autoinstallation script to catch any modules
-    that may have failed to build/install during install such as PAE kernels. 
+    that may have failed to build/install during install such as PAE kernels.
     (LP: #563906)
   * match_system_device: Don't allow matching anything without a 0x preceding it.
     - Still allows base 16 ints
@@ -1714,7 +1716,7 @@ dell-recovery (0.55) lucid; urgency=low
   * Introduce a 3rd ubiquity plugin that forces the title of the parent window.
     This is necessary because bootstrap runs before the language page, which
     which reset the title again.
-    - Only load it if we don't have dell-recovery/recovery_type on kernel 
+    - Only load it if we don't have dell-recovery/recovery_type on kernel
       command line (which means factory mode)
   * Adjust the names of some of the templates to not show items as bold in
     the bootstrap plugin.
@@ -1744,7 +1746,7 @@ dell-recovery (0.53) lucid; urgency=low
   * Don't propagate debian-installer preseeds through.
   * Add a preseedsable template to mark which partition should be active
     after a failed installation.
-  * If active or failed partition isn't preseeded, set a sane default for the 
+  * If active or failed partition isn't preseeded, set a sane default for the
     resize case.
   * Don't propagate any ubiquity (automatic-ubiquity, debug-ubiquity) kernel
     command lines through to the actual system install.
@@ -1768,7 +1770,7 @@ dell-recovery (0.52) lucid; urgency=low
   * Add an argument to check the currently installed version.
   * Only import GTK for the necessary pieces.
   * backend:
-    - Add a new function: query_have_dell_recovery that will determine if a 
+    - Add a new function: query_have_dell_recovery that will determine if a
       dell-recovery deb or rpm is on the filesystem of an image or in a BTO tree.
   * builder:
     - If dell-recovery isn't included in the chosen image or in the chosen FID
@@ -1785,7 +1787,7 @@ dell-recovery (0.51) lucid; urgency=low
   * Don't fail reinstall if missing an SDR.
   * Import translations from launchpad.
   * Add a new template: dell-recovery/disable-driver-install, which will block
-    the installation of a preseeded list of drivers during postinstall phase 
+    the installation of a preseeded list of drivers during postinstall phase
     from Jockey.
   * When running in ubiquity debug mode, spawn a terminal to use.
   * Add a new dual boot template used to enable a dual boot preseed.
@@ -1981,7 +1983,7 @@ dell-recovery (0.43) lucid; urgency=low
   * Add a new function to recovery_common to support checking if the devices
     in a system match an ID.
   * Use sysfs to read dmi info rather than dmidecode.
-  * Add all the strings from the ubiquity pages to debian/templates, which 
+  * Add all the strings from the ubiquity pages to debian/templates, which
     should enable translation for all of them.
   * Don't raise permissions for check vendor anymore since it's just parsing.
   * Always try to install dell-recovery, and adobe-flashplugin even if they
@@ -2142,7 +2144,7 @@ dell-recovery (0.33) lucid; urgency=low
     are posed via OEM-config.
   * Clean up the old icon from the skel folder in case other new users are made.
   * debian/control: Mark as enhances for oem-config-gtk
-  * Fix "Error parsing subject struct" when running on Lucid (no apparent 
+  * Fix "Error parsing subject struct" when running on Lucid (no apparent
     regressions on Karmic with this fix)
   * Since .desktop file is no longer on the desktop, rename it's action to be
     more appropriate.
@@ -2185,10 +2187,10 @@ dell-recovery (0.31) karmic; urgency=low
 
 dell-recovery (0.30) karmic; urgency=low
 
-  * Make the regeneration of the UUID optional, and only if the appropriate 
-    files are present.  Allows Billerica images to proceed a little bit 
+  * Make the regeneration of the UUID optional, and only if the appropriate
+    files are present.  Allows Billerica images to proceed a little bit
     further.
-  * Iterate the list of items in .disk/info to find the first floating point 
+  * Iterate the list of items in .disk/info to find the first floating point
     number to assign to the release series.
 
  -- Mario Limonciello <mario_limonciello@dell.com>  Mon, 09 Nov 2009 17:32:32 -0600
@@ -2344,7 +2346,7 @@ dell-recovery (0.19) karmic; urgency=low
 
 dell-recovery (0.18) jaunty; urgency=low
 
-  * Only fill in the UP or RP variables independently if they are 
+  * Only fill in the UP or RP variables independently if they are
     already empty.
   * Don't offer a retry dialog in the event a burning fails.  Some burners
     don't actually have reliable return codes.
@@ -2376,7 +2378,7 @@ dell-recovery (0.15) jaunty; urgency=low
   * Touch the file we are creating before actually creating it from the dbus
     backend.  This makes the file owned by the first user who touched it (Us!)
     rather than root:root from the dbus backend.
-  * Add optional support to use lsb-release to show information about 
+  * Add optional support to use lsb-release to show information about
     what release this ISO is being generated for.
   * Fix a GTKWarning about a separator setting that was getting ignored.
   * Add translation support to the .desktop file.
@@ -2402,9 +2404,9 @@ dell-recovery (0.14) jaunty; urgency=low
   * Call the backend via an async dbus call.  The method to do this
     was borrowed from Jockey as normal async calls were mixing up
     exceptions and what not.
-  * Rename progress_dialogs.glade to the more appropriate 
+  * Rename progress_dialogs.glade to the more appropriate
     recovery_media_creator.glade.
-  * Check for CD and USB burning applications when initializing the UI.  If a 
+  * Check for CD and USB burning applications when initializing the UI.  If a
     particular type isn't found, then don't allow the application to run.
   * Add 99_dell_recovery (taken from china customizations) to the install.  This
     will prepare dell-recovery for when grub2 is made default.

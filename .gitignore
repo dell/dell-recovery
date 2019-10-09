@@ -1,4 +1,5 @@
 dist
+.pybuild
 .bzr
 build/
 debian/.debhelper/

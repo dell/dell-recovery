@@ -4,7 +4,7 @@
 export NO_PNG_PKG_MANGLE=1
 
 %:
-	dh $@ --with=python3
+	dh $@ --with=python3 --buildsystem=pybuild
 
 check:
 	# Sanity-check before upload.
@@ -23,21 +23,3 @@ override_dh_clean: check
 	dh_clean
 	cd $(CURDIR)/po; make clean
 	cd $(CURDIR)/secure_boot; make clean
-
-override_dh_auto_clean:
-	set -ex; for python in $(shell py3versions -r); do \
-		$$python setup.py clean; \
-	done;
-
-override_dh_auto_build:
-	set -ex; for python in $(shell py3versions -r); do \
-		$$python setup.py build; \
-	done;
-
-override_dh_auto_install:
-	set -ex; for python in $(shell py3versions -r); do \
-		$$python setup.py install --root=$(CURDIR)/debian/tmp --install-layout=deb; \
-	done;
-
-override_dh_python3:
-	dh_python3 --shebang=/usr/bin/python3
