@@ -11,7 +11,7 @@ Build-Depends: debhelper (>= 11),
                pyflakes3,
                lsb-release,
                gnu-efi (>= 3.0.2)
-X-Python3-Version: >= 3.7
+X-Python3-Version: >= 3.6
 Homepage: http://github.com/dell/dell-recovery
 Vcs-Git: http://github.com/dell/dell-recovery
 Standards-Version: 4.4.0
