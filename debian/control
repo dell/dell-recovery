@@ -35,10 +35,12 @@ Depends: ${python3:Depends},
 Replaces: dell-artwork, dell-oobe
 Conflicts: dell-oobe
 Recommends: cryptsetup,
+            cryptsetup-bin,
             dvd+rw-tools,
             isolinux,
             lsb-release,
             lvm2,
+            mokutil,
             mdadm (>> 4.1~rc1-2),
             parted,
             python3-progressbar,
@@ -46,10 +48,6 @@ Recommends: cryptsetup,
             usb-creator-gtk,
             wodim,
             xorriso,
-            mokutil,
-            lvm2,
-            cryptsetup,
-            cryptsetup-bin
 Enhances: oem-config-gtk, ubiquity-frontend-gtk
 Suggests: grub-pc
 Description: Dell Recovery Media Creation Package
