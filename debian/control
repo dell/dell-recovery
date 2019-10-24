@@ -45,7 +45,11 @@ Recommends: cryptsetup,
             ttf-dejavu,
             usb-creator-gtk,
             wodim,
-            xorriso
+            xorriso,
+            mokutil,
+            lvm2,
+            cryptsetup,
+            cryptsetup-bin
 Enhances: oem-config-gtk, ubiquity-frontend-gtk
 Suggests: grub-pc
 Description: Dell Recovery Media Creation Package
