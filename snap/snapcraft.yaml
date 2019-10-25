@@ -3,7 +3,7 @@ version: git
 summary: recovery tool.
 description: Dell Recovery for Ubuntu. 
  
-confinement: devmode
+confinement: classic
 base: core18 #Ubuntu18 base
 
 architectures:  
