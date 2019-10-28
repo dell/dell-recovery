@@ -11,7 +11,7 @@ Build-Depends: debhelper (>= 11),
                pyflakes3,
                lsb-release,
                gnu-efi (>= 3.0.2)
-X-Python3-Version: >= 3.7
+X-Python3-Version: >= 3.6
 Homepage: http://github.com/dell/dell-recovery
 Vcs-Git: http://github.com/dell/dell-recovery
 Standards-Version: 4.4.0
@@ -35,17 +35,19 @@ Depends: ${python3:Depends},
 Replaces: dell-artwork, dell-oobe
 Conflicts: dell-oobe
 Recommends: cryptsetup,
+            cryptsetup-bin,
             dvd+rw-tools,
             isolinux,
             lsb-release,
             lvm2,
+            mokutil,
             mdadm (>> 4.1~rc1-2),
             parted,
             python3-progressbar,
             ttf-dejavu,
             usb-creator-gtk,
             wodim,
-            xorriso
+            xorriso,
 Enhances: oem-config-gtk, ubiquity-frontend-gtk
 Suggests: grub-pc
 Description: Dell Recovery Media Creation Package
