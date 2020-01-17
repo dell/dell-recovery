@@ -79,7 +79,7 @@ msgstr ""
 #. Type: text
 #. Description
 #: ../dell-recovery.templates:27001
-msgid "Restore entire hard drive."
+msgid "Install Ubuntu with DHC."
 msgstr ""
 
 #. Type: text

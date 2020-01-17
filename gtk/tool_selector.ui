@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
   <object class="GtkDialog" id="dialog_hig">
     <property name="can_focus">False</property>
     <property name="border_width">6</property>
@@ -8,6 +9,9 @@
     <property name="resizable">False</property>
     <property name="window_position">center-always</property>
     <property name="type_hint">dialog</property>
+    <child>
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox6">
         <property name="visible">True</property>
@@ -26,7 +30,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -56,7 +59,7 @@
                 <property name="xalign">0</property>
                 <property name="yalign">0</property>
                 <property name="stock">gtk-dialog-error</property>
-                <property name="icon-size">6</property>
+                <property name="icon_size">6</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -102,6 +105,9 @@
     <property name="window_position">center</property>
     <property name="icon_name">dell-dvd</property>
     <signal name="destroy" handler="destroy" swapped="no"/>
+    <child>
+      <placeholder/>
+    </child>
     <child>
       <object class="GtkVBox" id="vbox1">
         <property name="visible">True</property>
@@ -158,18 +164,27 @@
           <object class="GtkTable" id="table1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="n_rows">4</property>
+            <property name="n_rows">5</property>
             <property name="n_columns">3</property>
             <property name="row_spacing">10</property>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
             <child>
               <object class="GtkLabel" id="build_os_media_label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xalign">0</property>
                 <property name="xpad">15</property>
                 <property name="label" translatable="yes">This will create OS Recovery Media that can be used to restore the computer to its factory shipped state.  You will have the option to create an USB key or DVD image.</property>
                 <property name="wrap">True</property>
                 <property name="width_chars">40</property>
+                <property name="xalign">0</property>
               </object>
               <packing>
                 <property name="left_attach">2</property>
@@ -181,11 +196,11 @@
               <object class="GtkLabel" id="restore_system_label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xalign">0</property>
                 <property name="xpad">15</property>
                 <property name="label" translatable="yes">This will restore the system to the factory shipped state using the recovery partition stored on the hard drive.</property>
                 <property name="wrap">True</property>
                 <property name="width_chars">40</property>
+                <property name="xalign">0</property>
               </object>
               <packing>
                 <property name="left_attach">2</property>
@@ -196,20 +211,37 @@
               </packing>
             </child>
             <child>
+              <object class="GtkLabel" id="restore_system_dhc_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="xpad">15</property>
+                <property name="label" translatable="yes">This will restore the system with DHC to the factory shipped state using the recovery partition stored on the hard drive.</property>
+                <property name="wrap">True</property>
+                <property name="width_chars">40</property>
+                <property name="xalign">0</property>
+              </object>
+              <packing>
+                <property name="left_attach">2</property>
+                <property name="right_attach">3</property>
+                <property name="top_attach">2</property>
+                <property name="bottom_attach">3</property>
+                <property name="y_options">GTK_EXPAND</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkButton" id="build_os_media_button">
                 <property name="label" translatable="yes">Build OS Media</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <signal name="clicked" handler="top_button_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
                 <property name="right_attach">2</property>
-                <property name="x_options"></property>
-                <property name="y_options"></property>
+                <property name="x_options"/>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
@@ -219,7 +251,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <signal name="clicked" handler="top_button_clicked" swapped="no"/>
               </object>
               <packing>
@@ -227,8 +258,26 @@
                 <property name="right_attach">2</property>
                 <property name="top_attach">1</property>
                 <property name="bottom_attach">2</property>
-                <property name="x_options"></property>
-                <property name="y_options"></property>
+                <property name="x_options"/>
+                <property name="y_options"/>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="restore_system_dhc_button">
+                <property name="label" translatable="yes">Restore    DHC</property>
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="top_button_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="right_attach">2</property>
+                <property name="top_attach">2</property>
+                <property name="bottom_attach">3</property>
+                <property name="x_options"/>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
@@ -240,8 +289,8 @@
                 <property name="icon_name">drive-harddisk</property>
               </object>
               <packing>
-                <property name="x_options"></property>
-                <property name="y_options"></property>
+                <property name="x_options"/>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
@@ -251,29 +300,45 @@
                 <property name="xpad">15</property>
                 <property name="pixel_size">48</property>
                 <property name="icon_name">view-refresh</property>
-                <property name="icon-size">1</property>
+                <property name="icon_size">1</property>
               </object>
               <packing>
                 <property name="top_attach">1</property>
                 <property name="bottom_attach">2</property>
-                <property name="x_options"></property>
-                <property name="y_options"></property>
+                <property name="x_options"/>
+                <property name="y_options"/>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage" id="restore_system_dhc_image">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="xpad">15</property>
+                <property name="pixel_size">48</property>
+                <property name="icon_name">view-refresh</property>
+                <property name="icon_size">1</property>
+              </object>
+              <packing>
+                <property name="top_attach">2</property>
+                <property name="bottom_attach">3</property>
+                <property name="x_options"/>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
               <object class="GtkLabel" id="install_drivers_label">
                 <property name="can_focus">False</property>
-                <property name="xalign">0</property>
                 <property name="xpad">15</property>
                 <property name="label" translatable="yes">This will install a Dell driver package that you downloaded from the Internet.</property>
                 <property name="wrap">True</property>
                 <property name="width_chars">40</property>
+                <property name="xalign">0</property>
               </object>
               <packing>
                 <property name="left_attach">2</property>
                 <property name="right_attach">3</property>
-                <property name="top_attach">2</property>
-                <property name="bottom_attach">3</property>
+                <property name="top_attach">3</property>
+                <property name="bottom_attach">4</property>
                 <property name="y_options">GTK_EXPAND</property>
               </packing>
             </child>
@@ -285,10 +350,10 @@
                 <property name="icon_name">network-server</property>
               </object>
               <packing>
-                <property name="top_attach">2</property>
-                <property name="bottom_attach">3</property>
-                <property name="x_options"></property>
-                <property name="y_options"></property>
+                <property name="top_attach">3</property>
+                <property name="bottom_attach">4</property>
+                <property name="x_options"/>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
@@ -297,16 +362,15 @@
                 <property name="use_action_appearance">False</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <signal name="clicked" handler="top_button_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
                 <property name="right_attach">2</property>
-                <property name="top_attach">2</property>
-                <property name="bottom_attach">3</property>
-                <property name="x_options"></property>
-                <property name="y_options"></property>
+                <property name="top_attach">3</property>
+                <property name="bottom_attach">4</property>
+                <property name="x_options"/>
+                <property name="y_options"/>
               </packing>
             </child>
           </object>

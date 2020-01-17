@@ -64,6 +64,30 @@ Template: ubiquity/text/hdd_warning_label
 Type: text
 _Description: WARNING: All personal files and changes will be lost.
 
+Template: ubiquity/text/dhc_hdd_recovery
+Type: text
+_Description: Restore Linux OS partitions with DHC
+
+Template: ubiquity/text/dhc_hdd_info
+Type: text
+_Description: This will rebuild all OS and swap partitions to factory defaults.
+
+Template: ubiquity/text/dhc_hdd_warning_label
+Type: text
+_Description: WARNING: All personal files and changes will be lost.
+
+Template: ubiquity/text/dhc_automated_recovery
+Type: text
+_Description: Install DHC
+
+Template: ubiquity/text/dhc_automated_info
+Type: text
+_Description: This will rebuild all recovery, and OS partitions.
+
+Template: ubiquity/text/dhc_automated_warning_label
+Type: text
+_Description: WARNING: All personal files and changes will be lost.
+
 Template: ubiquity/text/automated_recovery
 Type: text
 _Description: Restore entire hard drive.

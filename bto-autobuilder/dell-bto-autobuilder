@@ -12,12 +12,11 @@ Coding Style:
  * Generally styled after Linux kernel C coding standards
 '''
 
-import os, sys, subprocess, optparse, re, tempfile
+import os, sys, optparse, re
 from Dell.recovery_common import DBUS_BUS_NAME, DBUS_INTERFACE_NAME, \
                                  check_version,           \
                                  dbus_sync_call_signal_wrapper
 import dbus.mainloop.glib
-from datetime import datetime
 
 try:
     import progressbar

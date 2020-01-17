@@ -78,7 +78,7 @@ setup(
                 ('lib/ubiquity/plugins', glob.glob('ubiquity/*.py')),
                 ('share/ubiquity/gtk', glob.glob('ubiquity/*.ui')),
                 ('share/ubiquity', ['ubiquity/dell-bootstrap'])]+I18NFILES,
-    scripts=["dell-recovery", "dell-restore-system"],
+    scripts=["dell-recovery", "dell-restore-system","dell-restore-system-dhc"],
 
     cmdclass = { 'build': SecureBootBuild,
                  'build_i18n': build_i18n.build_i18n,

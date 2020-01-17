@@ -1,0 +1,89 @@
+#! /usr/bin/python3
+# -*- coding: utf-8 -*-
+#
+# Dell Recovery Restore system command line
+#
+# Copyright (C) 2017 Dell Inc,
+#   Author: Mario Limonciello/Jude Hung
+#
+# This is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2 of the License, or at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this application; if not, write to the Free Software Foundation, Inc., 51
+# Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+##################################################################################
+
+from Dell.recovery_common import (find_partition, check_version, DBUS_INTERFACE_NAME,
+                                  DBUS_BUS_NAME, dbus_sync_call_signal_wrapper,
+                                  PermissionDeniedByPolicy)
+import optparse
+import os
+import subprocess
+import sys
+#Translation support
+from gettext import gettext as _
+
+usage = '%prog [options]'
+parser = optparse.OptionParser(usage=usage)
+parser.set_defaults(
+    version=''
+    )
+parser.add_option('-c', '--check-version', dest='checkversion', action='store_true',
+                  help='Show the version information.')
+parser.add_option('-y', '--yes', dest='yes', action='store_true',
+                  help="Restore the system without user's confirmation.")
+(options, args) = parser.parse_args()
+
+if __name__ == '__main__':
+    if options.checkversion:
+        print("%s %s" % (_("Version:"), check_version()))
+    else:
+        if not options.yes:
+            confirm = input(_("Would you want to restore the system? (y/n)"))
+            if not confirm.lower() == 'yes' and not confirm.lower()=='y':
+                sys.stdout.write("%s\n" % _("Aborted."))
+                sys.exit(0)
+        
+        import dbus.mainloop.glib
+        dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+        recovery = find_partition()
+
+        #If we don't find an RP, throw error.
+        if not recovery:
+            sys.stderr.write("%s\n" %_("ERR: No recovery partition could be found to restore the system."))
+            sys.exit(1)
+    
+        #don't ever autostart again
+        autostart=os.path.expanduser("~/.config/autostart/dell-recovery.desktop")
+        reminder = os.path.expanduser("~/.config/dell-recovery/reminder")
+        for item in (autostart, reminder):
+            if os.path.exists(item):
+                os.remove(item)
+        
+        #invoke dbus to restore the system
+        try:
+            bus = dbus.SystemBus()
+            dbus_iface = dbus.Interface(bus.get_object(DBUS_BUS_NAME,
+                                        '/RecoveryMedia'),
+                                        DBUS_INTERFACE_NAME)
+            dbus_sync_call_signal_wrapper(dbus_iface,
+                                          "enable_boot_to_restore_dhc",
+                                          {},
+                                          True)
+        except dbus.DBusException as ex:
+            if ex.get_dbus_name() == 'org.freedesktop.DBus.Error.FileNotFound':
+                text = _("Cannot connect to dbus")
+            if ex.get_dbus_name() == PermissionDeniedByPolicy._dbus_error_name:
+                text = _("Permission Denied")
+            else:
+                text = ex.get_dbus_message()
+            sys.stderr.write("%s\n" % text)
+            sys.exit(1)

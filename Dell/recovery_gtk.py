@@ -27,14 +27,12 @@ import os
 import subprocess
 import dbus
 import sys
-
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk,GLib
-
 from Dell.recovery_common import (DOMAIN, LOCALEDIR, UIDIR, SVGDIR, DBUS_INTERFACE_NAME,
                                   DBUS_BUS_NAME, dbus_sync_call_signal_wrapper,
-                                  PermissionDeniedByPolicy, check_version)
+                                  PermissionDeniedByPolicy, check_version,check_7070)
 
 #Translation support
 from gettext import gettext as _
@@ -62,13 +60,18 @@ class DellRecoveryToolGTK:
 
         #if running in driver install mode,  hide other stuff
         if mode == 'driver':
-            for item in ['restore_system', 'build_os_media']:
+            for item in ['restore_system', 'build_os_media','restore_system_dhc']:
                 action_objects(self.tool_widgets, item, 'hide')
             action_objects(self.tool_widgets, 'install_drivers', 'show')
         else:
             #hide restore from HDD unless there is a recovery partition
             if not (recovery and os.path.exists('/etc/grub.d/99_dell_recovery')):
                 action_objects(self.tool_widgets, 'restore_system', 'hide')
+                action_objects(self.tool_widgets, 'restore_system_dhc', 'hide')
+            else:
+                if not check_7070():
+                    action_objects(self.tool_widgets, 'restore_system_dhc', 'hide')
+
 
         #about dialog
         self.about_box = None
@@ -136,11 +139,24 @@ class DellRecoveryToolGTK:
                     dbus_sync_call_signal_wrapper(self.backend(),
                                                   "enable_boot_to_restore",
                                                   {},
-                                                  False)
-                    proc = subprocess.Popen(["gnome-session-quit", "--reboot"])
+                                                  True)
+                    #proc = subprocess.Popen(["gnome-session-quit", "--reboot"])
                     self.destroy()
                 except dbus.DBusException as msg:
                     self.dbus_exception_handler(msg)
+                       
+            #Restore DHC Button
+            else:   
+                try:
+                    dbus_sync_call_signal_wrapper(self.backend(),
+                                                  "enable_boot_to_restore_dhc",
+                                                  {},
+                                                  True)
+                    #proc = subprocess.Popen(["gnome-session-quit", "--reboot"])
+                    self.destroy()
+                except dbus.DBusException as msg:
+                    self.dbus_exception_handler(msg)
+            
             tool_selector.set_sensitive(True)
             return False
 

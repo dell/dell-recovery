@@ -32,7 +32,7 @@ if sys.version >= '3':
     text_type = str
     binary_type = bytes
 else:
-    text_type = unicode
+#    text_type = unicode
     binary_type = str
 
 def utf8str(old):

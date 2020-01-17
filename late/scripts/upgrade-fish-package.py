@@ -23,7 +23,7 @@ if parser_args.fname.endswith('.fish.tar.gz'):
     print ("This is likely already upgraded, please provide a package that doesn't end in .fish.tar.gz")
     sys.exit(1)
 
-description = raw_input("Enter a description for this FISH package.\n")
+description = input("Enter a description for this FISH package.\n")
 
 #extract old FISH package
 package_dir = tempfile.mkdtemp()

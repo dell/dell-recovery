@@ -29,7 +29,7 @@ import gi
 gi.require_version('UDisks', '2.0')
 from gi.repository import GLib, UDisks
 import os
-import shutil
+#import shutil
 import re
 import tempfile
 import glob
@@ -153,6 +153,43 @@ def check_family(test):
             return True
     return False
 
+def check_5070_id():
+    """Checks if a system definitely matches wyse 5070"""
+    call = subprocess.Popen(['dmidecode', '--type', '11'],
+                              stdout=subprocess.PIPE,
+                              stderr=subprocess.PIPE)
+    output = call.communicate()[0].decode()
+    if call.returncode != 0:
+        print("Unable to run dmidecode:", call.returncode)
+        return False
+    header = "String 2: "
+    for line in output.split('\n'):
+        if header in line:
+            result = line.split(header)
+            if (len(result) > 1):
+                result = line.split(header)[1].strip().lower()
+                print(result)
+                if "080c" in result:
+                    return True
+                else:
+                    break
+    return False
+
+def check_7070():
+    """Checks if a system definitely matches mongoose 7070"""
+    path = '/sys/class/dmi/id/modalias'
+    test='OptiPlex7070Ultra1'
+    if not os.path.exists(path):
+        return False
+    with open(path, 'rb') as rfd:
+        value = rfd.read().strip()
+        if not value:
+            return False
+        if test in str(value):
+            return True
+        else:
+            return False
+
 def check_vendor():
     """Checks to make sure that the app is running on Dell HW"""
     path = '/sys/class/dmi/id/'
@@ -191,7 +228,6 @@ def check_rebrand():
                 else:
                     break
     return False
-
 def check_version(package='dell-recovery'):
     """Queries the package management system for the current tool version"""
     try:
@@ -477,7 +513,7 @@ def walk_cleanup(directory):
                     os.remove(full_name)
                 elif os.path.isdir(full_name):
                     os.rmdir(full_name)
-                #covers broken links
+                #covers broken linkwith open(target, 'rb') as rfd:s
                 else:
                     os.remove(full_name)
         os.rmdir(directory)
@@ -629,7 +665,7 @@ def mark_upgrades():
     return to_install
 
 def mark_unconditional_debs(add_directory=''):
-    '''Finds any debs from debs/main that we want unconditionally installed
+    '''Dell/recovery_common.py''Finds any debs from debs/main that we want unconditionally installed
        (but ONLY the latest version on the media)'''
     import apt_inst
     import apt_pkg
@@ -643,7 +679,24 @@ def mark_unconditional_debs(add_directory=''):
         else:
             modaliases = ''
         return (sections["Architecture"], sections["Package"], modaliases)
-
+    
+    
+#    to_install = []
+#    my_arch = fetch_output(['dpkg', '--print-architecture']).strip()
+    #copy dhc_test to debs/main
+#    for top_tmp in [ISO_MOUNT, CDROM_MOUNT, add_directory]: 
+#        dhc_repo = os.path.join(top_tmp, 'dhc_test')
+#        nor_repo = os.path.join(top_tmp, 'debs', 'main')
+#        nor_repo1 = os.path.join(top_tmp, 'debs')
+ #       nor1_repo = os.path.join(top_tmp, 'debs')
+#        if os.path.isdir(dhc_repo) and os.path.isdir(nor_repo1):
+#            for dhc_fname in os.listdir(dhc_repo):
+               # if '.deb' in dhc_fname:
+               #     arch, package, modaliases = parse(os.path.join(nor_repo,dhc_fname))
+               #     if not modaliases and (arch == "all" or arch == my_arch):
+ #               shutil.copyfile('%s/%s' % (dhc_repo,dhc_fname),'%s/%s' % (nor_repo1,dhc_fname))
+               #     else:
+               #         shutil.copyfile('%s/%s' % (dhc_repo,dhc_fname),'%s/%s' % (nor1_repo,dhc_fname))
     #process debs/main
     to_install = []
     my_arch = fetch_output(['dpkg', '--print-architecture']).strip()
@@ -655,12 +708,18 @@ def mark_unconditional_debs(add_directory=''):
                     arch, package, modaliases = parse(os.path.join(repo, fname))
                     if not modaliases and (arch == "all" or arch == my_arch):
                         to_install.append(package)
+#        if os.path.isdir(dhc_repo):
+#            for fname in os.listdir(dhc_repo):
+#                if '.deb' in fname:
+#                    arch, package, modaliases = parse(os.path.join(dhc_repo, fname))
+#                    if not modaliases and (arch == "all" or arch == my_arch):
+#                        to_install.append(package)
 
     return to_install
 
 def create_grub_entries(target_dir='/target', rec_type='hdd'):
     '''Create GRUB entry for dell-recovery during ubiquity installation'''
-    env = os.environ
+    #env = os.environ
     rpart = find_factory_partition_stats()
     target_grub = '%s/etc/grub.d/99_dell_recovery' % target_dir
     #create the grub entry only when recovery partition exists

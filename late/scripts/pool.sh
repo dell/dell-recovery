@@ -26,6 +26,7 @@
 
 [ -d /cdrom/debs -o -d /isodevice/debs ]
 
+
 #Persistent mode has a tendency to break the dynamic apt cache
 if grep -q persistent /proc/cmdline 2>/dev/null; then
     rm -f /etc/apt/sources.list.d/dell.list
@@ -57,6 +58,7 @@ Acquire::cdrom
 EOF
 fi
 
+
 if [ ! -f /etc/apt/sources.list.d/dell.list ]; then
     #extra sources need to be disabled for this
     if find /etc/apt/sources.list.d/ -type f | grep sources.list.d; then
@@ -71,6 +73,7 @@ if [ ! -f /etc/apt/sources.list.d/dell.list ]; then
             apt-ftparchive packages ../../$dir | sed "s/^Filename:\ ..\//Filename:\ .\//" >> /Packages
         fi
     done
+
     if [ -f /Packages ]; then
         echo "deb file:/ /" > /etc/apt/sources.list.d/dell.list
     fi
