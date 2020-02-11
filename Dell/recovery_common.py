@@ -178,17 +178,17 @@ def check_5070_id():
 def check_7070():
     """Checks if a system definitely matches mongoose 7070"""
     path = '/sys/class/dmi/id/modalias'
-    test='OptiPlex7070Ultra1'
+    variables=['OptiPlex7070Ultra','OptiPlex7070UFF']
     if not os.path.exists(path):
         return False
     with open(path, 'rb') as rfd:
         value = rfd.read().strip()
         if not value:
             return False
-        if test in str(value):
-            return True
-        else:
-            return False
+        for var in variables:
+            if var in str(value):
+                return True
+        return False
 
 def check_vendor():
     """Checks to make sure that the app is running on Dell HW"""
@@ -679,25 +679,6 @@ def mark_unconditional_debs(add_directory=''):
         else:
             modaliases = ''
         return (sections["Architecture"], sections["Package"], modaliases)
-    
-    
-#    to_install = []
-#    my_arch = fetch_output(['dpkg', '--print-architecture']).strip()
-    #copy dhc_test to debs/main
-#    for top_tmp in [ISO_MOUNT, CDROM_MOUNT, add_directory]: 
-#        dhc_repo = os.path.join(top_tmp, 'dhc_test')
-#        nor_repo = os.path.join(top_tmp, 'debs', 'main')
-#        nor_repo1 = os.path.join(top_tmp, 'debs')
- #       nor1_repo = os.path.join(top_tmp, 'debs')
-#        if os.path.isdir(dhc_repo) and os.path.isdir(nor_repo1):
-#            for dhc_fname in os.listdir(dhc_repo):
-               # if '.deb' in dhc_fname:
-               #     arch, package, modaliases = parse(os.path.join(nor_repo,dhc_fname))
-               #     if not modaliases and (arch == "all" or arch == my_arch):
- #               shutil.copyfile('%s/%s' % (dhc_repo,dhc_fname),'%s/%s' % (nor_repo1,dhc_fname))
-               #     else:
-               #         shutil.copyfile('%s/%s' % (dhc_repo,dhc_fname),'%s/%s' % (nor1_repo,dhc_fname))
-    #process debs/main
     to_install = []
     my_arch = fetch_output(['dpkg', '--print-architecture']).strip()
     for top in [ISO_MOUNT, CDROM_MOUNT, add_directory]:
@@ -708,13 +689,6 @@ def mark_unconditional_debs(add_directory=''):
                     arch, package, modaliases = parse(os.path.join(repo, fname))
                     if not modaliases and (arch == "all" or arch == my_arch):
                         to_install.append(package)
-#        if os.path.isdir(dhc_repo):
-#            for fname in os.listdir(dhc_repo):
-#                if '.deb' in fname:
-#                    arch, package, modaliases = parse(os.path.join(dhc_repo, fname))
-#                    if not modaliases and (arch == "all" or arch == my_arch):
-#                        to_install.append(package)
-
     return to_install
 
 def create_grub_entries(target_dir='/target', rec_type='hdd'):

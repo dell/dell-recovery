@@ -243,8 +243,7 @@ class Backend(dbus.service.Object):
                 return processed_line[2]
 
         #if not already, mounted, produce a mount point
-        #mntdir = tempfile.mkdtemp()
-        mntdir = "/tmp"
+        mntdir = tempfile.mkdtemp()
         mnt_args = ['mount', '-%s' %type, recovery, mntdir]
         if ".iso" in recovery:
             mnt_args.insert(1, 'loop')
