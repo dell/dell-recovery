@@ -123,7 +123,7 @@ class PageGtk(PluginUI):
         with misc.raised_privileges():
             self.genuine = magic.check_vendor()
         with misc.raised_privileges():
-            self.check_5070_id = magic.check_5070_id()
+            self.install_dhc_id = magic.check_install_dhc_id()
         if not oem:
             gi.require_version('Gtk', '3.0')
             from gi.repository import Gtk
@@ -179,8 +179,8 @@ class PageGtk(PluginUI):
             self.dhc_automated_recovery.set_sensitive(False)
             self.interactive_recovery.set_sensitive(False)
             self.controller.allow_go_forward(False)
-            #if machine is wyse 5070, then only show DHC mode,otherwise show normal ubuntu option.
-        if self.check_5070_id:
+            #if machine is DHC machine id, then only show DHC mode,otherwise show normal ubuntu option.
+        if self.install_dhc_id:
             self.automated_recovery_box.hide()
             self.automated_recovery.set_sensitive(False)
             self.interactive_recovery_box.hide()
@@ -370,7 +370,7 @@ class Page(Plugin):
         self.rp_builder = None
         self.disk_size = None
         self.stage = 1
-        self.click_dhc=None
+        self.rec_type=None
         Plugin.__init__(self, frontend, db, ui)
 
     def log(self, error):
@@ -779,7 +779,7 @@ class Page(Plugin):
             # check if the mount point is Persistent Memory
             elif mount.startswith("/dev/pmem") and self.stage == 2 and rec_part["slave"][:-1] in mount:
                 self.log("Detected RP at %s, setting to factory boot" % mount)
-                rec_type = 'mactory'
+                rec_type = 'factory'
             else:
                 self.log("No (matching) RP found.  Assuming media based boot")
                 rec_type = 'dvd'
@@ -934,8 +934,8 @@ class Page(Plugin):
                                             self.efi,
                                             self.preseed_config,
                                             size_thread,
-                                            self.click_dhc)
-                self.rp_builder.click_dhc=self.ui.get_type()
+                                            self.rec_type)
+                self.rp_builder.rec_type=self.ui.get_type()
                 self.rp_builder.exit = self.exit_ui_loops
                 self.rp_builder.status = self.report_progress
                 self.rp_builder.start()
@@ -991,8 +991,7 @@ class Page(Plugin):
 ############################
 class RPbuilder(Thread):
     """The recovery partition builder worker thread"""
-    def __init__(self, device, size, mem, efi, preseed_config, sizing_thread, click_dhc):
- #   def __init__(self, device, size, mem, efi, rec_type, preseed_config, sizing_thread):
+    def __init__(self, device, size, mem, efi, preseed_config, sizing_thread, rec_type):
         self.device = device
         self.device_size = size
         self.mem = mem
@@ -1001,7 +1000,7 @@ class RPbuilder(Thread):
         self.exception = None
         self.file_size_thread = sizing_thread
         self.xml_obj = BTOxml()
-        self.click_dhc=click_dhc
+        self.rec_type=rec_type
         Thread.__init__(self)
 
     def build_rp(self, cushion=600):
@@ -1092,7 +1091,6 @@ manually to proceed.")
             if os.path.exists(magic.ISO_MOUNT):
                 magic.black_tree("copy", re.compile(".*\.iso$"), magic.ISO_MOUNT, '/mnt')
             magic.black_tree("copy", black_pattern, magic.CDROM_MOUNT, '/mnt')
-
         self.file_size_thread.join()
 
         #find uuid of drive
@@ -1102,18 +1100,25 @@ manually to proceed.")
                 if item.startswith('ID_FS_UUID'):
                     uuid = item.split('=')[1]
                     break
+        
         #if select DHC, will copy DHC file for silent install
         with misc.raised_privileges():
-            if self.click_dhc=='dhc':
-                os.system('cp  /mnt/DHC/dhc_casper/*  /mnt/casper')
-                os.system('cp  /mnt/DHC/dhc_preseed/*  /mnt/preseed')
-                temp='/mnt/scripts'
-                if os.path.exists(temp):
-                    os.system('cp -r /mnt/DHC/dhc_scripts/*  /mnt/scripts')
-                else:
-                    os.system("mkdir /mnt/scripts")
-                    os.system('cp -r /mnt/DHC/dhc_scripts/*  /mnt/scripts')
-
+            if self.rec_type=='dhc':
+                if os.path.exists(os.path.join("/mnt", "preseed", "dell-recovery.seed")):
+                    os.remove(os.path.join("/mnt", "preseed", "dell-recovery.seed"))
+                if not os.path.exists(os.path.join("/mnt", "scripts")):
+                    os.makedirs(os.path.join("/mnt", "scripts"))
+                dirs=["casper", "preseed", "scripts"]
+                for dir_tmp in dirs:
+                    mnt_dir=os.path.join("/mnt", "DHC", dir_tmp)
+                    assembly_dir=os.path.join("/mnt", dir_tmp)
+                    magic.white_tree("copy",re.compile(''), mnt_dir, assembly_dir)
+        #There is a script in platform_script that will copy the platform list file to the /usr/share/dell/DHC/ dir, so during recovery you can read the platform list. The way to do this is to  avoid recovery code change when add new platform, because you only need to update the file.     
+            else:
+                mnt_dir=os.path.join("/mnt", "DHC", "platform_script")
+                assembly_dir=os.path.join("/mnt", "scripts",)
+                magic.white_tree("copy", re.compile(''), mnt_dir, assembly_dir)
+        
         #read in any old seed
         seed = os.path.join('/mnt', 'preseed', 'dell-recovery.seed')
         keys = magic.parse_seed(seed)
@@ -1333,7 +1338,6 @@ class Install(InstallPlugin):
         except Exception:
             pass
 
-
     def install(self, target, progress, *args, **kwargs):
         '''This is highly dependent upon being called AFTER configure_apt
         in install.  If that is ever converted into a plugin, we'll
@@ -1399,8 +1403,8 @@ class Install(InstallPlugin):
             #set default recovery_type of 99_dell_recovery grub as 'hdd' for non-Wyse platforms
             recovery_type = 'hdd'
             #if wyse mode is on (dell-recovery/mode == 'wyse'), set the recovery_type to be 'factory'
-            #as Wyse platforms will always skip the "Restore OS Linux partition" dialog
-            if self.db.get('dell-recovery/wyse_mode') == 'true' or magic.check_family(b"wyse") or magic.check_5070_id():
+            #as Wyse platforms and new platform ID in the file will always skip the "Restore OS Linux partition" dialog
+            if self.db.get('dell-recovery/wyse_mode') == 'true' or magic.check_family(b"wyse") or magic.check_install_dhc_id():
                 recovery_type = 'factory'
             #create 99_dell_recovery grub
             magic.create_grub_entries(self.target, recovery_type)

@@ -189,6 +189,8 @@
               <packing>
                 <property name="left_attach">2</property>
                 <property name="right_attach">3</property>
+                <property name="top_attach">2</property>
+                <property name="bottom_attach">3</property>
                 <property name="y_options">GTK_EXPAND</property>
               </packing>
             </child>
@@ -223,8 +225,6 @@
               <packing>
                 <property name="left_attach">2</property>
                 <property name="right_attach">3</property>
-                <property name="top_attach">2</property>
-                <property name="bottom_attach">3</property>
                 <property name="y_options">GTK_EXPAND</property>
               </packing>
             </child>
@@ -240,6 +240,8 @@
               <packing>
                 <property name="left_attach">1</property>
                 <property name="right_attach">2</property>
+                <property name="top_attach">2</property>
+                <property name="bottom_attach">3</property>
                 <property name="x_options"/>
                 <property name="y_options"/>
               </packing>
@@ -274,8 +276,6 @@
               <packing>
                 <property name="left_attach">1</property>
                 <property name="right_attach">2</property>
-                <property name="top_attach">2</property>
-                <property name="bottom_attach">3</property>
                 <property name="x_options"/>
                 <property name="y_options"/>
               </packing>
@@ -289,6 +289,8 @@
                 <property name="icon_name">drive-harddisk</property>
               </object>
               <packing>
+                <property name="top_attach">2</property>
+                <property name="bottom_attach">3</property>
                 <property name="x_options"/>
                 <property name="y_options"/>
               </packing>
@@ -319,8 +321,6 @@
                 <property name="icon_size">1</property>
               </object>
               <packing>
-                <property name="top_attach">2</property>
-                <property name="bottom_attach">3</property>
                 <property name="x_options"/>
                 <property name="y_options"/>
               </packing>

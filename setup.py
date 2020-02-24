@@ -22,12 +22,13 @@
 import subprocess
 from distutils.core import setup
 from DistUtilsExtra.command import (build_extra, 
-                                   build_i18n, 
-                                   build_help,
-                                   build_icons,
-                                   clean_i18n)
+                                    build_i18n, 
+                                    build_help,
+                                    build_icons,
+                                    clean_i18n)
 
 import glob, os.path, os
+
 
 def files_only(directory):
     for root, dirs, files in os.walk(directory):
@@ -37,10 +38,12 @@ def files_only(directory):
                 array.append(os.path.join(directory, file))
             return array
 
+
 class SecureBootBuild(build_extra.build_extra):
     def run(self):
         subprocess.Popen(['make'], cwd='secure_boot')
         build_extra.build_extra.run(self)
+
 
 I18NFILES = []
 for filepath in glob.glob("po/mo/*/LC_MESSAGES/*.mo"):
@@ -78,7 +81,7 @@ setup(
                 ('lib/ubiquity/plugins', glob.glob('ubiquity/*.py')),
                 ('share/ubiquity/gtk', glob.glob('ubiquity/*.ui')),
                 ('share/ubiquity', ['ubiquity/dell-bootstrap'])]+I18NFILES,
-    scripts=["dell-recovery", "dell-restore-system","dell-restore-system-dhc"],
+    scripts=["dell-recovery", "dell-restore-system", "dell-restore-system-dhc"],
 
     cmdclass = { 'build': SecureBootBuild,
                  'build_i18n': build_i18n.build_i18n,

@@ -42,7 +42,7 @@ from hashlib import md5
 
 from Dell.recovery_common import (DOMAIN, LOCALEDIR,
                                   walk_cleanup, create_new_uuid, white_tree,
-                                  black_tree, fetch_output, check_version,
+                                  black_tree, fetch_output, check_version,find_partition,
                                   DBUS_BUS_NAME, DBUS_INTERFACE_NAME,
                                   RestoreFailed, CreateFailed,
                                   regenerate_md5sum, PermissionDeniedByPolicy)
@@ -243,8 +243,7 @@ class Backend(dbus.service.Object):
                 return processed_line[2]
 
         #if not already, mounted, produce a mount point
-        #mntdir = tempfile.mkdtemp()
-        mntdir = "/tmp"
+        mntdir = tempfile.mkdtemp()
         mnt_args = ['mount', '-%s' %type, recovery, mntdir]
         if ".iso" in recovery:
             mnt_args.insert(1, 'loop')
@@ -781,107 +780,27 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
     @dbus.service.method(DBUS_INTERFACE_NAME,
         in_signature = 'b', out_signature = '', sender_keyword = 'sender',
         connection_keyword = 'conn')
+    #The funcution is used to recovery DHC
     def enable_boot_to_restore_dhc(self, reboot, sender=None, conn=None):
         """Enables the default one-time boot option to be recovery"""
         self._reset_timeout()
-        self._check_polkit_privilege(sender, conn, 'com.dell.recoverymedia.restoredhc')
+        recovery=find_partition().decode('utf-8')
+        mntdir=self.request_mount(recovery, 'rw', sender,conn)
+        #Create dhc_flag to provide judgment for recovery DHC to delete copied dhc file, and dhc_flag will be deleted after recovery DHC.  
+        os.makedirs(os.path.join(mntdir, "dhc_flag"))
+        #Delete seedfile for copy DHC seed file
+        if os.path.exists(os.path.join(mntdir, "preseed", "dell-recovery.seed")):
+            os.remove(os.path.join(mntdir,"preseed", "dell-recovery.seed"))
+        if not os.path.exists(os.path.join(mntdir, "scripts")):
+            os.makedir(os.path.join(mntdir, "scripts"))
+        #copy DHC file to corresponding dir for recovery DHC
+        dirs=["casper", "preseed", "scripts"]
+        for dir_tmp in dirs:
+            mnt_dir=os.path.join(mntdir, "DHC", dir_tmp)
+            assembly_dir=os.path.join(mntdir, dir_tmp)
+            white_tree("copy",re.compile(''), mnt_dir, assembly_dir)
         logging.debug("enable_boot_to_restore_dhc:reboot=%s" % reboot)
-        self._copy_rp()
-        self._prepare_dhc_reboot("99_dell_recovery", reboot)
-   #if machine is 7070 ,copy DHC file for silent install 
-    def _copy_rp(self):
-        if os.path.exists("/dev/nvme0n1p2"):
-            os.system("mount /dev/nvme0n1p2 /mnt")
-            os.system("touch /mnt/dhc_flag")
-            os.system('cp /mnt/DHC/dhc_preseed/* /mnt/preseed')
-            os.system('cp /mnt/DHC/dhc_casper/*  /mnt/casper')
-            temp='/mnt/scripts'
-            if os.path.exists(temp):
-                os.system('cp -r /mnt/DHC/dhc_scripts/*  /mnt/scripts')
-            else:
-                os.system("mkdir /mnt/scripts")
-                os.system('cp -r /mnt/DHC/dhc_scripts/*  /mnt/scripts')
-        elif os.path.exists("/dev/nvme1n1p2"):
-            os.system("mount /dev/nvme1n1p2 /mnt")
-            os.system("touch /mnt/dhc_flag")
-            os.system('cp /mnt/DHC/dhc_preseed/* /mnt/preseed')
-            os.system('cp /mnt/DHC/dhc_casper/*  /mnt/casper')
-            temp='/mnt/scripts'
-            if os.path.exists(temp):
-                os.system('cp -r /mnt/DHC/dhc_scripts/*  /mnt/scripts')
-            else:
-                os.system("mkdir /mnt/scripts")
-                os.system('cp -r /mnt/DHC/dhc_scripts/*  /mnt/scripts')
-        else:
-            os.system("mount /dev/sda2 /mnt")
-            os.system("touch /mnt/dhc_flag")
-            os.system('cp /mnt/DHC/dhc_preseed/* /mnt/preseed')
-            os.system('cp /mnt/DHC/dhc_casper/*  /mnt/casper')
-            temp='/mnt/scripts'
-            if os.path.exists(temp):
-                os.system('cp -r /mnt/DHC/dhc_scripts/*  /mnt/scripts')
-            else:
-                os.system("mkdir /mnt/scripts")
-                os.system('cp -r /mnt/DHC/dhc_scripts/*  /mnt/scripts')
-        os.system("umount -l /mnt")
-    def _prepare_dhc_reboot(self, dest, reboot):
-        """Helper function to reboot into an entry"""
-        #find our one time boot entry
-        if not os.path.exists("/etc/grub.d/%s" % dest):
-            raise RestoreFailed("missing %s to parse" % dest)
-
-        with open('/etc/grub.d/%s' % dest) as rfd:
-            grub_file = rfd.readlines()
-
-        entry = False
-        for line in grub_file:
-            if "menuentry" in line:
-                split = line.split('"')
-                if len(split) > 1:
-                    entry = split[1]
-                    break
-
-        if not entry:
-            raise RestoreFailed("Error parsing %s for bootentry." % dest)
-
-        #set us up to boot saved entries
-        with open('/etc/default/grub', 'r') as rfd:
-            default_grub = rfd.readlines()
-        with open('/etc/default/grub', 'w') as wfd:
-            for line in default_grub:
-                if line.startswith("GRUB_DEFAULT="):
-                    line = "GRUB_DEFAULT=saved\n"
-                wfd.write(line)
-
-        env = os.environ
-        #Make sure the language is set properly
-        with open('/etc/default/locale','r') as rfd:
-            for line in rfd.readlines():
-                if line.startswith('LANG=') and len(line.split('=')) > 1:
-                    lang = line.split('=')[1].strip('\n').strip('"')
-                    env['LANG'] = lang
-
-        #Make sure the path is set properly
-        if 'PATH' not in env and os.path.exists('/etc/environment'):
-            with open('/etc/environment', 'r') as rfd:
-                for line in rfd.readlines():
-                    if line.startswith('PATH=') and len(line.split('=')) > 1:
-                        path = line.split('=')[1].strip('\n').strip('"')
-                        env['PATH'] = path
-
-        ret = subprocess.call(['/usr/sbin/update-grub'], env=env)
-        if ret is not 0:
-            raise RestoreFailed("error updating grub configuration")
-
-        ret = subprocess.call(['/usr/sbin/grub-reboot', entry])
-        if ret is not 0:
-            raise RestoreFailed("error setting one time grub entry")
-
-        if reboot:
-            logging.debug("Prepare to reboot")
-            ret = subprocess.call(["/sbin/reboot", "--force"])
-            if ret is not 0:
-                raise RestoreFailed("error invoking reboot")
+        self._prepare_reboot("99_dell_recovery", reboot)
 
     @dbus.service.method(DBUS_INTERFACE_NAME,
         in_signature = 'b', out_signature = '', sender_keyword = 'sender',

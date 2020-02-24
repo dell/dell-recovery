@@ -153,42 +153,45 @@ def check_family(test):
             return True
     return False
 
-def check_5070_id():
-    """Checks if a system definitely matches wyse 5070"""
-    call = subprocess.Popen(['dmidecode', '--type', '11'],
-                              stdout=subprocess.PIPE,
-                              stderr=subprocess.PIPE)
-    output = call.communicate()[0].decode()
-    if call.returncode != 0:
-        print("Unable to run dmidecode:", call.returncode)
+def check_install_dhc_id():
+    """The function is used to detect machine's ID for install DHC flow"""
+    path = '/sys/class/dmi/id/product_sku'
+    if not os.path.exists(path):
         return False
-    header = "String 2: "
-    for line in output.split('\n'):
-        if header in line:
-            result = line.split(header)
-            if (len(result) > 1):
-                result = line.split(header)[1].strip().lower()
-                print(result)
-                if "080c" in result:
+    with open(path, 'rb') as rfd:
+        #value = rfd.read().strip().lower()
+        value = rfd.read().strip().lower()
+        if not value:
+            return False
+    for top in [ISO_MOUNT, CDROM_MOUNT]:
+        if os.path.isdir(top):
+            plat_conf=os.path.join(top, "DHC", "platform_list", "install-id.conf")
+            if not os.path.exists(plat_conf):
+                return False
+            lines=[line.rstrip('\n') for line in open(plat_conf)]
+            for i in range(len(lines)):
+                if lines[i] in str(value):
                     return True
-                else:
-                    break
     return False
-
-def check_7070():
-    """Checks if a system definitely matches mongoose 7070"""
+    
+def check_recovery_dhc_id():
+    """The function is used to detect machine's ID for recovery DHC flow,"""
     path = '/sys/class/dmi/id/modalias'
-    test='OptiPlex7070Ultra1'
     if not os.path.exists(path):
         return False
     with open(path, 'rb') as rfd:
         value = rfd.read().strip()
         if not value:
             return False
-        if test in str(value):
-            return True
-        else:
+        top="/usr/share/dell/DHC"
+        plat_conf=os.path.join(top, "recovery-id.conf")
+        if not os.path.exists(plat_conf):
             return False
+        lines=[line.rstrip('\n') for line in open(plat_conf)]
+        for i in range(len(lines)):
+            if lines[i] in str(value):
+                return True
+    return False
 
 def check_vendor():
     """Checks to make sure that the app is running on Dell HW"""
@@ -513,7 +516,7 @@ def walk_cleanup(directory):
                     os.remove(full_name)
                 elif os.path.isdir(full_name):
                     os.rmdir(full_name)
-                #covers broken linkwith open(target, 'rb') as rfd:s
+                #covers broken links
                 else:
                     os.remove(full_name)
         os.rmdir(directory)
@@ -679,25 +682,6 @@ def mark_unconditional_debs(add_directory=''):
         else:
             modaliases = ''
         return (sections["Architecture"], sections["Package"], modaliases)
-    
-    
-#    to_install = []
-#    my_arch = fetch_output(['dpkg', '--print-architecture']).strip()
-    #copy dhc_test to debs/main
-#    for top_tmp in [ISO_MOUNT, CDROM_MOUNT, add_directory]: 
-#        dhc_repo = os.path.join(top_tmp, 'dhc_test')
-#        nor_repo = os.path.join(top_tmp, 'debs', 'main')
-#        nor_repo1 = os.path.join(top_tmp, 'debs')
- #       nor1_repo = os.path.join(top_tmp, 'debs')
-#        if os.path.isdir(dhc_repo) and os.path.isdir(nor_repo1):
-#            for dhc_fname in os.listdir(dhc_repo):
-               # if '.deb' in dhc_fname:
-               #     arch, package, modaliases = parse(os.path.join(nor_repo,dhc_fname))
-               #     if not modaliases and (arch == "all" or arch == my_arch):
- #               shutil.copyfile('%s/%s' % (dhc_repo,dhc_fname),'%s/%s' % (nor_repo1,dhc_fname))
-               #     else:
-               #         shutil.copyfile('%s/%s' % (dhc_repo,dhc_fname),'%s/%s' % (nor1_repo,dhc_fname))
-    #process debs/main
     to_install = []
     my_arch = fetch_output(['dpkg', '--print-architecture']).strip()
     for top in [ISO_MOUNT, CDROM_MOUNT, add_directory]:
@@ -708,13 +692,6 @@ def mark_unconditional_debs(add_directory=''):
                     arch, package, modaliases = parse(os.path.join(repo, fname))
                     if not modaliases and (arch == "all" or arch == my_arch):
                         to_install.append(package)
-#        if os.path.isdir(dhc_repo):
-#            for fname in os.listdir(dhc_repo):
-#                if '.deb' in fname:
-#                    arch, package, modaliases = parse(os.path.join(dhc_repo, fname))
-#                    if not modaliases and (arch == "all" or arch == my_arch):
-#                        to_install.append(package)
-
     return to_install
 
 def create_grub_entries(target_dir='/target', rec_type='hdd'):

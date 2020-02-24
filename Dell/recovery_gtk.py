@@ -32,7 +32,7 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk,GLib
 from Dell.recovery_common import (DOMAIN, LOCALEDIR, UIDIR, SVGDIR, DBUS_INTERFACE_NAME,
                                   DBUS_BUS_NAME, dbus_sync_call_signal_wrapper,
-                                  PermissionDeniedByPolicy, check_version,check_7070)
+                                  PermissionDeniedByPolicy, check_version, check_recovery_dhc_id)
 
 #Translation support
 from gettext import gettext as _
@@ -69,7 +69,7 @@ class DellRecoveryToolGTK:
                 action_objects(self.tool_widgets, 'restore_system', 'hide')
                 action_objects(self.tool_widgets, 'restore_system_dhc', 'hide')
             else:
-                if not check_7070():
+                if not check_recovery_dhc_id():
                     action_objects(self.tool_widgets, 'restore_system_dhc', 'hide')
 
 

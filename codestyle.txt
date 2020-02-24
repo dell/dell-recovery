@@ -1,0 +1,1177 @@
+./setup.py:24:49: W291 trailing whitespace
+./setup.py:25:36: E128 continuation line under-indented for visual indent
+./setup.py:25:47: W291 trailing whitespace
+./setup.py:26:36: E128 continuation line under-indented for visual indent
+./setup.py:27:36: E128 continuation line under-indented for visual indent
+./setup.py:28:36: E128 continuation line under-indented for visual indent
+./setup.py:30:12: E401 multiple imports on one line
+./setup.py:32:1: E302 expected 2 blank lines, found 1
+./setup.py:40:1: E302 expected 2 blank lines, found 1
+./setup.py:45:1: E305 expected 2 blank lines after class or function definition, found 1
+./setup.py:48:61: E231 missing whitespace after ','
+./setup.py:70:80: E501 line too long (90 > 79 characters)
+./setup.py:75:80: E501 line too long (90 > 79 characters)
+./setup.py:76:80: E501 line too long (81 > 79 characters)
+./setup.py:81:52: E231 missing whitespace after ','
+./setup.py:83:13: E251 unexpected spaces around keyword / parameter equals
+./setup.py:83:15: E251 unexpected spaces around keyword / parameter equals
+./setup.py:83:17: E201 whitespace after '{'
+./setup.py:85:30: E203 whitespace before ':'
+./setup.py:88:16: E124 closing bracket does not match visual indentation
+./setup.py:90:1: W391 blank line at end of file
+./tests/match-system-devices.py:13:62: E221 multiple spaces before operator
+./tests/match-system-devices.py:13:73: E231 missing whitespace after ','
+./tests/match-system-devices.py:13:80: E501 line too long (139 > 79 characters)
+./tests/match-system-devices.py:13:81: E231 missing whitespace after ','
+./tests/match-system-devices.py:13:107: E231 missing whitespace after ','
+./tests/match-system-devices.py:15:46: E251 unexpected spaces around keyword / parameter equals
+./tests/match-system-devices.py:15:48: E251 unexpected spaces around keyword / parameter equals
+./tests/match-system-devices.py:22:62: E221 multiple spaces before operator
+./tests/match-system-devices.py:22:73: E231 missing whitespace after ','
+./tests/match-system-devices.py:22:80: E501 line too long (139 > 79 characters)
+./tests/match-system-devices.py:22:81: E231 missing whitespace after ','
+./tests/match-system-devices.py:22:107: E231 missing whitespace after ','
+./tests/test_btoxml.py:27:1: E302 expected 2 blank lines, found 1
+./tests/test_btoxml.py:38:1: E302 expected 2 blank lines, found 1
+./tests/test_btoxml.py:72:1: E302 expected 2 blank lines, found 1
+./tests/test_btoxml.py:99:1: E302 expected 2 blank lines, found 1
+./tests/test_btoxml.py:105:17: E131 continuation line unaligned for hanging indent
+./tests/test_btoxml.py:114:1: E302 expected 2 blank lines, found 1
+./tests/test_btoxml.py:120:1: E305 expected 2 blank lines after class or function definition, found 1
+./ubiquity/dell-bootstrap.py:22:80: E501 line too long (80 > 79 characters)
+./ubiquity/dell-bootstrap.py:24:80: E501 line too long (80 > 79 characters)
+./ubiquity/dell-bootstrap.py:34:1: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:41:1: E402 module level import not at top of file
+./ubiquity/dell-bootstrap.py:42:1: E402 module level import not at top of file
+./ubiquity/dell-bootstrap.py:43:1: E402 module level import not at top of file
+./ubiquity/dell-bootstrap.py:44:1: E402 module level import not at top of file
+./ubiquity/dell-bootstrap.py:46:1: E402 module level import not at top of file
+./ubiquity/dell-bootstrap.py:53:1: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:54:18: E221 multiple spaces before operator
+./ubiquity/dell-bootstrap.py:54:26: E222 multiple spaces after operator
+./ubiquity/dell-bootstrap.py:55:17: E221 multiple spaces before operator
+./ubiquity/dell-bootstrap.py:55:26: E222 multiple spaces after operator
+./ubiquity/dell-bootstrap.py:56:17: E221 multiple spaces before operator
+./ubiquity/dell-bootstrap.py:56:26: E222 multiple spaces after operator
+./ubiquity/dell-bootstrap.py:57:19: E221 multiple spaces before operator
+./ubiquity/dell-bootstrap.py:57:26: E222 multiple spaces after operator
+./ubiquity/dell-bootstrap.py:59:1: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:60:25: E222 multiple spaces after operator
+./ubiquity/dell-bootstrap.py:67:1: E302 expected 2 blank lines, found 1
+./ubiquity/dell-bootstrap.py:75:80: E501 line too long (80 > 79 characters)
+./ubiquity/dell-bootstrap.py:83:38: E251 unexpected spaces around keyword / parameter equals
+./ubiquity/dell-bootstrap.py:83:40: E251 unexpected spaces around keyword / parameter equals
+./ubiquity/dell-bootstrap.py:106:1: W293 blank line contains whitespace
+./ubiquity/dell-bootstrap.py:113:5: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:114:5: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:131:80: E501 line too long (81 > 79 characters)
+./ubiquity/dell-bootstrap.py:137:80: E501 line too long (86 > 79 characters)
+./ubiquity/dell-bootstrap.py:139:80: E501 line too long (82 > 79 characters)
+./ubiquity/dell-bootstrap.py:140:80: E501 line too long (90 > 79 characters)
+./ubiquity/dell-bootstrap.py:144:80: E501 line too long (86 > 79 characters)
+./ubiquity/dell-bootstrap.py:145:80: E501 line too long (94 > 79 characters)
+./ubiquity/dell-bootstrap.py:146:80: E501 line too long (87 > 79 characters)
+./ubiquity/dell-bootstrap.py:155:13: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:164:13: E303 too many blank lines (2)
+./ubiquity/dell-bootstrap.py:173:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:182:13: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:182:80: E501 line too long (103 > 79 characters)
+./ubiquity/dell-bootstrap.py:199:29: E127 continuation line over-indented for visual indent
+./ubiquity/dell-bootstrap.py:199:80: E501 line too long (80 > 79 characters)
+./ubiquity/dell-bootstrap.py:224:80: E501 line too long (97 > 79 characters)
+./ubiquity/dell-bootstrap.py:258:1: W293 blank line contains whitespace
+./ubiquity/dell-bootstrap.py:262:80: E501 line too long (83 > 79 characters)
+./ubiquity/dell-bootstrap.py:263:80: E501 line too long (91 > 79 characters)
+./ubiquity/dell-bootstrap.py:264:5: E301 expected 1 blank line, found 0
+./ubiquity/dell-bootstrap.py:264:38: E251 unexpected spaces around keyword / parameter equals
+./ubiquity/dell-bootstrap.py:264:40: E251 unexpected spaces around keyword / parameter equals
+./ubiquity/dell-bootstrap.py:268:80: E501 line too long (80 > 79 characters)
+./ubiquity/dell-bootstrap.py:293:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:298:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:300:1: W293 blank line contains whitespace
+./ubiquity/dell-bootstrap.py:305:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:310:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:313:5: E266 too many leading '#' for block comment
+./ubiquity/dell-bootstrap.py:314:5: E266 too many leading '#' for block comment
+./ubiquity/dell-bootstrap.py:315:5: E266 too many leading '#' for block comment
+./ubiquity/dell-bootstrap.py:316:43: E251 unexpected spaces around keyword / parameter equals
+./ubiquity/dell-bootstrap.py:316:45: E251 unexpected spaces around keyword / parameter equals
+./ubiquity/dell-bootstrap.py:324:5: E303 too many blank lines (2)
+./ubiquity/dell-bootstrap.py:324:40: E251 unexpected spaces around keyword / parameter equals
+./ubiquity/dell-bootstrap.py:324:42: E251 unexpected spaces around keyword / parameter equals
+./ubiquity/dell-bootstrap.py:328:45: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:334:69: E203 whitespace before ','
+./ubiquity/dell-bootstrap.py:334:70: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:334:80: E501 line too long (80 > 79 characters)
+./ubiquity/dell-bootstrap.py:360:1: E303 too many blank lines (3)
+./ubiquity/dell-bootstrap.py:363:1: E302 expected 2 blank lines, found 3
+./ubiquity/dell-bootstrap.py:373:22: E225 missing whitespace around operator
+./ubiquity/dell-bootstrap.py:393:13: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:402:80: E501 line too long (89 > 79 characters)
+./ubiquity/dell-bootstrap.py:416:80: E501 line too long (124 > 79 characters)
+./ubiquity/dell-bootstrap.py:427:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:428:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:441:74: E502 the backslash is redundant between brackets
+./ubiquity/dell-bootstrap.py:442:41: E127 continuation line over-indented for visual indent
+./ubiquity/dell-bootstrap.py:446:38: E127 continuation line over-indented for visual indent
+./ubiquity/dell-bootstrap.py:452:8: E114 indentation is not a multiple of four (comment)
+./ubiquity/dell-bootstrap.py:452:8: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:453:8: E114 indentation is not a multiple of four (comment)
+./ubiquity/dell-bootstrap.py:453:8: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:457:8: E114 indentation is not a multiple of four (comment)
+./ubiquity/dell-bootstrap.py:460:12: E114 indentation is not a multiple of four (comment)
+./ubiquity/dell-bootstrap.py:460:12: E115 expected an indented block (comment)
+./ubiquity/dell-bootstrap.py:460:12: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:462:24: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:468:8: E114 indentation is not a multiple of four (comment)
+./ubiquity/dell-bootstrap.py:468:8: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:469:31: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:471:80: E501 line too long (85 > 79 characters)
+./ubiquity/dell-bootstrap.py:473:80: E501 line too long (119 > 79 characters)
+./ubiquity/dell-bootstrap.py:474:80: E501 line too long (87 > 79 characters)
+./ubiquity/dell-bootstrap.py:476:80: E501 line too long (126 > 79 characters)
+./ubiquity/dell-bootstrap.py:478:32: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:479:8: E114 indentation is not a multiple of four (comment)
+./ubiquity/dell-bootstrap.py:479:8: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:480:8: E114 indentation is not a multiple of four (comment)
+./ubiquity/dell-bootstrap.py:480:8: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:485:53: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:485:80: E501 line too long (94 > 79 characters)
+./ubiquity/dell-bootstrap.py:488:53: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:488:80: E501 line too long (94 > 79 characters)
+./ubiquity/dell-bootstrap.py:490:79: E228 missing whitespace around modulo operator
+./ubiquity/dell-bootstrap.py:490:80: E501 line too long (88 > 79 characters)
+./ubiquity/dell-bootstrap.py:494:54: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:494:59: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:494:71: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:494:80: E501 line too long (92 > 79 characters)
+./ubiquity/dell-bootstrap.py:499:23: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:511:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:513:80: E501 line too long (88 > 79 characters)
+./ubiquity/dell-bootstrap.py:517:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:526:21: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:533:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:535:80: E501 line too long (84 > 79 characters)
+./ubiquity/dell-bootstrap.py:548:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:572:17: E201 whitespace after '['
+./ubiquity/dell-bootstrap.py:596:80: E501 line too long (84 > 79 characters)
+./ubiquity/dell-bootstrap.py:615:80: E501 line too long (94 > 79 characters)
+./ubiquity/dell-bootstrap.py:623:80: E501 line too long (94 > 79 characters)
+./ubiquity/dell-bootstrap.py:630:80: E501 line too long (115 > 79 characters)
+./ubiquity/dell-bootstrap.py:631:80: E501 line too long (82 > 79 characters)
+./ubiquity/dell-bootstrap.py:634:80: E501 line too long (83 > 79 characters)
+./ubiquity/dell-bootstrap.py:642:80: E501 line too long (92 > 79 characters)
+./ubiquity/dell-bootstrap.py:648:80: E501 line too long (80 > 79 characters)
+./ubiquity/dell-bootstrap.py:649:80: E501 line too long (92 > 79 characters)
+./ubiquity/dell-bootstrap.py:672:80: E501 line too long (93 > 79 characters)
+./ubiquity/dell-bootstrap.py:677:80: E501 line too long (127 > 79 characters)
+./ubiquity/dell-bootstrap.py:680:80: E501 line too long (88 > 79 characters)
+./ubiquity/dell-bootstrap.py:701:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:707:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:711:80: E501 line too long (90 > 79 characters)
+./ubiquity/dell-bootstrap.py:712:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:713:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:714:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:714:80: E501 line too long (80 > 79 characters)
+./ubiquity/dell-bootstrap.py:727:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:732:80: E501 line too long (103 > 79 characters)
+./ubiquity/dell-bootstrap.py:738:80: E501 line too long (111 > 79 characters)
+./ubiquity/dell-bootstrap.py:742:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:747:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:751:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:761:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:772:80: E501 line too long (101 > 79 characters)
+./ubiquity/dell-bootstrap.py:776:80: E501 line too long (101 > 79 characters)
+./ubiquity/dell-bootstrap.py:780:80: E501 line too long (103 > 79 characters)
+./ubiquity/dell-bootstrap.py:787:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:794:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:795:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:799:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:802:80: E501 line too long (84 > 79 characters)
+./ubiquity/dell-bootstrap.py:809:63: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:811:61: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:815:38: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:820:43: E261 at least two spaces before inline comment
+./ubiquity/dell-bootstrap.py:820:44: E262 inline comment should start with '# '
+./ubiquity/dell-bootstrap.py:822:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:832:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:845:22: E211 whitespace before '('
+./ubiquity/dell-bootstrap.py:846:24: E225 missing whitespace around operator
+./ubiquity/dell-bootstrap.py:852:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:855:80: E501 line too long (94 > 79 characters)
+./ubiquity/dell-bootstrap.py:856:80: E501 line too long (80 > 79 characters)
+./ubiquity/dell-bootstrap.py:862:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:863:80: E501 line too long (92 > 79 characters)
+./ubiquity/dell-bootstrap.py:864:80: E501 line too long (92 > 79 characters)
+./ubiquity/dell-bootstrap.py:864:91: E203 whitespace before ':'
+./ubiquity/dell-bootstrap.py:867:80: E501 line too long (81 > 79 characters)
+./ubiquity/dell-bootstrap.py:871:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:886:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:898:1: W293 blank line contains whitespace
+./ubiquity/dell-bootstrap.py:900:5: E303 too many blank lines (2)
+./ubiquity/dell-bootstrap.py:916:39: E272 multiple spaces before keyword
+./ubiquity/dell-bootstrap.py:924:17: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:927:48: E127 continuation line over-indented for visual indent
+./ubiquity/dell-bootstrap.py:930:17: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:938:41: E225 missing whitespace around operator
+./ubiquity/dell-bootstrap.py:954:80: E501 line too long (98 > 79 characters)
+./ubiquity/dell-bootstrap.py:963:13: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:964:13: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:965:80: E501 line too long (93 > 79 characters)
+./ubiquity/dell-bootstrap.py:966:80: E501 line too long (82 > 79 characters)
+./ubiquity/dell-bootstrap.py:970:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:976:80: E501 line too long (81 > 79 characters)
+./ubiquity/dell-bootstrap.py:992:1: E302 expected 2 blank lines, found 1
+./ubiquity/dell-bootstrap.py:994:80: E501 line too long (88 > 79 characters)
+./ubiquity/dell-bootstrap.py:1003:22: E225 missing whitespace around operator
+./ubiquity/dell-bootstrap.py:1008:80: E501 line too long (86 > 79 characters)
+./ubiquity/dell-bootstrap.py:1009:80: E501 line too long (85 > 79 characters)
+./ubiquity/dell-bootstrap.py:1014:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1021:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1023:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1032:80: E501 line too long (80 > 79 characters)
+./ubiquity/dell-bootstrap.py:1038:80: E501 line too long (90 > 79 characters)
+./ubiquity/dell-bootstrap.py:1042:80: E501 line too long (118 > 79 characters)
+./ubiquity/dell-bootstrap.py:1043:80: E501 line too long (89 > 79 characters)
+./ubiquity/dell-bootstrap.py:1046:80: E501 line too long (82 > 79 characters)
+./ubiquity/dell-bootstrap.py:1054:13: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1063:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1064:80: E501 line too long (137 > 79 characters)
+./ubiquity/dell-bootstrap.py:1067:80: E501 line too long (111 > 79 characters)
+./ubiquity/dell-bootstrap.py:1069:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1076:80: E501 line too long (98 > 79 characters)
+./ubiquity/dell-bootstrap.py:1078:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1083:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1089:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1092:80: E501 line too long (89 > 79 characters)
+./ubiquity/dell-bootstrap.py:1096:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1098:80: E501 line too long (104 > 79 characters)
+./ubiquity/dell-bootstrap.py:1103:1: W293 blank line contains whitespace
+./ubiquity/dell-bootstrap.py:1104:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1106:29: E225 missing whitespace around operator
+./ubiquity/dell-bootstrap.py:1107:54: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1107:64: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1107:80: E501 line too long (87 > 79 characters)
+./ubiquity/dell-bootstrap.py:1108:50: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1108:60: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1108:80: E501 line too long (82 > 79 characters)
+./ubiquity/dell-bootstrap.py:1109:58: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1110:52: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1111:21: E225 missing whitespace around operator
+./ubiquity/dell-bootstrap.py:1111:31: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1111:41: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1113:28: E225 missing whitespace around operator
+./ubiquity/dell-bootstrap.py:1113:48: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1113:54: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1114:33: E225 missing whitespace around operator
+./ubiquity/dell-bootstrap.py:1114:53: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1115:44: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1115:59: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1115:67: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1115:80: E501 line too long (80 > 79 characters)
+./ubiquity/dell-bootstrap.py:1117:24: E225 missing whitespace around operator
+./ubiquity/dell-bootstrap.py:1117:44: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1117:50: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1118:29: E225 missing whitespace around operator
+./ubiquity/dell-bootstrap.py:1118:49: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1119:40: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1119:55: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1119:63: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1120:1: W293 blank line contains whitespace
+./ubiquity/dell-bootstrap.py:1121:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1125:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1131:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1137:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1139:17: E124 closing bracket does not match visual indentation
+./ubiquity/dell-bootstrap.py:1147:73: E502 the backslash is redundant between brackets
+./ubiquity/dell-bootstrap.py:1150:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1152:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1156:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1161:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1166:13: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1172:13: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1173:80: E501 line too long (81 > 79 characters)
+./ubiquity/dell-bootstrap.py:1175:13: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1181:80: E501 line too long (88 > 79 characters)
+./ubiquity/dell-bootstrap.py:1183:80: E501 line too long (89 > 79 characters)
+./ubiquity/dell-bootstrap.py:1190:80: E501 line too long (153 > 79 characters)
+./ubiquity/dell-bootstrap.py:1192:80: E501 line too long (90 > 79 characters)
+./ubiquity/dell-bootstrap.py:1194:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1197:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1198:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1198:80: E501 line too long (82 > 79 characters)
+./ubiquity/dell-bootstrap.py:1203:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1206:80: E501 line too long (82 > 79 characters)
+./ubiquity/dell-bootstrap.py:1210:80: E501 line too long (103 > 79 characters)
+./ubiquity/dell-bootstrap.py:1211:80: E501 line too long (104 > 79 characters)
+./ubiquity/dell-bootstrap.py:1213:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1223:58: E203 whitespace before ','
+./ubiquity/dell-bootstrap.py:1233:80: E501 line too long (83 > 79 characters)
+./ubiquity/dell-bootstrap.py:1243:31: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1243:33: E231 missing whitespace after ','
+./ubiquity/dell-bootstrap.py:1248:5: E303 too many blank lines (2)
+./ubiquity/dell-bootstrap.py:1267:1: E302 expected 2 blank lines, found 1
+./ubiquity/dell-bootstrap.py:1277:20: E713 test for membership should be 'not in'
+./ubiquity/dell-bootstrap.py:1282:1: E302 expected 2 blank lines, found 1
+./ubiquity/dell-bootstrap.py:1289:1: E302 expected 2 blank lines, found 1
+./ubiquity/dell-bootstrap.py:1289:47: E251 unexpected spaces around keyword / parameter equals
+./ubiquity/dell-bootstrap.py:1289:49: E251 unexpected spaces around keyword / parameter equals
+./ubiquity/dell-bootstrap.py:1299:1: E302 expected 2 blank lines, found 1
+./ubiquity/dell-bootstrap.py:1299:48: E251 unexpected spaces around keyword / parameter equals
+./ubiquity/dell-bootstrap.py:1299:50: E251 unexpected spaces around keyword / parameter equals
+./ubiquity/dell-bootstrap.py:1309:1: E302 expected 2 blank lines, found 1
+./ubiquity/dell-bootstrap.py:1334:80: E501 line too long (124 > 79 characters)
+./ubiquity/dell-bootstrap.py:1347:80: E501 line too long (81 > 79 characters)
+./ubiquity/dell-bootstrap.py:1352:17: E221 multiple spaces before operator
+./ubiquity/dell-bootstrap.py:1356:18: E221 multiple spaces before operator
+./ubiquity/dell-bootstrap.py:1358:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1361:80: E501 line too long (121 > 79 characters)
+./ubiquity/dell-bootstrap.py:1363:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1365:80: E501 line too long (89 > 79 characters)
+./ubiquity/dell-bootstrap.py:1366:1: W293 blank line contains whitespace
+./ubiquity/dell-bootstrap.py:1368:80: E501 line too long (91 > 79 characters)
+./ubiquity/dell-bootstrap.py:1369:80: E501 line too long (89 > 79 characters)
+./ubiquity/dell-bootstrap.py:1371:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1374:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1376:13: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1379:80: E501 line too long (128 > 79 characters)
+./ubiquity/dell-bootstrap.py:1379:127: E202 whitespace before ')'
+./ubiquity/dell-bootstrap.py:1380:44: W291 trailing whitespace
+./ubiquity/dell-bootstrap.py:1383:1: W293 blank line contains whitespace
+./ubiquity/dell-bootstrap.py:1387:13: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1389:13: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1390:80: E501 line too long (81 > 79 characters)
+./ubiquity/dell-bootstrap.py:1392:80: E501 line too long (81 > 79 characters)
+./ubiquity/dell-bootstrap.py:1402:13: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1402:80: E501 line too long (95 > 79 characters)
+./ubiquity/dell-bootstrap.py:1404:13: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1404:80: E501 line too long (101 > 79 characters)
+./ubiquity/dell-bootstrap.py:1405:13: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1405:80: E501 line too long (87 > 79 characters)
+./ubiquity/dell-bootstrap.py:1406:80: E501 line too long (127 > 79 characters)
+./ubiquity/dell-bootstrap.py:1408:13: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1411:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1430:9: E265 block comment should start with '# '
+./ubiquity/dell-bootstrap.py:1432:80: E501 line too long (101 > 79 characters)
+./ubiquity/dell-recovery.py:22:80: E501 line too long (80 > 79 characters)
+./ubiquity/dell-recovery.py:24:80: E501 line too long (82 > 79 characters)
+./ubiquity/dell-recovery.py:43:1: E265 block comment should start with '# '
+./ubiquity/dell-recovery.py:44:1: E302 expected 2 blank lines, found 1
+./ubiquity/dell-recovery.py:50:14: E221 multiple spaces before operator
+./ubiquity/dell-recovery.py:60:80: E501 line too long (85 > 79 characters)
+./ubiquity/dell-recovery.py:86:17: E128 continuation line under-indented for visual indent
+./ubiquity/dell-recovery.py:122:1: E302 expected 2 blank lines, found 1
+./ubiquity/dell-recovery.py:135:80: E501 line too long (107 > 79 characters)
+./ubiquity/dell-recovery.py:138:1: E302 expected 2 blank lines, found 1
+./ubiquity/dell-recovery.py:151:77: E502 the backslash is redundant between brackets
+./ubiquity/dell-recovery.py:152:67: E127 continuation line over-indented for visual indent
+./ubiquity/dell-recovery.py:152:80: E501 line too long (80 > 79 characters)
+./ubiquity/dell-recovery.py:160:77: E502 the backslash is redundant between brackets
+./ubiquity/dell-recovery.py:161:64: E127 continuation line over-indented for visual indent
+./ubiquity/dell-recovery.py:161:80: E501 line too long (80 > 79 characters)
+./ubiquity/dell-recovery.py:165:80: E501 line too long (82 > 79 characters)
+./ubiquity/dell-recovery.py:172:48: E231 missing whitespace after ','
+./ubiquity/dell-recovery.py:172:56: E231 missing whitespace after ','
+./ubiquity/dell-recovery.py:178:12: E713 test for membership should be 'not in'
+./ubiquity/dell-recovery.py:181:9: E265 block comment should start with '# '
+./ubiquity/dell-recovery.py:198:18: E221 multiple spaces before operator
+./ubiquity/dell-recovery.py:201:13: E265 block comment should start with '# '
+./ubiquity/dell-recovery.py:203:80: E501 line too long (104 > 79 characters)
+./ubiquity/dell-recovery.py:212:80: E501 line too long (97 > 79 characters)
+./ubiquity/dell-recovery.py:217:13: E265 block comment should start with '# '
+./ubiquity/dell-recovery.py:220:80: E501 line too long (80 > 79 characters)
+./ubiquity/dell-recovery.py:222:13: E265 block comment should start with '# '
+./ubiquity/dell-recovery.py:226:71: E231 missing whitespace after ':'
+./ubiquity/dell-recovery.py:226:80: E501 line too long (98 > 79 characters)
+./ubiquity/dell-recovery.py:234:80: E501 line too long (91 > 79 characters)
+./ubiquity/dell-recovery.py:237:13: E265 block comment should start with '# '
+./ubiquity/dell-recovery.py:241:80: E501 line too long (81 > 79 characters)
+./ubiquity/dell-recovery.py:245:80: E501 line too long (80 > 79 characters)
+./ubiquity/dell-recovery.py:245:80: E502 the backslash is redundant between brackets
+./ubiquity/dell-recovery.py:246:70: E127 continuation line over-indented for visual indent
+./ubiquity/dell-recovery.py:246:80: E501 line too long (80 > 79 characters)
+./ubiquity/dell-recovery.py:259:13: E265 block comment should start with '# '
+./ubiquity/dell-recovery.py:266:80: E501 line too long (102 > 79 characters)
+./ubiquity/dell-recovery.py:270:80: E501 line too long (90 > 79 characters)
+./late/scripts/wodim-iso.py:19:12: E401 multiple imports on one line
+./late/scripts/wodim-iso.py:27:1: E402 module level import not at top of file
+./late/scripts/wodim-iso.py:32:1: E302 expected 2 blank lines, found 1
+./late/scripts/wodim-iso.py:39:80: E501 line too long (91 > 79 characters)
+./late/scripts/wodim-iso.py:70:80: E501 line too long (89 > 79 characters)
+./late/scripts/wodim-iso.py:71:80: E501 line too long (91 > 79 characters)
+./late/scripts/wodim-iso.py:83:80: E501 line too long (89 > 79 characters)
+./late/scripts/wodim-iso.py:84:80: E501 line too long (91 > 79 characters)
+./late/scripts/wodim-iso.py:92:80: E501 line too long (91 > 79 characters)
+./late/scripts/wodim-iso.py:103:80: E501 line too long (125 > 79 characters)
+./late/scripts/wodim-iso.py:110:80: E501 line too long (125 > 79 characters)
+./late/scripts/wodim-iso.py:117:80: E501 line too long (125 > 79 characters)
+./late/scripts/wodim-iso.py:122:80: E501 line too long (112 > 79 characters)
+./late/scripts/wodim-iso.py:126:80: E501 line too long (145 > 79 characters)
+./late/scripts/wodim-iso.py:127:80: E501 line too long (125 > 79 characters)
+./late/scripts/wodim-iso.py:128:80: E501 line too long (125 > 79 characters)
+./late/scripts/wodim-iso.py:141:80: E501 line too long (97 > 79 characters)
+./late/scripts/wodim-iso.py:151:80: E501 line too long (82 > 79 characters)
+./late/scripts/wodim-iso.py:156:80: E501 line too long (82 > 79 characters)
+./late/scripts/wodim-iso.py:158:1: E302 expected 2 blank lines, found 1
+./late/scripts/wodim-iso.py:195:1: E305 expected 2 blank lines after class or function definition, found 1
+./late/scripts/wodim-iso.py:206:1: E302 expected 2 blank lines, found 1
+./late/scripts/wodim-iso.py:217:24: E703 statement ends with a semicolon
+./late/scripts/wodim-iso.py:222:80: E501 line too long (102 > 79 characters)
+./late/scripts/wodim-iso.py:241:80: E501 line too long (105 > 79 characters)
+./late/scripts/wodim-iso.py:284:22: E713 test for membership should be 'not in'
+./late/scripts/wodim-iso.py:308:1: E305 expected 2 blank lines after class or function definition, found 1
+./late/scripts/upgrade-fish-package.py:19:80: E501 line too long (83 > 79 characters)
+./late/scripts/upgrade-fish-package.py:23:10: E211 whitespace before '('
+./late/scripts/upgrade-fish-package.py:23:80: E501 line too long (104 > 79 characters)
+./late/scripts/upgrade-fish-package.py:28:1: E265 block comment should start with '# '
+./late/scripts/upgrade-fish-package.py:36:1: E265 block comment should start with '# '
+./late/scripts/upgrade-fish-package.py:40:80: E501 line too long (81 > 79 characters)
+./late/scripts/upgrade-fish-package.py:44:1: E265 block comment should start with '# '
+./late/scripts/upgrade-fish-package.py:46:80: E501 line too long (86 > 79 characters)
+./late/scripts/upgrade-fish-package.py:51:6: E211 whitespace before '('
+./late/scripts/upgrade-fish-package.py:52:6: E211 whitespace before '('
+./late/scripts/upgrade-fish-package.py:55:1: W391 blank line at end of file
+./Dell/recovery_basic_gtk.py:22:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_basic_gtk.py:24:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_basic_gtk.py:32:1: E402 module level import not at top of file
+./Dell/recovery_basic_gtk.py:34:1: E402 module level import not at top of file
+./Dell/recovery_basic_gtk.py:35:1: E402 module level import not at top of file
+./Dell/recovery_basic_gtk.py:40:1: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:41:1: E402 module level import not at top of file
+./Dell/recovery_basic_gtk.py:43:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_basic_gtk.py:49:9: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:50:9: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:53:9: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:58:9: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:61:18: E128 continuation line under-indented for visual indent
+./Dell/recovery_basic_gtk.py:62:17: E124 closing bracket does not match visual indentation
+./Dell/recovery_basic_gtk.py:67:80: E501 line too long (83 > 79 characters)
+./Dell/recovery_basic_gtk.py:71:9: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:79:1: W293 blank line contains whitespace
+./Dell/recovery_basic_gtk.py:83:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_basic_gtk.py:84:80: E501 line too long (92 > 79 characters)
+./Dell/recovery_basic_gtk.py:95:9: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:105:9: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:118:9: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:123:45: E128 continuation line under-indented for visual indent
+./Dell/recovery_basic_gtk.py:124:45: E128 continuation line under-indented for visual indent
+./Dell/recovery_basic_gtk.py:124:80: E501 line too long (89 > 79 characters)
+./Dell/recovery_basic_gtk.py:135:80: E501 line too long (82 > 79 characters)
+./Dell/recovery_basic_gtk.py:136:46: E128 continuation line under-indented for visual indent
+./Dell/recovery_basic_gtk.py:137:31: E128 continuation line under-indented for visual indent
+./Dell/recovery_basic_gtk.py:139:9: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:142:31: E127 continuation line over-indented for visual indent
+./Dell/recovery_basic_gtk.py:142:80: E501 line too long (82 > 79 characters)
+./Dell/recovery_basic_gtk.py:143:48: E502 the backslash is redundant between brackets
+./Dell/recovery_basic_gtk.py:144:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_basic_gtk.py:146:9: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:149:9: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:152:13: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:153:13: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:157:72: F841 local variable 'wfd' is assigned to but never used
+./Dell/recovery_basic_gtk.py:160:17: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:161:17: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:164:13: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:166:61: E502 the backslash is redundant between brackets
+./Dell/recovery_basic_gtk.py:167:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_basic_gtk.py:171:13: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:172:22: E201 whitespace after '('
+./Dell/recovery_basic_gtk.py:175:28: E202 whitespace before ')'
+./Dell/recovery_basic_gtk.py:178:33: E128 continuation line under-indented for visual indent
+./Dell/recovery_basic_gtk.py:179:33: E128 continuation line under-indented for visual indent
+./Dell/recovery_basic_gtk.py:179:51: E231 missing whitespace after ':'
+./Dell/recovery_basic_gtk.py:198:80: E501 line too long (92 > 79 characters)
+./Dell/recovery_basic_gtk.py:209:1: E128 continuation line under-indented for visual indent
+./Dell/recovery_basic_gtk.py:211:13: E128 continuation line under-indented for visual indent
+./Dell/recovery_basic_gtk.py:215:1: E266 too many leading '#' for block comment
+./Dell/recovery_basic_gtk.py:216:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_basic_gtk.py:225:17: E128 continuation line under-indented for visual indent
+./Dell/recovery_basic_gtk.py:229:13: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:231:1: W293 blank line contains whitespace
+./Dell/recovery_basic_gtk.py:263:80: E501 line too long (93 > 79 characters)
+./Dell/recovery_basic_gtk.py:272:1: W293 blank line contains whitespace
+./Dell/recovery_basic_gtk.py:286:1: W293 blank line contains whitespace
+./Dell/recovery_basic_gtk.py:294:26: E711 comparison to None should be 'if cond is not None:'
+./Dell/recovery_basic_gtk.py:295:65: E502 the backslash is redundant between brackets
+./Dell/recovery_basic_gtk.py:296:57: E128 continuation line under-indented for visual indent
+./Dell/recovery_basic_gtk.py:296:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_basic_gtk.py:304:13: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:311:13: E265 block comment should start with '# '
+./Dell/recovery_basic_gtk.py:327:22: E127 continuation line over-indented for visual indent
+./Dell/recovery_basic_gtk.py:335:17: E221 multiple spaces before operator
+./Dell/recovery_basic_gtk.py:346:13: E303 too many blank lines (2)
+./Dell/recovery_basic_gtk.py:350:80: E501 line too long (100 > 79 characters)
+./Dell/recovery_basic_gtk.py:352:1: E302 expected 2 blank lines, found 1
+./Dell/__init__.py:1:77: W291 trailing whitespace
+./Dell/recovery_gtk.py:22:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_gtk.py:24:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_gtk.py:32:1: E402 module level import not at top of file
+./Dell/recovery_gtk.py:32:30: E231 missing whitespace after ','
+./Dell/recovery_gtk.py:33:1: E402 module level import not at top of file
+./Dell/recovery_gtk.py:33:80: E501 line too long (88 > 79 characters)
+./Dell/recovery_gtk.py:35:74: E231 missing whitespace after ','
+./Dell/recovery_gtk.py:35:80: E501 line too long (96 > 79 characters)
+./Dell/recovery_gtk.py:37:1: E265 block comment should start with '# '
+./Dell/recovery_gtk.py:38:1: E402 module level import not at top of file
+./Dell/recovery_gtk.py:39:1: E402 module level import not at top of file
+./Dell/recovery_gtk.py:41:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_gtk.py:51:9: E265 block comment should start with '# '
+./Dell/recovery_gtk.py:55:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_gtk.py:56:80: E501 line too long (83 > 79 characters)
+./Dell/recovery_gtk.py:61:9: E265 block comment should start with '# '
+./Dell/recovery_gtk.py:63:60: E231 missing whitespace after ','
+./Dell/recovery_gtk.py:63:80: E501 line too long (82 > 79 characters)
+./Dell/recovery_gtk.py:67:13: E265 block comment should start with '# '
+./Dell/recovery_gtk.py:68:80: E501 line too long (81 > 79 characters)
+./Dell/recovery_gtk.py:73:80: E501 line too long (83 > 79 characters)
+./Dell/recovery_gtk.py:76:9: E303 too many blank lines (2)
+./Dell/recovery_gtk.py:76:9: E265 block comment should start with '# '
+./Dell/recovery_gtk.py:79:9: E265 block comment should start with '# '
+./Dell/recovery_gtk.py:83:1: E266 too many leading '#' for block comment
+./Dell/recovery_gtk.py:100:28: E128 continuation line under-indented for visual indent
+./Dell/recovery_gtk.py:100:80: E501 line too long (87 > 79 characters)
+./Dell/recovery_gtk.py:116:80: E501 line too long (83 > 79 characters)
+./Dell/recovery_gtk.py:122:1: E266 too many leading '#' for block comment
+./Dell/recovery_gtk.py:125:9: E265 block comment should start with '# '
+./Dell/recovery_gtk.py:127:14: E127 continuation line over-indented for visual indent
+./Dell/recovery_gtk.py:130:13: E265 block comment should start with '# '
+./Dell/recovery_gtk.py:132:9: E265 block comment should start with '# '
+./Dell/recovery_gtk.py:136:13: E265 block comment should start with '# '
+./Dell/recovery_gtk.py:143:21: E265 block comment should start with '# '
+./Dell/recovery_gtk.py:143:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_gtk.py:147:1: W293 blank line contains whitespace
+./Dell/recovery_gtk.py:148:13: E265 block comment should start with '# '
+./Dell/recovery_gtk.py:149:18: W291 trailing whitespace
+./Dell/recovery_gtk.py:155:21: E265 block comment should start with '# '
+./Dell/recovery_gtk.py:155:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_gtk.py:159:1: W293 blank line contains whitespace
+./Dell/recovery_gtk.py:169:66: E711 comparison to None should be 'if cond is None:'
+./Dell/recovery_gtk.py:176:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_gtk.py:187:1: E266 too many leading '#' for block comment
+./Dell/recovery_gtk.py:188:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_gtk.py:192:5: E303 too many blank lines (3)
+./Dell/recovery_gtk.py:200:18: E221 multiple spaces before operator
+./Dell/recovery_gtk.py:201:18: E221 multiple spaces before operator
+./Dell/recovery_gtk.py:203:1: W293 blank line contains whitespace
+./Dell/recovery_gtk.py:210:21: E711 comparison to None should be 'if cond is None:'
+./Dell/recovery_gtk.py:214:1: W293 blank line contains whitespace
+./Dell/recovery_gtk.py:246:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:4:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_common.py:22:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_common.py:24:80: E501 line too long (82 > 79 characters)
+./Dell/recovery_common.py:30:1: E402 module level import not at top of file
+./Dell/recovery_common.py:31:1: E402 module level import not at top of file
+./Dell/recovery_common.py:32:1: E265 block comment should start with '# '
+./Dell/recovery_common.py:33:1: E402 module level import not at top of file
+./Dell/recovery_common.py:34:1: E402 module level import not at top of file
+./Dell/recovery_common.py:35:1: E402 module level import not at top of file
+./Dell/recovery_common.py:36:1: E402 module level import not at top of file
+./Dell/recovery_common.py:37:1: E402 module level import not at top of file
+./Dell/recovery_common.py:38:1: E402 module level import not at top of file
+./Dell/recovery_common.py:39:1: E402 module level import not at top of file
+./Dell/recovery_common.py:40:1: E402 module level import not at top of file
+./Dell/recovery_common.py:41:1: E402 module level import not at top of file
+./Dell/recovery_common.py:43:1: E266 too many leading '#' for block comment
+./Dell/recovery_common.py:44:1: E265 block comment should start with '# '
+./Dell/recovery_common.py:45:1: E266 too many leading '#' for block comment
+./Dell/recovery_common.py:50:1: E265 block comment should start with '# '
+./Dell/recovery_common.py:54:1: E265 block comment should start with '# '
+./Dell/recovery_common.py:58:1: E265 block comment should start with '# '
+./Dell/recovery_common.py:64:1: E265 block comment should start with '# '
+./Dell/recovery_common.py:71:1: E265 block comment should start with '# '
+./Dell/recovery_common.py:72:16: E201 whitespace after '{'
+./Dell/recovery_common.py:72:55: E231 missing whitespace after ':'
+./Dell/recovery_common.py:72:68: E202 whitespace before '}'
+./Dell/recovery_common.py:73:16: E201 whitespace after '{'
+./Dell/recovery_common.py:73:30: E231 missing whitespace after ':'
+./Dell/recovery_common.py:74:34: E231 missing whitespace after ':'
+./Dell/recovery_common.py:75:34: E231 missing whitespace after ':'
+./Dell/recovery_common.py:75:44: E202 whitespace before '}'
+./Dell/recovery_common.py:77:14: E201 whitespace after '['
+./Dell/recovery_common.py:77:54: E202 whitespace before ']'
+./Dell/recovery_common.py:79:1: E266 too many leading '#' for block comment
+./Dell/recovery_common.py:80:1: E265 block comment should start with '# '
+./Dell/recovery_common.py:81:1: E266 too many leading '#' for block comment
+./Dell/recovery_common.py:83:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:88:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:93:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:114:9: E265 block comment should start with '# '
+./Dell/recovery_common.py:118:9: E265 block comment should start with '# '
+./Dell/recovery_common.py:124:17: E265 block comment should start with '# '
+./Dell/recovery_common.py:126:17: E265 block comment should start with '# '
+./Dell/recovery_common.py:129:9: E265 block comment should start with '# '
+./Dell/recovery_common.py:143:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:156:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:167:22: E225 missing whitespace around operator
+./Dell/recovery_common.py:167:39: E231 missing whitespace after ','
+./Dell/recovery_common.py:167:45: E231 missing whitespace after ','
+./Dell/recovery_common.py:167:61: E231 missing whitespace after ','
+./Dell/recovery_common.py:170:18: E225 missing whitespace around operator
+./Dell/recovery_common.py:175:1: W293 blank line contains whitespace
+./Dell/recovery_common.py:176:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:185:12: E225 missing whitespace around operator
+./Dell/recovery_common.py:186:18: E225 missing whitespace around operator
+./Dell/recovery_common.py:186:35: E231 missing whitespace after ','
+./Dell/recovery_common.py:189:14: E225 missing whitespace around operator
+./Dell/recovery_common.py:195:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:212:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:216:31: E127 continuation line over-indented for visual indent
+./Dell/recovery_common.py:217:31: E127 continuation line over-indented for visual indent
+./Dell/recovery_common.py:233:1: E302 expected 2 blank lines, found 0
+./Dell/recovery_common.py:245:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:245:80: E501 line too long (90 > 79 characters)
+./Dell/recovery_common.py:253:5: E265 block comment should start with '# '
+./Dell/recovery_common.py:254:5: E265 block comment should start with '# '
+./Dell/recovery_common.py:268:80: E501 line too long (94 > 79 characters)
+./Dell/recovery_common.py:273:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:276:34: E127 continuation line over-indented for visual indent
+./Dell/recovery_common.py:277:34: E127 continuation line over-indented for visual indent
+./Dell/recovery_common.py:278:34: E127 continuation line over-indented for visual indent
+./Dell/recovery_common.py:279:34: E127 continuation line over-indented for visual indent
+./Dell/recovery_common.py:295:38: E127 continuation line over-indented for visual indent
+./Dell/recovery_common.py:296:38: E127 continuation line over-indented for visual indent
+./Dell/recovery_common.py:297:38: E127 continuation line over-indented for visual indent
+./Dell/recovery_common.py:298:38: E127 continuation line over-indented for visual indent
+./Dell/recovery_common.py:304:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_common.py:310:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:329:80: E501 line too long (89 > 79 characters)
+./Dell/recovery_common.py:332:18: E261 at least two spaces before inline comment
+./Dell/recovery_common.py:351:80: E501 line too long (89 > 79 characters)
+./Dell/recovery_common.py:352:80: E501 line too long (81 > 79 characters)
+./Dell/recovery_common.py:353:80: E501 line too long (83 > 79 characters)
+./Dell/recovery_common.py:354:80: E501 line too long (85 > 79 characters)
+./Dell/recovery_common.py:355:80: E501 line too long (83 > 79 characters)
+./Dell/recovery_common.py:359:5: E265 block comment should start with '# '
+./Dell/recovery_common.py:368:80: E501 line too long (84 > 79 characters)
+./Dell/recovery_common.py:369:80: E501 line too long (104 > 79 characters)
+./Dell/recovery_common.py:370:80: E501 line too long (93 > 79 characters)
+./Dell/recovery_common.py:374:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:384:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:415:5: E265 block comment should start with '# '
+./Dell/recovery_common.py:418:26: E225 missing whitespace around operator
+./Dell/recovery_common.py:418:28: E201 whitespace after '['
+./Dell/recovery_common.py:420:64: E202 whitespace before ']'
+./Dell/recovery_common.py:438:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:454:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_common.py:460:21: E201 whitespace after '('
+./Dell/recovery_common.py:461:21: E201 whitespace after '('
+./Dell/recovery_common.py:461:54: E203 whitespace before ':'
+./Dell/recovery_common.py:464:21: E265 block comment should start with '# '
+./Dell/recovery_common.py:464:80: E501 line too long (83 > 79 characters)
+./Dell/recovery_common.py:469:80: E501 line too long (85 > 79 characters)
+./Dell/recovery_common.py:483:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:492:31: E128 continuation line under-indented for visual indent
+./Dell/recovery_common.py:503:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:518:17: E265 block comment should start with '# '
+./Dell/recovery_common.py:523:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:537:5: E265 block comment should start with '# '
+./Dell/recovery_common.py:544:22: E221 multiple spaces before operator
+./Dell/recovery_common.py:544:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_common.py:546:80: E501 line too long (93 > 79 characters)
+./Dell/recovery_common.py:547:22: E221 multiple spaces before operator
+./Dell/recovery_common.py:573:5: E265 block comment should start with '# '
+./Dell/recovery_common.py:579:5: E265 block comment should start with '# '
+./Dell/recovery_common.py:590:5: E265 block comment should start with '# '
+./Dell/recovery_common.py:592:80: E501 line too long (122 > 79 characters)
+./Dell/recovery_common.py:595:5: E265 block comment should start with '# '
+./Dell/recovery_common.py:605:80: E501 line too long (82 > 79 characters)
+./Dell/recovery_common.py:607:5: E265 block comment should start with '# '
+./Dell/recovery_common.py:612:32: E127 continuation line over-indented for visual indent
+./Dell/recovery_common.py:613:32: E127 continuation line over-indented for visual indent
+./Dell/recovery_common.py:626:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:636:32: E261 at least two spaces before inline comment
+./Dell/recovery_common.py:639:25: F841 local variable 'type' is assigned to but never used
+./Dell/recovery_common.py:645:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:658:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:669:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:670:80: E501 line too long (96 > 79 characters)
+./Dell/recovery_common.py:691:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_common.py:696:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:698:5: E265 block comment should start with '# '
+./Dell/recovery_common.py:701:5: E265 block comment should start with '# '
+./Dell/recovery_common.py:704:35: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_common.py:704:37: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_common.py:704:79: E502 the backslash is redundant between brackets
+./Dell/recovery_common.py:705:30: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_common.py:705:32: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_common.py:705:79: E502 the backslash is redundant between brackets
+./Dell/recovery_common.py:706:31: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_common.py:706:33: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_common.py:706:79: E502 the backslash is redundant between brackets
+./Dell/recovery_common.py:707:33: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_common.py:707:35: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_common.py:707:79: E502 the backslash is redundant between brackets
+./Dell/recovery_common.py:708:40: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_common.py:708:42: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_common.py:709:40: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_common.py:709:42: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_common.py:712:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:712:80: E501 line too long (82 > 79 characters)
+./Dell/recovery_common.py:753:31: E231 missing whitespace after ','
+./Dell/recovery_common.py:756:80: E501 line too long (108 > 79 characters)
+./Dell/recovery_common.py:758:5: E265 block comment should start with '# '
+./Dell/recovery_common.py:758:80: E501 line too long (85 > 79 characters)
+./Dell/recovery_common.py:762:5: E265 block comment should start with '# '
+./Dell/recovery_common.py:763:80: E501 line too long (223 > 79 characters)
+./Dell/recovery_common.py:764:5: E265 block comment should start with '# '
+./Dell/recovery_common.py:766:5: E265 block comment should start with '# '
+./Dell/recovery_common.py:767:33: E231 missing whitespace after ','
+./Dell/recovery_common.py:768:13: E231 missing whitespace after ','
+./Dell/recovery_common.py:768:18: E231 missing whitespace after ','
+./Dell/recovery_common.py:771:51: E231 missing whitespace after ','
+./Dell/recovery_common.py:772:5: E265 block comment should start with '# '
+./Dell/recovery_common.py:773:5: E306 expected 1 blank line before a nested definition, found 0
+./Dell/recovery_common.py:773:18: E231 missing whitespace after ','
+./Dell/recovery_common.py:773:23: E231 missing whitespace after ','
+./Dell/recovery_common.py:775:36: E231 missing whitespace after ','
+./Dell/recovery_common.py:779:51: E231 missing whitespace after ','
+./Dell/recovery_common.py:782:13: E265 block comment should start with '# '
+./Dell/recovery_common.py:784:27: E231 missing whitespace after ','
+./Dell/recovery_common.py:784:37: E231 missing whitespace after ','
+./Dell/recovery_common.py:785:13: E265 block comment should start with '# '
+./Dell/recovery_common.py:785:80: E501 line too long (83 > 79 characters)
+./Dell/recovery_common.py:787:25: E231 missing whitespace after ','
+./Dell/recovery_common.py:787:30: E231 missing whitespace after ','
+./Dell/recovery_common.py:790:58: E231 missing whitespace after ','
+./Dell/recovery_common.py:791:80: E501 line too long (87 > 79 characters)
+./Dell/recovery_common.py:792:43: E231 missing whitespace after ','
+./Dell/recovery_common.py:792:53: E231 missing whitespace after ','
+./Dell/recovery_common.py:795:75: E225 missing whitespace around operator
+./Dell/recovery_common.py:795:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_common.py:797:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:808:80: E501 line too long (90 > 79 characters)
+./Dell/recovery_common.py:816:1: E266 too many leading '#' for block comment
+./Dell/recovery_common.py:817:1: E266 too many leading '#' for block comment
+./Dell/recovery_common.py:818:1: E266 too many leading '#' for block comment
+./Dell/recovery_common.py:820:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:824:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:828:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_common.py:832:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_threading.py:23:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_threading.py:25:80: E501 line too long (82 > 79 characters)
+./Dell/recovery_threading.py:36:1: E265 block comment should start with '# '
+./Dell/recovery_threading.py:37:1: E265 block comment should start with '# '
+./Dell/recovery_threading.py:38:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_threading.py:81:80: E501 line too long (95 > 79 characters)
+./Dell/recovery_threading.py:93:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_threading.py:121:1: E265 block comment should start with '# '
+./Dell/recovery_xml.py:22:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_xml.py:24:80: E501 line too long (82 > 79 characters)
+./Dell/recovery_xml.py:35:1: E115 expected an indented block (comment)
+./Dell/recovery_xml.py:38:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_xml.py:44:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_xml.py:128:9: E265 block comment should start with '# '
+./Dell/recovery_xml.py:136:9: E265 block comment should start with '# '
+./Dell/recovery_xml.py:141:80: E501 line too long (101 > 79 characters)
+./Dell/recovery_backend.py:23:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_backend.py:25:80: E501 line too long (82 > 79 characters)
+./Dell/recovery_backend.py:27:15: E401 multiple imports on one line
+./Dell/recovery_backend.py:45:74: E231 missing whitespace after ','
+./Dell/recovery_backend.py:45:80: E501 line too long (89 > 79 characters)
+./Dell/recovery_backend.py:55:1: E265 block comment should start with '# '
+./Dell/recovery_backend.py:61:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_backend.py:75:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_backend.py:90:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:104:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:153:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_backend.py:190:80: E501 line too long (83 > 79 characters)
+./Dell/recovery_backend.py:191:17: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:197:80: E501 line too long (94 > 79 characters)
+./Dell/recovery_backend.py:200:80: E501 line too long (93 > 79 characters)
+./Dell/recovery_backend.py:203:25: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:207:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_backend.py:215:80: E501 line too long (116 > 79 characters)
+./Dell/recovery_backend.py:216:21: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:232:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:236:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:245:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:247:37: E225 missing whitespace around operator
+./Dell/recovery_backend.py:253:49: E127 continuation line over-indented for visual indent
+./Dell/recovery_backend.py:253:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_backend.py:255:34: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:256:34: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:257:34: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:267:80: E501 line too long (81 > 79 characters)
+./Dell/recovery_backend.py:287:80: E501 line too long (84 > 79 characters)
+./Dell/recovery_backend.py:291:80: E501 line too long (82 > 79 characters)
+./Dell/recovery_backend.py:293:80: E501 line too long (114 > 79 characters)
+./Dell/recovery_backend.py:295:80: E501 line too long (84 > 79 characters)
+./Dell/recovery_backend.py:306:80: E501 line too long (105 > 79 characters)
+./Dell/recovery_backend.py:313:80: E501 line too long (160 > 79 characters)
+./Dell/recovery_backend.py:321:80: E501 line too long (156 > 79 characters)
+./Dell/recovery_backend.py:324:5: E303 too many blank lines (2)
+./Dell/recovery_backend.py:335:80: E501 line too long (84 > 79 characters)
+./Dell/recovery_backend.py:344:80: E501 line too long (86 > 79 characters)
+./Dell/recovery_backend.py:361:69: E231 missing whitespace after ','
+./Dell/recovery_backend.py:373:13: E265 block comment should start with '# '
+./Dell/recovery_backend.py:381:5: E303 too many blank lines (2)
+./Dell/recovery_backend.py:402:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:402:21: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:402:23: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:402:42: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:402:44: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:402:64: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:402:66: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:403:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:403:27: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:403:29: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:406:80: E501 line too long (90 > 79 characters)
+./Dell/recovery_backend.py:408:80: E501 line too long (97 > 79 characters)
+./Dell/recovery_backend.py:413:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:413:21: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:413:23: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:413:41: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:413:43: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:413:62: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:413:64: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:414:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:414:27: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:414:29: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:417:80: E501 line too long (89 > 79 characters)
+./Dell/recovery_backend.py:422:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:422:21: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:422:23: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:422:55: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:422:57: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:422:76: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:422:78: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:422:80: E501 line too long (87 > 79 characters)
+./Dell/recovery_backend.py:423:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:423:27: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:423:29: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:430:80: E501 line too long (82 > 79 characters)
+./Dell/recovery_backend.py:442:21: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:442:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_backend.py:443:21: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:452:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:461:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:469:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:478:80: E501 line too long (99 > 79 characters)
+./Dell/recovery_backend.py:487:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:489:80: E501 line too long (84 > 79 characters)
+./Dell/recovery_backend.py:499:80: E501 line too long (106 > 79 characters)
+./Dell/recovery_backend.py:506:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:506:21: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:506:23: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:506:42: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:506:44: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:506:69: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:506:71: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:506:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_backend.py:507:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:507:27: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:507:29: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:526:80: E501 line too long (84 > 79 characters)
+./Dell/recovery_backend.py:533:33: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:535:80: E501 line too long (89 > 79 characters)
+./Dell/recovery_backend.py:540:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:561:13: E265 block comment should start with '# '
+./Dell/recovery_backend.py:564:21: F841 local variable 'timestamp' is assigned to but never used
+./Dell/recovery_backend.py:565:21: F841 local variable 'distributor_string' is assigned to but never used
+./Dell/recovery_backend.py:574:80: E501 line too long (138 > 79 characters)
+./Dell/recovery_backend.py:576:80: E501 line too long (86 > 79 characters)
+./Dell/recovery_backend.py:580:80: E501 line too long (100 > 79 characters)
+./Dell/recovery_backend.py:582:80: E501 line too long (121 > 79 characters)
+./Dell/recovery_backend.py:583:80: E501 line too long (87 > 79 characters)
+./Dell/recovery_backend.py:586:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:586:21: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:586:23: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:586:42: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:586:44: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:586:66: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:586:68: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:587:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:587:27: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:587:29: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:596:80: E501 line too long (88 > 79 characters)
+./Dell/recovery_backend.py:597:80: E501 line too long (88 > 79 characters)
+./Dell/recovery_backend.py:611:37: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:613:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:624:27: E127 continuation line over-indented for visual indent
+./Dell/recovery_backend.py:636:80: E501 line too long (103 > 79 characters)
+./Dell/recovery_backend.py:643:27: E127 continuation line over-indented for visual indent
+./Dell/recovery_backend.py:650:13: E265 block comment should start with '# '
+./Dell/recovery_backend.py:652:80: E501 line too long (91 > 79 characters)
+./Dell/recovery_backend.py:657:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:657:21: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:657:23: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:657:42: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:657:44: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:657:64: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:657:66: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:658:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:658:27: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:658:29: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:684:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:686:13: E265 block comment should start with '# '
+./Dell/recovery_backend.py:691:80: E501 line too long (99 > 79 characters)
+./Dell/recovery_backend.py:701:80: E501 line too long (103 > 79 characters)
+./Dell/recovery_backend.py:706:80: E501 line too long (82 > 79 characters)
+./Dell/recovery_backend.py:709:80: E501 line too long (97 > 79 characters)
+./Dell/recovery_backend.py:712:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:714:13: E265 block comment should start with '# '
+./Dell/recovery_backend.py:715:80: E501 line too long (89 > 79 characters)
+./Dell/recovery_backend.py:719:80: E501 line too long (103 > 79 characters)
+./Dell/recovery_backend.py:720:80: E501 line too long (105 > 79 characters)
+./Dell/recovery_backend.py:729:80: E501 line too long (127 > 79 characters)
+./Dell/recovery_backend.py:733:80: E501 line too long (82 > 79 characters)
+./Dell/recovery_backend.py:738:80: E501 line too long (97 > 79 characters)
+./Dell/recovery_backend.py:744:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:744:21: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:744:23: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:744:42: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:744:44: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:744:63: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:744:65: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:745:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:745:27: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:745:29: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:748:22: E211 whitespace before '('
+./Dell/recovery_backend.py:764:80: E501 line too long (85 > 79 characters)
+./Dell/recovery_backend.py:775:80: E501 line too long (115 > 79 characters)
+./Dell/recovery_backend.py:781:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:781:21: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:781:23: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:781:42: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:781:44: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:781:63: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:781:65: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:782:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:782:27: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:782:29: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:783:5: E265 block comment should start with '# '
+./Dell/recovery_backend.py:787:17: E225 missing whitespace around operator
+./Dell/recovery_backend.py:788:15: E225 missing whitespace around operator
+./Dell/recovery_backend.py:788:43: E231 missing whitespace after ','
+./Dell/recovery_backend.py:788:48: E231 missing whitespace after ','
+./Dell/recovery_backend.py:788:55: E231 missing whitespace after ','
+./Dell/recovery_backend.py:789:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:789:80: E501 line too long (137 > 79 characters)
+./Dell/recovery_backend.py:789:138: W291 trailing whitespace
+./Dell/recovery_backend.py:790:40: E231 missing whitespace after ','
+./Dell/recovery_backend.py:791:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:792:46: E231 missing whitespace after ','
+./Dell/recovery_backend.py:792:56: E231 missing whitespace after ','
+./Dell/recovery_backend.py:793:42: E231 missing whitespace after ','
+./Dell/recovery_backend.py:793:52: E231 missing whitespace after ','
+./Dell/recovery_backend.py:794:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:795:13: E225 missing whitespace around operator
+./Dell/recovery_backend.py:795:23: E231 missing whitespace after ','
+./Dell/recovery_backend.py:795:33: E231 missing whitespace after ','
+./Dell/recovery_backend.py:797:20: E225 missing whitespace around operator
+./Dell/recovery_backend.py:797:40: E231 missing whitespace after ','
+./Dell/recovery_backend.py:797:46: E231 missing whitespace after ','
+./Dell/recovery_backend.py:798:25: E225 missing whitespace around operator
+./Dell/recovery_backend.py:798:45: E231 missing whitespace after ','
+./Dell/recovery_backend.py:799:30: E231 missing whitespace after ','
+./Dell/recovery_backend.py:799:45: E231 missing whitespace after ','
+./Dell/recovery_backend.py:799:53: E231 missing whitespace after ','
+./Dell/recovery_backend.py:801:48: E231 missing whitespace after ','
+./Dell/recovery_backend.py:804:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:804:21: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:804:23: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:804:42: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:804:44: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:804:63: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:804:65: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:805:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:805:27: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:805:29: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:809:80: E501 line too long (84 > 79 characters)
+./Dell/recovery_backend.py:815:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:833:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:844:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:845:40: E231 missing whitespace after ','
+./Dell/recovery_backend.py:851:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:874:5: E303 too many blank lines (2)
+./Dell/recovery_backend.py:875:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:875:21: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:875:23: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:875:46: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:875:48: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:875:67: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:875:69: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:876:9: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:876:27: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:876:29: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_backend.py:877:80: E501 line too long (98 > 79 characters)
+./Dell/recovery_backend.py:882:49: E127 continuation line over-indented for visual indent
+./Dell/recovery_backend.py:882:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_backend.py:883:80: E501 line too long (86 > 79 characters)
+./Dell/recovery_backend.py:884:13: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:886:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:890:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:893:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:896:80: E501 line too long (107 > 79 characters)
+./Dell/recovery_backend.py:898:80: E501 line too long (114 > 79 characters)
+./Dell/recovery_backend.py:899:80: E501 line too long (86 > 79 characters)
+./Dell/recovery_backend.py:901:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:905:13: E722 do not use bare except'
+./Dell/recovery_backend.py:906:80: E501 line too long (87 > 79 characters)
+./Dell/recovery_backend.py:908:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:913:44: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:914:44: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:917:80: E501 line too long (94 > 79 characters)
+./Dell/recovery_backend.py:919:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:927:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:955:80: E501 line too long (92 > 79 characters)
+./Dell/recovery_backend.py:957:13: E125 continuation line with same indent as next logical line
+./Dell/recovery_backend.py:967:80: E501 line too long (91 > 79 characters)
+./Dell/recovery_backend.py:969:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:977:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:988:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:993:80: E501 line too long (93 > 79 characters)
+./Dell/recovery_backend.py:995:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:996:80: E501 line too long (94 > 79 characters)
+./Dell/recovery_backend.py:998:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:1001:80: E501 line too long (90 > 79 characters)
+./Dell/recovery_backend.py:1004:25: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:1005:25: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:1006:25: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:1007:25: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:1008:25: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:1015:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:1016:80: E501 line too long (82 > 79 characters)
+./Dell/recovery_backend.py:1020:80: E501 line too long (93 > 79 characters)
+./Dell/recovery_backend.py:1021:18: E127 continuation line over-indented for visual indent
+./Dell/recovery_backend.py:1024:80: E501 line too long (87 > 79 characters)
+./Dell/recovery_backend.py:1025:80: E501 line too long (91 > 79 characters)
+./Dell/recovery_backend.py:1029:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:1036:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:1036:80: E501 line too long (85 > 79 characters)
+./Dell/recovery_backend.py:1039:80: E501 line too long (82 > 79 characters)
+./Dell/recovery_backend.py:1044:13: E265 block comment should start with '# '
+./Dell/recovery_backend.py:1048:51: E231 missing whitespace after ','
+./Dell/recovery_backend.py:1051:80: E501 line too long (90 > 79 characters)
+./Dell/recovery_backend.py:1052:80: E501 line too long (83 > 79 characters)
+./Dell/recovery_backend.py:1053:80: E501 line too long (84 > 79 characters)
+./Dell/recovery_backend.py:1054:80: E501 line too long (91 > 79 characters)
+./Dell/recovery_backend.py:1056:55: E231 missing whitespace after ','
+./Dell/recovery_backend.py:1056:80: E501 line too long (95 > 79 characters)
+./Dell/recovery_backend.py:1057:13: E265 block comment should start with '# '
+./Dell/recovery_backend.py:1058:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_backend.py:1061:13: E265 block comment should start with '# '
+./Dell/recovery_backend.py:1062:80: E501 line too long (94 > 79 characters)
+./Dell/recovery_backend.py:1063:80: E501 line too long (108 > 79 characters)
+./Dell/recovery_backend.py:1064:80: E501 line too long (124 > 79 characters)
+./Dell/recovery_backend.py:1068:80: E501 line too long (99 > 79 characters)
+./Dell/recovery_backend.py:1069:80: E501 line too long (113 > 79 characters)
+./Dell/recovery_backend.py:1070:80: E501 line too long (129 > 79 characters)
+./Dell/recovery_backend.py:1074:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:1081:80: E501 line too long (92 > 79 characters)
+./Dell/recovery_backend.py:1083:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:1089:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:1094:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:1098:9: E265 block comment should start with '# '
+./Dell/recovery_backend.py:1100:31: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:1101:31: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:1102:31: E128 continuation line under-indented for visual indent
+./Dell/recovery_backend.py:1122:80: E501 line too long (82 > 79 characters)
+./Dell/recovery_backend.py:1125:80: E501 line too long (92 > 79 characters)
+./Dell/recovery_backend.py:1133:80: E501 line too long (90 > 79 characters)
+./Dell/recovery_advanced_gtk.py:22:80: E501 line too long (80 > 79 characters)
+./Dell/recovery_advanced_gtk.py:24:80: E501 line too long (82 > 79 characters)
+./Dell/recovery_advanced_gtk.py:30:1: E402 module level import not at top of file
+./Dell/recovery_advanced_gtk.py:32:1: E402 module level import not at top of file
+./Dell/recovery_advanced_gtk.py:33:1: E402 module level import not at top of file
+./Dell/recovery_advanced_gtk.py:35:1: E402 module level import not at top of file
+./Dell/recovery_advanced_gtk.py:38:1: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:39:1: E402 module level import not at top of file
+./Dell/recovery_advanced_gtk.py:41:1: E302 expected 2 blank lines, found 1
+./Dell/recovery_advanced_gtk.py:50:9: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:54:9: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:62:9: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:71:55: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_advanced_gtk.py:71:57: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_advanced_gtk.py:72:41: E128 continuation line under-indented for visual indent
+./Dell/recovery_advanced_gtk.py:72:54: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_advanced_gtk.py:72:56: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_advanced_gtk.py:73:41: E128 continuation line under-indented for visual indent
+./Dell/recovery_advanced_gtk.py:73:47: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_advanced_gtk.py:73:49: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_advanced_gtk.py:75:41: E127 continuation line over-indented for visual indent
+./Dell/recovery_advanced_gtk.py:78:9: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:83:9: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:84:37: E203 whitespace before ':'
+./Dell/recovery_advanced_gtk.py:85:18: E128 continuation line under-indented for visual indent
+./Dell/recovery_advanced_gtk.py:85:31: E203 whitespace before ':'
+./Dell/recovery_advanced_gtk.py:86:18: E128 continuation line under-indented for visual indent
+./Dell/recovery_advanced_gtk.py:86:28: E203 whitespace before ':'
+./Dell/recovery_advanced_gtk.py:87:18: E128 continuation line under-indented for visual indent
+./Dell/recovery_advanced_gtk.py:87:29: E203 whitespace before ':'
+./Dell/recovery_advanced_gtk.py:88:17: E124 closing bracket does not match visual indentation
+./Dell/recovery_advanced_gtk.py:96:9: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:99:9: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:111:9: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:113:13: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:115:1: W293 blank line contains whitespace
+./Dell/recovery_advanced_gtk.py:118:38: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_advanced_gtk.py:118:40: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_advanced_gtk.py:120:9: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:126:80: E501 line too long (84 > 79 characters)
+./Dell/recovery_advanced_gtk.py:158:14: E127 continuation line over-indented for visual indent
+./Dell/recovery_advanced_gtk.py:162:24: E221 multiple spaces before operator
+./Dell/recovery_advanced_gtk.py:173:50: E203 whitespace before ':'
+./Dell/recovery_advanced_gtk.py:174:45: E203 whitespace before ':'
+./Dell/recovery_advanced_gtk.py:175:26: E124 closing bracket does not match visual indentation
+./Dell/recovery_advanced_gtk.py:175:27: W291 trailing whitespace
+./Dell/recovery_advanced_gtk.py:180:80: E501 line too long (88 > 79 characters)
+./Dell/recovery_advanced_gtk.py:186:80: E501 line too long (83 > 79 characters)
+./Dell/recovery_advanced_gtk.py:193:47: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_advanced_gtk.py:193:49: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_advanced_gtk.py:193:60: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_advanced_gtk.py:193:62: E251 unexpected spaces around keyword / parameter equals
+./Dell/recovery_advanced_gtk.py:195:9: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:196:80: E501 line too long (84 > 79 characters)
+./Dell/recovery_advanced_gtk.py:198:9: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:206:9: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:240:80: E501 line too long (82 > 79 characters)
+./Dell/recovery_advanced_gtk.py:264:9: F841 local variable 'bto_version' is assigned to but never used
+./Dell/recovery_advanced_gtk.py:265:9: F841 local variable 'output_text' is assigned to but never used
+./Dell/recovery_advanced_gtk.py:266:9: F841 local variable 'distributor' is assigned to but never used
+./Dell/recovery_advanced_gtk.py:267:9: F841 local variable 'release' is assigned to but never used
+./Dell/recovery_advanced_gtk.py:268:9: F841 local variable 'arch' is assigned to but never used
+./Dell/recovery_advanced_gtk.py:273:1: W293 blank line contains whitespace
+./Dell/recovery_advanced_gtk.py:278:45: E128 continuation line under-indented for visual indent
+./Dell/recovery_advanced_gtk.py:279:45: E128 continuation line under-indented for visual indent
+./Dell/recovery_advanced_gtk.py:279:80: E501 line too long (89 > 79 characters)
+./Dell/recovery_advanced_gtk.py:288:80: E501 line too long (86 > 79 characters)
+./Dell/recovery_advanced_gtk.py:294:80: E501 line too long (88 > 79 characters)
+./Dell/recovery_advanced_gtk.py:306:80: E501 line too long (91 > 79 characters)
+./Dell/recovery_advanced_gtk.py:319:80: E501 line too long (96 > 79 characters)
+./Dell/recovery_advanced_gtk.py:322:80: E501 line too long (89 > 79 characters)
+./Dell/recovery_advanced_gtk.py:333:21: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:336:1: W191 indentation contains tabs
+./Dell/recovery_advanced_gtk.py:336:1: E101 indentation contains mixed spaces and tabs
+./Dell/recovery_advanced_gtk.py:336:1: W293 blank line contains whitespace
+./Dell/recovery_advanced_gtk.py:337:1: W191 indentation contains tabs
+./Dell/recovery_advanced_gtk.py:337:6: E116 unexpected indentation (comment)
+./Dell/recovery_advanced_gtk.py:337:80: E501 line too long (130 > 79 characters)
+./Dell/recovery_advanced_gtk.py:338:1: E101 indentation contains mixed spaces and tabs
+./Dell/recovery_advanced_gtk.py:357:80: E501 line too long (89 > 79 characters)
+./Dell/recovery_advanced_gtk.py:358:1: W293 blank line contains whitespace
+./Dell/recovery_advanced_gtk.py:370:13: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:383:17: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:386:17: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:388:17: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:403:9: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:406:9: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:426:9: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:427:9: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:432:9: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:442:80: E501 line too long (89 > 79 characters)
+./Dell/recovery_advanced_gtk.py:443:80: E501 line too long (82 > 79 characters)
+./Dell/recovery_advanced_gtk.py:448:17: E221 multiple spaces before operator
+./Dell/recovery_advanced_gtk.py:450:80: E501 line too long (84 > 79 characters)
+./Dell/recovery_advanced_gtk.py:459:9: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:464:80: E501 line too long (81 > 79 characters)
+./Dell/recovery_advanced_gtk.py:465:80: E501 line too long (83 > 79 characters)
+./Dell/recovery_advanced_gtk.py:466:80: E501 line too long (86 > 79 characters)
+./Dell/recovery_advanced_gtk.py:467:80: E501 line too long (94 > 79 characters)
+./Dell/recovery_advanced_gtk.py:486:1: W293 blank line contains whitespace
+./Dell/recovery_advanced_gtk.py:501:80: E501 line too long (93 > 79 characters)
+./Dell/recovery_advanced_gtk.py:503:80: E501 line too long (110 > 79 characters)
+./Dell/recovery_advanced_gtk.py:510:13: E265 block comment should start with '# '
+./Dell/recovery_advanced_gtk.py:511:80: E501 line too long (99 > 79 characters)
+./Dell/recovery_advanced_gtk.py:513:80: E501 line too long (84 > 79 characters)
+./Dell/recovery_advanced_gtk.py:515:80: E501 line too long (91 > 79 characters)
