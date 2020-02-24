@@ -667,7 +667,7 @@ def mark_upgrades():
     return to_install
 
 def mark_unconditional_debs(add_directory=''):
-    '''Dell/recovery_common.py''Finds any debs from debs/main that we want unconditionally installed
+    '''Finds any debs from debs/main that we want unconditionally installed
        (but ONLY the latest version on the media)'''
     import apt_inst
     import apt_pkg
