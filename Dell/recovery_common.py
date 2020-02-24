@@ -159,7 +159,6 @@ def check_install_dhc_id():
     if not os.path.exists(path):
         return False
     with open(path, 'rb') as rfd:
-        #value = rfd.read().strip().lower()
         value = rfd.read().strip().lower()
         if not value:
             return False
