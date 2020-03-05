@@ -530,7 +530,10 @@ def create_new_uuid(old_initrd_directory, old_casper_directory,
 
     #Detect compression
     lines = ''
-    root = os.path.join(tmpdir, 'main', 'conf', 'initramfs.conf')
+    if os.path.isdir(os.path.join(tmpdir, 'main')):
+        root = os.path.join(tmpdir, 'main', 'conf', 'initramfs.conf')
+    else:
+        root = os.path.join(tmpdir, 'conf', 'initramfs.conf')
     with open(root, 'r') as rfd:
         lines = rfd.readlines()
     new_compression = ''
