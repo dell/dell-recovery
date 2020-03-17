@@ -11,6 +11,9 @@
     <property name="window_position">center</property>
     <property name="type_hint">dialog</property>
     <property name="deletable">False</property>
+    <child>
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox7">
         <property name="visible">True</property>
@@ -63,9 +66,9 @@
           <object class="GtkLabel" id="runtime_details_label">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="xalign">0</property>
             <property name="label" translatable="yes">&lt;b&gt;Runtime Details&lt;/b&gt;</property>
             <property name="use_markup">True</property>
+            <property name="xalign">0</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -77,8 +80,8 @@
           <object class="GtkLabel" id="version_detail">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="xalign">0</property>
             <property name="label" translatable="yes">version</property>
+            <property name="xalign">0</property>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -90,8 +93,8 @@
           <object class="GtkLabel" id="mountpoint_detail">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="xalign">0</property>
             <property name="label" translatable="yes">mount</property>
+            <property name="xalign">0</property>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -103,8 +106,8 @@
           <object class="GtkLabel" id="memory_detail">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="xalign">0</property>
             <property name="label" translatable="yes">memory</property>
+            <property name="xalign">0</property>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -211,11 +214,11 @@
               <object class="GtkLabel" id="bootstrap_information_label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xalign">0</property>
-                <property name="yalign">0</property>
                 <property name="label" translatable="yes">This Dell Recovery Media can be used to restore the original factory software.</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
+                <property name="xalign">0</property>
+                <property name="yalign">0</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -227,11 +230,11 @@
               <object class="GtkLabel" id="bootstrap_warning_label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xalign">0</property>
-                <property name="yalign">0</property>
                 <property name="label" translatable="yes">&lt;b&gt;It is recommended you back up all important data before running this tool.&lt;/b&gt;</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
+                <property name="xalign">0</property>
+                <property name="yalign">0</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -264,7 +267,7 @@
           <object class="GtkHBox" id="hdd_recovery_box">
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkImage" id="image5">
+              <object class="GtkImage" id="image1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="pixel_size">48</property>
@@ -277,7 +280,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkVBox" id="vbox4">
+              <object class="GtkVBox" id="vbox3">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="spacing">5</property>
@@ -300,7 +303,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkAlignment" id="alignment2">
+                  <object class="GtkAlignment" id="alignment1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="left_padding">25</property>
@@ -309,11 +312,11 @@
                         <property name="width_request">600</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="yalign">0</property>
                         <property name="label" translatable="yes">This will rebuild all OS and swap partitions to factory defaults.</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">True</property>
+                        <property name="xalign">0</property>
+                        <property name="yalign">0</property>
                       </object>
                     </child>
                   </object>
@@ -324,7 +327,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkAlignment" id="alignment5">
+                  <object class="GtkAlignment" id="alignment3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="left_padding">25</property>
@@ -333,11 +336,11 @@
                         <property name="width_request">600</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="yalign">0</property>
                         <property name="label" translatable="yes">&lt;b&gt;WARNING: &lt;/b&gt;All personal files and changes will be lost.</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">True</property>
+                        <property name="xalign">0</property>
+                        <property name="yalign">0</property>
                       </object>
                     </child>
                   </object>
@@ -359,6 +362,142 @@
             <property name="expand">True</property>
             <property name="fill">False</property>
             <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <object class="GtkHBox" id="dhc_automated_recovery_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkImage" id="image3">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="pixel_size">48</property>
+                <property name="icon_name">distributor-logo</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkVBox" id="vbox6">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="spacing">5</property>
+                <child>
+                  <object class="GtkRadioButton" id="dhc_automated_recovery">
+                    <property name="label" translatable="yes">Install Dell Hybrid Client</property>
+                    <property name="use_action_appearance">False</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="xalign">0.5</property>
+                    <property name="draw_indicator">True</property>
+                    <property name="group">automated_recovery</property>
+                    <signal name="toggled" handler="toggle_type" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkAlignment" id="alignment8">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="xalign">0</property>
+                    <property name="xscale">0</property>
+                    <property name="left_padding">25</property>
+                    <child>
+                      <object class="GtkComboBox" id="dhc_hard_drive_combobox">
+                        <property name="visible">True</property>
+                        <property name="sensitive">False</property>
+                        <property name="can_focus">False</property>
+                        <property name="model">hard_drive_liststore</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext2"/>
+                          <attributes>
+                            <attribute name="text">2</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkAlignment" id="alignment9">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="left_padding">25</property>
+                    <child>
+                      <object class="GtkLabel" id="dhc_automated_info">
+                        <property name="width_request">600</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">This will rebuild all recovery, and OS partitions.</property>
+                        <property name="use_markup">True</property>
+                        <property name="wrap">True</property>
+                        <property name="xalign">0</property>
+                        <property name="yalign">0</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkAlignment" id="alignment10">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="left_padding">25</property>
+                    <child>
+                      <object class="GtkLabel" id="dhc_automated_warning_label">
+                        <property name="width_request">600</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">&lt;b&gt;WARNING: &lt;/b&gt;All personal files and changes will be lost.</property>
+                        <property name="use_markup">True</property>
+                        <property name="wrap">True</property>
+                        <property name="xalign">0</property>
+                        <property name="yalign">0</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">False</property>
+            <property name="position">2</property>
           </packing>
         </child>
         <child>
@@ -430,7 +569,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkAlignment" id="alignment3">
+                  <object class="GtkAlignment" id="alignment4">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="left_padding">25</property>
@@ -439,11 +578,11 @@
                         <property name="width_request">600</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="yalign">0</property>
                         <property name="label" translatable="yes">This will rebuild all recovery, and OS partitions.</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">True</property>
+                        <property name="xalign">0</property>
+                        <property name="yalign">0</property>
                       </object>
                     </child>
                   </object>
@@ -454,7 +593,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkAlignment" id="alignment1">
+                  <object class="GtkAlignment" id="alignment7">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="left_padding">25</property>
@@ -463,11 +602,11 @@
                         <property name="width_request">600</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="yalign">0</property>
                         <property name="label" translatable="yes">&lt;b&gt;WARNING: &lt;/b&gt;All personal files and changes will be lost.</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">True</property>
+                        <property name="xalign">0</property>
+                        <property name="yalign">0</property>
                       </object>
                     </child>
                   </object>
@@ -488,7 +627,7 @@
           <packing>
             <property name="expand">True</property>
             <property name="fill">False</property>
-            <property name="position">1</property>
+            <property name="position">3</property>
           </packing>
         </child>
         <child>
@@ -496,7 +635,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkImage" id="image3">
+              <object class="GtkImage" id="image4">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="pixel_size">48</property>
@@ -509,7 +648,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkVBox" id="vbox3">
+              <object class="GtkVBox" id="vbox7">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="spacing">5</property>
@@ -533,7 +672,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkAlignment" id="alignment4">
+                  <object class="GtkAlignment" id="alignment11">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="left_padding">25</property>
@@ -542,11 +681,11 @@
                         <property name="width_request">600</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="yalign">0</property>
                         <property name="label" translatable="yes">e.g. Disk encryption, partitions resizing..etc.</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">True</property>
+                        <property name="xalign">0</property>
+                        <property name="yalign">0</property>
                       </object>
                     </child>
                   </object>
@@ -557,7 +696,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkAlignment" id="alignment9">
+                  <object class="GtkAlignment" id="alignment12">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="left_padding">25</property>
@@ -566,11 +705,11 @@
                         <property name="width_request">600</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="yalign">0</property>
                         <property name="label" translatable="yes">WARNING: No recovery feature included.</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">True</property>
+                        <property name="xalign">0</property>
+                        <property name="yalign">0</property>
                       </object>
                     </child>
                   </object>
@@ -591,7 +730,7 @@
           <packing>
             <property name="expand">True</property>
             <property name="fill">False</property>
-            <property name="position">2</property>
+            <property name="position">4</property>
           </packing>
         </child>
         <child>
@@ -607,14 +746,14 @@
           <packing>
             <property name="expand">True</property>
             <property name="fill">False</property>
-            <property name="position">3</property>
+            <property name="position">5</property>
           </packing>
         </child>
         <child>
           <object class="GtkHBox" id="error_box">
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkImage" id="image4">
+              <object class="GtkImage" id="image6">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="pixel_size">48</property>
@@ -630,10 +769,10 @@
               <object class="GtkLabel" id="genuine_bootstrap_warning_label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xalign">0.05000000074505806</property>
                 <property name="label" translatable="yes">&lt;b&gt;ERROR:&lt;/b&gt; This recovery media only functions on Dell or Alienware systems.</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
+                <property name="xalign">0.05000000074505806</property>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -645,7 +784,7 @@
           <packing>
             <property name="expand">True</property>
             <property name="fill">False</property>
-            <property name="position">4</property>
+            <property name="position">6</property>
           </packing>
         </child>
         <child>
@@ -656,11 +795,11 @@
               <object class="GtkLabel" id="status_warning_label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xalign">0</property>
-                <property name="yalign">0</property>
                 <property name="label" translatable="yes">&lt;b&gt;Building Recovery Partition&lt;/b&gt;</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
+                <property name="xalign">0</property>
+                <property name="yalign">0</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -672,11 +811,11 @@
               <object class="GtkLabel" id="status_info_label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xalign">0</property>
-                <property name="yalign">0</property>
                 <property name="label" translatable="yes">&lt;b&gt;NOTE:&lt;/b&gt; Please be patient, this may take a while.</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
+                <property name="xalign">0</property>
+                <property name="yalign">0</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -688,11 +827,11 @@
               <object class="GtkLabel" id="status_restart_label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xalign">0</property>
-                <property name="yalign">0</property>
                 <property name="label" translatable="yes">Your system will restart automatically several times.</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
+                <property name="xalign">0</property>
+                <property name="yalign">0</property>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -718,8 +857,20 @@
           <packing>
             <property name="expand">True</property>
             <property name="fill">False</property>
-            <property name="position">5</property>
+            <property name="position">7</property>
           </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
         </child>
       </object>
       <packing>
@@ -729,14 +880,14 @@
       </packing>
     </child>
   </object>
-  <object class="GtkImage" id="image1">
+  <object class="GtkImage" id="image7">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="xalign">0</property>
     <property name="yalign">0</property>
     <property name="icon_name">gnome-session-reboot</property>
   </object>
-  <object class="GtkImage" id="image6">
+  <object class="GtkImage" id="image8">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="xalign">0</property>

@@ -43,7 +43,7 @@ from Dell.recovery_common import (DOMAIN, LOCALEDIR,
                                   walk_cleanup, create_new_uuid, white_tree,
                                   black_tree, fetch_output, check_version,
                                   DBUS_BUS_NAME, DBUS_INTERFACE_NAME,
-                                  RestoreFailed, CreateFailed,
+                                  RestoreFailed, CreateFailed, find_partition,
                                   regenerate_md5sum, PermissionDeniedByPolicy)
 from Dell.recovery_threading import ProgressByPulse, ProgressBySize
 from Dell.recovery_xml import BTOxml
@@ -775,6 +775,21 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
             description = self.xml_obj.fetch_node_contents('driver')
         logging.debug("Validation complete: valid %s" % valid)
         self.report_package_info(valid, description, error_warning)
+
+    #The funcution is used to recovery Dell Hybrid Client
+    @dbus.service.method(DBUS_INTERFACE_NAME,
+        in_signature = 'b', out_signature = '', sender_keyword = 'sender',
+        connection_keyword = 'conn')
+    def enable_boot_to_restore_dhc(self, reboot, sender=None, conn=None):
+        """Enables the default one-time boot option to be recovery"""
+        self._reset_timeout()
+        recovery=find_partition().decode('utf-8')
+        mntdir=self.request_mount(recovery, 'rw', sender,conn)
+        f=os.path.join(mntdir,'.dhc_flag')
+        with open(f,'w'):
+            pass
+        logging.debug("enable_boot_to_restore_dhc:reboot=%s" % reboot)
+        self._prepare_reboot("99_dell_recovery", reboot)
 
     @dbus.service.method(DBUS_INTERFACE_NAME,
         in_signature = 'b', out_signature = '', sender_keyword = 'sender',

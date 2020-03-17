@@ -64,6 +64,18 @@ Template: ubiquity/text/hdd_warning_label
 Type: text
 _Description: WARNING: All personal files and changes will be lost.
 
+Template: ubiquity/text/dhc_automated_recovery
+Type: text
+_Description: Install Dell Hybrid Client
+
+Template: ubiquity/text/dhc_automated_info
+Type: text
+_Description: This will rebuild all recovery, and OS partitions.
+
+Template: ubiquity/text/dhc_automated_warning_label
+Type: text
+_Description: WARNING: All personal files and changes will be lost.
+
 Template: ubiquity/text/automated_recovery
 Type: text
 _Description: Restore entire hard drive.

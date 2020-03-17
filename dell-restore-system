@@ -23,7 +23,7 @@
 
 from Dell.recovery_common import (find_partition, check_version, DBUS_INTERFACE_NAME,
                                   DBUS_BUS_NAME, dbus_sync_call_signal_wrapper,
-                                  PermissionDeniedByPolicy)
+                                  PermissionDeniedByPolicy, check_for_restore_command)
 import optparse
 import os
 import subprocess
@@ -40,6 +40,8 @@ parser.add_option('-c', '--check-version', dest='checkversion', action='store_tr
                   help='Show the version information.')
 parser.add_option('-y', '--yes', dest='yes', action='store_true',
                   help="Restore the system without user's confirmation.")
+parser.add_option('-d', '--dhc', dest='dhc', action='store_true',
+                  help="Restore the system with Dell Hybrid Client without user's confirmation")
 (options, args) = parser.parse_args()
 
 if __name__ == '__main__':
@@ -67,17 +69,26 @@ if __name__ == '__main__':
         for item in (autostart, reminder):
             if os.path.exists(item):
                 os.remove(item)
-        
+        #Add option '-d' to support restore os with Dell Hybrid Client for some platforms 
         #invoke dbus to restore the system
         try:
             bus = dbus.SystemBus()
             dbus_iface = dbus.Interface(bus.get_object(DBUS_BUS_NAME,
                                         '/RecoveryMedia'),
                                         DBUS_INTERFACE_NAME)
-            dbus_sync_call_signal_wrapper(dbus_iface,
-                                          "enable_boot_to_restore",
-                                          {},
-                                          True)
+            if options.dhc:
+                if check_for_restore_command():
+                    dbus_sync_call_signal_wrapper(dbus_iface,
+                                                "enable_boot_to_restore_dhc",
+                                                 {},
+                                                 True)
+                else:
+                    print("Sorry, you machine is not support the '-d' option, because your machine model is not belong to install Dell Hybrid Client series, you can try 'dell-restore-system -y' to restore os, thanks.")
+            else:
+                dbus_sync_call_signal_wrapper(dbus_iface,
+                                              "enable_boot_to_restore",
+                                              {},
+                                              True)
         except dbus.DBusException as ex:
             if ex.get_dbus_name() == 'org.freedesktop.DBus.Error.FileNotFound':
                 text = _("Cannot connect to dbus")

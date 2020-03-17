@@ -151,6 +151,64 @@ def check_family(test):
             return True
     return False
 
+def check_install_dhc_id():
+    """The function is used to detect machine's ID for install DHC flow"""
+    path = '/sys/class/dmi/id/modalias'
+    if not os.path.exists(path):
+        return False
+    with open(path, 'rb') as rfd:
+        value = rfd.read().strip()
+        if not value:
+            return False
+    for top in [ISO_MOUNT, CDROM_MOUNT]:
+        if os.path.isdir(top):
+            plat_conf=os.path.join(top, "dhc", "platform_list", "install-id.conf")
+            if not os.path.exists(plat_conf):
+                continue
+            lines=[line.rstrip('\n') for line in open(plat_conf)]
+            for i in range(len(lines)):
+                if lines[i] in str(value):
+                    return True
+    return False
+
+def check_recovery_dhc_id():
+    """The function is used to detect machine's ID for recovery DHC flow,"""
+    path = '/sys/class/dmi/id/modalias'
+    if not os.path.exists(path):
+        return False
+    with open(path, 'rb') as rfd:
+        value = rfd.read().strip()
+        if not value:
+            return False
+        top="/var/lib/dhc"
+        plat_conf=os.path.join(top, "recovery-id.conf")
+        if not os.path.exists(plat_conf):
+            return False
+        lines=[line.rstrip('\n') for line in open(plat_conf)]
+        for i in range(len(lines)):
+            if lines[i] in str(value):
+                return True
+    return False
+
+def check_for_restore_command():
+    """The function is used to detect ID for using recovery Dell Hybrid Client command flow,"""
+    path = '/sys/class/dmi/id/modalias'
+    if not os.path.exists(path):
+        return False
+    with open(path, 'rb') as rfd:
+        value = rfd.read().strip()
+        if not value:
+            return False
+        tops=[ '/var/lib/dhc/install-id.conf', '/var/lib/dhc/recovery-id.conf' ]
+        for top in tops:
+            if not os.path.exists(top):
+                continue
+        lines=[line.rstrip('\n') for line in open(top)]
+        for i in range(len(lines)):
+            if lines[i] in str(value):
+                return True
+    return False
+
 def check_vendor():
     """Checks to make sure that the app is running on Dell HW"""
     path = '/sys/class/dmi/id/'

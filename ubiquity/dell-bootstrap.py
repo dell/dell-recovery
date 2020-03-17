@@ -92,9 +92,18 @@ class PageNoninteractive(PluginUI):
         """Empty skeleton function for the non-interactive UI"""
         pass
 
+    def dhc_populate_devices(self, devices):
+        """Empty skeleton function for the non-interactive UI"""
+        pass
+
     def set_advanced(self, item, value):
         """Empty skeleton function for the non-interactive UI"""
         pass
+
+    def dhc_set_advanced(self, item, value):
+        """Empty skeleton function for the non-interactive UI"""
+        pass
+
 
 ############
 # GTK Page #
@@ -113,7 +122,7 @@ class PageGtk(PluginUI):
         self.efi = False
         with misc.raised_privileges():
             self.genuine = magic.check_vendor()
-
+            self.install_dhc_id = magic.check_install_dhc_id()
         if not oem:
             gi.require_version('Gtk', '3.0')
             from gi.repository import Gtk
@@ -131,6 +140,9 @@ class PageGtk(PluginUI):
             self.hdd_recovery = builder.get_object('hdd_recovery')
             self.hdd_recovery_box = builder.get_object('hdd_recovery_box')
             self.hidden_radio = builder.get_object('hidden_radio')
+            self.dhc_automated_recovery = builder.get_object('dhc_automated_recovery')
+            self.dhc_automated_recovery_box = builder.get_object('dhc_automated_recovery_box')
+            self.dhc_automated_combobox = builder.get_object('dhc_hard_drive_combobox')
             self.info_box = builder.get_object('info_box')
             self.info_spinner = Gtk.Spinner()
             builder.get_object('info_spinner_box').add(self.info_spinner)
@@ -162,6 +174,15 @@ class PageGtk(PluginUI):
             self.automated_recovery.set_sensitive(False)
             self.interactive_recovery.set_sensitive(False)
             self.controller.allow_go_forward(False)
+        #if machine ID is match DHC machine id, then only show install Dell Hybrid Client option,otherwise show normal ubuntu option
+        if self.install_dhc_id:
+            self.automated_recovery_box.hide()
+            self.automated_recovery.set_sensitive(False)
+            self.interactive_recovery_box.hide()
+            self.interactive_recovery.set_sensitive(False)
+        else:
+            self.dhc_automated_recovery_box.hide()
+            self.dhc_automated_recovery.set_sensitive(False)
         self.toggle_progress()
 
         return self.plugin_widgets
@@ -176,6 +197,8 @@ class PageGtk(PluginUI):
         """Returns the type of recovery to do from GUI"""
         if self.automated_recovery.get_active():
             return "automatic"
+        elif self.dhc_automated_recovery.get_active():
+            return "dhc"
         elif self.interactive_recovery.get_active():
             return "interactive"
         else:
@@ -191,6 +214,16 @@ class PageGtk(PluginUI):
             size = model.get_value(iterator, 1)
         return (device, size)
 
+    def dhc_get_selected_device(self):
+        """copy normal install ubuntu func to returns the selected device from the GUI for DHC"""
+        device = size = ''
+        model = self.dhc_automated_combobox.get_model()
+        iterator = self.dhc_automated_combobox.get_active_iter()
+        if iterator is not None:
+            device = model.get_value(iterator, 0)
+            size = model.get_value(iterator, 1)
+        return (device, size)
+
     def set_type(self, value, stage):
         """Sets the type of recovery to do in GUI"""
         if not self.genuine:
@@ -199,6 +232,8 @@ class PageGtk(PluginUI):
 
         if value == "automatic":
             self.automated_recovery.set_active(True)
+        elif value == "dhc":
+            self.dhc_automated_recovery.set_active(True)
         elif value == "interactive":
             self.interactive_recovery.set_active(True)
         elif value == "factory":
@@ -210,13 +245,16 @@ class PageGtk(PluginUI):
                 self.hdd_recovery_box.show()
                 self.interactive_recovery_box.hide()
                 self.automated_recovery_box.hide()
+                self.dhc_automated_recovery_box.hide()
                 self.interactive_recovery.set_sensitive(False)
                 self.automated_recovery.set_sensitive(False)
+                self.dhc_automated_recovery.set_sensitive(False)
 
     def toggle_type(self, widget):
         """Allows the user to go forward after they've made a selection'"""
         self.controller.allow_go_forward(True)
         self.automated_combobox.set_sensitive(self.automated_recovery.get_active())
+        self.dhc_automated_combobox.set_sensitive(self.dhc_automated_recovery.get_active())
 
     def show_dialog(self, which, data = None):
         """Shows a dialog"""
@@ -225,12 +263,14 @@ class PageGtk(PluginUI):
                          self.controller.get_string('ubiquity/imported/cancel'))
             self.controller.allow_go_forward(False)
             self.automated_recovery_box.hide()
+            self.dhc_automated_recovery_box.hide()
             self.interactive_recovery_box.hide()
             self.info_box.show_all()
             self.info_spinner.start()
             self.toggle_progress()
         elif which == "forward":
             self.automated_recovery_box.hide()
+            self.dhc_automated_recovery_box.hide()
             self.interactive_recovery_box.hide()
             self.toggle_progress()
         else:
@@ -252,6 +292,18 @@ class PageGtk(PluginUI):
 
         #default to the first item active (it should be sorted anyway)
         self.automated_combobox.set_active(0)
+
+    def dhc_populate_devices(self, devices):
+        """Feeds a selection of devices into the GUI
+           devices should be an array of 3 column arrays
+        """
+        #populate the devices
+        liststore = self.dhc_automated_combobox.get_model()
+        for device in devices:
+            liststore.append(device)
+
+        #default to the first item active (it should be sorted anyway)
+        self.dhc_automated_combobox.set_active(0)
 
     ##                      ##
     ## Advanced GUI options ##
@@ -309,6 +361,7 @@ class Page(Plugin):
         self.preseed_config = ''
         self.rp_builder = None
         self.disk_size = None
+        self.rec_type=None
         self.stage = 1
         Plugin.__init__(self, frontend, db, ui)
 
@@ -796,7 +849,7 @@ class Page(Plugin):
         self.log("selected device %s %d" % (device, size))
 
         return Plugin.ok_handler(self)
-
+    
     def report_progress(self, info, percent):
         """Reports to the frontend an update about th progress"""
         self.frontend.debconf_progress_info(info)
@@ -813,7 +866,7 @@ class Page(Plugin):
 
         try:
             # User recovery - need to copy RP
-            if rec_type == "automatic" or \
+            if rec_type == "automatic" or rec_type == "dhc" or \
                (rec_type == "factory" and self.stage == 1):
 
                 if not (rec_type == "factory" and self.stage == 1):
@@ -833,7 +886,9 @@ class Page(Plugin):
                                             self.mem,
                                             self.efi,
                                             self.preseed_config,
-                                            size_thread)
+                                            size_thread,
+                                            self.rec_type)
+                self.rp_builder.rec_type=self.ui.get_type()
                 self.rp_builder.exit = self.exit_ui_loops
                 self.rp_builder.status = self.report_progress
                 self.rp_builder.start()
@@ -859,7 +914,7 @@ class Page(Plugin):
         except Exception as err:
             #For interactive types of installs show an error then reboot
             #Otherwise, just reboot the system
-            if rec_type == "automatic" or rec_type == "interactive" or \
+            if rec_type == "automatic" or rec_type == "dhc" or rec_type == "interactive" or \
                ('UBIQUITY_DEBUG' in os.environ and 'UBIQUITY_ONLY' in os.environ):
                 self.handle_exception(err)
             self.cancel_handler()
@@ -888,7 +943,7 @@ class Page(Plugin):
 ############################
 class RPbuilder(Thread):
     """The recovery partition builder worker thread"""
-    def __init__(self, device, size, mem, efi, preseed_config, sizing_thread):
+    def __init__(self, device, size, mem, efi, preseed_config, sizing_thread, rec_type):
         self.device = device
         self.device_size = size
         self.mem = mem
@@ -897,6 +952,7 @@ class RPbuilder(Thread):
         self.exception = None
         self.file_size_thread = sizing_thread
         self.xml_obj = BTOxml()
+        self.rec_type=rec_type
         Thread.__init__(self)
 
     def build_rp(self, cushion=600):
@@ -997,6 +1053,12 @@ manually to proceed.")
                 if item.startswith('ID_FS_UUID'):
                     uuid = item.split('=')[1]
                     break
+
+        with misc.raised_privileges():
+            if self.rec_type=='dhc':
+                f=os.path.join('/mnt','.dhc_flag')
+                with open(f,'w'):
+                    pass
 
         #read in any old seed
         seed = os.path.join('/mnt', 'preseed', 'dell-recovery.seed')
@@ -1277,7 +1339,7 @@ class Install(InstallPlugin):
             recovery_type = 'hdd'
             #if wyse mode is on (dell-recovery/mode == 'wyse'), set the recovery_type to be 'factory'
             #as Wyse platforms will always skip the "Restore OS Linux partition" dialog
-            if self.db.get('dell-recovery/wyse_mode') == 'true' or magic.check_family(b"wyse"):
+            if self.db.get('dell-recovery/wyse_mode') == 'true' or magic.check_family(b"wyse") or magic.check_install_dhc_id() or magic.check_recovery_dhc_id():
                 recovery_type = 'factory'
             #create 99_dell_recovery grub
             magic.create_grub_entries(self.target, recovery_type)
