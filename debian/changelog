@@ -1,3 +1,19 @@
+dell-recovery (1.64) focal; urgency=medium
+
+  [ Mario Limonciello ]
+  * Update VCS URL to proper upstream URL
+  * downgrade python requirement to 3.6 to allow bionic to work (Fixes: #87)
+  * trivial: remove duplicated dependencies
+  * update documentation
+
+  [ Alex Tu ]
+  * add dependencies for FDE
+
+  [ chris Li Q ]
+  * Add Dell Hybrid Client support
+
+ -- Mario Limonciello <mario.limonciello@dell.com>  Tue, 24 Mar 2020 08:38:04 -0500
+
 dell-recovery (1.63) eoan; urgency=medium
 
   [ Shih-Yuan Lee (FourDollars) ]
