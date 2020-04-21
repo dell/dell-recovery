@@ -12,14 +12,14 @@ done
 if [ -n "$UBUNTU_DRIVERS_BLACKLIST" ]; then
     echo "UBUNTU_DRIVERS_BLACKLIST: $UBUNTU_DRIVERS_BLACKLIST"
 fi
-for pkg in `ubuntu-drivers list`; do
-    if dpkg-query -W $pkg >/dev/null 2>&1; then
+for pkg in $(ubuntu-drivers list); do
+    if dpkg-query -W -f='${Status}\n' "$pkg" | grep "install ok installed" >/dev/null 2>&1; then
         echo "$pkg has been installed."
     else
-        if [ -n "$UBUNTU_DRIVERS_BLACKLIST" ] && echo "$UBUNTU_DRIVERS_BLACKLIST" | grep $pkg >/dev/null 2>&1; then
+        if [ -n "$UBUNTU_DRIVERS_BLACKLIST" ] && echo "$UBUNTU_DRIVERS_BLACKLIST" | grep "$pkg" >/dev/null 2>&1; then
             echo "Won't install '$pkg' listed in UBUNTU_DRIVERS_BLACKLIST"
         else
-            apt-get install --yes $pkg
+            apt-get install --yes "$pkg"
         fi
     fi
 done
