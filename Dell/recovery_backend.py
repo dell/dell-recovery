@@ -257,7 +257,7 @@ class Backend(dbus.service.Object):
                                  universal_newlines=True)
         output = command.communicate()
         ret = command.wait()
-        if ret is not 0:
+        if ret != 0:
             os.rmdir(mntdir)
             if ret == 32:
                 try:
@@ -279,7 +279,7 @@ class Backend(dbus.service.Object):
 
         if os.path.exists(mnt):
             ret = subprocess.call(['umount', mnt])
-            if ret is not 0:
+            if ret != 0:
                 logging.warning(" _unmount_drive: Error unmounting %s" % mnt)
             try:
                 os.rmdir(mnt)
@@ -849,17 +849,17 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
                         env['PATH'] = path
 
         ret = subprocess.call(['/usr/sbin/update-grub'], env=env)
-        if ret is not 0:
+        if ret != 0:
             raise RestoreFailed("error updating grub configuration")
 
         ret = subprocess.call(['/usr/sbin/grub-reboot', entry])
-        if ret is not 0:
+        if ret != 0:
             raise RestoreFailed("error setting one time grub entry")
 
         if reboot:
             logging.debug("Prepare to reboot")
             ret = subprocess.call(["/sbin/reboot", "--force"])
-            if ret is not 0:
+            if ret != 0:
                 raise RestoreFailed("error invoking reboot")
 
 
@@ -1054,13 +1054,13 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
             if not os.path.exists(os.path.join(mntdir, 'boot', 'grub', 'dejavu-sans-12.pf2')):
                 ret = subprocess.call(['grub-mkfont', '/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf',
                                        '-s=12', '--output=%s' % os.path.join(tmpdir, 'boot', 'grub', 'dejavu-sans-12.pf2')])
-                if ret is not 0:
+                if ret != 0:
                     raise CreateFailed("Creating GRUB fonts failed.")
 
             if not os.path.exists(os.path.join(mntdir, 'boot', 'grub', 'dejavu-sans-bold-14.pf2')):
                 ret = subprocess.call(['grub-mkfont', '/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans-Bold.ttf',
                                        '-s=14', '--output=%s' % os.path.join(tmpdir, 'boot', 'grub', 'dejavu-sans-bold-14.pf2')])
-                if ret is not 0:
+                if ret != 0:
                     raise CreateFailed("Creating GRUB fonts failed.")
 
         #if we previously backed up a grub.cfg or common.cfg
@@ -1113,7 +1113,7 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
                         if (progress[-1:] == '%'):
                             self.report_progress(_('Building ISO'), progress[:-1])
             retval = seg1.poll()
-        if retval is not 0:
+        if retval != 0:
             logging.error(" create_ubuntu: xorriso exited with a nonstandard return value.")
             logging.error("  cmd: %s" % xorrisoargs)
             logging.error("  stderror: %s" % pipe.readlines())
