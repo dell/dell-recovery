@@ -12,7 +12,7 @@ done
 if [ -n "$UBUNTU_DRIVERS_BLACKLIST" ]; then
     echo "UBUNTU_DRIVERS_BLACKLIST: $UBUNTU_DRIVERS_BLACKLIST"
 fi
-for pkg in $(ubuntu-drivers list); do
+for pkg in $(ubuntu-drivers list | awk -F'[ ,]' '{print $1}'); do
     if dpkg-query -W -f='${Status}\n' "$pkg" | grep "install ok installed" >/dev/null 2>&1; then
         echo "$pkg has been installed."
     else
