@@ -24,7 +24,7 @@
 #       MA 02110-1301, USA.
 # vim:ts=8:sw=8:et:tw=0
 
-[ -d /cdrom/debs -o -d /isodevice/debs ]
+[ -d /cdrom/debs ] || [ -d /isodevice/debs ] || [ -d /dell/debs ]
 
 #Persistent mode has a tendency to break the dynamic apt cache
 if grep -q persistent /proc/cmdline 2>/dev/null; then
@@ -64,7 +64,7 @@ if [ ! -f /etc/apt/sources.list.d/dell.list ]; then
         mv /etc/apt/sources.list.d/* /etc/apt/sources.list.d.old
     fi
     #Produce a dynamic list
-    for dir in /cdrom/debs /isodevice/debs;
+    for dir in /cdrom/debs /isodevice/debs /dell/debs;
     do
         if [ -d "$dir" ]; then
             cd $dir

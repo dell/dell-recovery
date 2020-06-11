@@ -27,26 +27,30 @@
 # $1 -> early/late
 #
 # for early:
-# $2 -> /cdrom or /isodevice
+# $2 -> /cdrom or /isodevice or none when /dell/debs exists for no recovery partition.
 
 DEVICE=$(python3 << EOF
 from Dell.recovery_common import find_partition
-print(find_partition().decode('utf-8'))
+device = find_partition()
+if device:
+    print(device.decode('utf-8'))
 EOF
 )
 
 if [ "$1" = "early" ]; then
-    mkdir -p $2
-    mount $DEVICE $2
-    if [ -f $2/.disk/info.recovery -a ! -f $2/.disk/info ]; then
-        cp $2/.disk/info.recovery $2/.disk/info
-    fi
-    if [ -f "$2/factory/grubenv" ]; then
-        grub-editenv $2/factory/grubenv unset install_finished
-    fi
-    mount -o remount,ro $2
-    if [ -f "$2/ubuntu.iso" ]; then
-        mount -o loop $2/ubuntu.iso /cdrom
+    if [ -n "$2" ]; then
+        mkdir -p "$2"
+        mount "$DEVICE" "$2"
+        if [ -f "$2"/.disk/info.recovery ] && [ ! -f "$2"/.disk/info ]; then
+            cp "$2"/.disk/info.recovery "$2"/.disk/info
+        fi
+        if [ -f "$2"/factory/grubenv ]; then
+            grub-editenv "$2"/factory/grubenv unset install_finished
+        fi
+        mount -o remount,ro "$2"
+        if [ -f "$2"/ubuntu.iso ]; then
+            mount -o loop "$2"/ubuntu.iso /cdrom
+        fi
     fi
     /usr/share/dell/scripts/pool.sh
 elif [ "$1" = "late" ]; then
@@ -54,11 +58,15 @@ elif [ "$1" = "late" ]; then
         umount /isodevice
         rm -rf /isodevice
     fi
-    mount $DEVICE /cdrom
-    if [ -f /cdrom/.disk/info.recovery -a -f /cdrom/.disk/info ]; then
-        rm -f /cdrom/.disk/info
+    if [ -n "$DEVICE" ]; then
+        mount "$DEVICE" /cdrom
+        if [ -f /cdrom/.disk/info.recovery ] && [ -f /cdrom/.disk/info ]; then
+            rm -f /cdrom/.disk/info
+        fi
+        umount /cdrom
+    elif [ -d /dell/debs ]; then
+        rm -fr /dell
     fi
-    umount /cdrom
     /usr/share/dell/scripts/pool.sh cleanup
 
     BOOTNUMS=$(efibootmgr | sed '/MokSBStateSet/!d; s,\* .*,,; s,Boot,,')

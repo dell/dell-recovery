@@ -529,9 +529,7 @@ class Page(Plugin):
                  'grub-installer/only_debian',
                  'grub-installer/with_other_os',
                  'grub-installer/bootdev',
-                 'grub-installer/make_active',
-                 'oem-config/early_command',
-                 'oem-config/late_command']
+                 'grub-installer/make_active']
         self.usb_boot_preseeds(keys)
 
     def fixup_recovery_devices(self):
@@ -904,6 +902,10 @@ class Page(Plugin):
             elif rec_type == "interactive":
                 self.ui.show_dialog("forward")
                 self.unset_drive_preseeds()
+                self.preseed('oem-config/early_command',
+                             '/usr/share/dell/scripts/oem_config.sh early')
+                self.preseed('oem-config/late_command',
+                             '/usr/share/dell/scripts/oem_config.sh late')
 
             # Factory install, and booting from RP
             else:

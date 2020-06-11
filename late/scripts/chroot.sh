@@ -80,6 +80,11 @@ if ! mount | grep "$TARGET/run"; then
     mount --bind /run $TARGET/run
     MOUNT_CLEANUP="$TARGET/run $MOUNT_CLEANUP"
 fi
+if ! mount | grep "$TARGET/pts"; then
+    [ ! -e "$TARGET/pts" ] && mkdir -p "$TARGET/pts"
+    mount -t devpts devpts $TARGET/pts
+    MOUNT_CLEANUP="$TARGET/pts $MOUNT_CLEANUP"
+fi
 if ! mount | grep "$TARGET/proc"; then
     mount -t proc targetproc $TARGET/proc
     MOUNT_CLEANUP="$TARGET/proc $MOUNT_CLEANUP"
