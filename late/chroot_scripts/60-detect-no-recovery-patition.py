@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
+from os.path import basename
+import apt
 import glob
 import json
-from os.path import basename
 import os
 import subprocess as cmd
-import shutil
 
 devices = []
 
@@ -24,7 +24,8 @@ root = cmd.check_output("findmnt -M / -o source -v | tail -n1", shell=True)
 root = basename(root.decode().strip())
 root_device = ''
 
-cdrom = cmd.check_output("findmnt -M /cdrom -o source -v | tail -n1", shell=True)
+cdrom = cmd.check_output("findmnt -M /cdrom -o source -v | tail -n1",
+                         shell=True)
 cdrom = basename(cdrom.decode().strip())
 cdrom_device = ''
 
@@ -50,8 +51,63 @@ if root_device == cdrom_device:
 
 print('No recovery partition is detected.')
 
-os.makedirs('/dell/debs')
 
-for folder in ('/cdrom/pool', '/cdrom/debs'):
-    for deb in glob.glob(f'{folder}/**/*.deb', recursive=True):
-        shutil.copy(deb, f'/dell/debs')
+def check_depends(pkg_name, depends):
+    if pkg_name not in cache:
+        return
+
+    pkg = cache[pkg_name]
+
+    if not pkg.has_versions:
+        return
+
+    depends_list = pkg.version_list[0].depends_list
+
+    if not depends_list:
+        return
+
+    if 'Depends' in depends_list:
+        for dep in depends_list['Depends']:
+            pkg_name = dep[0].all_targets()[0].parent_pkg.name
+            pkg = cache[pkg_name]
+            if pkg_name not in depends \
+                    and not pkg.current_ver \
+                    and pkg.has_versions \
+                    and pkg.version_list[0].downloadable:
+                depends.append(pkg_name)
+
+
+cache = apt.apt_pkg.Cache()
+langs = ("ca", "cs", "da", "de", "en", "en_US", "es", "eu", "fr", "gl", "it",
+         "hu", "nl", "pl", "pt", "pt_BR", "sl", "fi", "sv", "el", "bg", "ru",
+         "ko", "zh-hans", "zh-hant", "ja")
+depends = []
+
+for lang in langs:
+    pkgs = cmd.check_output('check-language-support'
+                            + ' --show-installed'
+                            + ' -l ' + lang,
+                            shell=True)
+    pkgs = pkgs.decode('utf-8').strip().split(' ')
+    for pkg_name in pkgs:
+        pkg = cache[pkg_name]
+        if pkg_name not in depends \
+                and not pkg.current_ver \
+                and pkg.has_versions \
+                and pkg.version_list[0].downloadable:
+            depends.append(pkg_name)
+
+pre_len = len(depends)
+
+while True:
+    for dep in depends.copy():
+        check_depends(dep, depends)
+    if len(depends) != pre_len:
+        pre_len = len(depends)
+    else:
+        break
+
+os.makedirs('/dell/debs')
+os.chdir('/dell/debs')
+cmd.check_output('apt-get download --allow-unauthenticated '
+                 + ' '.join(depends), shell=True)
