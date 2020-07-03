@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 . /usr/share/dell/scripts/fifuncs ""
 
@@ -12,8 +12,17 @@ done
 if [ -n "$UBUNTU_DRIVERS_BLACKLIST" ]; then
     echo "UBUNTU_DRIVERS_BLACKLIST: $UBUNTU_DRIVERS_BLACKLIST"
 fi
+BIOSID=$(cat /sys/devices/virtual/dmi/id/product_sku)
 for pkg in $(ubuntu-drivers list | awk -F'[ ,]' '{print $1}'); do
-    if dpkg-query -W -f='${Status}\n' "$pkg" | grep "install ok installed" >/dev/null 2>&1; then
+    if apt-cache show "$pkg" | grep ^Modaliases | grep -i "sv00001028sd0000$BIOSID" >/dev/null 2>&1; then
+        factory="${pkg/oem-somerville/oem-somerville-factory}"
+        if dpkg-query -W -f='${Status}\n' "$factory" 2>&1 | grep "install ok installed" >/dev/null 2>&1; then
+            echo "$factory has been installed."
+        else
+            apt-get install --yes "$factory" || true
+        fi
+    fi
+    if dpkg-query -W -f='${Status}\n' "$pkg" 2>&1 | grep "install ok installed" >/dev/null 2>&1; then
         echo "$pkg has been installed."
     else
         if [ -n "$UBUNTU_DRIVERS_BLACKLIST" ] && echo "$UBUNTU_DRIVERS_BLACKLIST" | grep "$pkg" >/dev/null 2>&1; then
