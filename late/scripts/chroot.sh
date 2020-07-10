@@ -163,7 +163,7 @@ if [ -f "$TARGET/tmp/apt-installed" ]; then
     mv $TARGET/tmp/apt-installed $TARGET/var/lib/ubiquity/dell-apt
     sed "s/:$(dpkg --print-architecture)//g" $TARGET/var/lib/ubiquity/installed-packages > $TARGET/var/lib/ubiquity/installed-packages-filtered
     grep -x -f $TARGET/var/lib/ubiquity/dell-apt $TARGET/var/lib/ubiquity/installed-packages-filtered > $TARGET/var/lib/ubiquity/dell_installed
-    awk '{print $0}' $TARGET/var/lib/ubiquity/dell-apt $TARGET/var/lib/ubiquity/dell_installed |sort |uniq -u > $TARGET/var/lib/ubiquity/dell_uninstalled
+    awk '{print $0}' $TARGET/var/lib/ubiquity/dell-apt $TARGET/var/lib/ubiquity/dell_installed | grep -v ubiquity |sort |uniq -u > $TARGET/var/lib/ubiquity/dell_uninstalled
 fi
 
 #check the checked_uninstalled file is empty or not, we will turn to FAIL-SCRIPT if it is not empty
