@@ -10,6 +10,9 @@ dell-recovery (1.66) UNRELEASED; urgency=medium
   * don't show the page to create media if we run in automatic mode.
   * add a dev mode that's full-automatic in stage 1, 2 and recovery from hdd.
 
+  [ Alex Tu ]
+  * change NetworkManager dbus method from Sleep to Enable (Close #114)
+
  -- Yuan-Chen Cheng <yc.cheng@canonical.com>  Thu, 23 Jul 2020 06:31:03 +0800
 
 dell-recovery (1.65) groovy; urgency=medium
