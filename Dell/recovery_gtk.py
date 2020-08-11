@@ -174,7 +174,6 @@ class DellRecoveryToolGTK:
                 self.about_box.set_copyright(_("Copyright 2008-2012 Dell Inc."))
                 self.about_box.set_website("http://www.dell.com/ubuntu")
                 self.about_box.set_authors(["Mario Limonciello"])
-                self.about_box.set_destroy_with_transient_for(True)
                 self.about_box.set_modal(True)
                 self.about_box.set_transient_for(tool_selector)
             tool_selector.set_sensitive(False)
