@@ -154,7 +154,7 @@ class BasicGeneratorGTK(DellRecoveryToolGTK):
             try:
                 if not os.path.isdir(self.path):
                     os.makedirs(self.path)
-                with open(os.path.join(self.path, self.image), 'w') as wfd: # pylint: disable=unused-variable
+                with open(os.path.join(self.path, self.image), 'w'):
                     pass
             except IOError:
                 #this might have been somwehere that the system doesn't want us

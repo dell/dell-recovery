@@ -647,7 +647,7 @@ def parse_seed(seed):
                     line.pop(0) # ubiquity or d-i generally
                     key = line.pop(0)
                     if '/' in key:
-                        type = line.pop(0)
+                        line.pop(0)
                         value = " ".join(line)
                         keys[key] = value
                 line = rfd.readline()

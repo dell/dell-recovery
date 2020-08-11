@@ -560,8 +560,8 @@ class Backend(dbus.service.Object):
             #RHEL disks have .discinfo
             elif os.path.exists(os.path.join(mntdir, '.discinfo')):
                 with open(os.path.join(mntdir, '.discinfo'), 'r') as rfd:
-                    timestamp = rfd.readline().strip('\n') # pylint: disable=unused-variable
-                    distributor_string = rfd.readline().strip('\n') # pylint: disable=unused-variable
+                    rfd.readline().strip('\n')
+                    rfd.readline().strip('\n')
                     arch = rfd.readline().strip('\n')
                 distributor = "redhat"
                 distributor_str += ' ' + arch
