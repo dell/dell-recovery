@@ -805,7 +805,7 @@ class Page(Plugin):
         #Amount of memory in the system
         self.mem = 0
         if os.path.exists('/sys/firmware/memmap'):
-            for root, dirs, files in os.walk('/sys/firmware/memmap', topdown=False):
+            for root, dirs, files in os.walk('/sys/firmware/memmap', topdown=False): # pylint: disable=unused-variable
                 if os.path.exists(os.path.join(root, 'type')):
                     with open(os.path.join(root, 'type')) as rfd:
                         type = rfd.readline().strip('\n')
@@ -902,7 +902,7 @@ class Page(Plugin):
         self.log("selected device %s %d" % (device, size))
 
         return Plugin.ok_handler(self)
-    
+
     def report_progress(self, info, percent):
         """Reports to the frontend an update about th progress"""
         self.frontend.debconf_progress_info(info)
