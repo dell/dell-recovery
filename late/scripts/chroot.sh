@@ -81,7 +81,10 @@ if ! mount | grep "$TARGET/run"; then
     MOUNT_CLEANUP="$TARGET/run $MOUNT_CLEANUP"
 fi
 if ! mount | grep "$TARGET/pts"; then
-    [ ! -e "$TARGET/pts" ] && mkdir -p "$TARGET/pts"
+    if ! -e "$TARGET/pts"; then
+        mkdir -p "$TARGET/pts"
+        DIR_CLEANUP="$TARGET/pts $DIR_CLEANUP"
+    fi
     mount -t devpts devpts $TARGET/pts
     MOUNT_CLEANUP="$TARGET/pts $MOUNT_CLEANUP"
 fi
