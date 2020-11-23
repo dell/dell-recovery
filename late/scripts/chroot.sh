@@ -81,7 +81,7 @@ if ! mount | grep "$TARGET/run"; then
     MOUNT_CLEANUP="$TARGET/run $MOUNT_CLEANUP"
 fi
 if ! mount | grep "$TARGET/pts"; then
-    if [ ! -e "$TARGET/pts"]; then
+    if [ ! -e "$TARGET/pts" ]; then
         mkdir -p "$TARGET/pts"
         DIR_CLEANUP="$TARGET/pts $DIR_CLEANUP"
     fi
@@ -141,13 +141,13 @@ chroot $TARGET /usr/share/dell/scripts/target_chroot.sh
 
 for mountpoint in $MOUNT_CLEANUP;
 do
-    umount -l $mountpoint
+    umount -l "$mountpoint"
 done
 unset MOUNT_CLEANUP
 
 for directory in $DIR_CLEANUP;
 do
-    rm -rf $directory
+    rm -rf "$directory"
 done
 
 chroot $TARGET chattr -a $LOG/chroot.sh.log
@@ -176,4 +176,4 @@ fi
 # reset traps, as we are now exiting normally
 trap - TERM INT HUP EXIT QUIT
 
-. /usr/share/dell/scripts/SUCCESS-SCRIPT $BOOT_DEV $BOOT_PART_NUM
+. /usr/share/dell/scripts/SUCCESS-SCRIPT
