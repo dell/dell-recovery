@@ -956,8 +956,6 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
             xorrisoargs.append('-boot-info-table')
             xorrisoargs.append('-isohybrid-mbr')
             xorrisoargs.append(os.path.join('/', 'usr', 'lib', 'ISOLINUX', 'isohdpfx.bin'))
-        else:
-            raise CreateFailed("Unable to locate isolinux to build hybrid MBR")
 
         #include bootloader as eltorito if we have it
         if os.path.exists(os.path.join(mntdir, 'boot', 'grub', 'efi.img')):
@@ -972,9 +970,6 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
             xorrisoargs.append('boot/efi.img')
             xorrisoargs.append('-no-emul-boot')
             xorrisoargs.append('-isohybrid-gpt-basdat')
-        else:
-            raise CreateFailed("Unable to locate EFI bootloader image")
-
 
         #disable 32 bit bootloader if it was there.
         grub_path = os.path.join(mntdir, 'boot', 'grub', 'i386-pc')
