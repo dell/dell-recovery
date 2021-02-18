@@ -268,10 +268,8 @@ def process_conf_file(original, new, uuid, number, recovery_text='', recovery_ty
     import lsb_release
     release = lsb_release.get_distro_information()
 
-    #starting with 10.10, we replace the whole drive string (/dev/sdX,gptY)
-    #earlier releases are hardcoded to (hd0,Y)
-    if float(release["RELEASE"]) >= 10.10:
-        number = 'gpt' + number
+    #we use the whole drive string (/dev/sdX,gptY)
+    number = 'gpt' + number
 
     with open(original, "r") as base:
         with open(new, 'w', encoding='utf-8') as output:
