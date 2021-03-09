@@ -498,9 +498,10 @@ class Backend(dbus.service.Object):
         #save the efi image
         file_efimage1 = os.path.join(assembly_tmp, 'boot', 'grub', 'efi.img')
         file_efimage2 = os.path.join(assembly_tmp, 'boot', 'efi.img')
+        file_efimage3 = os.path.join(assembly_tmp, 'boot', '_efi.img')
         if not (os.path.exists(file_efimage1) or os.path.exists(file_efimage2)):
             logging.debug("assemble_image: prepare efi.img from base EFI Partition")
-            self._prepare_efimage_from_base_efi_partition(base, file_efimage2)
+            self._prepare_efimage_from_base_efi_partition(base, file_efimage3)
 
         #Add in driver FISH content
         if len(driver_fish) > 0:
@@ -1013,6 +1014,18 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
             xorrisoargs.append('boot/efi.img')
             xorrisoargs.append('-no-emul-boot')
             xorrisoargs.append('-isohybrid-gpt-basdat')
+        elif os.path.exists(os.path.join(mntdir, 'boot', '_efi.img')):
+            xorrisoargs.append('-partition_offset')
+            xorrisoargs.append('16')
+            xorrisoargs.append('-append_partition')
+            xorrisoargs.append('2')
+            xorrisoargs.append('0xEF')
+            xorrisoargs.append(os.path.join(mntdir, 'boot', '_efi.img'))
+            xorrisoargs.append('-appended_part_as_gpt')
+            xorrisoargs.append('-eltorito-alt-boot')
+            xorrisoargs.append('-e')
+            xorrisoargs.append('--interval:appended_partition_2:all::')
+            xorrisoargs.append('-no-emul-boot')
 
         #disable 32 bit bootloader if it was there.
         grub_path = os.path.join(mntdir, 'boot', 'grub', 'i386-pc')
