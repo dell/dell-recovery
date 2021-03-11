@@ -12,7 +12,7 @@ done
 if [ -n "$UBUNTU_DRIVERS_BLACKLIST" ]; then
     echo "UBUNTU_DRIVERS_BLACKLIST: $UBUNTU_DRIVERS_BLACKLIST"
 fi
-BIOSID=$(cat /sys/devices/virtual/dmi/id/product_sku)
+BIOSID=$(cut -c 3-6 < /sys/bus/pci/devices/0000:00:00.0/subsystem_device)
 for pkg in $(ubuntu-drivers list | awk -F'[ ,]' '{print $1}'); do
     if apt-cache show "$pkg" | grep ^Modaliases | grep -i "sv00001028sd0000$BIOSID" >/dev/null 2>&1; then
         factory="${pkg/oem-somerville/oem-somerville-factory}"
