@@ -1,3 +1,9 @@
+dell-recovery (1.64somerville14) focal; urgency=medium
+
+  * Nobulate after target_chroot.sh again to ensure the BootOrder is correct. (LP: #1933953)
+
+ -- Shih-Yuan Lee (FourDollars) <sylee@canonical.com>  Wed, 30 Jun 2021 17:13:05 +0800
+
 dell-recovery (1.64somerville13) focal; urgency=medium
 
   * support Intel and AMD dev board (Closes #138)
