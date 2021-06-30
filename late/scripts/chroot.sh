@@ -139,6 +139,11 @@ fi
 #Run chroot scripts
 chroot $TARGET /usr/share/dell/scripts/target_chroot.sh
 
+# Nobulate here again to ensure the BootOrder is correct.
+if [ -x /dell/fist/tal ]; then
+    /dell/fist/tal nobulate 0
+fi
+
 for mountpoint in $MOUNT_CLEANUP;
 do
     umount -l $mountpoint
