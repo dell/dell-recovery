@@ -1,4 +1,5 @@
 #!/bin/sh
+# TODO
 #
 #       <pool.sh>
 #
@@ -67,7 +68,7 @@ if [ ! -f /etc/apt/sources.list.d/dell.list ]; then
     for dir in /cdrom/debs /isodevice/debs /dell/debs;
     do
         if [ -d "$dir" ]; then
-            cd $dir
+            cd $dir || exit
             apt-ftparchive packages ../../$dir | sed "s/^Filename:\ ..\//Filename:\ .\//" >> /Packages
         fi
     done

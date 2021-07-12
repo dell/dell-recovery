@@ -1,4 +1,5 @@
 #!/bin/sh
+# TODO
 set -e
 
 # Remove a no-longer used conffile (from http://wiki.debian.org/DpkgConffileHandling)

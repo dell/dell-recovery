@@ -64,6 +64,7 @@ if [ -x /dell/fist/tal ]; then
     /dell/fist/tal nobulate 0
 fi
 
+# shellcheck disable=SC1091
 if [ "$1" != "success" ]; then
     . /usr/share/dell/scripts/FAIL-SCRIPT
     exit 1
@@ -181,4 +182,5 @@ fi
 # reset traps, as we are now exiting normally
 trap - TERM INT HUP EXIT QUIT
 
+# shellcheck disable=SC1091
 . /usr/share/dell/scripts/SUCCESS-SCRIPT

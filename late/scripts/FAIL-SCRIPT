@@ -1,4 +1,5 @@
 #!/bin/sh
+# TODO
 #
 #       <FAIL-SCRIPT>
 #
@@ -27,6 +28,7 @@
 # BE AWARE THAT THIS SCRIPT IS CALLED FROM OUTSIDE THE CHROOT.
 # The OS is mounted under $TARGET
 
+# shellcheck disable=SC1091
 . /usr/share/dell/scripts/fifuncs "target"
 
 set -x
@@ -38,7 +40,7 @@ if [ "$BOOTDEV" = "$TARGETDEV" ]; then
     #cleanup potentially stale mount points
     for mountpoint in $MOUNT_CLEANUP;
     do
-        umount -l $mountpoint
+        umount -l "$mountpoint"
     done
 
     if [ -d "/isodevice" ]; then
@@ -50,8 +52,8 @@ if [ "$BOOTDEV" = "$TARGETDEV" ]; then
     fistlog="/tmp/fist.err"
 
     if [ -f $RP/SDR ]; then
-        dualos=`sed -n '/DUALOS/=' $RP/SDR`
-        if [ $dualos ]; then
+        dualos=$(sed -n '/DUALOS/=' $RP/SDR)
+        if [ "$dualos" ]; then
             fistlog="/tmp/DUALOS_FIST.ERR"
         fi
     fi
@@ -61,18 +63,18 @@ if [ "$BOOTDEV" = "$TARGETDEV" ]; then
     grub-editenv $RP/factory/grubenv set recordfail=1
 
     # create a dmesg.log file to record the dmesg info
-    touch $TARGET/$LOG/dmesg.log 2>&1
-    chattr +a $TARGET/$LOG/dmesg.log
-    dmesg >> $TARGET/$LOG/dmesg.log
+    touch "$TARGET"/"$LOG"/dmesg.log 2>&1
+    chattr +a "$TARGET"/"$LOG"/dmesg.log
+    dmesg >> "$TARGET"/"$LOG"/dmesg.log
 
     if [ -x /dell/fist/tal ]; then
         IFHALT "Reporting logs to DMP"
-        cp -f $TARGET/$LOG/chroot.sh.log $fistlog
+        cp -f "$TARGET"/"$LOG"/chroot.sh.log $fistlog
         /dell/fist/tal PutFiles $fistlog
         /dell/fist/tal PutFiles "$TARGET/$LOG/dmesg.log"
         sync
     elif [ ! -d /sys/firmware/efi ]; then
-        grub-setup -d $RP/factory $BOOTDEV
+        grub-setup -d $RP/factory "$BOOTDEV"
     fi
 
     #If we have another script to run, do it

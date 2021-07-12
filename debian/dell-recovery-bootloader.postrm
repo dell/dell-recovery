@@ -6,7 +6,7 @@ if [ "$1" = "purge" ]; then
 	TARGET=/var/lib/dell-recovery
 	FILES="boot.img core.img grub.cfg grubenv grubx64.efi grub-setup.exe"
 	for file in $FILES; do
-		rm -f $TARGET/$file
+		rm -f $TARGET/"$file"
 	done
         rm -rf $TARGET/iso
 fi

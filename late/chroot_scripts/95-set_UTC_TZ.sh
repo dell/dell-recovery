@@ -1,4 +1,5 @@
 #!/bin/sh
+# TODO
 #
 #       <95-set_UTC_TZ.sh>
 #
@@ -33,10 +34,9 @@
 # the time offset for ICC tz_offset.py was adjusted
 # from 5:30 to 5
 # ==== Do we need to change this???
-
 for arg in $(cat /proc/cmdline); do
-    if echo $arg | grep "MFGSITE=" 2>&1 >/dev/null; then
-        SITE=$(echo $arg | cut -d'=' -f2)
+    if echo "$arg" | grep "MFGSITE=" >/dev/null 2>&1; then
+        SITE=$(echo "$arg" | cut -d'=' -f2)
     fi
 done
 

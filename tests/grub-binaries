@@ -1,6 +1,7 @@
 #!/bin/sh -e
+# TODO
 export TARGET=$(mktemp -d)
-export SOURCE_GRUBDIR=`pwd`/grub/
+export SOURCE_GRUBDIR=$(pwd)/grub/
 grub/build-binaries.sh
-rm -rf $TARGET
+rm -rf "$TARGET"
 echo "No problems building grub binaries."
