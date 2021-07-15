@@ -121,7 +121,7 @@ if [ -d /mnt/var/log ];then
     chattr +a dmesg.log
     dmesg >> dmesg.log
     # tar -zcf "/cdrom/OSLogs/ubuntu.log.tar.gz" /mnt/var/log/ dmesg.log $mfglog 2>/dev/null
-    if tar -zcf "/cdrom/OSLogs/ubuntu.log.tar.gz" /mnt/var/log/ dmesg.log $mfglog 2>/dev/null;then
+    if tar -zcf "/cdrom/OSLogs/ubuntu.log.tar.gz" /mnt/var/log/ dmesg.log "$mfglog" 2>/dev/null;then
         echo "Finish copying the OS installation logs!"
     fi
 else
