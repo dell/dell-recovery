@@ -9,6 +9,7 @@ echo 'APT::Get::AllowUnauthenticated "true";' > /etc/apt/apt.conf.d/99disable_au
 # while IFS= read -r -d '' blacklist; do
 #     UBUNTU_DRIVERS_BLACKLIST="$UBUNTU_DRIVERS_BLACKLIST $(cat "$blacklist")"
 # done < <(find /cdrom/scripts/chroot-scripts/blacklist /isodevice/scripts/chroot-scripts/blacklist -type f -print0 2>/dev/null)
+# shellcheck disable=SC2044
 for blacklist in $(find /cdrom/scripts/chroot-scripts/blacklist /isodevice/scripts/chroot-scripts/blacklist -type f 2>/dev/null); do
     UBUNTU_DRIVERS_BLACKLIST="$UBUNTU_DRIVERS_BLACKLIST $(cat "$blacklist")"
 done
