@@ -1,0 +1,30 @@
+name: Continuous Integration
+on:
+  push:
+    branches:
+  pull_request:
+    branches:
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Refresh dependencies
+        run: sudo apt update
+      - name: Install dependencies
+        run: DEBIAN_FRONTEND=noninteractive sudo apt-get install -yq --no-install-recommends build-essential debhelper dh-python dpkg-dev python3 python3-distutils-extra po-debconf pyflakes3 lsb-release gnu-efi
+      - name: Build package
+        run: dpkg-buildpackage --no-sign
+  shellcheck:
+    name: Shellcheck
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run ShellCheck
+      uses: ludeeus/action-shellcheck@master
+      env:
+        SHELLCHECK_OPTS: -e SC1091 -e SC2086 -e SC1090
+
