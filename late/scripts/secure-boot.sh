@@ -1,5 +1,4 @@
 #!/bin/sh
-# TODO
 
 EFI_APP=/usr/lib/dell/x86_64/MokSBStateSet.efi
 

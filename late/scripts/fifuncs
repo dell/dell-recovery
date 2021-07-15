@@ -1,5 +1,4 @@
 #!/bin/sh
-# TODO
 #
 #       <fifuncs>
 #
@@ -25,7 +24,7 @@
 #       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #       MA 02110-1301, USA.
 
-wd=""$1""
+wd="""$1"""
 
 screenmsg() {
     echo "$*" > /dev/ttyprintk 2>&1

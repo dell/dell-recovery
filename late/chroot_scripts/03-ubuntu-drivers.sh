@@ -1,7 +1,5 @@
 #!/bin/bash
-# TODO
 
-# shellcheck disable=SC1091
 . /usr/share/dell/scripts/fifuncs ""
 
 export DEBIAN_FRONTEND=noninteractive

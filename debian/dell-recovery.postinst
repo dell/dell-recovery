@@ -1,6 +1,5 @@
 #!/bin/sh -e
 
-# shellcheck disable=SC1091
 . /usr/share/debconf/confmodule
 
 case "$1" in

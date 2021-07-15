@@ -44,7 +44,6 @@ prereqs)
 	;;
 esac
 
-# shellcheck disable=SC1091
 . /scripts/casper-functions
 load_confmodule
 
@@ -55,7 +54,6 @@ export DEBCONF_REDIR=
 export DEBIAN_FRONTEND=noninteractive
 
 # Early emergency installer fix
-# shellcheck disable=SC1091
 if [ -e /root/cdrom/scripts/emergency.sh ]; then
     . /root/cdrom/scripts/emergency.sh
 elif [ -e /root/isodevice/scripts/emergency.sh ]; then

@@ -1,5 +1,4 @@
 #!/bin/sh
-# TODO
 #
 #       <SUCCESS-SCRIPT>
 #
@@ -28,8 +27,7 @@
 # BE AWARE THAT THIS SCRIPT IS CALLED FROM OUTSIDE THE CHROOT.
 # The OS is mounted under $TARGET
 
-# shellcheck disable=SC1091
-. /usr/share/dell/scripts/fifuncs "target"
+target="target" . /usr/share/dell/scripts/fifuncs
 
 set -x
 set -e
@@ -98,11 +96,11 @@ if [ "$BOOTDEV" = "$TARGETDEV" ]; then
     rm -rf $RP/.disk/casper-uuid*
 
     IFHALT "Regenerate md5sum.txt at the end..."
-    $(python3 << EOF
+    eval "$(python3 << EOF
 from Dell.recovery_common import regenerate_md5sum
 regenerate_md5sum("$RP")
 EOF
-)
+)"
 
     IFHALT "Report the LOG..."
     # create a dmesg.log file to record the dmesg info

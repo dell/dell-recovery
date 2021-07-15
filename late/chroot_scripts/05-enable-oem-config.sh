@@ -1,5 +1,4 @@
 #!/bin/sh
-# TODO
 #
 #       <05-enable-oem-config>
 #
@@ -24,8 +23,7 @@
 #       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #       MA 02110-1301, USA.
 
-# shellcheck disable=SC1091
-. /usr/share/dell/scripts/fifuncs ""
+str="" . /usr/share/dell/scripts/fifuncs
 
 IFHALT "Enable oem-config"
 oem-config-prepare --quiet

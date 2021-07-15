@@ -1,5 +1,4 @@
 #!/bin/sh
-# TODO
 #
 #       <FAIL-SCRIPT>
 #
@@ -28,8 +27,7 @@
 # BE AWARE THAT THIS SCRIPT IS CALLED FROM OUTSIDE THE CHROOT.
 # The OS is mounted under $TARGET
 
-# shellcheck disable=SC1091
-. /usr/share/dell/scripts/fifuncs "target"
+target="target" . /usr/share/dell/scripts/fifuncs
 
 set -x
 set -e

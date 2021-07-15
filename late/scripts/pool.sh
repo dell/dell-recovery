@@ -1,5 +1,4 @@
 #!/bin/sh
-# TODO
 #
 #       <pool.sh>
 #

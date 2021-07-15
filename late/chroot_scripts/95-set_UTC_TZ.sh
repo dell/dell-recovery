@@ -1,5 +1,4 @@
 #!/bin/sh
-# TODO
 #
 #       <95-set_UTC_TZ.sh>
 #
@@ -34,11 +33,14 @@
 # the time offset for ICC tz_offset.py was adjusted
 # from 5:30 to 5
 # ==== Do we need to change this???
-for arg in $(cat /proc/cmdline); do
+mkfifo mypipe
+/proc/cmdline > mypipe &
+while IFS= read -r arg; do
     if echo "$arg" | grep "MFGSITE=" >/dev/null 2>&1; then
         SITE=$(echo "$arg" | cut -d'=' -f2)
     fi
-done
+done < mypipe
+rm mypipe
 
 if [ -n "$SITE" ]; then
     cat > /etc/init.d/run-tz-fix <<EOF

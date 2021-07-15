@@ -47,8 +47,9 @@ do
         for i in $(find $d -type f -executable | sort);
         do
             echo "running chroot script: $i"  > /dev/tty12
-            IFHALT $i
-            ext=`echo $i | sed 's/^.*\.//'`
+            IFHALT "$i"
+            # ext=`echo $i | sed 's/^.*\.//'`
+            echo "${i//^.*\.//}"
             $i
         done
     fi
