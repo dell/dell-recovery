@@ -1,6 +1,5 @@
 repos:
--   repo: git://github.com/detailyang/pre-commit-shell
-    rev: v1.0.6
+-   repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.7.2.1
     hooks:
-    - id: shell-lint
-      args: [--format=json]
+    -   id: shellcheck
