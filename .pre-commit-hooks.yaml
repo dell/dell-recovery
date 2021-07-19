@@ -1,0 +1,15 @@
+---
+# This file tells https://pre-commit.com/
+# which hooks are provided by this repo
+# for use by other git repos.
+
+- id: shellcheck
+  name: Test shell scripts with shellcheck
+  description: |
+    A static analysis tool for shell scripts
+    https://www.shellcheck.net
+  language: system
+  entry: shellcheck
+  args: [--exclude, SC1091] # do not fail when source script is not checked. or use [--external-sources]
+  types: [shell]
+  additional_dependencies: [shellcheck]
