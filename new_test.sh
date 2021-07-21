@@ -19,12 +19,12 @@ fi
 # Use the i2c device's subsystem ID as the BIOS ID.
 BIOSID=$(cut -c 3-6 < "$(dirname "$(find /sys -name modalias -exec echo {} \; -exec cat {} \; | grep bc0Csc05 -B 1 | head -n 1)")/subsystem_device")
 for pkg in $(ubuntu-drivers list | awk -F'[ ,]' '{print $1}'); do
-    if apt-cache show $pkg | grep ^Modaliases | grep -i "sv00001028sd0000$BIOSID" >/dev/null 2>&1; then
+    if apt-cache show "$pkg" | grep ^Modaliases | grep -i "sv00001028sd0000$BIOSID" >/dev/null 2>&1; then
         factory="${pkg/oem-somerville/oem-somerville-factory}"
         if dpkg-query -W -f='${Status}\n' "$factory" 2>&1 | grep "install ok installed" >/dev/null 2>&1; then
             echo "$factory has been installed."
         else
-            apt-get install --yes "$factory" || true
+            apt-get install --yes $factory || true
         fi
     fi
     if dpkg-query -W -f='${Status}\n' "$pkg" 2>&1 | grep "install ok installed" >/dev/null 2>&1; then
