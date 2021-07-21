@@ -24,7 +24,7 @@ for pkg in $(ubuntu-drivers list | awk -F'[ ,]' '{print $1}'); do
         if dpkg-query -W -f='${Status}\n' "$factory" 2>&1 | grep "install ok installed" >/dev/null 2>&1; then
             echo "$factory has been installed."
         else
-            apt-get install --yes $factory || true
+            apt-get install --yes "$factory" || true
         fi
     fi
     if dpkg-query -W -f='${Status}\n' "$pkg" 2>&1 | grep "install ok installed" >/dev/null 2>&1; then
