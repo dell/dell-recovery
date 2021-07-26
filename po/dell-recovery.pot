@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-12 11:40+0800\n"
+"POT-Creation-Date: 2016-09-06 14:23-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,24 +17,24 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../Dell/recovery_gtk.py:108
+#: ../Dell/recovery_gtk.py:104
 msgid "Cannot connect to dbus"
 msgstr ""
 
-#: ../Dell/recovery_gtk.py:110
+#: ../Dell/recovery_gtk.py:106
 msgid "Permission Denied"
 msgstr ""
 
-#: ../Dell/recovery_gtk.py:117
+#: ../Dell/recovery_gtk.py:113
 msgid "Exception"
 msgstr ""
 
-#: ../Dell/recovery_gtk.py:173 ../gtk/dell-recovery-media.desktop.in.h:1
+#: ../Dell/recovery_gtk.py:158 ../gtk/dell-recovery-media.desktop.in.h:1
 #: ../gtk/tool_selector.ui.h:2
 msgid "Dell Recovery"
 msgstr ""
 
-#: ../Dell/recovery_gtk.py:174
+#: ../Dell/recovery_gtk.py:159
 msgid "Copyright 2008-2012 Dell Inc."
 msgstr ""
 
@@ -50,51 +50,51 @@ msgstr ""
 msgid "Building Base image"
 msgstr ""
 
-#: ../Dell/recovery_basic_gtk.py:181
+#: ../Dell/recovery_basic_gtk.py:179
 msgid "Opening Burner"
 msgstr ""
 
-#: ../Dell/recovery_basic_gtk.py:206
+#: ../Dell/recovery_basic_gtk.py:204
 msgid "Recovery Media Creation Process Complete"
 msgstr ""
 
-#: ../Dell/recovery_basic_gtk.py:207
+#: ../Dell/recovery_basic_gtk.py:205
 msgid ""
 "If you would like to archive another copy, the generated image has been "
 "stored under the filename:\n"
 msgstr ""
 
-#: ../Dell/recovery_basic_gtk.py:221
+#: ../Dell/recovery_basic_gtk.py:219
 msgid "Unable to proceed"
 msgstr ""
 
-#: ../Dell/recovery_basic_gtk.py:222
+#: ../Dell/recovery_basic_gtk.py:220
 msgid ""
 "System does not appear to contain Dell factory installed partition layout."
 msgstr ""
 
-#: ../Dell/recovery_basic_gtk.py:334
+#: ../Dell/recovery_basic_gtk.py:331
 msgid "Image File"
 msgstr ""
 
-#: ../Dell/recovery_basic_gtk.py:336
+#: ../Dell/recovery_basic_gtk.py:333
 msgid "Media Type: "
 msgstr ""
 
-#: ../Dell/recovery_basic_gtk.py:339 ../Dell/recovery_basic_gtk.py:342
+#: ../Dell/recovery_basic_gtk.py:336 ../Dell/recovery_basic_gtk.py:339
 msgid "Recovery Partition: "
 msgstr ""
 
-#: ../Dell/recovery_basic_gtk.py:343
+#: ../Dell/recovery_basic_gtk.py:340
 msgid "Included"
 msgstr ""
 
 #. wizard.resize(400,400)
-#: ../Dell/recovery_advanced_gtk.py:63
+#: ../Dell/recovery_advanced_gtk.py:69
 msgid " (BTO Image Builder Mode)"
 msgstr ""
 
-#: ../Dell/recovery_advanced_gtk.py:65
+#: ../Dell/recovery_advanced_gtk.py:71
 msgid ""
 "This will integrate a Dell OEM FID framework & driver package set into a "
 "customized OS media image.  You will have the option to create an USB key or "
@@ -102,84 +102,84 @@ msgid ""
 msgstr ""
 
 #. insert builder pages in reverse order
-#: ../Dell/recovery_advanced_gtk.py:84
+#: ../Dell/recovery_advanced_gtk.py:90
 msgid "Application Packages"
 msgstr ""
 
-#: ../Dell/recovery_advanced_gtk.py:85
+#: ../Dell/recovery_advanced_gtk.py:91
 msgid "Driver Packages"
 msgstr ""
 
-#: ../Dell/recovery_advanced_gtk.py:86
+#: ../Dell/recovery_advanced_gtk.py:92
 msgid "FID Content"
 msgstr ""
 
-#: ../Dell/recovery_advanced_gtk.py:87
+#: ../Dell/recovery_advanced_gtk.py:93
 msgid "Base OS Image"
 msgstr ""
 
-#: ../Dell/recovery_advanced_gtk.py:161
+#: ../Dell/recovery_advanced_gtk.py:167
 msgid "Builder Summary"
 msgstr ""
 
-#: ../Dell/recovery_advanced_gtk.py:162
+#: ../Dell/recovery_advanced_gtk.py:168
 msgid "Base Image Distributor"
 msgstr ""
 
-#: ../Dell/recovery_advanced_gtk.py:164
+#: ../Dell/recovery_advanced_gtk.py:170
 msgid "Base Image Release"
 msgstr ""
 
-#: ../Dell/recovery_advanced_gtk.py:167
+#: ../Dell/recovery_advanced_gtk.py:173
 msgid "BTO Base Image"
 msgstr ""
 
-#: ../Dell/recovery_advanced_gtk.py:170
+#: ../Dell/recovery_advanced_gtk.py:176
 msgid "Base Image"
 msgstr ""
 
-#: ../Dell/recovery_advanced_gtk.py:173
+#: ../Dell/recovery_advanced_gtk.py:179
 msgid "Application"
 msgstr ""
 
-#: ../Dell/recovery_advanced_gtk.py:174
+#: ../Dell/recovery_advanced_gtk.py:180
 msgid "Driver"
 msgstr ""
 
-#: ../Dell/recovery_advanced_gtk.py:180
+#: ../Dell/recovery_advanced_gtk.py:186
 msgid "Packages"
 msgstr ""
 
-#: ../Dell/recovery_advanced_gtk.py:186
+#: ../Dell/recovery_advanced_gtk.py:192
 msgid "Inject Dell Recovery Package"
 msgstr ""
 
 #. update gui
-#: ../Dell/recovery_advanced_gtk.py:196
+#: ../Dell/recovery_advanced_gtk.py:202
 msgid "Assembling Image Components"
 msgstr ""
 
-#: ../Dell/recovery_advanced_gtk.py:431
+#: ../Dell/recovery_advanced_gtk.py:442
 msgid "All SRVs must be filled to proceed."
 msgstr ""
 
-#: ../Dell/recovery_backend.py:368
+#: ../Dell/recovery_backend.py:346
 msgid "Processing FISH packages"
 msgstr ""
 
-#: ../Dell/recovery_backend.py:492
+#: ../Dell/recovery_backend.py:469
 msgid "Adding in base image"
 msgstr ""
 
-#: ../Dell/recovery_backend.py:947
+#: ../Dell/recovery_backend.py:1034
 msgid "Preparing nested image"
 msgstr ""
 
-#: ../Dell/recovery_backend.py:1051
+#: ../Dell/recovery_backend.py:1105
 msgid "Regenerating UUID / Rebuilding initramfs"
 msgstr ""
 
-#: ../Dell/recovery_backend.py:1177
+#: ../Dell/recovery_backend.py:1206
 msgid "Building ISO"
 msgstr ""
 
@@ -229,6 +229,10 @@ msgstr ""
 
 #: ../backend/com.dell.recoverymedia.policy.in.h:12
 msgid "System policy prohibits changing network without user consent"
+msgstr ""
+
+#: ../gtk/dell-driver-installer.desktop.in.h:1
+msgid "Dell Driver Installer"
 msgstr ""
 
 #: ../gtk/recovery_media_creator.ui.h:1
@@ -338,35 +342,39 @@ msgid "Build dell-recovery package from this system"
 msgstr ""
 
 #: ../gtk/builder.ui.h:16
+msgid "Install dpkg-repack"
+msgstr ""
+
+#: ../gtk/builder.ui.h:17
 msgid ""
 "Any add-on drivers or applications that need to be integrated into the image "
 "can be added here."
 msgstr ""
 
-#: ../gtk/builder.ui.h:17
+#: ../gtk/builder.ui.h:18
 msgid ""
 "The BTO FID framework is the first thing injected into a base vanilla "
 "image.  If you are generating from an existing BTO compatible image, you may "
 "use the built-in framework."
 msgstr ""
 
-#: ../gtk/builder.ui.h:18
+#: ../gtk/builder.ui.h:19
 msgid "FID framework built into BTO image"
 msgstr ""
 
-#: ../gtk/builder.ui.h:19
+#: ../gtk/builder.ui.h:20
 msgid "FID Framework enclosed in debian package"
 msgstr ""
 
-#: ../gtk/builder.ui.h:20
+#: ../gtk/builder.ui.h:21
 msgid "Selected Overlay Details:"
 msgstr ""
 
-#: ../gtk/builder.ui.h:21
+#: ../gtk/builder.ui.h:22
 msgid "SRV Entry"
 msgstr ""
 
-#: ../gtk/builder.ui.h:22
+#: ../gtk/builder.ui.h:23
 msgid "Please enter the SRV to use:"
 msgstr ""
 
@@ -388,30 +396,20 @@ msgid ""
 msgstr ""
 
 #: ../gtk/tool_selector.ui.h:6
-msgid ""
-"This will restore the system with Dell Hybrid Client to the factory shipped "
-"state using the recovery partition stored on the hard drive."
-msgstr ""
-
-#: ../gtk/tool_selector.ui.h:7
 msgid "Build OS Media"
 msgstr ""
 
-#: ../gtk/tool_selector.ui.h:8
+#: ../gtk/tool_selector.ui.h:7
 msgid "Restore System"
 msgstr ""
 
-#: ../gtk/tool_selector.ui.h:9
-msgid "Restore Dell Hybrid Client"
-msgstr ""
-
-#: ../gtk/tool_selector.ui.h:10
+#: ../gtk/tool_selector.ui.h:8
 msgid ""
 "This will install a Dell driver package that you downloaded from the "
 "Internet."
 msgstr ""
 
-#: ../gtk/tool_selector.ui.h:11
+#: ../gtk/tool_selector.ui.h:9
 msgid "Install Drivers"
 msgstr ""
 

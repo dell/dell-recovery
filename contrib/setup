@@ -3,21 +3,14 @@
 
 cd "$(dirname "$0")/.."
 
-#if interactive install build deps
-# read -r -p "Install build dependencies? (y/n) " question;
-# if [ "$question" = "y" ]; then
-    DEPS=shellcheck
-    OS=$(python3 -c "import distro; print(distro.linux_distribution()[0].split()[0].lower())")
-    if [ "$OS" = "ubuntu" ]; then
-        if ! python3 -c "import venv"; then
-            DEPS="python3-venv"
-        fi
-        sudo apt install $DEPS
+DEPS=shellcheck
+OS=$(python3 -c "import distro; print(distro.linux_distribution()[0].split()[0].lower())")
+if [ "$OS" = "ubuntu" ]; then
+    if ! python3 -c "import venv"; then
+        DEPS="python3-venv"
     fi
-# fi
-
-python3 -m venv venv
-source venv/bin/activate
+    sudo apt install $DEPS
+fi
 
 python3 -m pip install pre-commit
 pre-commit install

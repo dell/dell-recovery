@@ -17,4 +17,3 @@ debian/files
 debian/tmp/
 secure_boot/MokSBStateSet.efi
 .vscode
-/venv
