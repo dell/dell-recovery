@@ -4,10 +4,9 @@
 cd "$(dirname "$0")/.."
 
 #if interactive install build deps
-read -r -p "Install build dependencies? (y/n) " question;
-if [ "$question" = "y" ]; then
+# read -r -p "Install build dependencies? (y/n) " question;
+# if [ "$question" = "y" ]; then
     DEPS=shellcheck
-    echo $DEPS
     OS=$(python3 -c "import distro; print(distro.linux_distribution()[0].split()[0].lower())")
     if [ "$OS" = "ubuntu" ]; then
         if ! python3 -c "import venv"; then
@@ -15,7 +14,7 @@ if [ "$question" = "y" ]; then
         fi
         sudo apt install $DEPS
     fi
-fi
+# fi
 
 python3 -m venv venv
 source venv/bin/activate
