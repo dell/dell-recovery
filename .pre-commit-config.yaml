@@ -1,29 +1,4 @@
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.0.1
-    hooks:
-    -   id: no-commit-to-branch
-        args: [--branch, master, --pattern, 1_.*_X]
-    -   id: check-added-large-files
-    -   id: check-byte-order-marker
-    -   id: check-executables-have-shebangs
-    -   id: forbid-new-submodules
-    -   id: check-yaml
-    -   id: check-json
-    -   id: check-symlinks
-    -   id: check-xml
-    -   id: end-of-file-fixer
-        types_or: [c, shell, python]
-    -   id: trailing-whitespace
-        types_or: [c, shell, python, xml]
-    -   id: check-docstring-first
-    -   id: check-merge-conflict
-    -   id: mixed-line-ending
-        args: [--fix=lf]
--   repo: https://github.com/ambv/black
-    rev: 21.6b0
-    hooks:
-    - id: black
 -   repo: local
     hooks:
     - id: shellcheck
@@ -31,8 +6,3 @@ repos:
       language: system
       entry: shellcheck --severity=error -e SC2068
       types: [shell]
--   repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.27.1
-    hooks:
-    - id: markdownlint
-      args: ['--fix', '--ignore', '.github']

@@ -34,13 +34,3 @@ jobs:
           source venv/bin/activate
           sed -i "/no-commit-to-branch/,+1d" .pre-commit-config.yaml
           pre-commit run --all-files
-  shellcheck:
-    name: Shellcheck
-    runs-on: ubuntu-20.04
-    steps:
-    - uses: actions/checkout@v2
-    - name: Run ShellCheck
-      uses: ludeeus/action-shellcheck@master
-      env:
-        SHELLCHECK_OPTS: -e SC1091
-
