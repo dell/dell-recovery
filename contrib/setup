@@ -14,7 +14,7 @@ cd "$(dirname "$0")/.."
 
 #if interactive install build deps
 if [ -n "$PS1" ] || [[ $- == *i* ]] || [ -f /dev/.cros_milestone ]; then
-    read -p  "Install build dependencies? (y/n) " question;
+    read -r -p "Install build dependencies? (y/n) " question;
     if [ "$question" = "y" ]; then
         DEPS=$(./contrib/generate_dependencies.py)
         OS=$(python3 -c "import distro; print(distro.linux_distribution()[0].split()[0].lower())")

@@ -24,3 +24,4 @@ ubiquity/dell-default-ui.py:*: redefinition of unused 'install_misc' from line *
 
 #ignore error
 ubiquity/dell-default-ui.py:*: local variable 'e' is assigned to but never used
+contrib/generate_dependencies.py:23: import 'distro' from line 47 shadowed by loop variable
