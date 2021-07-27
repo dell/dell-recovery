@@ -12,5 +12,11 @@ if [ "$OS" = "ubuntu" ]; then
     sudo apt install $DEPS
 fi
 
+python3 -m venv venv
+source venv/bin/activate
+
 python3 -m pip install pre-commit
 pre-commit install
+
+# remove the folder `venv` to let dkpg work
+rm -r venv/
