@@ -22,7 +22,6 @@
 #       MA 02110-1301, USA.
 
 #check the /mnt mount point
-# mount | grep "/mnt" 2>/dev/null
 if mount | grep -q "/mnt" 2>/dev/null;then
     umount /mnt
 fi

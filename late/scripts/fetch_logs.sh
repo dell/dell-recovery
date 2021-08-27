@@ -17,28 +17,26 @@ dump_MFG()
 {
     ESP=""
     BD=""
-    # BDD=""
+    BDD=""
     # check to see if it's already mounted, if not mount it
-    # readlink /dev/disk/by-label/OS | grep "sd"
     if readlink /dev/disk/by-label/OS | grep -q "sd"; then
       BD=$(readlink /dev/disk/by-label/OS | cut -c7-9)
       drive="/dev/${BD}1"
-      # BDD="/dev/${BD}"
+      BDD="/dev/${BD}"
       echo "Find boot disk ${drive}"
     else
-      # readlink /dev/disk/by-label/OS | grep "mmc"
       if readlink /dev/disk/by-label/OS | grep -q "mmc"; then
         BD=$(readlink /dev/disk/by-label/OS | cut -c7-13)
         drive="/dev/${BD}p1"
-        # BDD="/dev/${BD}"
+        BDD="/dev/${BD}"
         log "Find boot disk ${drive}"
         echo "Find boot disk ${drive}"
       else
-        # readlink /dev/disk/by-label/OS | grep "nvme"
         if readlink /dev/disk/by-label/OS | grep -q "nvme"; then
           BD=$(readlink /dev/disk/by-label/OS | cut -c7-13)
           drive="/dev/${BD}p1"
-          # BDD="/dev/${BD}"
+          # shellcheck disable=SC2034
+          BDD="/dev/${BD}"
           echo "Find boot disk ${drive}"
         else
           echo "Fail to find boot disk !!!"
@@ -46,7 +44,6 @@ dump_MFG()
         fi
       fi
     fi
-    # mount | grep -iqs "$drive"
     if ! mount | grep -iqs "$drive"; then
       echo "Mounting EFI System Partition"
       if [ ! -d /mnt/efi ]; then
@@ -67,7 +64,6 @@ dump_MFG()
       echo "Missing MFGMEDIA folder from EFI System Partition"
     else
       # copy the file
-      # cp -rf "${ESP}"/"${MFGMEDIA}" ./
       if ! cp -rf "${ESP}"/"${MFGMEDIA}" ./; then
         echo "Failed to copy MFGMEDIA"
         return 255
@@ -79,7 +75,6 @@ dump_MFG()
 }
 
 #find the usb key mount point
-# usb_part=$(mount | grep "/cdrom" | cut -d ' ' -f 1)
 if ! mount | grep "/cdrom" | cut -d ' ' -f 1; then
     echo "Can't find the USB key!!"
 	exit 1
@@ -103,7 +98,6 @@ if [ -z "$linux_part" ];then
 	exit 1
 fi
 #mount the partition
-# mount | grep "/mnt" 2>/dev/null
 if ! mount | grep "/mnt" 2>/dev/null;then
     mount "$linux_part" /mnt
 fi
@@ -120,7 +114,6 @@ if [ -d /mnt/var/log ];then
     touch dmesg.log 2>&1
     chattr +a dmesg.log
     dmesg >> dmesg.log
-    # tar -zcf "/cdrom/OSLogs/ubuntu.log.tar.gz" /mnt/var/log/ dmesg.log $mfglog 2>/dev/null
     if tar -zcf "/cdrom/OSLogs/ubuntu.log.tar.gz" /mnt/var/log/ dmesg.log "$mfglog" 2>/dev/null;then
         echo "Finish copying the OS installation logs!"
     fi

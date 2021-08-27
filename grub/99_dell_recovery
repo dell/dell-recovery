@@ -2,7 +2,7 @@
 
 source /usr/lib/grub/grub-mkconfig_lib
 
-cat << EOF
+cat << 'EOF'
 menuentry "#RECOVERY_TEXT#" {
         search --no-floppy --hint '(hd0,#PARTITION#)' --set --fs-uuid #UUID#
         set uuid_options="uuid=#UUID#"
@@ -31,7 +31,7 @@ menuentry "#RECOVERY_TEXT#" {
         fi
 
         kernel=/casper/vmlinuz
-        if [ ! -f $(kernel) ]; then
+        if [ ! -f $kernel ]; then
             kernel=/casper/vmlinuz.efi
         fi
         linux   \$kernel dell-recovery/recovery_type=#REC_TYPE# \$uuid_options \$options

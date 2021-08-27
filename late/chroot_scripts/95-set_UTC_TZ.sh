@@ -33,14 +33,12 @@
 # the time offset for ICC tz_offset.py was adjusted
 # from 5:30 to 5
 # ==== Do we need to change this???
-mkfifo mypipe
-/proc/cmdline > mypipe &
-while IFS= read -r arg; do
-    if echo "$arg" | grep "MFGSITE=" >/dev/null 2>&1; then
+ARGLIST=$(cat /proc/cmdline)
+for arg in $ARGLIST; do
+    if echo "$arg" | grep "MFGSITE=" > /dev/null 2>&1; then
         SITE=$(echo "$arg" | cut -d'=' -f2)
     fi
-done < mypipe
-rm mypipe
+done
 
 if [ -n "$SITE" ]; then
     cat > /etc/init.d/run-tz-fix <<EOF

@@ -23,7 +23,8 @@
 #       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #       MA 02110-1301, USA.
 
-str="" . /usr/share/dell/scripts/fifuncs
+# shellcheck disable=SC2240
+. /usr/share/dell/scripts/fifuncs ""
 
 IFHALT "Rerun GRUB update"
 /usr/sbin/update-grub

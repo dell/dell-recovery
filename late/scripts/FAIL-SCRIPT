@@ -27,7 +27,8 @@
 # BE AWARE THAT THIS SCRIPT IS CALLED FROM OUTSIDE THE CHROOT.
 # The OS is mounted under $TARGET
 
-target="target" . /usr/share/dell/scripts/fifuncs
+# shellcheck disable=SC2240
+. /usr/share/dell/scripts/fifuncs "target"
 
 set -x
 set -e
