@@ -3,7 +3,7 @@
 # Disable hibernate (S4) if RAM >= 4GB. (LP: #1284474)
 
 for i in $(dmidecode -t 17 | grep Size | cut -d ':' -f 2 | cut -d ' ' -f 2); do
-    memsize=$((${memsize:-0} + $i))
+    memsize=$((${memsize:-0} + i))
 done
 
 if [ ${memsize:-0} -ge 4096 ]; then

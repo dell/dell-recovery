@@ -61,19 +61,19 @@ elif [ -e /root/isodevice/scripts/emergency.sh ]; then
 fi
 
 if [ -d /root/isodevice ]; then
-    if [ -f /root/isodevice/.disk/info.recovery -a ! -f /root/isodevice/.disk/info ]; then
+    if [ -f /root/isodevice/.disk/info.recovery ] && [ ! -f /root/isodevice/.disk/info ]; then
 	mount -o remount,rw /root/isodevice
 	cp /root/isodevice/.disk/info.recovery /root/isodevice/.disk/info
 	mount -o remount,ro /root/isodevice
     fi
-elif [ -f /root/cdrom/.disk/info.recovery -a ! -f /root/cdrom/.disk/info ]; then
+elif [ -f /root/cdrom/.disk/info.recovery ] && [ ! -f /root/cdrom/.disk/info ]; then
     mount -o remount,rw /root/cdrom
     cp /root/cdrom/.disk/info.recovery /root/cdrom/.disk/info
     mount -o remount,ro /root/cdrom
 fi
 
 #Force ubiquity to run in automatic regardless if there are ubiquity options in /proc/cmdline (except single user mode)
-if ! grep -q "single" /proc/cmdline 2>&1 >/dev/null; then
+if ! grep -q "single" /proc/cmdline >/dev/null 2>&1; then
     sed -i "s/ubiquity=\$/ubiquity=1/; s/\$automatic\ \$choose/--automatic/" /root/etc/init/ubiquity.conf
 fi
 #if they use a ubiquity icon it needs to run in automatic
@@ -134,7 +134,7 @@ ln -s /dev/null /root/etc/systemd/system/snapd.service
 KERNELS=$(find /root/cdrom/kernel -maxdepth 1 -type d 2>/dev/null | sed "s,/root,,; /\/cdrom\/kernel\/$/d")
 if [ -n "$KERNELS" ]; then
     for KERNEL in $KERNELS; do
-        ln -s $KERNEL /root/lib/modules
+        ln -s "$KERNEL" /root/lib/modules
     done
 fi
 
@@ -143,12 +143,14 @@ rm -f /root/var/cache/debconf/*.dat-old
 
 # Later emergency installer fixes
 if [ -d /root/cdrom/scripts/emergency-scripts ]; then
+    # shellcheck source=/dev/null
     for script in /root/cdrom/scripts/emergency-scripts/[0-9]*; do
-        . $script
+        . "$script"
     done
 elif [ -d /root/isodevice/scripts/emergency-scripts ]; then
+    # shellcheck source=/dev/null
     for script in /root/isodevice/scripts/emergency-scripts/[0-9]*; do
-        . $script
+        . "$script"
     done
 fi
 

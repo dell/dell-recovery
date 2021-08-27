@@ -18,15 +18,15 @@ esac
 
 . /usr/share/initramfs-tools/hook-functions
 
-cp /usr/share/dell/scripts/pool.sh  $DESTDIR/scripts
-if [ ! -f $DESTDIR/scripts/casper-bottom/99dell_bootstrap ]; then
-	cp /usr/share/dell/casper/scripts/99dell_bootstrap $DESTDIR/scripts/casper-bottom
+cp /usr/share/dell/scripts/pool.sh  "$DESTDIR"/scripts
+if [ ! -f "$DESTDIR"/scripts/casper-bottom/99dell_bootstrap ]; then
+	cp /usr/share/dell/casper/scripts/99dell_bootstrap "$DESTDIR"/scripts/casper-bottom
 fi
 
 #invoked from dell-recovery
 if [ -n "$INJECT" ]; then
-    if ! grep 99dell_bootstrap $DESTDIR/scripts/casper-bottom/ORDER >/dev/null; then
-        cat >> $DESTDIR/scripts/casper-bottom/ORDER << EOF
+    if ! grep 99dell_bootstrap "$DESTDIR"/scripts/casper-bottom/ORDER >/dev/null; then
+        cat >> "$DESTDIR"/scripts/casper-bottom/ORDER << EOF
 /scripts/casper-bottom/99dell_bootstrap "\$@"
 [ -e /conf/param.conf ] && . /conf/param.conf
 EOF

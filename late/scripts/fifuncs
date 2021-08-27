@@ -24,16 +24,16 @@
 #       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #       MA 02110-1301, USA.
 
-wd=""$1""
+wd="""$1"""
 
 screenmsg() {
-    echo $* > /dev/ttyprintk 2>&1
+    echo "$*" > /dev/ttyprintk 2>&1
 }
 
 IFHALT() {
-    if [ -f /$wd/tmp/superhalt.flg ]; then
+    if [ -f /"$wd"/tmp/superhalt.flg ]; then
         touch /tmp/halt.flg
-        screenmsg "Halting ---> "$1
+        screenmsg "Halting ---> $1"
         set +x
         while [ -f /tmp/halt.flg ]; do
             sleep 2
@@ -60,11 +60,11 @@ match_system_device()
         echo "Need Vendor and Product arguments"
         return 1
     fi
-    DEVICES=$(find -L /sys/bus/$1/devices -maxdepth 2 -name $DEVICE_FILE)
+    DEVICES=$(find -L /sys/bus/"$1"/devices -maxdepth 2 -name $DEVICE_FILE)
     for file in $DEVICES; do
-        CHECK_DEVICE=$(cat $file)
-        DIRECTORY=$(dirname $file)
-        CHECK_VENDOR=$(cat $DIRECTORY/$VENDOR_FILE)
+        CHECK_DEVICE=$(cat "$file")
+        DIRECTORY=$(dirname "$file")
+        CHECK_VENDOR=$(cat "$DIRECTORY"/$VENDOR_FILE)
         if [ "$CHECK_VENDOR" != "$2" ] && [ "$CHECK_VENDOR" != "0x$2" ]; then
             continue
         fi

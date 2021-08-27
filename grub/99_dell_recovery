@@ -2,7 +2,7 @@
 
 source /usr/lib/grub/grub-mkconfig_lib
 
-cat << EOF
+cat << 'EOF'
 menuentry "#RECOVERY_TEXT#" {
         search --no-floppy --hint '(hd0,#PARTITION#)' --set --fs-uuid #UUID#
         set uuid_options="uuid=#UUID#"

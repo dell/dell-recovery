@@ -27,20 +27,21 @@
 # BE AWARE THAT THIS SCRIPT IS CALLED FROM OUTSIDE THE CHROOT.
 # The OS is mounted under $TARGET
 
+# shellcheck disable=SC2240
 . /usr/share/dell/scripts/fifuncs "target"
 
 set -x
 set -e
 
 IFHALT "(SUCCESS) Clean-Up .."
-chroot $TARGET /usr/share/dell/scripts/pool.sh cleanup
+chroot "$TARGET" /usr/share/dell/scripts/pool.sh cleanup
 
 #Fixup APT how we want it for a successful oem-config run
-rm -f $TARGET/var/lib/apt/lists/*Packages
-rm -f $TARGET/etc/apt/sources.list.d/dell.list
+rm -f "$TARGET"/var/lib/apt/lists/*Packages
+rm -f "$TARGET"/etc/apt/sources.list.d/dell.list
 #https://bugs.launchpad.net/ubuntu/+source/choose-mirror/+bug/550694
 if [ -f "$TARGET/etc/apt/sources.list" ]; then
-    sed -i "s/http:\/\/.*.archive.ubuntu.com/http:\/\/archive.ubuntu.com/" $TARGET/etc/apt/sources.list
+    sed -i "s/http:\/\/.*.archive.ubuntu.com/http:\/\/archive.ubuntu.com/" "$TARGET"/etc/apt/sources.list
 fi
 
 #The script below was removed because we use a package based solution in
@@ -49,7 +50,7 @@ fi
 
 #We disabled Ethernet in phase 1 and 2 of installation, now enable it back. (LP: #1329148)
 if [ -f "$TARGET/etc/init/network-manager.conf.orig" ]; then
-    mv $TARGET/etc/init/network-manager.conf.orig $TARGET/etc/init/network-manager.conf
+    mv "$TARGET"/etc/init/network-manager.conf.orig "$TARGET"/etc/init/network-manager.conf
 fi
 
 if [ "$BOOTDEV" = "$TARGETDEV" ]; then
@@ -63,7 +64,7 @@ if [ "$BOOTDEV" = "$TARGETDEV" ]; then
     # Bypass the grub2-signed issue. (LP: #1482514)
     IFHALT "Renaming .disk/info to .disk/info.recovery"
 
-    if [ -f "$RP/.disk/info.recovery" -a -f "$RP/.disk/info" ]; then
+    if [ -f "$RP/.disk/info.recovery" ] && [ -f "$RP/.disk/info" ]; then
         rm -fr $RP/.disk/info
     elif [ -f "$RP/.disk/info" ]; then
         mv $RP/.disk/info $RP/.disk/info.recovery
@@ -71,8 +72,8 @@ if [ "$BOOTDEV" = "$TARGETDEV" ]; then
 
     fistlog="/tmp/fist.log"
     if [ -f $RP/SDR ]; then
-        dualos=`sed -n '/DUALOS/=' $RP/SDR`
-        if [ $dualos ]; then
+        dualos=$(sed -n '/DUALOS/=' $RP/SDR)
+        if [ "$dualos" ]; then
             fistlog="/tmp/DUALOS_FIST.LOG"
         fi
     fi
@@ -96,20 +97,20 @@ if [ "$BOOTDEV" = "$TARGETDEV" ]; then
     rm -rf $RP/.disk/casper-uuid*
 
     IFHALT "Regenerate md5sum.txt at the end..."
-    $(python3 << EOF
+    eval "$(python3 << EOF
 from Dell.recovery_common import regenerate_md5sum
 regenerate_md5sum("$RP")
 EOF
-)
+)"
 
     IFHALT "Report the LOG..."
     # create a dmesg.log file to record the dmesg info
-    touch $TARGET/$LOG/dmesg.log 2>&1
-    chattr +a $TARGET/$LOG/dmesg.log
-    dmesg >> $TARGET/$LOG/dmesg.log
+    touch "$TARGET"/"$LOG"/dmesg.log 2>&1
+    chattr +a "$TARGET"/"$LOG"/dmesg.log
+    dmesg >> "$TARGET"/"$LOG"/dmesg.log
 
     if [ -f /dell/fist/tal ]; then
-        cp $TARGET/$LOG/chroot.sh.log $fistlog
+        cp "$TARGET"/"$LOG"/chroot.sh.log $fistlog
         /dell/fist/tal PutFiles $fistlog
         /dell/fist/tal PutFiles "$TARGET/$LOG/dmesg.log"
         rm -rf /cdrom/debs/fist
