@@ -201,7 +201,7 @@ class BasicGeneratorGTK(DellRecoveryToolGTK):
             else:
                 cmd = None
             if cmd:
-                subprocess.call(cmd)
+                subprocess.run(cmd)
 
         header = _("Recovery Media Creation Process Complete")
         body = _("If you would like to archive another copy, the generated \

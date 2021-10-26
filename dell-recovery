@@ -111,7 +111,7 @@ if __name__ == '__main__':
             else:
                 print("Error with burn mode.  Please invoke in standard mode.")
             if command:
-                subprocess.call(command)
+                subprocess.run(command)
         else:
             if options.builder:
                 from Dell.recovery_advanced_gtk import AdvancedGeneratorGTK
