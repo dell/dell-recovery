@@ -26,7 +26,7 @@
 
 import logging, os, os.path, signal, re
 
-from gi.repository import GLib
+from gi.repository import GLib, UDisks, Gio
 import dbus
 import dbus.service
 import dbus.mainloop.glib
@@ -217,6 +217,42 @@ class Backend(dbus.service.Object):
             logging.debug('_check_polkit_privilege: sender %s on connection %s pid %i is not authorized for %s: %s',
                     sender, conn, pid, privilege, str(details))
             raise PermissionDeniedByPolicy(privilege)
+
+    def _prepare_efimage_from_base_efi_partition(self, base_iso, file_efimage):
+        '''backing the efi partition from the base iso'''
+
+        no_options = GLib.Variant('a{sv}', {})
+        efi_guid = 'c12a7328-f81f-11d2-ba4b-00a0c93ec93b'
+        image_fd = os.open(base_iso, os.O_RDWR)
+        udisks = UDisks.Client.new_sync(None)
+        manager = udisks.get_manager()
+
+        (obj_path, out_fd_list) = manager.call_loop_setup_sync(
+                    GLib.Variant('h', 0),
+                    GLib.Variant('a{sv}', []),
+                    Gio.UnixFDList.new_from_array([image_fd]),
+                    None)
+        if obj_path == None:
+            return logging.warning("efi.img: Failed to create loop device")
+
+        udisks = UDisks.Client.new_sync(None)
+        obj = udisks.get_object(obj_path)
+        if obj == None:
+            return logging.warning("efi.img: Failed to get loop object")
+
+        for partition in obj.get_partition_table().get_property('partitions'):
+            if udisks.get_object(partition).get_partition().get_property('type').lower() == efi_guid:
+                filepath = udisks.get_object(partition).get_block().get_property('device')
+                with open(filepath, "rb") as fr:
+                    byte = fr.read()
+                    fr.close()
+                with open(file_efimage, "wb") as fw:
+                    arr = bytearray(byte)
+                    fw.write(arr)
+                    fw.close()
+                logging.debug("efi.img: %s is prepared", file_efimage)
+
+        return obj.get_property('loop').call_delete_sync(no_options, None)
 
     #
     # Internal API for calling from Handlers (not exported through D-BUS)
@@ -458,6 +494,14 @@ class Backend(dbus.service.Object):
                                            w_size)
         white_tree("copy", white_pattern, base_mnt, assembly_tmp)
         self.stop_progress_thread()
+
+        #save the efi image
+        file_efimage1 = os.path.join(assembly_tmp, 'boot', 'grub', 'efi.img')
+        file_efimage2 = os.path.join(assembly_tmp, 'boot', 'efi.img')
+        file_efimage3 = os.path.join(assembly_tmp, 'boot', '_efi.img')
+        if not (os.path.exists(file_efimage1) or os.path.exists(file_efimage2)):
+            logging.debug("assemble_image: prepare efi.img from base EFI Partition")
+            self._prepare_efimage_from_base_efi_partition(base, file_efimage3)
 
         #Add in driver FISH content
         if len(driver_fish) > 0:
@@ -970,6 +1014,18 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
             xorrisoargs.append('boot/efi.img')
             xorrisoargs.append('-no-emul-boot')
             xorrisoargs.append('-isohybrid-gpt-basdat')
+        elif os.path.exists(os.path.join(mntdir, 'boot', '_efi.img')):
+            xorrisoargs.append('-partition_offset')
+            xorrisoargs.append('16')
+            xorrisoargs.append('-append_partition')
+            xorrisoargs.append('2')
+            xorrisoargs.append('0xEF')
+            xorrisoargs.append(os.path.join(mntdir, 'boot', '_efi.img'))
+            xorrisoargs.append('-appended_part_as_gpt')
+            xorrisoargs.append('-eltorito-alt-boot')
+            xorrisoargs.append('-e')
+            xorrisoargs.append('--interval:appended_partition_2:all::')
+            xorrisoargs.append('-no-emul-boot')
 
         #disable 32 bit bootloader if it was there.
         grub_path = os.path.join(mntdir, 'boot', 'grub', 'i386-pc')

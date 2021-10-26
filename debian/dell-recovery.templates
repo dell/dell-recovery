@@ -24,6 +24,11 @@ Default: dynamic
 Description: for internal use;determines whether to offer the bootstrap 
  ubiquity plugin to the user. valid: [dynamic, factory, usb, dvd]
 
+Template: dell-recovery/recovery_size
+Type: string
+Default: 0
+Description: recovery partition size in M. default 0 means the installer size + cushion.
+
 Template: dell-recovery/build_start
 Type: text
 _Description: Building Dell Recovery Media...

@@ -6,6 +6,7 @@ dell-recovery (1.67) UNRELEASED; urgency=medium
   [ Yuan-Chen Cheng ]
   * ubiquity/dell-bootstrap.py: delay 5 seconds in dev mode to make it more
     reliable, especially for Recovery from hdd.
+  * add seed value for minimal recovery partition size.
 
  -- Yuan-Chen Cheng <yc.cheng@canonical.com>  Fri, 25 Sep 2020 11:34:11 +0800
 

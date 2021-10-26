@@ -59,6 +59,7 @@ EFI_SWAP_PARTITION      =     '4'
 
 #Continually Reused ubiquity templates
 RECOVERY_TYPE_QUESTION =  'dell-recovery/recovery_type'
+RECOVERY_SIZE_QUESTION =  'dell-recovery/recovery_size'
 
 no_options = GLib.Variant('a{sv}', {})
 
@@ -389,7 +390,7 @@ def disk_sort_comp(d1, d2):
 
 
 def is_boot_with_hdd_flag():
-    return 'dell-recovery/recovery_type=hdd' in open('/proc/cmdline', 'r').read().split()
+    return RECOVERY_TYPE_QUESTION + '=hdd' in open('/proc/cmdline', 'r').read().split()
 
 ################
 # Debconf Page #
@@ -917,7 +918,7 @@ class Page(Plugin):
            * Run is the wrong time too because it runs before the user can
              answer potential questions
         """
-        rec_type = self.db.get('dell-recovery/recovery_type')
+        rec_type = self.db.get(RECOVERY_TYPE_QUESTION)
 
         try:
             # User recovery - need to copy RP
@@ -935,6 +936,10 @@ class Page(Plugin):
                                                "/mnt",
                                                "0")
                 size_thread.progress = self.report_progress
+
+                # recovery partition size hint: minimal size in M.
+                rp_size_hint = int(self.db.get(RECOVERY_SIZE_QUESTION))
+
                 #init builder
                 self.rp_builder = RPbuilder(self.device,
                                             self.device_size,
@@ -942,7 +947,8 @@ class Page(Plugin):
                                             self.efi,
                                             self.preseed_config,
                                             size_thread,
-                                            self.rec_type)
+                                            self.rec_type,
+                                            rp_size_hint)
                 self.rp_builder.rec_type=self.ui.get_type()
                 self.rp_builder.exit = self.exit_ui_loops
                 self.rp_builder.status = self.report_progress
@@ -1002,7 +1008,7 @@ class Page(Plugin):
 ############################
 class RPbuilder(Thread):
     """The recovery partition builder worker thread"""
-    def __init__(self, device, size, mem, efi, preseed_config, sizing_thread, rec_type):
+    def __init__(self, device, size, mem, efi, preseed_config, sizing_thread, rec_type, rp_size_hint):
         self.device = device
         self.device_size = size
         self.mem = mem
@@ -1012,6 +1018,7 @@ class RPbuilder(Thread):
         self.file_size_thread = sizing_thread
         self.xml_obj = BTOxml()
         self.rec_type=rec_type
+        self.rp_size_hint = rp_size_hint
         Thread.__init__(self)
 
     def build_rp(self, cushion=600):
@@ -1033,6 +1040,9 @@ manually to proceed.")
         rp_size = magic.black_tree("size", black_pattern, magic.CDROM_MOUNT)
         #in mbytes
         rp_size_mb = (rp_size / 1000000) + cushion
+
+        if self.rp_size_hint > 0:
+            rp_size_mb = max(self.rp_size_hint, rp_size_mb)
 
         # replace the self.device for dmraid if needed
         # sample: /dev/dm-0 --> /dev/mapper/isw*
