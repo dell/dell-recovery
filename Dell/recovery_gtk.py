@@ -162,7 +162,7 @@ class DellRecoveryToolGTK:
         """Callback for help menu items"""
         if widget == self.tool_widgets.get_object('get_help_menu_item'):
             # run yelp
-            proc = subprocess.Popen(["yelp", "ghelp:dell-recovery"])
+            proc = subprocess.Popen(["yelp", "file:///usr/share/help/C/dell-recovery/dell-recovery.xml"])
             # collect the exit status (otherwise we leave zombies)
             GLib.timeout_add_seconds(1, lambda proc: proc.poll() == None, proc)
         elif widget == self.tool_widgets.get_object('about_menu_item'):
@@ -171,7 +171,7 @@ class DellRecoveryToolGTK:
                 self.about_box = Gtk.AboutDialog()
                 self.about_box.set_version(check_version())
                 self.about_box.set_name(_("Dell Recovery"))
-                self.about_box.set_copyright(_("Copyright 2008-2012 Dell Inc."))
+                self.about_box.set_copyright(_("Copyright 2008-2022 Dell Inc."))
                 self.about_box.set_website("http://www.dell.com/ubuntu")
                 self.about_box.set_authors(["Mario Limonciello"])
                 self.about_box.set_modal(True)
