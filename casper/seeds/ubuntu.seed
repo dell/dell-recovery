@@ -76,6 +76,9 @@
 # Install to drive
  d-i partman-auto/disk string dynamic
 
+# Enable lazy inode
+ d-i partman-ext3/lazy_itable_init boolean true
+
 # Provide an expert recipe because the default recipe will make all
 # logical partitions
  d-i partman-auto/expert_recipe string \
