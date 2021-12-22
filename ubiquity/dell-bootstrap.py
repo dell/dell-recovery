@@ -864,7 +864,10 @@ class Page(Plugin):
             self.log("rec_type %s, stage %d, device %s" % (rec_type, self.stage, self.device))
             if (rec_type == 'factory' and self.stage == 2) or rec_type == 'hdd' or (rec_type == "dev" and hdd_flag):
                 self.fixup_factory_devices(rec_part)
-            if hdd_flag:
+            dhc_type = os.path.join('/cdrom', 'dhc')
+            #add dhc_type option to let dhc can enroll old mok key when skip restore OS UI
+            #otherwise will pop up create mok interface if have Nvidia card
+            if hdd_flag or os.path.isdir(dhc_type):
                 # copy old mok key so that user don't need to enroll it again.
                 rootfs = mount[0:-1] + EFI_OS_PARTITION
                 self.log("old rootfs from %s" % rootfs)
@@ -1081,11 +1084,15 @@ manually to proceed.")
                 if self.efi:
                     raise RuntimeError("Error formatting disk.")
 
+        #dhc can dynamic adjust recovery partition size
+        if magic.check_dhc_rp_size():
+            rp_size_mb = int(magic.check_dhc_rp_size())
+
         #Build RP
         command = ('parted', '-a', 'optimal', '-s', self.device, 'mkpart', "fat32", "fat32", str(grub_size), str(rp_size_mb + grub_size))
         result = misc.execute_root(*command)
         if result is False:
-            raise RuntimeError("Error creating new %s mb recovery partition on %s" % (rp_size_mb, self.device))
+             raise RuntimeError("Error creating new %s mb recovery partition on %s" % (rp_size_mb, self.device))
 
         #Build RP filesystem
         self.status("Formatting Partitions", 2)

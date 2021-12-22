@@ -166,6 +166,8 @@ def check_install_dhc_id():
             if not os.path.exists(plat_conf):
                 continue
             lines=[line.rstrip('\n') for line in open(plat_conf)]
+            #remove empty line
+            lines = [line for line in lines if line != '']
             for i in range(len(lines)):
                 if lines[i] in str(value):
                     return True
@@ -185,6 +187,8 @@ def check_recovery_dhc_id():
         if not os.path.exists(plat_conf):
             return False
         lines=[line.rstrip('\n') for line in open(plat_conf)]
+        #remove empty line
+        lines = [line for line in lines if line != '']
         for i in range(len(lines)):
             if lines[i] in str(value):
                 return True
@@ -204,10 +208,21 @@ def check_for_restore_command():
             if not os.path.exists(top):
                 continue
         lines=[line.rstrip('\n') for line in open(top)]
+        #remove empty line
+        lines = [line for line in lines if line != '']
         for i in range(len(lines)):
             if lines[i] in str(value):
                 return True
     return False
+
+def check_dhc_rp_size():
+    top = os.path.join('/cdrom', 'dhc', 'dhc-rp-size.conf')
+    if os.path.exists(top):
+        lines=[line.rstrip('\n') for line in open(top)]
+        lines = [line for line in lines if line != '']
+        return lines[0]
+    else:
+        return False
 
 def check_vendor():
     """Checks to make sure that the app is running on Dell HW"""
