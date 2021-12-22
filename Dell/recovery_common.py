@@ -166,6 +166,8 @@ def check_install_dhc_id():
             if not os.path.exists(plat_conf):
                 continue
             lines=[line.rstrip('\n') for line in open(plat_conf)]
+            #remove empty line
+            lines = [line for line in lines if line != '']
             for i in range(len(lines)):
                 if lines[i] in str(value):
                     return True
@@ -185,6 +187,8 @@ def check_recovery_dhc_id():
         if not os.path.exists(plat_conf):
             return False
         lines=[line.rstrip('\n') for line in open(plat_conf)]
+        #remove empty line
+        lines = [line for line in lines if line != '']
         for i in range(len(lines)):
             if lines[i] in str(value):
                 return True
@@ -204,6 +208,8 @@ def check_for_restore_command():
             if not os.path.exists(top):
                 continue
         lines=[line.rstrip('\n') for line in open(top)]
+        #remove empty line
+        lines = [line for line in lines if line != '']
         for i in range(len(lines)):
             if lines[i] in str(value):
                 return True
