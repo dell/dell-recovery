@@ -199,7 +199,7 @@ class Install(InstallPlugin):
             self.index = 0
 
             #build all the user's home directories a little earlier than normal
-            subprocess.call(['su', user, '-c', 'xdg-user-dirs-update'])
+            subprocess.run(['su', user, '-c', 'xdg-user-dirs-update'])
             directory = magic.fetch_output(['su', user, '-c', '/usr/bin/xdg-user-dir DOWNLOAD']).strip()
             fname = os.path.join(directory, 'factory_image.iso')
 
@@ -254,7 +254,7 @@ class Install(InstallPlugin):
                 if 'DBUS_SESSION_BUS_ADDRESS' in os.environ:
                     os.environ.pop('DBUS_SESSION_BUS_ADDRESS')
                 progress.info('dell-recovery/burning')
-                subprocess.call(cmd)
+                subprocess.run(cmd)
         else:
             #Mark burning tool to launch on 7th day
             directory = '/home/%s/.config/autostart' % user

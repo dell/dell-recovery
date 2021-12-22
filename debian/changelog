@@ -1,4 +1,23 @@
-dell-recovery (1.67) UNRELEASED; urgency=medium
+dell-recovery (1.68) focal; urgency=medium
+
+  [ Alex Tu ]
+  * support Intel and AMD dev board (Closes #138)
+
+  [ Crag Wang ]
+  * migrate Travis CI over to Github native Actions
+
+  [ Shih-Yuan Lee (FourDollars) ]
+  * Nobulate after target_chroot.sh again to ensure the BootOrder is correct.
+
+  [ Chris Li ]
+  * Use subprocess.run replace subprocess.call for serveal files to solve the
+    high risk of blackduck scanning recovery code.
+  * update dell-recovery UI copyright and fix help link not found document
+    issue
+
+ -- Crag Wang  <crag.wang@dell.com>  Thu, 18 Nov 2021 23:25:27 +0800
+
+dell-recovery (1.67) focal; urgency=medium
 
   [ Crag Wang ]
   * stage2: remove directory $TARGET/pts

@@ -316,7 +316,7 @@ class Backend(dbus.service.Object):
         logging.debug("_unmount_drive: %s" % mnt)
 
         if os.path.exists(mnt):
-            ret = subprocess.call(['umount', mnt])
+            ret = subprocess.run(['umount', mnt]).returncode
             if ret != 0:
                 logging.warning(" _unmount_drive: Error unmounting %s" % mnt)
             try:
@@ -891,17 +891,17 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
                         path = line.split('=')[1].strip('\n').strip('"')
                         env['PATH'] = path
 
-        ret = subprocess.call(['/usr/sbin/update-grub'], env=env)
+        ret = subprocess.run(['/usr/sbin/update-grub'], env=env).returncode
         if ret != 0:
             raise RestoreFailed("error updating grub configuration")
 
-        ret = subprocess.call(['/usr/sbin/grub-reboot', entry])
+        ret = subprocess.run(['/usr/sbin/grub-reboot', entry]).returncode
         if ret != 0:
             raise RestoreFailed("error setting one time grub entry")
 
         if reboot:
             logging.debug("Prepare to reboot")
-            ret = subprocess.call(["/sbin/reboot", "--force"])
+            ret = subprocess.run(["/sbin/reboot", "--force"]).returncode
             if ret != 0:
                 raise RestoreFailed("error invoking reboot")
 
@@ -1108,14 +1108,14 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
                                 os.path.join(tmpdir, 'boot', 'grub', 'dell'))
             #fonts
             if not os.path.exists(os.path.join(mntdir, 'boot', 'grub', 'dejavu-sans-12.pf2')):
-                ret = subprocess.call(['grub-mkfont', '/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf',
-                                       '-s=12', '--output=%s' % os.path.join(tmpdir, 'boot', 'grub', 'dejavu-sans-12.pf2')])
+                ret = subprocess.run(['grub-mkfont', '/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf',
+                                       '-s=12', '--output=%s' % os.path.join(tmpdir, 'boot', 'grub', 'dejavu-sans-12.pf2')]).returncode
                 if ret != 0:
                     raise CreateFailed("Creating GRUB fonts failed.")
 
             if not os.path.exists(os.path.join(mntdir, 'boot', 'grub', 'dejavu-sans-bold-14.pf2')):
-                ret = subprocess.call(['grub-mkfont', '/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans-Bold.ttf',
-                                       '-s=14', '--output=%s' % os.path.join(tmpdir, 'boot', 'grub', 'dejavu-sans-bold-14.pf2')])
+                ret = subprocess.run(['grub-mkfont', '/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans-Bold.ttf',
+                                       '-s=14', '--output=%s' % os.path.join(tmpdir, 'boot', 'grub', 'dejavu-sans-bold-14.pf2')]).returncode
                 if ret != 0:
                     raise CreateFailed("Creating GRUB fonts failed.")
 
