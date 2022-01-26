@@ -81,15 +81,15 @@ RP_LABELS = [ 'dualrcvy', 'recovery', 'install', 'os' ]
 ##Common Functions##
 ##                ##
 
-def black_tree(action, blacklist, src, dst='', base=None):
+def black_tree(action, blocklist, src, dst='', base=None):
     """Recursively ACTIONs files from src to dest only
-       when they don't match the blacklist outlined in blacklist"""
-    return _tree(action, blacklist, src, dst, base, False)
+       when they don't match the blocklist outlined in blocklist"""
+    return _tree(action, blocklist, src, dst, base, False)
 
-def white_tree(action, whitelist, src, dst='', base=None):
+def white_tree(action, allowlist, src, dst='', base=None):
     """Recursively ACTIONs files from src to dest only
-       when they match the whitelist outlined in whitelist"""
-    return _tree(action, whitelist, src, dst, base, True)
+       when they match the allowlist outlined in allowlist"""
+    return _tree(action, allowlist, src, dst, base, True)
 
 def _tree(action, list, src, dst, base, white):
     """Helper function for tree calls"""
@@ -379,7 +379,7 @@ def find_factory_partition_stats():
         if recovery:
             break
 
-    #find parent slave node, used for dell-bootstrap
+    #find parent secondary node, used for dell-bootstrap
     if "device" in recovery:
         for item in manager.get_objects():
             table = item.get_partition_table()
@@ -389,7 +389,7 @@ def find_factory_partition_stats():
             if not block:
                 continue
             if block.get_cached_property("Drive").get_string() == recovery["drive"]:
-                recovery["slave"] = block.get_cached_property("Device").get_bytestring().decode('utf-8')
+                recovery["secondary"] = block.get_cached_property("Device").get_bytestring().decode('utf-8')
                 recovery["size_gb"] = block.get_cached_property("Size").unpack() / 1000000000
                 break
     return recovery
@@ -546,7 +546,7 @@ def walk_cleanup(directory):
 def create_new_uuid(old_initrd_directory, old_casper_directory,
                     new_initrd_directory, new_casper_directory):
     """ Regenerates the UUID contained in a casper initramfs
-        Returns full path of the old initrd and casper files (for blacklisting)
+        Returns full path of the old initrd and casper files (for blocklisting)
     """
     tmpdir = tempfile.mkdtemp()
 

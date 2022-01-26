@@ -719,7 +719,7 @@ class Page(Plugin):
         #the right FS label (which will be valid right now)
         #Don't you dare put a USB stick in the system with that label right now!
 
-        self.device = rec_part["slave"]
+        self.device = rec_part["secondary"]
 
         if os.path.exists(magic.ISO_MOUNT):
             location = magic.ISO_MOUNT
@@ -767,24 +767,24 @@ class Page(Plugin):
 
         #If we were preseeded to dynamic, look for an RP
         rec_part = magic.find_factory_partition_stats()
-        if "slave" in rec_part:
+        if "secondary" in rec_part:
             self.stage = 2
         if rec_type == 'dynamic' or (rec_type == 'dev' and not hdd_flag):
             # we rebooted with no USB stick or DVD in drive and have the RP
             # mounted at /cdrom
-            if self.stage == 2 and rec_part["slave"] in mount:
+            if self.stage == 2 and rec_part["secondary"] in mount:
                 self.log("Detected RP at %s, setting to factory boot" % mount)
                 rec_type = 'factory'
             # check if the mount point is dmraid
-            elif mount.startswith("/dev/dm") and self.stage == 2 and rec_part["slave"][:-1] in mount:
+            elif mount.startswith("/dev/dm") and self.stage == 2 and rec_part["secondary"][:-1] in mount:
                 self.log("Detected RP at %s, setting to factory boot" % mount)
                 rec_type = 'factory'
             # check if the mount point is mdraid
-            elif mount.startswith("/dev/md") and self.stage == 2 and rec_part["slave"][:-1] in mount:
+            elif mount.startswith("/dev/md") and self.stage == 2 and rec_part["secondary"][:-1] in mount:
                 self.log("Detected RP at %s, setting to factory boot" % mount)
                 rec_type = 'factory'
             # check if the mount point is Persistent Memory
-            elif mount.startswith("/dev/pmem") and self.stage == 2 and rec_part["slave"][:-1] in mount:
+            elif mount.startswith("/dev/pmem") and self.stage == 2 and rec_part["secondary"][:-1] in mount:
                 self.log("Detected RP at %s, setting to factory boot" % mount)
                 rec_type = 'factory'
             elif rec_type == 'dev':
@@ -1387,7 +1387,7 @@ class Install(InstallPlugin):
             #hide the recovery partition as default
             try:
                 recovery = magic.find_factory_partition_stats()
-                command = ('parted', '-a', 'optimal', '-s', recovery['slave'], 'set', str(recovery['number']), 'msftres', 'on' )
+                command = ('parted', '-a', 'optimal', '-s', recovery['secondary'], 'set', str(recovery['number']), 'msftres', 'on' )
                 misc.execute_root(*command)
             except Exception:
                 pass

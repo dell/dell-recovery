@@ -182,7 +182,7 @@ dell-recovery (1.60) disco; urgency=medium
   * Reduce some PyGIWarning messages.
   * Use the regional mirror site instead of the global mirror site.
   * Renew .disk/ubuntu_dist_channel for ubuntu-report.
-  * Support UBUNTU_DRIVERS_BLACKLIST mechanism in fish tarball.
+  * Support UBUNTU_DRIVERS_BLOCKLIST mechanism in fish tarball.
 
   [ Mario Limonciello ]
   * Correct the detection of location of /target when using LVM
@@ -926,8 +926,8 @@ dell-recovery (1.12) precise; urgency=low
   * Call emergency.sh as LAST item in casper.
   * If running in persistent mode, forcefully regenerate the apt-cache
     on boot.
-  * Copy files using a blacklist excluding casper-rw rather than an all
-    inclusive whitelist.  Fixes problems with persistence and dell-recovery.
+  * Copy files using a blocklist excluding casper-rw rather than an all
+    inclusive allowlist.  Fixes problems with persistence and dell-recovery.
   * Update the GPT utility partition creation logic.  (LP: #877858)
   * Capture the state of all packages after post install scripts to prevent
     bad interactions with remove_oem_extras after ubiquity r5804
@@ -1450,7 +1450,7 @@ dell-recovery (0.73) natty; urgency=low
   * Run oem-config early and late commands from a shell script rather than a
     long chained list of && commands.
   * Remove the functionality of setting the pool command.
-  * Add a new black_tree function that copies files off of a blacklist.
+  * Add a new black_tree function that copies files off of a blocklist.
   * Only mount the ISO for SDR explosion when in a non-standalone ISO.
   * Add support for installing to a primary or logical partition.
   * When installing in logical partition mode, generate g2ldr on the
@@ -1490,7 +1490,7 @@ dell-recovery (0.72) natty; urgency=low
 
 dell-recovery (0.71) maverick; urgency=low
 
-  * Adjust the sandybridge blacklist to match that in the latest compiz.
+  * Adjust the sandybridge blocklist to match that in the latest compiz.
     (LP: #644372)
   * Ubiquity bootstrap: sync before reboots.
 
@@ -1513,7 +1513,7 @@ dell-recovery (0.69) maverick; urgency=low
 
 dell-recovery (0.68) maverick; urgency=low
 
-  * Add another id to blacklist for sugar bay.  Thanks Robert Hooker!
+  * Add another id to blocklist for sugar bay.  Thanks Robert Hooker!
   * Include the architecture in the target ISO names.
   * Add one more rotational character to allow a full rotation.
   * Dynamically populate the list of available UI's.
@@ -2063,7 +2063,7 @@ dell-recovery (0.44) lucid; urgency=low
   * Hide close/minimize from any popup windows.
   * Draw attention away from the steps portion of the window by setting it non
     sensitive and hiding it when the recovery partition build starts.
-  * Fix whitelist building for dell-bootstrap to not miss files in the root
+  * Fix allowlist building for dell-bootstrap to not miss files in the root
     directory.
 
   Recovery Backend:
