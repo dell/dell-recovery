@@ -6,8 +6,8 @@ export DEBIAN_FRONTEND=noninteractive
 
 IFHALT "Run ubuntu-drivers autoinstall"
 echo 'APT::Get::AllowUnauthenticated "true";' > /etc/apt/apt.conf.d/99disable_authentication
-for blacklist in $(find /cdrom/scripts/chroot-scripts/blacklist /isodevice/scripts/chroot-scripts/blacklist -type f 2>/dev/null); do
-    UBUNTU_DRIVERS_BLACKLIST="$UBUNTU_DRIVERS_BLACKLIST $(cat $blacklist)"
+for blocklist in $(find /cdrom/scripts/chroot-scripts/blocklist /isodevice/scripts/chroot-scripts/blocklist -type f 2>/dev/null); do
+    UBUNTU_DRIVERS_BLACKLIST="$UBUNTU_DRIVERS_BLACKLIST $(cat $blocklist)"
 done
 if [ -n "$UBUNTU_DRIVERS_BLACKLIST" ]; then
     echo "UBUNTU_DRIVERS_BLACKLIST: $UBUNTU_DRIVERS_BLACKLIST"
