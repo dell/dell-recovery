@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
+<!-- Generated with glade 3.22.2 -->
 <interface>
-  <!-- interface-requires gtk+  3.0 -->
+  <requires lib="gtk+" version="3.0"/>
   <object class="GtkDialog" id="dialog_hig">
     <property name="can_focus">False</property>
     <property name="border_width">6</property>
@@ -9,7 +9,7 @@
     <property name="resizable">False</property>
     <property name="window_position">center-always</property>
     <property name="type_hint">dialog</property>
-    <child>
+    <child type="titlebar">
       <placeholder/>
     </child>
     <child internal-child="vbox">
@@ -105,7 +105,7 @@
     <property name="window_position">center</property>
     <property name="icon_name">dell-dvd</property>
     <signal name="destroy" handler="destroy" swapped="no"/>
-    <child>
+    <child type="titlebar">
       <placeholder/>
     </child>
     <child>
@@ -214,7 +214,6 @@
             </child>
             <child>
               <object class="GtkLabel" id="restore_system_dhc_label">
-                <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="xpad">15</property>
                 <property name="label" translatable="yes">This will restore the system with Dell Hybrid Client to the factory shipped state using the recovery partition stored on the hard drive.</property>
@@ -268,7 +267,6 @@
               <object class="GtkButton" id="restore_system_dhc_button">
                 <property name="label" translatable="yes">Restore Dell Hybrid Client</property>
                 <property name="use_action_appearance">False</property>
-                <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <signal name="clicked" handler="top_button_clicked" swapped="no"/>
@@ -313,7 +311,6 @@
             </child>
             <child>
               <object class="GtkImage" id="restore_system_dhc_image">
-                <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="xpad">15</property>
                 <property name="pixel_size">48</property>
