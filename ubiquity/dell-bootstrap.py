@@ -124,7 +124,7 @@ class PageGtk(PluginUI):
         self.efi = False
         with misc.raised_privileges():
             self.genuine = magic.check_vendor()
-            self.install_dhc_id = magic.check_install_dhc_id()
+            self.install_dhc_id = magic.check_install_dhc()
         if not oem:
             gi.require_version('Gtk', '3.0')
             from gi.repository import Gtk
@@ -1411,7 +1411,7 @@ class Install(InstallPlugin):
             recovery_type = 'hdd'
             #if wyse mode is on (dell-recovery/mode == 'wyse'), set the recovery_type to be 'factory'
             #as Wyse platforms will always skip the "Restore OS Linux partition" dialog
-            if self.db.get('dell-recovery/wyse_mode') == 'true' or magic.check_family(b"wyse") or magic.check_install_dhc_id() or magic.check_recovery_dhc_id():
+            if self.db.get('dell-recovery/wyse_mode') == 'true' or magic.check_family(b"wyse") or magic.check_install_dhc() or magic.check_recovery_dhc():
                 recovery_type = 'factory'
             #create 99_dell_recovery grub
             magic.create_grub_entries(self.target, recovery_type)

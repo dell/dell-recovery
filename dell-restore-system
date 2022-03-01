@@ -23,7 +23,7 @@
 
 from Dell.recovery_common import (find_partition, check_version, DBUS_INTERFACE_NAME,
                                   DBUS_BUS_NAME, dbus_sync_call_signal_wrapper,
-                                  PermissionDeniedByPolicy, check_for_restore_command)
+                                  PermissionDeniedByPolicy, check_recovery_dhc)
 import optparse
 import os
 import subprocess
@@ -77,7 +77,7 @@ if __name__ == '__main__':
                                         '/RecoveryMedia'),
                                         DBUS_INTERFACE_NAME)
             if options.dhc:
-                if check_for_restore_command():
+                if check_recovery_dhc():
                     dbus_sync_call_signal_wrapper(dbus_iface,
                                                 "enable_boot_to_restore_dhc",
                                                  {},
