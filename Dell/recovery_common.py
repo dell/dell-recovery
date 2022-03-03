@@ -378,16 +378,17 @@ def find_burners():
         def is_exe(fpath):
             """Determines if a filepath is executable"""
             return os.path.exists(fpath) and os.access(fpath, os.X_OK)
-
+        
         fpath = os.path.split(program)[0]
-        if fpath:
-            if is_exe(program):
-                return program
-        else:
-            for path in os.environ["PATH"].split(os.pathsep):
-                exe_file = os.path.join(path, program)
-                if is_exe(exe_file):
-                    return exe_file
+        if fpath in '/usr/share/dell/scripts' or fpath in '':
+            if fpath:
+                if is_exe(program):
+                    return program
+            else:
+                for path in os.environ["PATH"].split(os.pathsep):
+                    exe_file = os.path.join(path, program)
+                    if is_exe(exe_file):
+                        return exe_file
 
         return None
 
