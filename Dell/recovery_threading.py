@@ -28,10 +28,15 @@ import logging
 import os
 import sys
 
-if sys.version >= '3':
-    def callable(obj):
-        import collections
-        return isinstance(obj, collections.Callable)
+if sys.version_info.major >= 3:
+    if sys.version_info.minor >= 10:
+        def callable(obj):
+            import collections
+            return isinstance(obj, collections.abc.Callable)
+    else:
+        def callable(obj):
+            import collections
+            return isinstance(obj, collections.Callable)
 
 #--------------------------------------------------------------------#
 #Borrowed from USB-Creator initially
