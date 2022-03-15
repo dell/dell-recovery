@@ -892,6 +892,9 @@ class Page(Plugin):
         if self.db.get('dell-recovery/wyse_mode') == 'true' or magic.check_family(b"wyse"):
             self.preseed("ubiquity/minimal_install", "true")
 
+        self.preseed_bool("ubiquity/download_updates", False)
+        self.preseed_bool("ubiquity/use_nonfree", True)
+
         return (['/usr/share/ubiquity/dell-bootstrap'], [RECOVERY_TYPE_QUESTION])
 
     def ok_handler(self):
