@@ -66,6 +66,9 @@
 
 ### Partitioning
 
+#Set recovery partition size
+ ubiquity dell-recovery/recovery_size string 8192
+
 # We are doing a recovery from a hard drive, don't unmount partitions
  d-i ubiquity/partman-skip-unmount boolean true
  d-i partman/filter_mounted boolean false
