@@ -297,9 +297,9 @@ msgid "USB Flash Drive"
 msgstr "Llapis de memòria USB"
 
 #: ../gtk/recovery_media_creator.ui.h:8
-msgid "This requires a USB flash drive with approximately 2GB free."
+msgid "This requires a USB flash drive with approximately 8GB free."
 msgstr ""
-"Això requereix un llapis de memòria USB amb aproximadament 2 GB d'espai "
+"Això requereix un llapis de memòria USB amb aproximadament 8 GB d'espai "
 "disponible."
 
 #: ../gtk/recovery_media_creator.ui.h:9
@@ -509,7 +509,7 @@ msgstr ""
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:6
 msgid ""
-"<b>Note:</b> This requires a USB flash drive with approximately 2GB free."
+"<b>Note:</b> This requires a USB flash drive with approximately 8GB free."
 msgstr ""
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:7

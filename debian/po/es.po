@@ -168,8 +168,8 @@ msgstr "Guardar el disco de recuperación en una memoria flash USB externa"
 #. Type: text
 #. Description
 #: ../dell-recovery.templates:40001
-msgid "Note: This requires a USB flash drive with approximately 2GB free."
-msgstr "Nota: Requiere un disco flash USB con aproximadamente 2GB libre."
+msgid "Note: This requires a USB flash drive with approximately 8GB free."
+msgstr "Nota: Requiere un disco flash USB con aproximadamente 8GB libre."
 
 #. Type: text
 #. Description

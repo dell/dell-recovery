@@ -312,8 +312,8 @@ msgid "USB Flash Drive"
 msgstr "USB-Flash-Laufwerk"
 
 #: ../gtk/recovery_media_creator.ui.h:8
-msgid "This requires a USB flash drive with approximately 2GB free."
-msgstr "Ein USB-Flash-Laufwerk mit ungefähr 2GB freiem Speicher wird benötigt."
+msgid "This requires a USB flash drive with approximately 8GB free."
+msgstr "Ein USB-Flash-Laufwerk mit ungefähr 8GB freiem Speicher wird benötigt."
 
 #: ../gtk/recovery_media_creator.ui.h:9
 msgid "No media, create image"
@@ -546,9 +546,9 @@ msgstr ""
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:6
 msgid ""
-"<b>Note:</b> This requires a USB flash drive with approximately 2GB free."
+"<b>Note:</b> This requires a USB flash drive with approximately 8GB free."
 msgstr ""
-"<b>Hinweis:</b> Ein USB-Flash-Laufwerk mit ungefähr 2GB freiem Speicher wird "
+"<b>Hinweis:</b> Ein USB-Flash-Laufwerk mit ungefähr 8GB freiem Speicher wird "
 "benötigt."
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:7

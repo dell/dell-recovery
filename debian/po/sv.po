@@ -169,9 +169,9 @@ msgstr "Spara återställningsmedia till en extern USB-lagringsenhet"
 #. Type: text
 #. Description
 #: ../dell-recovery.templates:40001
-msgid "Note: This requires a USB flash drive with approximately 2GB free."
+msgid "Note: This requires a USB flash drive with approximately 8GB free."
 msgstr ""
-"Observera: Detta kräver en USB-lagringsenhet med ungefär 2 GB ledigt utrymme."
+"Observera: Detta kräver en USB-lagringsenhet med ungefär 8 GB ledigt utrymme."
 
 #. Type: text
 #. Description

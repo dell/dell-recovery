@@ -157,7 +157,7 @@ msgstr "保存恢复盘到外接的 USB 闪存盘"
 #. Type: text
 #. Description
 #: ../dell-recovery.templates:40001
-msgid "Note: This requires a USB flash drive with approximately 2GB free."
+msgid "Note: This requires a USB flash drive with approximately 8GB free."
 msgstr "注意： 需要大约 2G 空间的 USB 驱动盘。"
 
 #. Type: text

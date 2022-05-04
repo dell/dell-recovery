@@ -170,8 +170,8 @@ msgstr "Salvare il supporto di ripristino in una unità flash USB esterna"
 #. Type: text
 #. Description
 #: ../dell-recovery.templates:40001
-msgid "Note: This requires a USB flash drive with approximately 2GB free."
-msgstr "Nota: richiede un'unità flash USB con almeno 2GB di spazio libero."
+msgid "Note: This requires a USB flash drive with approximately 8GB free."
+msgstr "Nota: richiede un'unità flash USB con almeno 8GB di spazio libero."
 
 #. Type: text
 #. Description

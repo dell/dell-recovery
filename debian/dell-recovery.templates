@@ -140,7 +140,7 @@ _Description: Save recovery media to an external USB flash drive
 
 Template: ubiquity/text/usb_warning_label
 Type: text
-_Description: Note: This requires a USB flash drive with approximately 2GB free.
+_Description: Note: This requires a USB flash drive with approximately 8GB free.
 
 Template: ubiquity/text/save_to_dvd
 Type: text

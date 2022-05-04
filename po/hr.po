@@ -296,8 +296,8 @@ msgid "USB Flash Drive"
 msgstr "USB memorija"
 
 #: ../gtk/recovery_media_creator.ui.h:8
-msgid "This requires a USB flash drive with approximately 2GB free."
-msgstr "Ovo zahtijeva USB memoriju s oko 2 GB slobodnog prostora."
+msgid "This requires a USB flash drive with approximately 8GB free."
+msgstr "Ovo zahtijeva USB memoriju s oko 8 GB slobodnog prostora."
 
 #: ../gtk/recovery_media_creator.ui.h:9
 msgid "No media, create image"
@@ -513,9 +513,9 @@ msgstr "Spremi medij oporavka na vanjsku USB memoriju"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:6
 msgid ""
-"<b>Note:</b> This requires a USB flash drive with approximately 2GB free."
+"<b>Note:</b> This requires a USB flash drive with approximately 8GB free."
 msgstr ""
-"<b>Napomena:</b> Ovo zahtijeva USB memoriju s oko 2 GB slobodnog prostora."
+"<b>Napomena:</b> Ovo zahtijeva USB memoriju s oko 8 GB slobodnog prostora."
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:7
 msgid "Save recovery media to DVD"

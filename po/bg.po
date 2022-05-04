@@ -299,8 +299,8 @@ msgid "USB Flash Drive"
 msgstr "USB флаш памет"
 
 #: ../gtk/recovery_media_creator.ui.h:8
-msgid "This requires a USB flash drive with approximately 2GB free."
-msgstr "Това изисква USB флаш диск с приблизително 2GB свободно пространство."
+msgid "This requires a USB flash drive with approximately 8GB free."
+msgstr "Това изисква USB флаш диск с приблизително 8GB свободно пространство."
 
 #: ../gtk/recovery_media_creator.ui.h:9
 msgid "No media, create image"
@@ -522,9 +522,9 @@ msgstr "Запазване на носителя за възстановяван
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:6
 msgid ""
-"<b>Note:</b> This requires a USB flash drive with approximately 2GB free."
+"<b>Note:</b> This requires a USB flash drive with approximately 8GB free."
 msgstr ""
-"<b>Бележка:</b> Това изисква USB флаш с приблизително 2GB свободно "
+"<b>Бележка:</b> Това изисква USB флаш с приблизително 8GB свободно "
 "пространство."
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:7

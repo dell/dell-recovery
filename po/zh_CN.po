@@ -298,8 +298,8 @@ msgid "USB Flash Drive"
 msgstr "USB 闪存驱动器"
 
 #: ../gtk/recovery_media_creator.ui.h:8
-msgid "This requires a USB flash drive with approximately 2GB free."
-msgstr "需要有至少 2GB 空间的 USB 闪存驱动器。"
+msgid "This requires a USB flash drive with approximately 8GB free."
+msgstr "需要有至少 8GB 空间的 USB 闪存驱动器。"
 
 #: ../gtk/recovery_media_creator.ui.h:9
 msgid "No media, create image"
@@ -516,8 +516,8 @@ msgstr "将恢复介质保存为外接的 USB 闪存盘"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:6
 msgid ""
-"<b>Note:</b> This requires a USB flash drive with approximately 2GB free."
-msgstr "<b>提示：</b>这要求 USB 闪存盘至少有 2GB 的可用空间。"
+"<b>Note:</b> This requires a USB flash drive with approximately 8GB free."
+msgstr "<b>提示：</b>这要求 USB 闪存盘至少有 8GB 的可用空间。"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:7
 msgid "Save recovery media to DVD"

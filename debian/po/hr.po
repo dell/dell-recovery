@@ -163,8 +163,8 @@ msgstr "Spremi medij oporavka na vanjsku USB memoriju"
 #. Type: text
 #. Description
 #: ../dell-recovery.templates:40001
-msgid "Note: This requires a USB flash drive with approximately 2GB free."
-msgstr "Napomena: ovo zahtijeva USB memoriju s oko 2 GB slobodnog prostora."
+msgid "Note: This requires a USB flash drive with approximately 8GB free."
+msgstr "Napomena: ovo zahtijeva USB memoriju s oko 8 GB slobodnog prostora."
 
 #. Type: text
 #. Description

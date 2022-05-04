@@ -313,8 +313,8 @@ msgid "No media, create image"
 msgstr "Nincs adathordozó, lemezkép létrehozása"
 
 #: ../gtk/recovery_media_creator.ui.h:8
-msgid "This requires a USB flash drive with approximately 2GB free."
-msgstr "Ehhez egy USB-kulcsra lesz szükség, körülbelül 2 GB szabad hellyel."
+msgid "This requires a USB flash drive with approximately 8GB free."
+msgstr "Ehhez egy USB-kulcsra lesz szükség, körülbelül 8 GB szabad hellyel."
 
 #: ../gtk/recovery_media_creator.ui.h:9
 msgid "This requires writable DVD media."
@@ -547,9 +547,9 @@ msgstr ""
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:3
 msgid ""
-"<b>Note:</b> This requires a USB flash drive with approximately 2GB free."
+"<b>Note:</b> This requires a USB flash drive with approximately 8GB free."
 msgstr ""
-"<b>Megjegyzés:</b> Ehhez egy USB-kulcsra lesz szükség, körülbelül 2 GB "
+"<b>Megjegyzés:</b> Ehhez egy USB-kulcsra lesz szükség, körülbelül 8 GB "
 "szabad hellyel."
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:4
