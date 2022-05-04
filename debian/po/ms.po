@@ -157,7 +157,7 @@ msgstr ""
 #. Type: text
 #. Description
 #: ../dell-recovery.templates:40001
-msgid "Note: This requires a USB flash drive with approximately 2GB free."
+msgid "Note: This requires a USB flash drive with approximately 8GB free."
 msgstr ""
 
 #. Type: text

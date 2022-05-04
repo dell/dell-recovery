@@ -293,8 +293,8 @@ msgid "USB Flash Drive"
 msgstr "USB 隨身碟"
 
 #: ../gtk/recovery_media_creator.ui.h:8
-msgid "This requires a USB flash drive with approximately 2GB free."
-msgstr "這需要約 2GB 以上未使用空間的 USB 隨身碟。"
+msgid "This requires a USB flash drive with approximately 8GB free."
+msgstr "這需要約 8GB 以上未使用空間的 USB 隨身碟。"
 
 #: ../gtk/recovery_media_creator.ui.h:9
 msgid "No media, create image"
@@ -509,8 +509,8 @@ msgstr "儲存還原媒體到一個外部 USB 隨身碟"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:6
 msgid ""
-"<b>Note:</b> This requires a USB flash drive with approximately 2GB free."
-msgstr "<b>注意：</b> 這需要約 2GB 以上未使用空間的 USB 隨身碟。"
+"<b>Note:</b> This requires a USB flash drive with approximately 8GB free."
+msgstr "<b>注意：</b> 這需要約 8GB 以上未使用空間的 USB 隨身碟。"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:7
 msgid "Save recovery media to DVD"

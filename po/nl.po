@@ -300,8 +300,8 @@ msgid "USB Flash Drive"
 msgstr "Usb-stick"
 
 #: ../gtk/recovery_media_creator.ui.h:8
-msgid "This requires a USB flash drive with approximately 2GB free."
-msgstr "Dit vereist een usb-stick met ongeveer 2GB vrije ruimte."
+msgid "This requires a USB flash drive with approximately 8GB free."
+msgstr "Dit vereist een usb-stick met ongeveer 8GB vrije ruimte."
 
 #: ../gtk/recovery_media_creator.ui.h:9
 msgid "No media, create image"
@@ -524,8 +524,8 @@ msgstr "Herstelmedia opslaan op een extern usb-station"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:6
 msgid ""
-"<b>Note:</b> This requires a USB flash drive with approximately 2GB free."
-msgstr "<b>Opmerking:</b> Dit vereist een USB-stick met ongeveer 2 GB vrij."
+"<b>Note:</b> This requires a USB flash drive with approximately 8GB free."
+msgstr "<b>Opmerking:</b> Dit vereist een USB-stick met ongeveer 8 GB vrij."
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:7
 msgid "Save recovery media to DVD"

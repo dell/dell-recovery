@@ -291,7 +291,7 @@ msgid "USB Flash Drive"
 msgstr "USB Flash Drive"
 
 #: ../gtk/recovery_media_creator.ui.h:8
-msgid "This requires a USB flash drive with approximately 2GB free."
+msgid "This requires a USB flash drive with approximately 8GB free."
 msgstr ""
 
 #: ../gtk/recovery_media_creator.ui.h:9
@@ -500,7 +500,7 @@ msgstr ""
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:6
 msgid ""
-"<b>Note:</b> This requires a USB flash drive with approximately 2GB free."
+"<b>Note:</b> This requires a USB flash drive with approximately 8GB free."
 msgstr ""
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:7

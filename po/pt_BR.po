@@ -304,9 +304,9 @@ msgid "USB Flash Drive"
 msgstr "Unidade Flash USB"
 
 #: ../gtk/recovery_media_creator.ui.h:8
-msgid "This requires a USB flash drive with approximately 2GB free."
+msgid "This requires a USB flash drive with approximately 8GB free."
 msgstr ""
-"Isso requer uma unidade flash USB com aproximadamente 2 GB de espaço livre."
+"Isso requer uma unidade flash USB com aproximadamente 8 GB de espaço livre."
 
 #: ../gtk/recovery_media_creator.ui.h:9
 msgid "No media, create image"
@@ -521,9 +521,9 @@ msgstr "Salvar mídia de recuperação na unidade flash USB"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:6
 msgid ""
-"<b>Note:</b> This requires a USB flash drive with approximately 2GB free."
+"<b>Note:</b> This requires a USB flash drive with approximately 8GB free."
 msgstr ""
-"<b>Nota:</b> Isso requer uma unidade flash USB com aproximadamente 2 GB de "
+"<b>Nota:</b> Isso requer uma unidade flash USB com aproximadamente 8 GB de "
 "espaço livre."
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:7

@@ -308,8 +308,8 @@ msgid "USB Flash Drive"
 msgstr "USB-Flash-asema"
 
 #: ../gtk/recovery_media_creator.ui.h:8
-msgid "This requires a USB flash drive with approximately 2GB free."
-msgstr "Tämä vaatii USB-aseman, jolla on noin 2GB vapaata tilaa-"
+msgid "This requires a USB flash drive with approximately 8GB free."
+msgstr "Tämä vaatii USB-aseman, jolla on noin 8GB vapaata tilaa-"
 
 #: ../gtk/recovery_media_creator.ui.h:9
 msgid "No media, create image"
@@ -540,9 +540,9 @@ msgstr "Tallenna palautusmedia ulkoiselle USB-muistivälineelle"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:6
 msgid ""
-"<b>Note:</b> This requires a USB flash drive with approximately 2GB free."
+"<b>Note:</b> This requires a USB flash drive with approximately 8GB free."
 msgstr ""
-"<b>Huomaa:</b> Tämä vaatii USB-muistivälineen, jolla on noin 2GB vapaata "
+"<b>Huomaa:</b> Tämä vaatii USB-muistivälineen, jolla on noin 8GB vapaata "
 "tilaa."
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:7

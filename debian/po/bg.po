@@ -168,9 +168,9 @@ msgstr "Запазване на носителя за възстановяван
 #. Type: text
 #. Description
 #: ../dell-recovery.templates:40001
-msgid "Note: This requires a USB flash drive with approximately 2GB free."
+msgid "Note: This requires a USB flash drive with approximately 8GB free."
 msgstr ""
-"Бележка: Това изисква USB флаш диск с приблизително 2 GB свободно "
+"Бележка: Това изисква USB флаш диск с приблизително 8 GB свободно "
 "пространство."
 
 #. Type: text

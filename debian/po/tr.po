@@ -167,9 +167,9 @@ msgstr "Yedekleme ortamını harici USB flash belleğe kaydet"
 #. Type: text
 #. Description
 #: ../dell-recovery.templates:40001
-msgid "Note: This requires a USB flash drive with approximately 2GB free."
+msgid "Note: This requires a USB flash drive with approximately 8GB free."
 msgstr ""
-"Not: Bu işlem tahmini olarak 2 GB boş alanı bulunan USB flash bellek "
+"Not: Bu işlem tahmini olarak 8 GB boş alanı bulunan USB flash bellek "
 "gerektirir."
 
 #. Type: text

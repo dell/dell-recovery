@@ -169,8 +169,8 @@ msgstr "Tallenna palautusmedia ulkoiselle USB-muistivälineelle"
 #. Type: text
 #. Description
 #: ../dell-recovery.templates:40001
-msgid "Note: This requires a USB flash drive with approximately 2GB free."
-msgstr "Huom: Tämä vaatii USB-muistitikun, jolla on noin 2GB vapaata tilaa."
+msgid "Note: This requires a USB flash drive with approximately 8GB free."
+msgstr "Huom: Tämä vaatii USB-muistitikun, jolla on noin 8GB vapaata tilaa."
 
 #. Type: text
 #. Description

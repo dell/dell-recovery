@@ -174,9 +174,9 @@ msgstr ""
 #. Type: text
 #. Description
 #: ../dell-recovery.templates:40001
-msgid "Note: This requires a USB flash drive with approximately 2GB free."
+msgid "Note: This requires a USB flash drive with approximately 8GB free."
 msgstr ""
-"HINWEIS: Ein USB-Flash-Laufwerk mit ungefähr 2GB freiem Speicher wird "
+"HINWEIS: Ein USB-Flash-Laufwerk mit ungefähr 8GB freiem Speicher wird "
 "benötigt."
 
 #. Type: text

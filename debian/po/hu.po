@@ -165,9 +165,9 @@ msgstr "A helyreállító adathordozó mentése külső USB flash kulcsra."
 #. Type: text
 #. Description
 #: ../dell-recovery.templates:40001
-msgid "Note: This requires a USB flash drive with approximately 2GB free."
+msgid "Note: This requires a USB flash drive with approximately 8GB free."
 msgstr ""
-"Megjegyzés: Ehhez egy USB-kulcsra lesz szükség, körülbelül 2 GB szabad "
+"Megjegyzés: Ehhez egy USB-kulcsra lesz szükség, körülbelül 8 GB szabad "
 "hellyel."
 
 #. Type: text

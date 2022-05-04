@@ -299,8 +299,8 @@ msgid "USB Flash Drive"
 msgstr "USB-enhet"
 
 #: ../gtk/recovery_media_creator.ui.h:8
-msgid "This requires a USB flash drive with approximately 2GB free."
-msgstr "Detta kräver en USB-lagringsenhet med ungefär 2 GB ledigt utrymme."
+msgid "This requires a USB flash drive with approximately 8GB free."
+msgstr "Detta kräver en USB-lagringsenhet med ungefär 8 GB ledigt utrymme."
 
 #: ../gtk/recovery_media_creator.ui.h:9
 msgid "No media, create image"
@@ -516,9 +516,9 @@ msgstr "Spara återställningsmedia till en extern USB-lagringsenhet"
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:6
 msgid ""
-"<b>Note:</b> This requires a USB flash drive with approximately 2GB free."
+"<b>Note:</b> This requires a USB flash drive with approximately 8GB free."
 msgstr ""
-"<b>Observera:</b> Detta kräver en USB-lagringsenhet med ungefär 2 GB ledigt "
+"<b>Observera:</b> Detta kräver en USB-lagringsenhet med ungefär 8 GB ledigt "
 "utrymme."
 
 #: ../ubiquity/stepRecoveryMedia.ui.h:7
