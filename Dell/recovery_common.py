@@ -184,6 +184,8 @@ def check_recovery_dhc():
 
 def check_vendor():
     """Checks to make sure that the app is running on Dell HW"""
+    if check_vendor_bypass():
+        return True
     path = '/sys/class/dmi/id/'
     variables = ['bios_vendor', 'sys_vendor']
     valid = [b'dell', b'alienware', b'wyse', b'qemu', b'intel', b'amd']
@@ -219,6 +221,16 @@ def check_rebrand():
                     return True
                 else:
                     break
+    return False
+
+def check_vendor_bypass():
+    """Bypass the check if bypass_vendor_check file exists in the root of the
+    installation media"""
+    for top in [ISO_MOUNT, CDROM_MOUNT]:
+        if not os.path.isdir(top):
+            continue
+        if os.path.exists(os.path.join(top, "bypass_vendor_check")):
+            return True
     return False
 
 def check_version(package='dell-recovery'):
