@@ -126,7 +126,7 @@
               <object class="GtkEntry" id="platform">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="max_length">7</property>
+                <property name="max_length">64</property>
                 <property name="invisible_char">●</property>
                 <property name="activates_default">True</property>
                 <property name="width_chars">7</property>

@@ -566,7 +566,7 @@ class Backend(dbus.service.Object):
                     release = float(piece)
                 except ValueError:
                     continue
-                logging.debug("query_iso_information: find_float found %d", release)
+                logging.debug(f"query_iso_information: find_float found {release}")
                 return piece
             return ''
         logging.debug("query_iso_information: iso %s" % iso)
@@ -600,8 +600,11 @@ class Backend(dbus.service.Object):
                 with open(os.path.join(mntdir, '.disk', 'info'), 'r') as rfd:
                     distributor_str = rfd.readline().strip('\n')
                 distributor = "ubuntu"
-
-            #RHEL disks have .discinfo
+            elif os.path.exists(os.path.join(mntdir, '.disk', 'info.recovery')):
+                with open(os.path.join(mntdir, '.disk', 'info.recovery'), 'r') as rfd:
+                    distributor_str = rfd.readline().strip('\n')
+                distributor = "ubuntu"
+            # RHEL disks have .discinfo
             elif os.path.exists(os.path.join(mntdir, '.discinfo')):
                 with open(os.path.join(mntdir, '.discinfo'), 'r') as rfd:
                     rfd.readline().strip('\n')
@@ -1029,14 +1032,15 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
         # Renew .disk/ubuntu_dist_channel for ubuntu-report
         ubuntu_dist_channel = os.path.join(mntdir, '.disk', 'ubuntu_dist_channel')
         if os.path.exists(ubuntu_dist_channel) and platform and revision:
+            major = revision.split('.', 1)[0]  # ex. X07.1 -> X07
             xorrisoargs.append('-m')
             xorrisoargs.append(ubuntu_dist_channel)
             with open(os.path.join(tmpdir, '.disk', 'ubuntu_dist_channel'), 'w') as target, \
                  open(ubuntu_dist_channel) as source:
                 for line in source:
                     if line.startswith('canonical-oem-somerville-') and \
-                            not line.strip().endswith('+' + platform + '+' + revision):
-                        target.write(line.strip() + '+' + platform + '+' + revision + '\n')
+                            not line.strip().endswith(f'+{platform}+{major}'):
+                        target.write(line.strip() + f'+{platform}+{major}\n')
                     else:
                         target.write(line)
 
