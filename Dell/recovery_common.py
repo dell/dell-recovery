@@ -771,16 +771,22 @@ def regenerate_md5sum(root_dir,sec_dir=None):
     if os.path.exists(os.path.join(root_dir, 'md5sum.txt')):
         os.remove(os.path.join(root_dir, 'md5sum.txt'))
 
-    #define the head info of md5sum.txt
-    head_info = """This file contains the list of md5 checksums of all files on this medium.\n\nYou can verify them automatically with the 'integrity-check' boot parameter,\nor, manually with: 'md5sum -c md5sum.txt'.\n\n"""
     #get the root dir file list for summing md5
     root_list = []
     #some files don't need to check md5
-    uncheck_list = ["md5sum.txt","grubenv"]
+    uncheck_list = ["md5sum.txt", "grubenv", "boot.catalog", "bto.xml"]
+    exclusion = ["/.disk/", "/boot/grub/i386-pc/", "/boot/grub/x86_64-efi/", "/efi.factory/", "/efi/boot/", "/EFI/boot/", "/factory/"]
     for root,dirs,files in os.walk(root_dir): # pylint: disable=unused-variable
         for f in files:
             if f not in uncheck_list:
-                root_list.append(os.path.join(root,f))
+                full_path = os.path.join(root, f)
+                for item in exclusion:
+                    if item in full_path:
+                        break
+                else:
+                    root_list.append(full_path)
+    root_list.sort()
+
     #sum md5 then write into file function
     def md5sum(fd,path,root):
         file_path = '.' + path.split(root)[1]
@@ -789,7 +795,6 @@ def regenerate_md5sum(root_dir,sec_dir=None):
         fd.write(content)
 
     with open(os.path.join(root_dir, 'md5sum.txt'),'w') as wfd:
-        wfd.write(head_info)
         try:
             #write the md5 of root file list
             for full_path in root_list:
@@ -798,10 +803,14 @@ def regenerate_md5sum(root_dir,sec_dir=None):
             if sec_dir:
                 for root,dirs,files in os.walk(sec_dir):
                     for f in files:
-                        if f not in uncheck_list:
-                            full_path = os.path.join(root,f)
-                            if root_dir + full_path.split(sec_dir)[1] not in root_list:
-                                md5sum(wfd,full_path,sec_dir)
+                        full_path = os.path.join(root, f)
+                        for item in exclusion:
+                            if item in full_path:
+                                break
+                        else:
+                            if f not in uncheck_list:
+                                if root_dir + full_path.split(sec_dir)[1] not in root_list:
+                                    md5sum(wfd, full_path, sec_dir)
         except Exception as err:
             import syslog
             syslog.syslog("rewrite the md5sum.txt file failed with : %s" %(err))
