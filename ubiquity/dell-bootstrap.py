@@ -1145,11 +1145,12 @@ manually to proceed.")
                 key, value = item.split('=')
                 keys[key] = value
 
-        #write out a dell-recovery.seed configuration file
-        with misc.raised_privileges():
-            if not os.path.isdir(os.path.join('/mnt', 'preseed')):
-                os.makedirs(os.path.join('/mnt', 'preseed'))
-            magic.write_seed(seed, keys)
+        # write out a dell-recovery.seed configuration file when keys are not empty
+        if keys:
+            with misc.raised_privileges():
+                if not os.path.isdir(os.path.join('/mnt', 'preseed')):
+                    os.makedirs(os.path.join('/mnt', 'preseed'))
+                magic.write_seed(seed, keys)
 
         #Check for a grub.cfg - replace as necessary
         files = {'recovery_partition.cfg': 'grub.cfg',

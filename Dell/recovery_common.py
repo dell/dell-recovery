@@ -34,7 +34,6 @@ import re
 import tempfile
 import glob
 import sys
-import datetime
 import logging
 import hashlib
 import io
@@ -642,9 +641,8 @@ def write_seed(seed, keys):
     """Writes out a preseed file with a selected set of keys"""
     with open(seed, 'w') as wfd:
         wfd.write("# Dell Recovery configuration preseed\n")
-        wfd.write("# Last updated on %s\n" % datetime.date.today())
         wfd.write("\n")
-        for item in keys:
+        for item in sorted(keys.keys()):
             if keys[item] == 'true' or keys[item] == 'false':
                 type = 'boolean'
             else:
