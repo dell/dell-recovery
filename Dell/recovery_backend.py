@@ -337,7 +337,7 @@ class Backend(dbus.service.Object):
             file_path = os.path.join(mount, '.disk', info)
             if os.path.exists(file_path):
                 with open(file_path) as rfd:
-                    rp_distro = rfd.readline().split()[2].strip('"').lower()
+                    rp_distro = rfd.readline().split('"')[1].split()[0].lower()
                     break
 
         if rp_distro in package_distro:
