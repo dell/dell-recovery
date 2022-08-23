@@ -354,22 +354,16 @@ def find_factory_partition_stats():
                 recovery["drive"] = block.get_cached_property("Drive").get_string()
                 recovery["number"] = partition.get_cached_property("Number").unpack()
                 recovery["uuid"] = block.get_cached_property("IdUUID").get_string()
+
+                #find parent secondary node, used for dell-bootstrap
+                parent_objpath = partition.get_cached_property("Table").get_string()
+                parent_obj = manager.get_object(parent_objpath)
+                parent_block = parent_obj.get_block()
+                recovery["secondary"] = parent_block.get_cached_property("Device").get_bytestring().decode('utf-8')
+                recovery["size_gb"] = parent_block.get_cached_property("Size").unpack() / 1000000000
         if recovery:
             break
 
-    #find parent secondary node, used for dell-bootstrap
-    if "device" in recovery:
-        for item in manager.get_objects():
-            table = item.get_partition_table()
-            if not table:
-                continue
-            block = item.get_block()
-            if not block:
-                continue
-            if block.get_cached_property("Drive").get_string() == recovery["drive"]:
-                recovery["secondary"] = block.get_cached_property("Device").get_bytestring().decode('utf-8')
-                recovery["size_gb"] = block.get_cached_property("Size").unpack() / 1000000000
-                break
     return recovery
 
 def find_partition():
