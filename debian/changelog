@@ -1,3 +1,9 @@
+dell-recovery (1.68somerville9) jammy; urgency=medium
+
+  * Fix installations on eMMC drives.
+
+ -- Yao Wei (魏銘廷) <yao.wei@canonical.com>  Wed, 24 Aug 2022 13:05:34 +0800
+
 dell-recovery (1.68somerville8) jammy; urgency=medium
 
   * Fix the distro detection in RP.
