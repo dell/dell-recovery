@@ -893,7 +893,7 @@ class Page(Plugin):
             self.preseed("ubiquity/minimal_install", "true")
 
         self.preseed_bool("ubiquity/download_updates", False)
-        self.preseed_bool("ubiquity/use_nonfree", True)
+        self.preseed_bool("ubiquity/use_nonfree", False)
 
         return (['/usr/share/ubiquity/dell-bootstrap'], [RECOVERY_TYPE_QUESTION])
 

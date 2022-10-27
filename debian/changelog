@@ -1,3 +1,9 @@
+dell-recovery (1.68somerville10) jammy; urgency=medium
+
+  * Don't install packages from external archive
+
+ -- Kai-Chuan Hsieh <kaichuan.hsieh@canonical.com>  Thu, 27 Oct 2022 09:53:56 +0800
+
 dell-recovery (1.68somerville9) jammy; urgency=medium
 
   * Fix installations on eMMC drives.
