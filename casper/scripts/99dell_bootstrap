@@ -106,6 +106,18 @@ for seed in dell-recovery gfx wlan; do
     fi
 done
 
+#HACK: make ubiquity think partitioning is done
+if db_get dell-recovery/encryption && [ "$RET" = true ]; then
+    sed -i "s,self.partitioned = False,self.partitioned = True," /root/usr/lib/ubiquity/ubiquity/frontend/gtk_ui.py
+    rm -f /root/usr/lib/ubiquity/plugins/ubi-partman.py
+fi
+
+#HACK: make ubiquity think partitioning is done
+if db_get dell-recovery/use_zfs && [ "$RET" = true ]; then
+    sed -i "s,self.partitioned = False,self.partitioned = True," /root/usr/lib/ubiquity/ubiquity/frontend/gtk_ui.py
+    rm -f /root/usr/lib/ubiquity/plugins/ubi-partman.py
+fi
+
 # Now load all the defaults included in all installs
 casper-set-selections "/root/usr/share/dell/casper/seeds/ubuntu.seed"
 

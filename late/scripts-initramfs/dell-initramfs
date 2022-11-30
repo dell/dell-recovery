@@ -1,0 +1,33 @@
+#!/bin/sh -e
+# initramfs hook for dell-bootstrap
+PREREQS=""
+# Output pre-requisites
+prereqs()
+{
+       echo "$PREREQS"
+}
+case "$1" in
+    prereqs)
+       prereqs
+       exit 0
+       ;;
+esac
+. /usr/share/initramfs-tools/hook-functions
+copy_exec /usr/bin/openssl
+copy_exec /usr/bin/flock
+
+copy_exec /lib/x86_64-linux-gnu/libtss2-*
+
+copy_exec /usr/bin/tpm2_startauthsession
+copy_exec /usr/bin/tpm2_flushcontext
+copy_exec /usr/bin/tpm2_createprimary
+copy_exec /usr/bin/tpm2_create
+copy_exec /usr/bin/tpm2_evictcontrol
+copy_exec /usr/bin/tpm2_policypcr
+copy_exec /usr/bin/tpm2_unseal
+copy_exec /usr/bin/tpm2_pcrread
+copy_exec /usr/bin/tpm2_getcap
+copy_exec /usr/bin/tpm2_load
+copy_exec /usr/bin/tpm2_pcrextend
+
+copy_modules_dir kernel/drivers/char/tpm

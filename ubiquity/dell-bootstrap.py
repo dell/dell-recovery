@@ -45,6 +45,7 @@ gi.require_version('UDisks', '2.0')
 from gi.repository import GLib, UDisks
 import hashlib
 from functools import cmp_to_key
+import subprocess
 
 NAME = 'dell-bootstrap'
 BEFORE = 'language'
@@ -56,10 +57,13 @@ EFI_ESP_PARTITION       =     '1'
 EFI_RP_PARTITION        =     '2'
 EFI_OS_PARTITION        =     '3'
 EFI_SWAP_PARTITION      =     '4'
+ZFS_OS_PARTITION        =     '5'
 
 #Continually Reused ubiquity templates
 RECOVERY_TYPE_QUESTION =  'dell-recovery/recovery_type'
 RECOVERY_SIZE_QUESTION =  'dell-recovery/recovery_size'
+QUESTION_ENCRYPTION = 'dell-recovery/encryption'
+QUESTION_USE_ZFS = 'dell-recovery/use_zfs'
 
 no_options = GLib.Variant('a{sv}', {})
 
@@ -137,6 +141,9 @@ class PageGtk(PluginUI):
             self.automated_recovery = builder.get_object('automated_recovery')
             self.automated_recovery_box = builder.get_object('automated_recovery_box')
             self.automated_combobox = builder.get_object('hard_drive_combobox')
+            self.use_zfs_chkbtn = builder.get_object('filesystem_use_zfs')
+            self.disk_encryption_chkbtn = builder.get_object('filesystem_encryption')
+            self.disk_encryption_chkbtn.connect("toggled", self.disk_encryption_chkbtn_toggle)
             self.interactive_recovery = builder.get_object('interactive_recovery')
             self.interactive_recovery_box = builder.get_object('interactive_recovery_box')
             self.hdd_recovery = builder.get_object('hdd_recovery')
@@ -164,6 +171,12 @@ class PageGtk(PluginUI):
             if not (self.genuine and 'UBIQUITY_AUTOMATIC' in os.environ):
                 builder.get_object('error_box').show()
             PluginUI.__init__(self, controller, *args, **kwargs)
+
+    def disk_encryption_chkbtn_toggle(self, widget):
+        if widget.get_active():
+            self.use_zfs_chkbtn.set_sensitive(True)
+        else:
+            self.use_zfs_chkbtn.set_sensitive(False)
 
     def plugin_get_current_page(self):
         """Called when ubiquity tries to realize this page.
@@ -266,6 +279,8 @@ class PageGtk(PluginUI):
         """Allows the user to go forward after they've made a selection'"""
         self.controller.allow_go_forward(True)
         self.automated_combobox.set_sensitive(self.automated_recovery.get_active())
+        self.disk_encryption_chkbtn.set_sensitive(self.automated_recovery.get_active())
+        self.use_zfs_chkbtn.set_sensitive(self.disk_encryption_chkbtn.get_active())
         self.dhc_automated_combobox.set_sensitive(self.dhc_automated_recovery.get_active())
 
     def show_dialog(self, which, data = None):
@@ -392,6 +407,42 @@ def disk_sort_comp(d1, d2):
 def is_boot_with_hdd_flag():
     return RECOVERY_TYPE_QUESTION + '=hdd' in open('/proc/cmdline', 'r').read().split()
 
+def is_zfs_partition(devpath=''):
+    udisks = UDisks.Client.new_sync(None)
+    manager = udisks.get_object_manager()
+
+    for item in manager.get_objects():
+        block = item.get_block()
+        loop = item.get_loop()
+        part = item.get_partition()
+
+        if loop or not block or not part:
+            continue
+
+        id_type = block.get_cached_property('IdType').get_string()
+        device = block.get_cached_property('Device').get_bytestring().decode('utf-8')
+        if id_type == 'zfs_member' and device == devpath:
+            return True
+    return False
+
+def getPoolNameFromPartitionPath(devpath=''):
+    if devpath == '':
+        return ''
+
+    with misc.raised_privileges():
+        with subprocess.Popen(['zpool', 'import', '-d', devpath],
+                            stdout=subprocess.PIPE,
+                            stderr=subprocess.STDOUT,
+                            universal_newlines=True) as process:
+            for line in process.stdout:
+                patten = 'pool:'
+                if ( patten  in line):
+                    token = line.split()
+                    if len(token) >= 2 and token[0] == patten:
+                        return token[1]
+    return ''
+
+
 ################
 # Debconf Page #
 ################
@@ -441,6 +492,47 @@ class Page(Plugin):
             # Only delete the swap partitions on the target
             if device.startswith(self.device):
                 part.call_delete_sync(no_options)
+
+    def encryption_partitioner(self):
+        if self.db.get(QUESTION_ENCRYPTION).lower() != "true":
+            return self.log("I: encryption skipped")
+        try:
+            self.log("I: %s is set, let's do encryption layout" % QUESTION_ENCRYPTION)
+            if self.db.get(QUESTION_USE_ZFS).lower() == "true":
+                self.log("I: %s is set, let's do zfs partition layout" % QUESTION_USE_ZFS)
+                return misc.execute_root("/usr/share/dell/scripts/encryption_partitioner.sh",
+                                        self.device,
+                                        "zfs")
+            else:
+                return misc.execute_root("/usr/share/dell/scripts/encryption_partitioner.sh",
+                                        self.device)
+        except Exception as err:
+            return self.log('disk encryption failed, the error is %s'%str(err))
+
+    def prefix_partNum(self,numPart=''):
+        if self.device[-1].isnumeric():
+            return 'p' + numPart
+        return numPart
+
+    def remove_zfs_partitions(self):
+        udisks = UDisks.Client.new_sync(None)
+        manager = udisks.get_object_manager()
+
+        for item in manager.get_objects():
+            block = item.get_block()
+            loop = item.get_loop()
+            part = item.get_partition()
+
+            if loop or not block or not part:
+                continue
+
+            id_type = block.get_cached_property('IdType').get_string()
+            device = block.get_cached_property('Device').get_bytestring().decode('utf-8')
+            if id_type == 'zfs_member':
+                if len(self.device) < len(device) and device.startswith(self.device):
+                    ret = part.call_delete_sync(no_options)
+                    if ret is False:
+                        self.log('I: failed to delete zfs partition: %s' % device)
 
     def sleep_network(self):
         """Requests the network be disabled for the duration of install to
@@ -805,6 +897,23 @@ class Page(Plugin):
         if os.path.isdir('/proc/efi') or os.path.isdir('/sys/firmware/efi'):
             self.efi = True
 
+        #Toggle default UI selections
+        try:
+            if self.db.get(QUESTION_ENCRYPTION) == 'true':
+                self.ui.disk_encryption_chkbtn.set_active(True)
+            else:
+                self.ui.disk_encryption_chkbtn.set_active(False)
+        except debconf.DebconfError as err:
+            self.log("failed to toggle chkbtn for disk encryption, %s" % str(err))
+
+        try:
+            if self.db.get(QUESTION_USE_ZFS) == 'true':
+                self.ui.use_zfs_chkbtn.set_active(True)
+            else:
+                self.ui.use_zfs_chkbtn.set_active(False)
+        except debconf.DebconfError as err:
+            self.log("failed to toggle chkbtn for ZFS, %s" % str(err))
+
         #Amount of memory in the system
         self.mem = 0
         if os.path.exists('/sys/firmware/memmap'):
@@ -875,6 +984,13 @@ class Page(Plugin):
                     misc.execute_root('mount', '-o', 'ro', rootfs, '/mnt')
                 except:
                     self.log("mouting old rootfs failed, give up old mok.")
+                rootfs = mount[0:-1] + ZFS_OS_PARTITION
+                if is_zfs_partition(rootfs):
+                    self.log("old rootfs from %s is zfs" % rootfs)
+                    pool = getPoolNameFromPartitionPath(rootfs)
+                    if pool != '':
+                        ret = misc.execute_root('zpool', 'import', '-R', '/mnt', pool)
+                        self.log("zfs pool %s is mounted, result= %s" % (pool, str(ret)))
                 if os.path.exists('/mnt/var/lib/shim-signed/mok/MOK.priv') and os.path.exists('/mnt/var/lib/shim-signed/mok/MOK.der'):
                     with misc.raised_privileges():
                         shutil.copy('/mnt/var/lib/shim-signed/mok/MOK.der', '/tmp')
@@ -884,6 +1000,8 @@ class Page(Plugin):
                         with open('/tmp/MOK.priv','rb') as f:
                             self.log("/tmp/MOK.priv %s" % hashlib.md5(f.read()).hexdigest())
                 misc.execute_root('umount', '/mnt')
+                if is_zfs_partition(rootfs):
+                    misc.execute_root('zpool', 'export', '-a')
         except Exception as err:
             self.handle_exception(err)
             self.cancel_handler()
@@ -903,6 +1021,21 @@ class Page(Plugin):
         rec_type = self.ui.get_type()
         self.log("recovery type set to '%s'" % rec_type)
         self.preseed(RECOVERY_TYPE_QUESTION, rec_type)
+
+        if self.ui.disk_encryption_chkbtn.get_active():
+            self.preseed_config += ("%s=true\n" % QUESTION_ENCRYPTION)
+            self.log("disk encryption is selected")
+        else:
+            self.preseed_config = self.preseed_config.replace(("%s=true" % QUESTION_ENCRYPTION), '')
+            self.log("disk encryption is not selected")
+
+        if self.ui.use_zfs_chkbtn.get_active():
+            self.preseed_config += ("%s=true\n" % QUESTION_USE_ZFS)
+            self.log("zfs is selected by user")
+        else:
+            self.preseed_config = self.preseed_config.replace(("%s=true" % QUESTION_USE_ZFS), '')
+            self.log("zfs is un-selected by user")
+
         (device, size) = self.ui.get_selected_device()
         if device:
             self.device = device
@@ -979,9 +1112,11 @@ class Page(Plugin):
                 if is_boot_with_hdd_flag():
                     self.ui.toggle_progress()
                 self.sleep_network()
+                self.remove_zfs_partitions()
                 self.delete_swap()
                 self.remove_extra_partitions()
                 self.explode_sdr()
+                self.encryption_partitioner()
         except Exception as err:
             #For interactive types of installs show an error then reboot
             #Otherwise, just reboot the system

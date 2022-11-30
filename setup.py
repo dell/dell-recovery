@@ -67,6 +67,7 @@ setup(
                 ('share/dell/casper/hooks', glob.glob('casper/hooks/*')),
                 ('share/dell/casper/seeds', glob.glob('casper/seeds/*')),
                 ('share/dell/scripts', glob.glob('late/scripts/*')),
+                ('share/dell/scripts-initramfs', glob.glob('late/scripts-initramfs/*')),
                 ('share/dell/scripts/non-negotiable', glob.glob('late/chroot_scripts/*')),
                 ('/etc/dbus-1/system.d/', glob.glob('backend/*.conf')),
                 ('share/dell/grub', files_only('grub')),

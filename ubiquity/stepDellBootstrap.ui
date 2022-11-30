@@ -1,36 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.16.1 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.0"/>
   <object class="GtkDialog" id="advanced_window">
-    <property name="can_focus">False</property>
-    <property name="border_width">5</property>
+    <property name="can-focus">False</property>
+    <property name="border-width">5</property>
     <property name="title" translatable="yes">Advanced Options</property>
     <property name="resizable">False</property>
     <property name="modal">True</property>
-    <property name="window_position">center</property>
-    <property name="type_hint">dialog</property>
+    <property name="window-position">center</property>
+    <property name="type-hint">dialog</property>
     <property name="deletable">False</property>
-    <child>
-      <placeholder/>
-    </child>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox7">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="spacing">2</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area7">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="button2">
                 <property name="label">Collect Logs</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
                 <signal name="clicked" handler="collect_logs" swapped="no"/>
               </object>
               <packing>
@@ -42,11 +39,11 @@
             <child>
               <object class="GtkButton" id="button1">
                 <property name="label">gtk-close</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -58,16 +55,16 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkLabel" id="runtime_details_label">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="label" translatable="yes">&lt;b&gt;Runtime Details&lt;/b&gt;</property>
-            <property name="use_markup">True</property>
+            <property name="use-markup">True</property>
             <property name="xalign">0</property>
           </object>
           <packing>
@@ -79,7 +76,7 @@
         <child>
           <object class="GtkLabel" id="version_detail">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="label" translatable="yes">version</property>
             <property name="xalign">0</property>
           </object>
@@ -92,7 +89,7 @@
         <child>
           <object class="GtkLabel" id="mountpoint_detail">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="label" translatable="yes">mount</property>
             <property name="xalign">0</property>
           </object>
@@ -105,7 +102,7 @@
         <child>
           <object class="GtkLabel" id="memory_detail">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="label" translatable="yes">memory</property>
             <property name="xalign">0</property>
           </object>
@@ -129,25 +126,25 @@
     </action-widgets>
   </object>
   <object class="GtkMessageDialog" id="err_dialog">
-    <property name="can_focus">False</property>
-    <property name="border_width">5</property>
-    <property name="window_position">center-always</property>
-    <property name="type_hint">dialog</property>
-    <property name="skip_taskbar_hint">True</property>
+    <property name="can-focus">False</property>
+    <property name="border-width">5</property>
+    <property name="window-position">center-always</property>
+    <property name="type-hint">dialog</property>
+    <property name="skip-taskbar-hint">True</property>
     <property name="deletable">False</property>
-    <property name="message_type">error</property>
+    <property name="message-type">error</property>
     <property name="buttons">ok</property>
     <property name="text" translatable="yes">Exception Encountered</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox4">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="spacing">2</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area4">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <placeholder/>
             </child>
@@ -158,7 +155,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
@@ -177,26 +174,26 @@
   </object>
   <object class="GtkVBox" id="stepDellBootstrap">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="border_width">6</property>
+    <property name="can-focus">False</property>
+    <property name="border-width">6</property>
     <property name="spacing">50</property>
     <child>
       <object class="GtkVBox" id="vbox1">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <child>
           <object class="GtkEventBox" id="dell_image_box">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="events">GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK | GDK_STRUCTURE_MASK</property>
             <signal name="button-press-event" handler="toggle_advanced" swapped="no"/>
             <child>
               <object class="GtkImage" id="dell_image">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="events">GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK | GDK_STRUCTURE_MASK</property>
-                <property name="pixel_size">128</property>
-                <property name="icon_name">dell-dvd</property>
+                <property name="pixel-size">128</property>
+                <property name="icon-name">dell-dvd</property>
               </object>
             </child>
           </object>
@@ -209,13 +206,13 @@
         <child>
           <object class="GtkVBox" id="vbox5">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <child>
               <object class="GtkLabel" id="bootstrap_information_label">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="label" translatable="yes">This Dell Recovery Media can be used to restore the original factory software.</property>
-                <property name="use_markup">True</property>
+                <property name="use-markup">True</property>
                 <property name="wrap">True</property>
                 <property name="xalign">0</property>
                 <property name="yalign">0</property>
@@ -229,9 +226,9 @@
             <child>
               <object class="GtkLabel" id="bootstrap_warning_label">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="label" translatable="yes">&lt;b&gt;It is recommended you back up all important data before running this tool.&lt;/b&gt;</property>
-                <property name="use_markup">True</property>
+                <property name="use-markup">True</property>
                 <property name="wrap">True</property>
                 <property name="xalign">0</property>
                 <property name="yalign">0</property>
@@ -259,19 +256,19 @@
     </child>
     <child>
       <object class="GtkVBox" id="vbox2">
-        <property name="width_request">600</property>
+        <property name="width-request">600</property>
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="spacing">20</property>
         <child>
           <object class="GtkHBox" id="hdd_recovery_box">
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <child>
               <object class="GtkImage" id="image1">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="pixel_size">48</property>
-                <property name="icon_name">object-rotate-right</property>
+                <property name="can-focus">False</property>
+                <property name="pixel-size">48</property>
+                <property name="icon-name">object-rotate-right</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -282,17 +279,17 @@
             <child>
               <object class="GtkVBox" id="vbox3">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="spacing">5</property>
                 <child>
                   <object class="GtkRadioButton" id="hdd_recovery">
                     <property name="label" translatable="yes">Restore Linux OS partitions.</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">False</property>
                     <property name="xalign">0.5</property>
-                    <property name="draw_indicator">True</property>
+                    <property name="draw-indicator">True</property>
                     <property name="group">automated_recovery</property>
                     <signal name="toggled" handler="toggle_type" swapped="no"/>
                   </object>
@@ -305,15 +302,15 @@
                 <child>
                   <object class="GtkAlignment" id="alignment1">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="left_padding">25</property>
+                    <property name="can-focus">False</property>
+                    <property name="left-padding">25</property>
                     <child>
                       <object class="GtkLabel" id="hdd_info">
-                        <property name="width_request">600</property>
+                        <property name="width-request">600</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">This will rebuild all OS and swap partitions to factory defaults.</property>
-                        <property name="use_markup">True</property>
+                        <property name="use-markup">True</property>
                         <property name="wrap">True</property>
                         <property name="xalign">0</property>
                         <property name="yalign">0</property>
@@ -329,15 +326,15 @@
                 <child>
                   <object class="GtkAlignment" id="alignment3">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="left_padding">25</property>
+                    <property name="can-focus">False</property>
+                    <property name="left-padding">25</property>
                     <child>
                       <object class="GtkLabel" id="hdd_warning_label">
-                        <property name="width_request">600</property>
+                        <property name="width-request">600</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">&lt;b&gt;WARNING: &lt;/b&gt;All personal files and changes will be lost.</property>
-                        <property name="use_markup">True</property>
+                        <property name="use-markup">True</property>
                         <property name="wrap">True</property>
                         <property name="xalign">0</property>
                         <property name="yalign">0</property>
@@ -370,13 +367,13 @@
         <child>
           <object class="GtkHBox" id="dhc_automated_recovery_box">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <child>
               <object class="GtkImage" id="image3">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="pixel_size">48</property>
-                <property name="icon_name">distributor-logo</property>
+                <property name="can-focus">False</property>
+                <property name="pixel-size">48</property>
+                <property name="icon-name">distributor-logo</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -387,17 +384,17 @@
             <child>
               <object class="GtkVBox" id="vbox6">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="spacing">5</property>
                 <child>
                   <object class="GtkRadioButton" id="dhc_automated_recovery">
                     <property name="label" translatable="yes">Install Dell Hybrid Client</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">False</property>
                     <property name="xalign">0.5</property>
-                    <property name="draw_indicator">True</property>
+                    <property name="draw-indicator">True</property>
                     <property name="group">automated_recovery</property>
                     <signal name="toggled" handler="toggle_type" swapped="no"/>
                   </object>
@@ -410,15 +407,15 @@
                 <child>
                   <object class="GtkAlignment" id="alignment8">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="xalign">0</property>
                     <property name="xscale">0</property>
-                    <property name="left_padding">25</property>
+                    <property name="left-padding">25</property>
                     <child>
                       <object class="GtkComboBox" id="dhc_hard_drive_combobox">
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="model">hard_drive_liststore</property>
                         <child>
                           <object class="GtkCellRendererText" id="cellrenderertext2"/>
@@ -438,15 +435,15 @@
                 <child>
                   <object class="GtkAlignment" id="alignment9">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="left_padding">25</property>
+                    <property name="can-focus">False</property>
+                    <property name="left-padding">25</property>
                     <child>
                       <object class="GtkLabel" id="dhc_automated_info">
-                        <property name="width_request">600</property>
+                        <property name="width-request">600</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">This will rebuild all recovery, and OS partitions.</property>
-                        <property name="use_markup">True</property>
+                        <property name="use-markup">True</property>
                         <property name="wrap">True</property>
                         <property name="xalign">0</property>
                         <property name="yalign">0</property>
@@ -462,15 +459,15 @@
                 <child>
                   <object class="GtkAlignment" id="alignment10">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="left_padding">25</property>
+                    <property name="can-focus">False</property>
+                    <property name="left-padding">25</property>
                     <child>
                       <object class="GtkLabel" id="dhc_automated_warning_label">
-                        <property name="width_request">600</property>
+                        <property name="width-request">600</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">&lt;b&gt;WARNING: &lt;/b&gt;All personal files and changes will be lost.</property>
-                        <property name="use_markup">True</property>
+                        <property name="use-markup">True</property>
                         <property name="wrap">True</property>
                         <property name="xalign">0</property>
                         <property name="yalign">0</property>
@@ -503,13 +500,13 @@
         <child>
           <object class="GtkHBox" id="automated_recovery_box">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <child>
               <object class="GtkImage" id="image2">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="pixel_size">48</property>
-                <property name="icon_name">applications-utilities</property>
+                <property name="can-focus">False</property>
+                <property name="pixel-size">48</property>
+                <property name="icon-name">applications-utilities</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -520,18 +517,18 @@
             <child>
               <object class="GtkVBox" id="vbox">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="spacing">5</property>
                 <child>
                   <object class="GtkRadioButton" id="automated_recovery">
                     <property name="label" translatable="yes">Restore entire hard drive.</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">False</property>
                     <property name="xalign">0.5</property>
                     <property name="active">True</property>
-                    <property name="draw_indicator">True</property>
+                    <property name="draw-indicator">True</property>
                     <signal name="toggled" handler="toggle_type" swapped="no"/>
                   </object>
                   <packing>
@@ -541,17 +538,15 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkAlignment" id="alignment6">
+                  <!-- n-columns=3 n-rows=1 -->
+                  <object class="GtkGrid" id="grid1">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
-                    <property name="xscale">0</property>
-                    <property name="left_padding">25</property>
+                    <property name="can-focus">False</property>
                     <child>
                       <object class="GtkComboBox" id="hard_drive_combobox">
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="model">hard_drive_liststore</property>
                         <child>
                           <object class="GtkCellRendererText" id="cellrenderertext1"/>
@@ -560,74 +555,62 @@
                           </attributes>
                         </child>
                       </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="filesystem_encryption">
+                        <property name="label" translatable="yes">Enable disk encryption</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">False</property>
+                        <property name="draw-indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="filesystem_use_zfs">
+                        <property name="label" translatable="yes">Opt-in experiemental ZFS</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">False</property>
+                        <property name="draw-indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">2</property>
+                        <property name="top-attach">0</property>
+                      </packing>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
                 <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
                   <object class="GtkAlignment" id="alignment4">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="left_padding">25</property>
+                    <property name="can-focus">False</property>
+                    <property name="left-padding">25</property>
                     <child>
                       <object class="GtkLabel" id="automated_info">
-                        <property name="width_request">600</property>
+                        <property name="width-request">600</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">This will rebuild all recovery, and OS partitions.</property>
-                        <property name="use_markup">True</property>
-                        <property name="wrap">True</property>
-                        <property name="xalign">0</property>
-                        <property name="yalign">0</property>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="position">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkAlignment" id="alignment7">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="left_padding">25</property>
-                    <child>
-                      <object class="GtkLabel" id="automated_warning_label">
-                        <property name="width_request">600</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">&lt;b&gt;WARNING: &lt;/b&gt;All personal files and changes will be lost.</property>
-                        <property name="use_markup">True</property>
-                        <property name="wrap">True</property>
-                        <property name="xalign">0</property>
-                        <property name="yalign">0</property>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="position">3</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkAlignment" id="alignment13">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="left_padding">25</property>
-                    <child>
-                      <object class="GtkLabel" id="raid_warning_label">
-                        <property name="width_request">600</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Disk with * in the front are part of a RAID array.</property>
-                        <property name="use_markup">True</property>
+                        <property name="use-markup">True</property>
                         <property name="wrap">True</property>
                         <property name="xalign">0</property>
                         <property name="yalign">0</property>
@@ -638,6 +621,54 @@
                     <property name="expand">False</property>
                     <property name="fill">False</property>
                     <property name="position">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkAlignment" id="alignment7">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="left-padding">25</property>
+                    <child>
+                      <object class="GtkLabel" id="automated_warning_label">
+                        <property name="width-request">600</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">&lt;b&gt;WARNING: &lt;/b&gt;All personal files and changes will be lost.</property>
+                        <property name="use-markup">True</property>
+                        <property name="wrap">True</property>
+                        <property name="xalign">0</property>
+                        <property name="yalign">0</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkAlignment" id="alignment13">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="left-padding">25</property>
+                    <child>
+                      <object class="GtkLabel" id="raid_warning_label">
+                        <property name="width-request">600</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Disk with * in the front are part of a RAID array.</property>
+                        <property name="use-markup">True</property>
+                        <property name="wrap">True</property>
+                        <property name="xalign">0</property>
+                        <property name="yalign">0</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">6</property>
                   </packing>
                 </child>
               </object>
@@ -657,13 +688,13 @@
         <child>
           <object class="GtkHBox" id="interactive_recovery_box">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <child>
               <object class="GtkImage" id="image4">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="pixel_size">48</property>
-                <property name="icon_name">distributor-logo</property>
+                <property name="can-focus">False</property>
+                <property name="pixel-size">48</property>
+                <property name="icon-name">distributor-logo</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -674,18 +705,18 @@
             <child>
               <object class="GtkVBox" id="vbox7">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="spacing">5</property>
                 <child>
                   <object class="GtkRadioButton" id="interactive_recovery">
                     <property name="label" translatable="yes">Customize installation.</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">False</property>
                     <property name="xalign">0.5</property>
                     <property name="yalign">0.49000000953674316</property>
-                    <property name="draw_indicator">True</property>
+                    <property name="draw-indicator">True</property>
                     <property name="group">automated_recovery</property>
                     <signal name="toggled" handler="toggle_type" swapped="no"/>
                   </object>
@@ -698,15 +729,15 @@
                 <child>
                   <object class="GtkAlignment" id="alignment11">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="left_padding">25</property>
+                    <property name="can-focus">False</property>
+                    <property name="left-padding">25</property>
                     <child>
                       <object class="GtkLabel" id="interactive_info">
-                        <property name="width_request">600</property>
+                        <property name="width-request">600</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">e.g. Disk encryption, partitions resizing..etc.</property>
-                        <property name="use_markup">True</property>
+                        <property name="use-markup">True</property>
                         <property name="wrap">True</property>
                         <property name="xalign">0</property>
                         <property name="yalign">0</property>
@@ -722,15 +753,15 @@
                 <child>
                   <object class="GtkAlignment" id="alignment12">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="left_padding">25</property>
+                    <property name="can-focus">False</property>
+                    <property name="left-padding">25</property>
                     <child>
                       <object class="GtkLabel" id="nonrecovery_warning_label">
-                        <property name="width_request">600</property>
+                        <property name="width-request">600</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">WARNING: No recovery feature included.</property>
-                        <property name="use_markup">True</property>
+                        <property name="use-markup">True</property>
                         <property name="wrap">True</property>
                         <property name="xalign">0</property>
                         <property name="yalign">0</property>
@@ -760,11 +791,11 @@
         <child>
           <object class="GtkRadioButton" id="hidden_radio">
             <property name="label" translatable="yes">Internal Radio Button</property>
-            <property name="use_action_appearance">False</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">False</property>
+            <property name="use-action-appearance">False</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">False</property>
             <property name="xalign">0.5</property>
-            <property name="draw_indicator">True</property>
+            <property name="draw-indicator">True</property>
             <property name="group">automated_recovery</property>
           </object>
           <packing>
@@ -775,13 +806,13 @@
         </child>
         <child>
           <object class="GtkHBox" id="error_box">
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <child>
               <object class="GtkImage" id="image6">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="pixel_size">48</property>
-                <property name="icon_name">emblem-important</property>
+                <property name="can-focus">False</property>
+                <property name="pixel-size">48</property>
+                <property name="icon-name">emblem-important</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -792,9 +823,9 @@
             <child>
               <object class="GtkLabel" id="genuine_bootstrap_warning_label">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="label" translatable="yes">&lt;b&gt;ERROR:&lt;/b&gt; This recovery media only functions on Dell or Alienware systems.</property>
-                <property name="use_markup">True</property>
+                <property name="use-markup">True</property>
                 <property name="wrap">True</property>
                 <property name="xalign">0.05000000074505806</property>
               </object>
@@ -813,14 +844,14 @@
         </child>
         <child>
           <object class="GtkVBox" id="info_box">
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="spacing">5</property>
             <child>
               <object class="GtkLabel" id="status_warning_label">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="label" translatable="yes">&lt;b&gt;Building Recovery Partition&lt;/b&gt;</property>
-                <property name="use_markup">True</property>
+                <property name="use-markup">True</property>
                 <property name="wrap">True</property>
                 <property name="xalign">0</property>
                 <property name="yalign">0</property>
@@ -834,9 +865,9 @@
             <child>
               <object class="GtkLabel" id="status_info_label">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="label" translatable="yes">&lt;b&gt;NOTE:&lt;/b&gt; Please be patient, this may take a while.</property>
-                <property name="use_markup">True</property>
+                <property name="use-markup">True</property>
                 <property name="wrap">True</property>
                 <property name="xalign">0</property>
                 <property name="yalign">0</property>
@@ -850,9 +881,9 @@
             <child>
               <object class="GtkLabel" id="status_restart_label">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Your system will restart automatically several times.</property>
-                <property name="use_markup">True</property>
+                <property name="use-markup">True</property>
                 <property name="wrap">True</property>
                 <property name="xalign">0</property>
                 <property name="yalign">0</property>
@@ -866,7 +897,7 @@
             <child>
               <object class="GtkEventBox" id="info_spinner_box">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <child>
                   <placeholder/>
                 </child>
@@ -906,33 +937,33 @@
   </object>
   <object class="GtkImage" id="image7">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="xalign">0</property>
     <property name="yalign">0</property>
-    <property name="icon_name">gnome-session-reboot</property>
+    <property name="icon-name">gnome-session-reboot</property>
   </object>
   <object class="GtkImage" id="image8">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="xalign">0</property>
     <property name="yalign">0</property>
-    <property name="icon_name">gnome-session-reboot</property>
+    <property name="icon-name">gnome-session-reboot</property>
   </object>
   <object class="GtkMessageDialog" id="log_dialog">
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="title" translatable="yes">Fetch Logs</property>
-    <property name="type_hint">dialog</property>
+    <property name="type-hint">dialog</property>
     <property name="buttons">ok</property>
     <property name="text" translatable="yes">collecting logs completed!!!</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="messagedialog-vbox">
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="messagedialog-action_area">
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <placeholder/>
             </child>
@@ -940,7 +971,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>

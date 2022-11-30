@@ -39,6 +39,9 @@ fi
 
 export BOOTDEV=${DEVICE%%[0-9]*}
 DEVICE=$(mount | sed -n 's/\ on\ \/target .*//p')
+if [ "$(findmnt -M $TARGET -o fstype -n )" = "zfs" ]; then
+    DEVICE=$(zfs get -o name mountpoint $TARGET -H | sed 's/\/.*//' | xargs -I {} blkid -L {})
+fi
 export TARGETDEV=${DEVICE%%[0-9]*}
 
 LOG="var/log"
@@ -120,9 +123,14 @@ fi
 #Make sure fifuncs and target_chroot are available
 if [ ! -d $TARGET/usr/share/dell/scripts ]; then
     mkdir -p $TARGET/usr/share/dell/scripts
-    DIR_CLEANUP="$TARGET/usr/share/dell/scripts $DIR_CLEANUP"
     mount --bind /usr/share/dell/scripts $TARGET/usr/share/dell/scripts
+    DIR_CLEANUP="$TARGET/usr/share/dell/scripts $DIR_CLEANUP"
     MOUNT_CLEANUP="$TARGET/usr/share/dell/scripts $MOUNT_CLEANUP"
+fi
+if [ ! -d $TARGET/usr/share/dell/scripts-initramfs ]; then
+    mkdir -p $TARGET/usr/share/dell/scripts-initramfs
+    mount --bind /usr/share/dell/scripts-initramfs $TARGET/usr/share/dell/scripts-initramfs
+    MOUNT_CLEANUP="$TARGET/usr/share/dell/scripts-initramfs $MOUNT_CLEANUP"
 fi
 
 #If we are loop mounted, this will have been done during the ubiquity
@@ -134,6 +142,12 @@ export MOUNT_CLEANUP
 #Make sure that WinPE isn't in our menus (happens in uEFI case)
 if [ -d /dell/fist ] && ! grep "^GRUB_DISABLE_OS_PROBER" $TARGET/etc/default/grub >/dev/null; then
     echo "GRUB_DISABLE_OS_PROBER=true" >> $TARGET/etc/default/grub
+fi
+
+# zfs: create dataset for new created user and root, run if zfs in use
+if chroot $TARGET findmnt -M / -t zfs > /dev/null; then
+    . /usr/share/dell/scripts/zfs_finalize.sh
+    . /usr/share/dell/scripts/zfs_encrypt_home.sh
 fi
 
 #Run chroot scripts

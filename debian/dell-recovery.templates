@@ -8,6 +8,16 @@ Type: boolean
 Default: false
 Description: for internal use; determines if EFI enabled dual boot enabled
 
+Template: dell-recovery/use_zfs
+Type: boolean
+Default: false
+Description: determines whether to use ZFS filesystem
+
+Template: dell-recovery/encryption
+Type: boolean
+Default: false
+Description: for internal use; determines whether to encrypt the disk
+
 Template: dell-recovery/os_partition
 Type: string
 Default: 
