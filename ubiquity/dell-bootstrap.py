@@ -1069,12 +1069,24 @@ manually to proceed.")
         commands = [('parted', '-a', 'optimal', '-s', self.device, 'mkpart', 'primary', 'fat16', '0', str(grub_size)),
                     ('parted', '-s', self.device, 'name', '1', "'EFI System Partition'"),
                     ('parted', '-s', self.device, 'set', '1', 'boot', 'on')]
+
+        # Format ESP by one sector per cluster if disk logical sector size is not 512
+        with misc.raised_privileges():
+            logical_sector_size = magic.fetch_output(['blockdev', '--getss', self.device]).split('\n')[0]
+
         if self.device[-1].isnumeric():
-            commands.append(('mkfs.msdos', self.device + 'p' + EFI_ESP_PARTITION))
+            if logical_sector_size != '512':
+                commands.append(('mkfs.msdos', '-s', '1', self.device + 'p' + EFI_ESP_PARTITION))
+            else:
+                commands.append(('mkfs.msdos', self.device + 'p' + EFI_ESP_PARTITION))
+
             rp_part = 'p' + EFI_RP_PARTITION
             esp_part = 'p' + EFI_ESP_PARTITION
         else:
-            commands.append(('mkfs.msdos', self.device + EFI_ESP_PARTITION))
+            if logical_sector_size != '512':
+                commands.append(('mkfs.msdos', '-s', '1', self.device + EFI_ESP_PARTITION))
+            else:
+                commands.append(('mkfs.msdos', self.device + EFI_ESP_PARTITION))
             rp_part = EFI_RP_PARTITION
             esp_part = EFI_ESP_PARTITION
         for command in commands:
