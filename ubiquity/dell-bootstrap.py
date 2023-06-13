@@ -1065,21 +1065,21 @@ manually to proceed.")
             raise RuntimeError("Error creating new partition table on %s" % (self.device))
 
         self.status("Creating Partitions", 1)
-        grub_size = 250
-        commands = [('parted', '-a', 'optimal', '-s', self.device, 'mkpart', 'primary', 'fat16', '0', str(grub_size)),
+        grub_size = 270
+        commands = [('parted', '-a', 'optimal', '-s', self.device, 'mkpart', 'primary', 'fat32', '0', str(grub_size)),
                     ('parted', '-s', self.device, 'name', '1', "'EFI System Partition'"),
                     ('parted', '-s', self.device, 'set', '1', 'boot', 'on')]
         if self.device[-1].isnumeric():
-            commands.append(('mkfs.msdos', self.device + 'p' + EFI_ESP_PARTITION))
+            commands.append(('mkfs.vfat', '-F', '32', self.device + 'p' + EFI_ESP_PARTITION))
             rp_part = 'p' + EFI_RP_PARTITION
             esp_part = 'p' + EFI_ESP_PARTITION
         else:
-            commands.append(('mkfs.msdos', self.device + EFI_ESP_PARTITION))
+            commands.append(('mkfs.vfat', '-F', '32', self.device + EFI_ESP_PARTITION))
             rp_part = EFI_RP_PARTITION
             esp_part = EFI_ESP_PARTITION
         for command in commands:
             #wait for settle
-            if command[0] == 'mkfs.msdos':
+            if command[0] == 'mkfs.vfat':
                 while not os.path.exists(command[-1]):
                     time.sleep(1)
             result = misc.execute_root(*command)
@@ -1088,14 +1088,14 @@ manually to proceed.")
                     raise RuntimeError("Error formatting disk.")
 
         #Build RP
-        command = ('parted', '-a', 'optimal', '-s', self.device, 'mkpart', "fat32", "fat32", str(grub_size), str(rp_size_mb + grub_size))
+        command = ('parted', '-a', 'optimal', '-s', self.device, 'mkpart', "OS", "fat32", str(grub_size), str(rp_size_mb + grub_size))
         result = misc.execute_root(*command)
         if result is False:
             raise RuntimeError("Error creating new %s mb recovery partition on %s" % (rp_size_mb, self.device))
 
         #Build RP filesystem
         self.status("Formatting Partitions", 2)
-        command = ('mkfs.msdos', '-n', 'OS', self.device + rp_part)
+        command = ('mkfs.vfat', '-n', 'OS', self.device + rp_part)
         while not os.path.exists(command[-1]):
             time.sleep(1)
         result = misc.execute_root(*command)
