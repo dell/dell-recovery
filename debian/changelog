@@ -1,3 +1,9 @@
+dell-recovery (1.68somerville11) jammy; urgency=medium
+
+  * Switch ESP from FAT16 to FAT32 and correct RP partition name to OS.
+
+ -- Crag Wang <crag.wang@dell.com>  Wed, 14 Jun 2023 16:40:00 +0800
+
 dell-recovery (1.68somerville10) jammy; urgency=medium
 
   * Don't install packages from external archive
