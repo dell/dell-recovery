@@ -18,11 +18,12 @@ from Dell.recovery_common import DBUS_BUS_NAME, DBUS_INTERFACE_NAME, \
                                  dbus_sync_call_signal_wrapper
 import dbus.mainloop.glib
 
+progressbar = None
 try:
     import progressbar
 except ImportError:
-    print('Error: python3-progressbar is not installed', file=sys.stderr)
-    sys.exit(1)
+    print('python3-progressbar is not installed.  ' \
+            'Progress bar will not be displayed.', file=sys.stderr)
 
 class FidTag:
     ''' Convenience class that cleans up how the Dell FID
@@ -90,15 +91,18 @@ class Install:
     def __init__(self):
         self.old_state = 'starting progress tracking'
         self.state = None
-        self.progress = progressbar.ProgressBar()
-        self.progress.start()
+        self.progress = None
+        if progressbar is not None:
+            self.progress = progressbar.ProgressBar()
+            self.progress.start()
 
     def update_percent(self, state, num):
         self._print_once(state)
-        if num < 100:
-            self.progress.update(num)
-        else:
-            self.progress.finish()
+        if self.progress is not None:
+            if num < 100:
+                self.progress.update(num)
+            else:
+                self.progress.finish()
 
     def update_plain(self, state):
         self._print_once(state)
