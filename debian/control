@@ -44,12 +44,12 @@ Recommends: cd-boot-images-amd64,
             mokutil,
             mdadm (>> 4.1~rc1-2),
             parted,
-            python3-progressbar,
             usb-creator-gtk,
             wodim,
             xorriso,
 Enhances: oem-config-gtk, ubiquity-frontend-gtk
-Suggests: grub-pc
+Suggests: grub-pc,
+          python3-progressbar,
 Description: Dell Recovery Media Creation Package
  This package is used to produce a Dell recovery media image.
  It then uses known open source tools to write the image to
