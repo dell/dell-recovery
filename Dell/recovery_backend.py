@@ -1055,18 +1055,6 @@ arch %s, distributor_str %s, bto_platform %s" % (bto_version, distributor, relea
             if not os.path.exists(os.path.join(mntdir, 'boot', 'grub', 'dell')):
                 shutil.copytree('/usr/share/dell/grub/theme/dell',
                                 os.path.join(tmpdir, 'boot', 'grub', 'dell'))
-            #fonts
-            if not os.path.exists(os.path.join(mntdir, 'boot', 'grub', 'dejavu-sans-12.pf2')):
-                ret = subprocess.call(['grub-mkfont', '/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf',
-                                       '-s=12', '--output=%s' % os.path.join(tmpdir, 'boot', 'grub', 'dejavu-sans-12.pf2')])
-                if ret != 0:
-                    raise CreateFailed("Creating GRUB fonts failed.")
-
-            if not os.path.exists(os.path.join(mntdir, 'boot', 'grub', 'dejavu-sans-bold-14.pf2')):
-                ret = subprocess.call(['grub-mkfont', '/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans-Bold.ttf',
-                                       '-s=14', '--output=%s' % os.path.join(tmpdir, 'boot', 'grub', 'dejavu-sans-bold-14.pf2')])
-                if ret != 0:
-                    raise CreateFailed("Creating GRUB fonts failed.")
 
         #if we previously backed up a grub.cfg or common.cfg
         for path in ['factory/grub.cfg', 'factory/common.cfg']:
