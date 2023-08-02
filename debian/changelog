@@ -1,3 +1,10 @@
+dell-recovery (1.68somerville12) jammy; urgency=medium
+
+  * Remove custom fonts for GRUB
+  * dell-bto-autobuilder: make python3-progressbar optional
+
+ -- Yao Wei (魏銘廷) <yao.wei@canonical.com>  Wed, 02 Aug 2023 15:27:03 +0800
+
 dell-recovery (1.68somerville11) jammy; urgency=medium
 
   * Switch ESP from FAT16 to FAT32 and correct RP partition name to OS.
