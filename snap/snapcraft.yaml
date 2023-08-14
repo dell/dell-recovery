@@ -1,0 +1,28 @@
+name: dell-recovery
+version: git
+summary: recovery tool.
+description: Dell Recovery for Ubuntu. 
+ 
+confinement: classic
+base: core18 #Ubuntu18 base
+
+architectures:  
+  - build-on: amd64
+
+parts:
+  dell-recovery:
+    source: https://github.com/dell/dell-recovery.git
+    plugin: python
+    python-version: python3
+    build-packages:
+      - build-essential
+      - software-properties-common
+      - zlib1g-dev
+      - libzmq3-dev
+      - libhdf5-serial-dev
+      - libfreetype6-dev 
+      - libcurl3-dev
+
+apps:
+  dell-recovery:
+    command: bin/dell-recovery
