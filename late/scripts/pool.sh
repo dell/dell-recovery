@@ -71,6 +71,11 @@ if [ ! -f /etc/apt/sources.list.d/dell.list ]; then
             apt-ftparchive packages ../../$dir | sed "s/^Filename:\ ..\//Filename:\ .\//" >> /Packages
         fi
     done
+    #Add DHC packages to solve DHC package denpendency issue
+    if [ -d "/cdrom/dhc/packages" ]; then
+        cd /cdrom/dhc/packages
+        apt-ftparchive packages ../../..//cdrom/dhc/packages | sed "s/^Filename:\ ..\//Filename:\ .\//" >> /Packages
+    fi
     if [ -f /Packages ]; then
         echo "deb file:/ /" > /etc/apt/sources.list.d/dell.list
     fi
