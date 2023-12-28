@@ -384,7 +384,13 @@ def disk_sort_comp(d1, d2):
 
     d1_key, d2_key = disk_type_key(d1), disk_type_key(d2)
     if d1_key == d2_key:
-        return d2[1] - d1[1]
+        if d1[1] == d2[1]:
+            if d1[2] > d2[2]:
+                return 1
+            else:
+                return -1
+        else:
+            return d2[1] - d1[1]
     else:
         return d2_key - d1_key
 
