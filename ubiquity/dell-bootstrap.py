@@ -383,7 +383,11 @@ def disk_sort_comp(d1, d2):
         return key
 
     d1_key, d2_key = disk_type_key(d1), disk_type_key(d2)
-    if d1_key == d2_key:
+    if d1_key == d2_key: # disk type
+        if d1[1] == d2[1]: # disk size
+            if d1[3] < d2[3]: # disk path
+                return -1
+            return 1
         return d2[1] - d1[1]
     else:
         return d2_key - d1_key
@@ -610,13 +614,20 @@ class Page(Plugin):
 
             device_path = block.get_cached_property("Device").get_bytestring().decode('utf-8')
 
+            # Save the Bus Address temporarily
+            symlinks = block.get_cached_property("Symlinks").get_bytestring_array()
+            device_address = ''
+            device_addresses = [ bypath for bypath in symlinks if "by-path" in bypath ]
+            if len(device_addresses) > 0:
+                device_address = device_addresses[0]
+
             # Check if the disk is the type of dmraid
             if device_path.startswith('/dev/dm'):
                 output = block.get_cached_property("Id").get_string()
                 model = output.split("-")[-1]
                 # device_path = os.path.join("/dev/mapper",model)
                 dmraid_dev_size = block.get_cached_property("Size").unpack()
-                disks.append([device_path, dmraid_dev_size, "%s (%s)" % (model, device_path)])
+                disks.append([device_path, dmraid_dev_size, "%s (%s)" % (model, device_path), device_address])
                 continue
 
             # Check if the disk is the type of mdraid
@@ -627,7 +638,7 @@ class Page(Plugin):
                 uuid = block.get_cached_property("Id").get_string().split("-")[-1]
                 size = block.get_cached_property("Size").unpack()
                 model = "%s %s %i GB" % (name, raids[uuid], size / 1000000000)
-                disks.append([device_path, size, "%s (%s)" % (model, device_path)])
+                disks.append([device_path, size, "%s (%s)" % (model, device_path), device_address])
                 continue
 
             # Check if the disk is the type of NVME SSD
@@ -641,14 +652,14 @@ class Page(Plugin):
                 if is_raid_member:
                     has_raid_member = True
                     display_template = "* " + display_template
-                disks.append([device_path, nvme_dev_size, display_template % (model, device_path)])
+                disks.append([device_path, nvme_dev_size, display_template % (model, device_path), device_address])
                 continue
 
             # Support Persistent Memory storage
             elif device_path.startswith('/dev/pmem'):
                 pmem_dev_size = block.get_cached_property("Size").unpack()
                 model = 'Persistent Memory %i GB' % (pmem_dev_size / 1000000000)
-                disks.append([device_path, pmem_dev_size, "%s (%s)" % (model, device_path)])
+                disks.append([device_path, pmem_dev_size, "%s (%s)" % (model, device_path), device_address])
                 continue
 
             drive_obj = block.get_cached_property("Drive").get_string()
@@ -680,7 +691,7 @@ class Page(Plugin):
             if is_raid_member:
                 has_raid_member = True
                 display_template = "* " + display_template
-            disks.append([devicefile, devicesize, display_template % (devicesize_gb, devicevendor, devicemodel, devicefile)])
+            disks.append([devicefile, devicesize, display_template % (devicesize_gb, devicevendor, devicemodel, devicefile), device_address])
 
         if len(disks) == 0:
             raise RuntimeError("Unable to find and candidate hard disks to install to.")
@@ -697,7 +708,13 @@ class Page(Plugin):
                         break
             if the_same_disk:
                 break
+
+        self.log("disks before sorting: %s" % disks)
         disks.sort(key=cmp_to_key(disk_sort_comp))
+        # Remove the tailed storage address element in each candidate
+        for disk in disks:
+            disk.pop()
+
         if the_same_disk:
             disks.remove(the_same_disk)
             disks.insert(0, the_same_disk)
