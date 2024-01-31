@@ -544,9 +544,15 @@ class Page(Plugin):
         #if the destination is somewhere special, change the language
         if dest:
             self.preseed('dell-recovery/destination', dest)
-        if dest == 'CN':
-            self.preseed('debian-installer/locale', 'zh_CN.UTF-8')
-            self.ui.controller.translate('zh_CN.UTF-8')
+        
+        # The code helps solving eula crash when switch language in OOBE.(low fail rate)
+        #The dict key is dest in SDR, the value is corresponding language in ubiquity languagelist.
+        dest_lang_map = {"CN": "zh_CN", "TW": "zh_TW", "BR": "pt_BR", "CZ": "cs_CZ", "JP": "ja_JP", "KR": "ko_KR", "EG": "ar_EG", "DK": "da_DK", \
+               "NL": "nl_NL", "NO": "nb_NO",  "FI": "fi_FI", "FR": 'fr_FR', "DE": "de_DE", "GR": "el_GR", "IL": "he_IL", "HU": "hu_HU", "IT": "it_IT", \
+               "PL": "pl_PL", "PT": "pt_PT", "RO": "ro_RO", "RU": "ru_RU", "SK": "sk_SK", "SI": "sl_SI", "ES": "es_ES", "SE": "sv_SE", "TR": "tr_TR", "UA": "uk_UA"}
+        if dest in dest_lang_map:
+            self.preseed('debian-installer/locale', '{}.UTF-8'.format(dest_lang_map[dest]))
+            self.ui.controller.translate('{}.UTF-8'.format(dest_lang_map[dest]))
 
     def usb_boot_preseeds(self, more_keys=None):
         """Sets/unsets preseeds that are common to a USB boot scenario.
